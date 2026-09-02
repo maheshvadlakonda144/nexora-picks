@@ -33,5 +33,79 @@ Loading products...</p>
 <section><div class="notice"><b>Affiliate disclosure:</b> Some links on this website may be affiliate links. If you purchase through a qualifying link, we may earn a commission at no extra cost to you.</div></section>
 </main>
 <footer>© 2026 Nexora Picks • Product recommendations & deals</footer>
+  <script>
+const SHEET_ID = "1rzU4fUxxJDIa-Smg0mumxolf0xnyZUUfeEZ6Lz7765w";
+const SHEET_NAME = "Sheet1";
+
+const sheetURL =
+  `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+function escapeHTML(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+function safeURL(value) {
+  try {
+    const url = new URL(value);
+    return (url.protocol === "http:" || url.protocol === "https:")
+      ? url.href : "#";
+  } catch {
+    return "#";
+  }
+}
+
+fetch(sheetURL)
+  .then(response => response.text())
+  .then(text => {
+    const json = text.substring(text.indexOf("(") + 1, text.lastIndexOf(")"));
+    const data = JSON.parse(json);
+    const rows = data.table.rows || [];
+
+    const products = rows
+      .map(row => row.c.map(cell => cell ? cell.v : ""))
+      .filter(row => String(row[5] || "").toLowerCase().trim() === "published");
+
+    const grid = document.getElementById("productGrid");
+
+    if (products.length === 0) {
+      grid.innerHTML = '<p class="muted">No products available yet.</p>';
+      return;
+    }
+
+    grid.innerHTML = products.map(product => {
+      const name = escapeHTML(product[0]);
+      const price = escapeHTML(product[1]);
+      const description = escapeHTML(product[2]);
+      const link = safeURL(product[3]);
+      const image = safeURL(product[4]);
+
+      const picture = image !== "#"
+        ? `<img src="${image}" alt="${name}" loading="lazy">`
+        : `<span>🛍️</span>`;
+
+      return `
+        <article class="card">
+          <div class="pic">${picture}</div>
+          <div class="tag">NEXORA PICK</div>
+          <h3>${name}</h3>
+          <p>${description}</p>
+          ${price ? `<p><b>₹${price}</b></p>` : ""}
+          <a class="btn" href="${link}" target="_blank"
+             rel="sponsored nofollow noopener">Buy Now</a>
+        </article>
+      `;
+    }).join("");
+  })
+  .catch(error => {
+    console.error(error);
+    document.getElementById("productGrid").innerHTML =
+      '<p class="muted">Unable to load products.</p>';
+  });
+</script>
 </body>
 </html>

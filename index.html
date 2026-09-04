@@ -331,7 +331,8 @@ const image=safeURL(product[4]);
  const rating=escapeHTML(product[6]);
 const reviews=escapeHTML(product[7]);
 const mrp=escapeHTML(product[8]);
-const discount=escapeHTML(product[9]);
+const discount=product[9] ?
+Math.round(Number(product[9])*100)+"%" : "";
 
 const picture=image!=="#"
 ?`<img src="${image}" alt="${name}" loading="lazy">`

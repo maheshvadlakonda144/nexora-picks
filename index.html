@@ -173,3 +173,154 @@ body{
  font-size:14px;
  min-height:40px
 }
+ </style>
+<body>
+ <header class="header">
+<div class="logo">NEXORA <span>PICKS</span></div>
+
+<div class="search">
+<input type="search" id="searchBox"
+placeholder="Search products, gadgets & deals..."
+oninput="searchProducts()">
+</div>
+
+<a href="#products">Products</a>
+</header>
+
+<nav class="categories">
+<a href="#products">🔥 Deals</a>
+<a href="#products">📱 Electronics</a>
+<a href="#products">🎧 Gadgets</a>
+<a href="#products">🏠 Home</a>
+<a href="#products">👕 Fashion</a>
+<a href="#products">💄 Beauty</a>
+</nav>
+
+<section class="hero">
+<div>🔥 TRENDING PRODUCTS • BEST PICKS</div>
+<h1>Find Your Next Favorite Product</h1>
+<p>Discover useful products, trending gadgets and great deals, carefully selected by NEXORA PICKS.</p>
+<a class="shop" href="#products">Shop Now</a>
+</section>
+
+<main class="container" id="products">
+
+<div class="title">
+<h2>🔥 Today's Top Picks</h2>
+<p>Hand-picked products worth checking out.</p>
+</div>
+
+<div class="products" id="productGrid">
+<p style="padding:30px">Loading products...</p>
+</div>
+
+<section class="info">
+<h2>Why NEXORA PICKS?</h2>
+<p>We discover useful and interesting products from popular online stores and bring them together in one simple place.</p>
+<p>Compare products, discover deals and visit the seller to complete your purchase.</p>
+</section>
+
+<section class="notice">
+<b>Affiliate Disclosure:</b>
+Some links on NEXORA PICKS may be affiliate links.
+If you purchase through a qualifying link, we may earn a commission at no additional cost to you.
+</section>
+
+</main>
+
+<footer>
+© 2026 NEXORA PICKS • Product Recommendations & Deals
+</footer>
+
+<script>
+const SHEET_ID="1rzU4fUxxJDIa-Smg0mumxolf0xnyZUUfeEZ6Lz7765w";
+const SHEET_NAME="Sheet1";
+
+const sheetURL=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(SHEET_NAME)}`;
+
+let allProducts=[];
+
+function escapeHTML(value){
+return String(value||"")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+}
+
+function safeURL(value){
+try{
+const url=new URL(value);
+return url.protocol==="http:"||url.protocol==="https:"?url.href:"#";
+}catch{
+return "#";
+}
+}
+
+fetch(sheetURL)
+.then(r=>r.text())
+.then(text=>{
+const json=text.substring(text.indexOf("(")+1,text.lastIndexOf(")"));
+const data=JSON.parse(json);
+const rows=data.table.rows||[];
+
+allProducts=rows
+.map(row=>row.c.map(cell=>cell?cell.v:""))
+.filter(row=>String(row[5]||"").toLowerCase().trim()==="published");
+
+displayProducts(allProducts);
+})
+.catch(()=>{
+document.getElementById("productGrid").innerHTML=
+"<p style='padding:30px'>Unable to load products.</p>";
+});
+
+function displayProducts(products){
+const grid=document.getElementById("productGrid");
+
+if(!products.length){
+grid.innerHTML="<p style='padding:30px'>No products available yet.</p>";
+return;
+}
+
+grid.innerHTML=products.map(product=>{
+const name=escapeHTML(product[0]);
+const price=escapeHTML(product[1]);
+const description=escapeHTML(product[2]);
+const link=safeURL(product[3]);
+const image=safeURL(product[4]);
+
+const picture=image!=="#"
+?`<img src="${image}" alt="${name}" loading="lazy">`
+:`<div class="fallback">🛍️</div>`;
+
+return `
+<article class="card">
+<div class="image">${picture}</div>
+<span class="tag">NEXORA PICK</span>
+<h3>${name}</h3>
+<p class="desc">${description}</p>
+${price?`<div class="price">₹${price}</div>`:""}
+<a class="buy" href="${link}" target="_blank"
+rel="sponsored nofollow noopener">Buy on Flipkart →</a>
+</article>`;
+}).join("");
+}
+
+function searchProducts(){
+const search=document.getElementById("searchBox").value.toLowerCase().trim();
+
+const filtered=allProducts.filter(product=>{
+const name=String(product[0]||"").toLowerCase();
+const description=String(product[2]||"").toLowerCase();
+
+return name.includes(search)||description.includes(search);
+});
+
+displayProducts(filtered);
+}
+</script>
+
+</body>
+</html>

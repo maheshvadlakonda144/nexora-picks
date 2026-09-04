@@ -328,6 +328,10 @@ const price=escapeHTML(product[1]);
 const description=escapeHTML(product[2]);
 const link=safeURL(product[3]);
 const image=safeURL(product[4]);
+ const rating=escapeHTML(product[6]);
+const reviews=escapeHTML(product[7]);
+const mrp=escapeHTML(product[8]);
+const discount=escapeHTML(product[9]);
 
 const picture=image!=="#"
 ?`<img src="${image}" alt="${name}" loading="lazy">`
@@ -339,6 +343,9 @@ return `
 <span class="tag">NEXORA PICK</span>
 <h3>${name}</h3>
 <p class="desc">${description}</p>
+<div class="rating">⭐ ${rating} (${reviews})</div>
+<div class="deal">🔥 ${discount} OFF</div>
+<div class="mrp">MRP: ₹${mrp}</div>
 ${price?`<div class="price">₹${price}</div>`:""}
 <a class="buy" href="${link}" target="_blank"
 rel="sponsored nofollow noopener">Buy on Flipkart →</a>

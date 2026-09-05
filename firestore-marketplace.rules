@@ -1,0 +1,57 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function signedIn() {
+      return request.auth != null;
+    }
+    function admin() {
+      return signedIn() && request.auth.uid == "zhVUjwKRHseWbIc95QKYWFRuOn43";
+    }
+    function myUser() {
+      return signedIn() && request.auth.uid == userId;
+    }
+    function approvedSeller() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == "seller"
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.approved == true;
+    }
+
+    match /users/{userId} {
+      allow read: if admin() || myUser();
+      allow create: if signedIn()
+        && request.auth.uid == userId
+        && request.resource.data.role == "seller"
+        && request.resource.data.approved == false;
+      allow update: if admin() || (myUser()
+        && request.resource.data.role == resource.data.role
+        && request.resource.data.approved == resource.data.approved);
+      allow delete: if admin();
+    }
+
+    match /products/{productId} {
+      allow read: if true;
+      allow create: if approvedSeller()
+        && request.resource.data.sellerId == request.auth.uid;
+      allow update, delete: if admin()
+        || (approvedSeller() && resource.data.sellerId == request.auth.uid
+            && request.resource.data.sellerId == request.auth.uid);
+    }
+
+    match /orders/{orderId} {
+      allow create: if signedIn()
+        && request.resource.data.customerId == request.auth.uid
+        && request.resource.data.paymentMethod == "COD"
+        && request.resource.data.status == "pending";
+      allow read: if admin()
+        || (signedIn() && resource.data.customerId == request.auth.uid);
+      allow update, delete: if admin();
+    }
+
+    match /commissionSettings/{docId} {
+      allow read: if signedIn();
+      allow write: if admin();
+    }
+  }
+}

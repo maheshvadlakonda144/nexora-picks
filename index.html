@@ -1,16 +1,385 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nexora Picks | Best Products & Deals</title><meta name="description" content="Discover useful products, trending finds and curated deals recommended by Nexora Picks."><meta name="robots" content="index,follow"><link rel="canonical" href="https://maheshvadlakonda144.github.io/nexora-picks/"><meta name="theme-color" content="#080a0f"><style>
-*{box-sizing:border-box}body{margin:0;background:#07090e;color:#f5f7fb;font-family:Inter,Arial,sans-serif}header{padding:70px 20px 45px;text-align:center;background:radial-gradient(circle at 50% 0,#263248,#07090e 60%)}nav{padding:16px 6%;border-bottom:1px solid #222936;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#07090eee;backdrop-filter:blur(12px);z-index:10}.brand{font-weight:900;letter-spacing:2px}.brand span{color:#ff3150}.menu-btn{border:0;background:transparent;color:#fff;font-size:30px;cursor:pointer}.menu-panel{position:absolute;right:6%;top:64px;width:220px;background:#10141c;border:1px solid #252d39;border-radius:14px;padding:8px;box-shadow:0 14px 35px #0008;display:none}.menu-panel.open{display:block}.menu-panel a{display:block;color:#e9edf4;text-decoration:none;padding:13px 14px;border-radius:9px}.menu-panel a:hover{background:#1b2230}.hero{max-width:800px;margin:auto}.hero h1{font-size:clamp(42px,8vw,76px);margin:10px 0;line-height:1.02;letter-spacing:-2px}.hero p{color:#a9b2c0;font-size:18px;line-height:1.6}.btn{display:inline-block;background:linear-gradient(135deg,#ff3150,#ff5b72);color:#fff;padding:14px 20px;border-radius:11px;text-decoration:none;font-weight:800;box-shadow:0 8px 22px #ff315033;transition:.2s}.btn:hover{transform:translateY(-2px)}.wrap{max-width:1100px;margin:auto;padding:55px 20px}.title{font-size:34px;margin-bottom:8px}.muted{color:#929cab}.products{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:linear-gradient(180deg,#121822,#0e1219);border:1px solid #283241;border-radius:18px;padding:20px;overflow:hidden;box-shadow:0 12px 30px #0004;transition:.2s}.card:hover{transform:translateY(-4px);border-color:#3a4658}.pic{height:210px;border-radius:12px;background:linear-gradient(135deg,#1b2230,#0b0e14);display:flex;align-items:center;justify-content:center;font-size:55px;overflow:hidden}.pic img{width:100%;height:100%;object-fit:cover}.tag{color:#ff3150;font-size:12px;font-weight:800;margin-top:18px;text-transform:uppercase}.card h3{margin:8px 0}.card p{color:#9da6b4;line-height:1.5}.card .btn{margin-top:8px}.notice{background:#0e1219;border:1px solid #252d39;border-radius:12px;padding:18px;color:#a9b2c0;line-height:1.6}footer{border-top:1px solid #222936;padding:30px;text-align:center;color:#8993a1}.loading,.empty{padding:35px;text-align:center;color:#929cab;background:#10141c;border:1px solid #252d39;border-radius:16px}@media(max-width:750px){.products{grid-template-columns:1fr}.pic{height:230px}}
-.auth-overlay{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px;z-index:100}.auth-overlay.show{display:flex}.auth-box{position:relative;width:min(430px,100%);background:#10141c;border:1px solid #2a3340;border-radius:18px;padding:28px}.auth-close{position:absolute;right:14px;top:10px;border:0;background:transparent;color:#fff;font-size:30px}.auth-brand{font-weight:900;letter-spacing:2px;font-size:18px}.auth-brand span{color:#ff3150}.auth-tabs{display:flex;gap:8px;margin:18px 0 22px}.auth-tab{flex:1;border:1px solid #2a3340;background:#171d27;color:#d9dee6;padding:11px;border-radius:9px;font-weight:800}.auth-tab.active{background:#ff3150;color:#fff}.auth-input{display:block;width:100%;padding:13px;margin:10px 0;background:#0a0d13;color:#fff;border:1px solid #2a3340;border-radius:9px}.auth-submit{width:100%;border:0;cursor:pointer;margin-top:8px}.status{padding:10px;border-radius:9px;margin-bottom:12px;background:#17251d;color:#a9e2b6;display:none}.error{background:#30151b;color:#ffb2bd}
-</style></head><body>
-<nav><div class="brand">NEXORA <span>PICKS</span></div><button class="menu-btn" aria-expanded="false" onclick="toggleMenu()">☰</button><div class="menu-panel" id="menuPanel"><a href="#home">Home</a><a href="#products">Products</a><a href="#categories">Categories</a><a href="#about">About Us</a><a href="#contact">Contact</a><a href="#account" id="accountLink">Login / Register</a></div></nav>
-<header id="home"><div class="hero"><div style="color:#ff3150;font-weight:800;letter-spacing:3px">CURATED • SIMPLE • USEFUL</div><h1>Find Your Next Favorite Product.</h1><p>Trending products, useful finds and recommendations — curated for Instagram shoppers.</p><a class="btn" href="#products">Browse Picks</a></div></header>
-<main class="wrap" id="products"><h2 class="title">Featured Picks</h2><p class="muted">Useful products and deals curated for our shoppers.</p><div style="display:flex;gap:10px;margin:22px 0 26px;flex-wrap:wrap"><input id="productSearch" class="auth-input" style="flex:1;min-width:220px;margin:0" placeholder="🔎 Search products..."><select id="categoryFilter" class="auth-input" style="width:auto;min-width:150px;margin:0"><option value="">All categories</option></select></div><div id="productsGrid" class="products"><div class="loading">Loading products…</div></div><section id="categories" style="margin-top:50px"><h2>Categories</h2><p class="muted">Kitchen • Fashion • Tech • Home & Lifestyle</p></section><section id="about" style="margin-top:30px"><h2>Why Nexora Picks?</h2><p class="muted">We focus on useful products, clear recommendations and easy shopping links.</p></section><section id="contact" style="margin-top:30px"><h2>Contact</h2><p class="muted">For product suggestions and collaborations, contact Nexora Picks.</p></section><section style="margin-top:30px"><div class="notice"><b>Affiliate disclosure:</b> Some links on this website may be affiliate links. If you purchase through a qualifying link, we may earn a commission at no extra cost to you.</div></section></main><footer>© 2026 Nexora Picks • Product recommendations & deals</footer>
-<div class="auth-overlay" id="authOverlay"><div class="auth-box"><button class="auth-close" onclick="closeAuth()">×</button><div class="auth-brand">NEXORA <span>PICKS</span></div><div id="authStatus" class="status"></div><div id="authError" class="status error"></div><div class="auth-tabs"><button id="loginTab" class="auth-tab active" onclick="openAuth('login')">Login</button><button id="registerTab" class="auth-tab" onclick="openAuth('register')">Register</button></div><form id="loginForm"><h2>Welcome Back</h2><input class="auth-input" id="loginEmail" type="email" placeholder="Email address" required><input class="auth-input" id="loginPassword" type="password" placeholder="Password" required><button class="btn auth-submit">Login</button><p style="text-align:center"><button type="button" id="resetBtn" style="background:none;border:0;color:#ff3150">Forgot password?</button></p><p style="text-align:center">New customer? <button type="button" onclick="openAuth('register')" style="background:none;border:0;color:#ff3150">Create an account</button></p></form><form id="registerForm" style="display:none"><h2>Create Account</h2><input class="auth-input" id="registerName" placeholder="Full name" required><input class="auth-input" id="registerEmail" type="email" placeholder="Email address" required><input class="auth-input" id="registerPassword" type="password" minlength="6" placeholder="Create password (6+ characters)" required><button class="btn auth-submit">Create Account</button></form><div id="accountPanel" style="display:none"><h2>My Account</h2><p class="muted" id="accountEmail"></p><button class="btn auth-submit" id="logoutBtn">Logout</button></div></div></div>
-<script>function toggleMenu(){let p=document.getElementById('menuPanel'),b=document.querySelector('.menu-btn');let o=p.classList.toggle('open');b.setAttribute('aria-expanded',o)}function closeMenu(){document.getElementById('menuPanel').classList.remove('open')}document.addEventListener('click',e=>{if(!document.querySelector('nav').contains(e.target))closeMenu()})</script>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Nexora Picks | Marketplace</title>
+<meta name="description" content="Shop products from trusted sellers on Nexora Picks.">
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#07090e;
+  color:#f5f7fb;
+  font-family:Arial,sans-serif
+}
+nav{
+  padding:16px 6%;
+  border-bottom:1px solid #252b36;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  background:#07090eee;
+  backdrop-filter:blur(12px);
+  z-index:10
+}
+.brand{
+  font-weight:900;
+  letter-spacing:2px
+}
+.brand span{color:#ff3150}
+nav a{
+  color:#fff;
+  text-decoration:none;
+  margin-left:15px;
+  font-size:14px
+}
+header{
+  padding:65px 20px 50px;
+  text-align:center;
+  background:radial-gradient(circle at 50% 0,#263248,#07090e 65%)
+}
+.hero{
+  max-width:850px;
+  margin:auto
+}
+.hero h1{
+  font-size:clamp(40px,8vw,72px);
+  margin:12px 0
+}
+.hero p{
+  color:#a9b2c0;
+  font-size:18px;
+  line-height:1.6
+}
+.btn{
+  display:inline-block;
+  background:#ff3150;
+  color:#fff;
+  padding:13px 18px;
+  border-radius:9px;
+  text-decoration:none;
+  font-weight:800;
+  border:0;
+  cursor:pointer
+}
+.wrap{
+  max-width:1150px;
+  margin:auto;
+  padding:45px 20px
+}
+.title{
+  font-size:32px;
+  margin-bottom:5px
+}
+.muted{color:#929cab}
+.products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:25px
+}
+.card{
+  background:#10141c;
+  border:1px solid #252d39;
+  border-radius:16px;
+  padding:16px;
+  overflow:hidden
+}
+.pic{
+  height:210px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#1b2230,#0b0e14);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+  font-size:60px
+}
+.pic img{
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+.tag{
+  color:#ff3150;
+  font-size:12px;
+  font-weight:800;
+  margin-top:16px
+}
+.card h3{
+  margin:8px 0
+}
+.card p{
+  color:#9da6b4;
+  line-height:1.5
+}
+.price{
+  font-size:22px;
+  font-weight:900;
+  margin:10px 0
+}
+.old{
+  color:#727b89;
+  text-decoration:line-through;
+  font-size:14px;
+  margin-left:7px
+}
+.seller{
+  color:#7f8998;
+  font-size:12px;
+  margin-bottom:12px
+}
+.notice{
+  background:#0e1219;
+  border:1px solid #252d39;
+  border-radius:12px;
+  padding:18px;
+  color:#a9b2c0;
+  line-height:1.6;
+  margin-top:45px
+}
+.empty{
+  text-align:center;
+  padding:50px 20px;
+  color:#8993a1
+}
+footer{
+  border-top:1px solid #222936;
+  padding:30px;
+  text-align:center;
+  color:#8993a1
+}
+@media(max-width:750px){
+  .products{grid-template-columns:1fr}
+  .pic{height:230px}
+  nav{padding:14px 4%}
+  nav a{margin-left:7px;font-size:12px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div class="brand">NEXORA <span>PICKS</span></div>
+
+  <div>
+    <a href="#products">Products</a>
+    <a href="nexora-seller.html">Seller</a>
+    <a href="admin.html">Admin</a>
+  </div>
+</nav>
+
+<header>
+  <div class="hero">
+    <div style="color:#ff3150;font-weight:800;letter-spacing:3px">
+      NEXORA PICKS MARKETPLACE
+    </div>
+
+    <h1>Find Your Next Favorite Product.</h1>
+
+    <p>
+      Discover useful products from sellers on NEXORA PICKS.
+      Shop easily and securely with Cash on Delivery.
+    </p>
+
+    <a class="btn" href="#products">Browse Products</a>
+  </div>
+</header>
+
+<main class="wrap" id="products">
+
+  <h2 class="title">Featured Products</h2>
+
+  <p class="muted">
+    Products approved by NEXORA PICKS.
+  </p>
+
+  <div id="productsGrid" class="products">
+    <div class="empty">Loading products...</div>
+  </div>
+
+  <section class="notice">
+    <b>Shopping information:</b><br>
+    Products displayed on this marketplace are submitted by registered sellers
+    and must be approved by NEXORA PICKS before becoming visible.
+  </section>
+
+</main>
+
+<footer>
+  © 2026 NEXORA PICKS • Marketplace
+</footer>
+
 <script type="module">
-import{initializeApp}from"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";import{getAuth,createUserWithEmailAndPassword,signInWithEmailAndPassword,sendPasswordResetEmail,signOut,onAuthStateChanged,updateProfile}from"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";import{getFirestore,collection,onSnapshot,query,where}from"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-const firebaseConfig={apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",authDomain:"nexora-picks-e887f.firebaseapp.com",projectId:"nexora-picks-e887f",storageBucket:"nexora-picks-e887f.firebasestorage.app",messagingSenderId:"621359003619",appId:"1:621359003619:web:483add8bfcd0241f4192d6",measurementId:"G-LSMJ6QLLPW"};const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
-const $=id=>document.getElementById(id);function msg(t,e=false){$(e?'authError':'authStatus').textContent=t;$(e?'authError':'authStatus').style.display='block';$(e?'authStatus':'authError').style.display='none'}function clearMsg(){$('authStatus').style.display='none';$('authError').style.display='none'}window.openAuth=mode=>{$('authOverlay').classList.add('show');$('loginForm').style.display=mode==='login'?'block':'none';$('registerForm').style.display=mode==='register'?'block':'none';$('accountPanel').style.display='none';$('loginTab').classList.toggle('active',mode==='login');$('registerTab').classList.toggle('active',mode==='register');clearMsg()};window.closeAuth=()=>$('authOverlay').classList.remove('show');
-$('accountLink').onclick=e=>{e.preventDefault();closeMenu();if(auth.currentUser){$('authOverlay').classList.add('show');$('loginForm').style.display='none';$('registerForm').style.display='none';$('accountPanel').style.display='block';$('accountEmail').textContent=auth.currentUser.email}else openAuth('login')};$('registerForm').onsubmit=async e=>{e.preventDefault();try{let c=await createUserWithEmailAndPassword(auth,$('registerEmail').value.trim(),$('registerPassword').value);let n=$('registerName').value.trim();if(n)await updateProfile(c.user,{displayName:n});msg('Account created successfully.');e.target.reset()}catch(x){msg(x.message,true)}};$('loginForm').onsubmit=async e=>{e.preventDefault();try{await signInWithEmailAndPassword(auth,$('loginEmail').value.trim(),$('loginPassword').value);msg('Login successful.');e.target.reset()}catch(x){msg(x.message,true)}};$('resetBtn').onclick=async()=>{let em=$('loginEmail').value.trim();if(!em)return msg('Enter your email first.',true);try{await sendPasswordResetEmail(auth,em);msg('Password reset email sent.')}catch(x){msg(x.message,true)}};$('logoutBtn').onclick=async()=>{await signOut(auth);openAuth('login');msg('Logged out.')};onAuthStateChanged(auth,u=>{$('accountLink').textContent=u?'My Account / Logout':'Login / Register'});
-const grid=$('productsGrid'),searchBox=$('productSearch'),categoryFilter=$('categoryFilter');let allProducts=[];function renderProducts(){let t=(searchBox?.value||'').toLowerCase(),c=categoryFilter?.value||'';let a=allProducts.filter(p=>(!t||String(p.name||'').toLowerCase().includes(t)||String(p.description||'').toLowerCase().includes(t))&&(!c||p.category===c));if(!a.length){grid.innerHTML='<div class="empty">No matching products found.</div>';return}grid.innerHTML=a.map(p=>{let img=p.imageUrl?`<img src="${esc(p.imageUrl)}" alt="${esc(p.name||'Product')}" loading="lazy" onerror="this.parentElement.textContent='🛍️'">`:esc(p.emoji||'🛍️');return `<article class="card"><div class="pic">${img}</div><div class="tag">${esc(p.category||'FEATURED')}</div><h3>${esc(p.name||'Product')}</h3><p>${esc(p.description||'')}</p><a class="btn" href="${esc(p.priceUrl||'#')}" target="_blank" rel="sponsored nofollow noopener">${esc(p.buttonText||'Check Price')}</a></article>`}).join('')}searchBox?.addEventListener('input',renderProducts);categoryFilter?.addEventListener('change',renderProducts);const q=query(collection(db,'products'),where('active','==',true));onSnapshot(q,s=>{allProducts=[];s.forEach(d=>{const p={id:d.id,...d.data()};if((p.approvalStatus==='approved'||!p.approvalStatus)&&p.active!==false)allProducts.push(p)});allProducts.sort((x,y)=>(y.createdAt?.seconds||0)-(x.createdAt?.seconds||0));let cats=[...new Set(allProducts.map(p=>p.category).filter(Boolean))].sort();categoryFilter.innerHTML='<option value="">All categories</option>'+cats.map(c=>`<option>${esc(c)}</option>`).join('');renderProducts()},x=>{grid.innerHTML='<div class="empty">Products could not be loaded.</div>';console.error(x)});function esc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-</script></body></html>
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  getDocs
+}
+from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+  authDomain: "nexora-picks-e887f.firebaseapp.com",
+  projectId: "nexora-picks-e887f",
+  storageBucket: "nexora-picks-e887f.firebasestorage.app",
+  messagingSenderId: "621359003619",
+  appId: "1:621359003619:web:483add8bfcd0241f4192d",
+  measurementId: "G-LSMJ6QLLPW"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const grid = document.getElementById("productsGrid");
+
+async function loadProducts(){
+
+  try{
+
+    const snap = await getDocs(collection(db,"products"));
+
+    grid.innerHTML = "";
+
+    let count = 0;
+
+    snap.forEach(docSnap => {
+
+      const p = docSnap.data();
+
+      /*
+       * PRODUCT APPROVAL FILTER
+       *
+       * Approved products = visible
+       * Pending products   = hidden
+       * Rejected products  = hidden
+       * Inactive products  = hidden
+       * Out of stock       = hidden
+       *
+       * Old products without approvalStatus are also allowed
+       * for backward compatibility.
+       */
+
+      const approved =
+        p.approvalStatus === "approved" ||
+        !p.approvalStatus;
+
+      const active =
+        p.active !== false;
+
+      const stock =
+        Number(p.stock) > 0;
+
+      if(!approved || !active || !stock){
+        return;
+      }
+
+      count++;
+
+      const article = document.createElement("article");
+      article.className = "card";
+
+      const image = p.imageUrl
+        ? `<img src="${escapeHtml(p.imageUrl)}"
+                alt="${escapeHtml(p.name || "Product")}"
+                onerror="this.style.display='none';this.parentElement.innerHTML='🛍️'">`
+        : escapeHtml(p.emoji || "🛍️");
+
+      const oldPrice =
+        Number(p.oldPrice) > Number(p.price)
+        ? `<span class="old">₹${Number(p.oldPrice).toLocaleString("en-IN")}</span>`
+        : "";
+
+      article.innerHTML = `
+
+        <div class="pic">
+          ${image}
+        </div>
+
+        <div class="tag">
+          ${escapeHtml(p.category || "PRODUCT")}
+        </div>
+
+        <h3>
+          ${escapeHtml(p.name || "Product")}
+        </h3>
+
+        <p>
+          ${escapeHtml(p.description || "Quality product from a NEXORA PICKS seller.")}
+        </p>
+
+        <div class="price">
+          ₹${Number(p.price || 0).toLocaleString("en-IN")}
+          ${oldPrice}
+        </div>
+
+        <div class="seller">
+          Seller: ${escapeHtml(p.sellerName || "NEXORA Seller")}
+        </div>
+
+        <a class="btn"
+           href="product.html?id=${encodeURIComponent(article.dataset.id || docSnap.id)}">
+          View Product
+        </a>
+      `;
+
+      article.dataset.id = docSnap.id;
+
+      grid.appendChild(article);
+
+    });
+
+    if(count === 0){
+
+      grid.innerHTML = `
+        <div class="empty">
+          <h3>No approved products yet.</h3>
+          <p>
+            Sellers can submit products after registration and admin approval.
+          </p>
+        </div>
+      `;
+
+    }
+
+  }catch(error){
+
+    console.error(error);
+
+    grid.innerHTML = `
+      <div class="empty">
+        Unable to load products right now.
+      </div>
+    `;
+
+  }
+
+}
+
+function escapeHtml(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+loadProducts();
+
+</script>
+
+</body>
+  </html>

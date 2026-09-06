@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -66,11 +65,6 @@ box-shadow:0 2px 10px #00000010
 
 .top h2{
 margin:0 0 8px
-}
-
-#loginMsg{
-color:#d32f2f;
-font-weight:bold
 }
 
 button{
@@ -242,6 +236,8 @@ background:#d9dee7
 background:#16803c
 }
 
+/* CANCELLED */
+
 .cancelledBox{
 margin-top:18px;
 padding:15px;
@@ -252,7 +248,7 @@ font-weight:bold;
 text-align:center
 }
 
-/* CANCEL ORDER BUTTON */
+/* BUTTONS */
 
 .cancelBtn{
 width:100%;
@@ -263,7 +259,57 @@ font-size:18px;
 padding:15px
 }
 
-/* CANCEL POPUP */
+.returnBtn{
+width:100%;
+margin-top:18px;
+background:#f57c00;
+color:white;
+font-size:18px;
+padding:15px
+}
+
+.refundBtn{
+width:100%;
+margin-top:12px;
+background:#6a1b9a;
+color:white;
+font-size:18px;
+padding:15px
+}
+
+/* REQUEST STATUS */
+
+.requestBox{
+margin-top:18px;
+padding:15px;
+border-radius:10px;
+background:#fff8e1;
+color:#8a5a00;
+font-weight:bold;
+line-height:1.6
+}
+
+.approvedBox{
+margin-top:18px;
+padding:15px;
+border-radius:10px;
+background:#e8f5e9;
+color:#16803c;
+font-weight:bold;
+line-height:1.6
+}
+
+.rejectedBox{
+margin-top:18px;
+padding:15px;
+border-radius:10px;
+background:#ffebee;
+color:#c62828;
+font-weight:bold;
+line-height:1.6
+}
+
+/* MODAL */
 
 .modal{
 display:none;
@@ -276,17 +322,17 @@ height:100%;
 background:rgba(0,0,0,.55);
 padding:20px;
 align-items:center;
-justify-content:center
+justify-content:center;
+overflow-y:auto
 }
 
 .modalContent{
 background:white;
 width:100%;
-max-width:420px;
-border-radius:16px;
-padding:22px;
-max-height:90vh;
-overflow-y:auto
+max-width:430px;
+border-radius:18px;
+padding:24px;
+margin:auto
 }
 
 .modalContent h2{
@@ -295,9 +341,9 @@ margin-top:0
 
 .reasonOption{
 display:block;
-padding:13px;
+padding:14px;
 border:1px solid #ddd;
-border-radius:8px;
+border-radius:10px;
 margin:10px 0;
 cursor:pointer
 }
@@ -306,38 +352,49 @@ cursor:pointer
 margin-right:10px
 }
 
-/* OTHER REASON TEXT BOX */
-
-#otherReason{
+.otherReason{
 display:none;
 width:100%;
 min-height:100px;
+padding:14px;
 margin-top:10px;
-padding:12px;
-border:1px solid #ddd;
-border-radius:8px;
+border:1px solid #2874f0;
+border-radius:10px;
 font-size:16px;
 font-family:Arial,sans-serif;
-resize:vertical;
-outline:none
-}
-
-#otherReason:focus{
-border-color:#2874f0
+resize:vertical
 }
 
 .confirmCancel{
 width:100%;
 background:#d93025;
 color:white;
-margin-top:15px
+margin-top:15px;
+padding:15px
+}
+
+.confirmReturn{
+width:100%;
+background:#f57c00;
+color:white;
+margin-top:15px;
+padding:15px
+}
+
+.confirmRefund{
+width:100%;
+background:#6a1b9a;
+color:white;
+margin-top:15px;
+padding:15px
 }
 
 .closeCancel{
 width:100%;
 background:#e9ecef;
 color:#333;
-margin-top:10px
+margin-top:10px;
+padding:15px
 }
 
 @media(max-width:600px){
@@ -378,6 +435,7 @@ font-size:15px
 
 </header>
 
+
 <div class="wrap">
 
 <div class="top">
@@ -390,9 +448,8 @@ My Orders
 Checking login...
 </div>
 
-<div id="loginMsg"></div>
-
 </div>
+
 
 <div id="orders">
 
@@ -405,7 +462,7 @@ Loading your orders...
 </div>
 
 
-<!-- CANCEL ORDER POPUP -->
+<!-- CANCEL MODAL -->
 
 <div id="cancelModal" class="modal">
 
@@ -474,7 +531,7 @@ Delivery taking too long
 type="radio"
 name="cancelReason"
 value="Other"
-id="otherOption">
+onchange="showOtherCancelReason()">
 
 Other
 
@@ -482,9 +539,9 @@ Other
 
 
 <textarea
-id="otherReason"
-placeholder="Please type your cancellation reason...">
-</textarea>
+id="otherCancelReason"
+class="otherReason"
+placeholder="Please type your cancellation reason..."></textarea>
 
 
 <button
@@ -501,6 +558,190 @@ class="closeCancel"
 onclick="closeCancelModal()">
 
 Keep Order
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- RETURN MODAL -->
+
+<div id="returnModal" class="modal">
+
+<div class="modalContent">
+
+<h2>
+🔄 Return Product
+</h2>
+
+<p>
+Please select a reason for return:
+</p>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="returnReason"
+value="Received damaged product">
+
+Received damaged product
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="returnReason"
+value="Wrong product received">
+
+Wrong product received
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="returnReason"
+value="Product not as expected">
+
+Product not as expected
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="returnReason"
+value="Other"
+onchange="showOtherReturnReason()">
+
+Other
+
+</label>
+
+
+<textarea
+id="otherReturnReason"
+class="otherReason"
+placeholder="Please type your return reason..."></textarea>
+
+
+<button
+class="confirmReturn"
+onclick="confirmReturnRequest()">
+
+🔄 Submit Return Request
+
+</button>
+
+
+<button
+class="closeCancel"
+onclick="closeReturnModal()">
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- REFUND MODAL -->
+
+<div id="refundModal" class="modal">
+
+<div class="modalContent">
+
+<h2>
+💰 Refund Request
+</h2>
+
+<p>
+Please select a reason for your refund request:
+</p>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="refundReason"
+value="Order cancelled">
+
+Order cancelled
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="refundReason"
+value="Product returned">
+
+Product returned
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="refundReason"
+value="Payment issue">
+
+Payment issue
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="refundReason"
+value="Other"
+onchange="showOtherRefundReason()">
+
+Other
+
+</label>
+
+
+<textarea
+id="otherRefundReason"
+class="otherReason"
+placeholder="Please type your refund reason..."></textarea>
+
+
+<button
+class="confirmRefund"
+onclick="confirmRefundRequest()">
+
+💰 Submit Refund Request
+
+</button>
+
+
+<button
+class="closeCancel"
+onclick="closeRefundModal()">
+
+Cancel
 
 </button>
 
@@ -575,7 +816,7 @@ const $=
 id=>document.getElementById(id);
 
 
-/* LOGIN CHECK */
+/* LOGIN */
 
 onAuthStateChanged(
 
@@ -616,24 +857,18 @@ $("userInfo").innerHTML=
 
 `Logged in as
 <b>
-
-${escapeHtml(
-user.email||""
-)}
-
+${escapeHtml(user.email||"")}
 </b>`;
 
 
-loadOrders(
-user.uid
-);
+loadOrders(user.uid);
 
 }
 
 );
 
 
-/* REAL-TIME ORDERS */
+/* LOAD ORDERS */
 
 function loadOrders(uid){
 
@@ -641,10 +876,7 @@ const q=
 
 query(
 
-collection(
-db,
-"orders"
-),
+collection(db,"orders"),
 
 where(
 "customerId",
@@ -682,14 +914,10 @@ orders.sort(
 (a,b)=>{
 
 const aTime=
-
-a.createdAt?.seconds||
-0;
+a.createdAt?.seconds||0;
 
 const bTime=
-
-b.createdAt?.seconds||
-0;
+b.createdAt?.seconds||0;
 
 return bTime-aTime;
 
@@ -739,10 +967,7 @@ orders
 
 error=>{
 
-console.error(
-error
-);
-
+console.error(error);
 
 $("orders").innerHTML=`
 
@@ -752,9 +977,7 @@ $("orders").innerHTML=`
 
 <br><br>
 
-${escapeHtml(
-error.message
-)}
+${escapeHtml(error.message)}
 
 </div>
 
@@ -772,10 +995,7 @@ error.message
 function showOrder(order){
 
 const date=
-
-formatDate(
-order.createdAt
-);
+formatDate(order.createdAt);
 
 
 const status=
@@ -789,9 +1009,7 @@ order.status||
 
 const items=
 
-Array.isArray(
-order.items
-)
+Array.isArray(order.items)
 
 ?
 order.items
@@ -815,21 +1033,14 @@ item=>`
 
 <div class="itemName">
 
-${escapeHtml(
-item.name||
-"Product"
-)}
+${escapeHtml(item.name||"Product")}
 
 </div>
-
 
 <div>
 
 Quantity:
-
-${Number(
-item.qty
-)||1}
+${Number(item.qty)||1}
 
 </div>
 
@@ -842,23 +1053,15 @@ item.qty
 
 (
 
-Number(
-item.price||
-0
-)
+Number(item.price||0)
 
 *
 
-Number(
-item.qty||
-1
-)
+Number(item.qty||1)
 
 )
 
-.toLocaleString(
-"en-IN"
-)
+.toLocaleString("en-IN")
 
 }
 
@@ -872,9 +1075,7 @@ item.qty||
 
 :
 
-`<p>
-No product details available.
-</p>`;
+`<p>No product details available.</p>`;
 
 
 return `
@@ -892,9 +1093,7 @@ Order ID
 
 <div class="orderId">
 
-${escapeHtml(
-order.id
-)}
+${escapeHtml(order.id)}
 
 </div>
 
@@ -915,10 +1114,7 @@ class="status">
 ${escapeHtml(
 
 status
-.replaceAll(
-"-",
-" "
-)
+.replaceAll("-"," ")
 .toUpperCase()
 
 )}
@@ -945,6 +1141,21 @@ order.id
 )}
 
 
+${createReturnButton(
+status,
+order
+)}
+
+
+${createRefundButton(
+status,
+order
+)}
+
+
+${showRequestStatus(order)}
+
+
 <div class="total">
 
 <span>
@@ -956,14 +1167,9 @@ Total
 
 ₹${
 
-Number(
-order.total||
-0
-)
+Number(order.total||0)
 
-.toLocaleString(
-"en-IN"
-)
+.toLocaleString("en-IN")
 
 }
 
@@ -976,7 +1182,10 @@ order.total||
 style="margin-top:12px"
 class="cod">
 
-💵 Cash on Delivery
+💵 ${escapeHtml(
+order.paymentMethod||
+"Cash on Delivery"
+)}
 
 </div>
 
@@ -1043,9 +1252,7 @@ const cancellableStatuses=[
 
 if(
 
-!cancellableStatuses.includes(
-status
-)
+!cancellableStatuses.includes(status)
 
 ){
 
@@ -1069,162 +1276,195 @@ onclick="openCancelModal('${orderId}')">
 }
 
 
-/* CANCEL ORDER VARIABLES */
+/* RETURN BUTTON */
+
+function createReturnButton(
+status,
+order
+){
+
+if(
+status!=="delivered"
+){
+
+return "";
+
+}
+
+
+if(
+order.returnStatus
+){
+
+return "";
+
+}
+
+
+return `
+
+<button
+class="returnBtn"
+onclick="openReturnModal('${order.id}')">
+
+🔄 Request Return
+
+</button>
+
+`;
+
+}
+
+
+/* REFUND BUTTON */
+
+function createRefundButton(
+status,
+order
+){
+
+if(
+order.refundStatus
+){
+
+return "";
+
+}
+
+
+const refundableStatuses=[
+
+"cancelled",
+"delivered"
+
+];
+
+
+if(
+
+!refundableStatuses.includes(status)
+
+){
+
+return "";
+
+}
+
+
+return `
+
+<button
+class="refundBtn"
+onclick="openRefundModal('${order.id}')">
+
+💰 Request Refund
+
+</button>
+
+`;
+
+}
+
+
+/* SHOW REQUEST STATUS */
+
+function showRequestStatus(order){
+
+let html="";
+
+
+if(order.returnStatus){
+
+html+=`
+
+<div class="${
+order.returnStatus==="approved"
+?
+"approvedBox"
+:
+order.returnStatus==="rejected"
+?
+"rejectedBox"
+:
+"requestBox"
+}">
+
+🔄 Return Request:
+${escapeHtml(order.returnStatus)}
+
+<br>
+
+Reason:
+${escapeHtml(order.returnReason||"")}
+
+</div>
+
+`;
+
+}
+
+
+if(order.refundStatus){
+
+html+=`
+
+<div class="${
+order.refundStatus==="approved"
+?
+"approvedBox"
+:
+order.refundStatus==="rejected"
+?
+"rejectedBox"
+:
+"requestBox"
+}">
+
+💰 Refund Request:
+${escapeHtml(order.refundStatus)}
+
+<br>
+
+Reason:
+${escapeHtml(order.refundReason||"")}
+
+</div>
+
+`;
+
+}
+
+
+return html;
+
+}
+
+
+/* ORDER ID VARIABLES */
 
 let selectedOrderId=null;
 
 
-/* OPEN CANCEL POPUP */
+/* CANCEL MODAL */
 
 window.openCancelModal=
 
 function(orderId){
 
-selectedOrderId=
+selectedOrderId=orderId;
 
-orderId;
-
-
-/* RESET PREVIOUS REASON */
-
-document
-.querySelectorAll(
-'input[name="cancelReason"]'
-)
-.forEach(
-
-input=>{
-
-input.checked=false;
-
-}
-
-);
-
-
-document
-.getElementById(
-"otherReason"
-)
-.value=
-
-"";
-
-
-document
-.getElementById(
-"otherReason"
-)
-.style.display=
-
-"none";
-
-
-document
-.getElementById(
-"cancelModal"
-)
-.style.display=
-
-"flex";
+$("cancelModal").style.display="flex";
 
 };
 
-
-/* SHOW OTHER REASON TEXT BOX */
-
-document
-.getElementById(
-"otherOption"
-)
-.addEventListener(
-
-"change",
-
-function(){
-
-document
-.getElementById(
-"otherReason"
-)
-.style.display=
-
-"block";
-
-}
-
-);
-
-
-/* HIDE OTHER BOX WHEN ANOTHER REASON IS SELECTED */
-
-document
-.querySelectorAll(
-'input[name="cancelReason"]'
-)
-.forEach(
-
-input=>{
-
-input.addEventListener(
-
-"change",
-
-function(){
-
-if(
-
-this.value!=="Other"
-
-){
-
-document
-.getElementById(
-"otherReason"
-)
-.style.display=
-
-"none";
-
-
-document
-.getElementById(
-"otherReason"
-)
-.value=
-
-"";
-
-}
-
-}
-
-);
-
-}
-
-);
-
-
-/* CLOSE CANCEL POPUP */
 
 window.closeCancelModal=
 
 function(){
 
-document
-.getElementById(
-"cancelModal"
-)
-.style.display=
+$("cancelModal").style.display="none";
 
-"none";
-
-
-selectedOrderId=
-
-null;
-
+selectedOrderId=null;
 
 document
 .querySelectorAll(
@@ -1240,28 +1480,25 @@ input.checked=false;
 
 );
 
+$("otherCancelReason").value="";
 
-document
-.getElementById(
-"otherReason"
-)
-.value=
-
-"";
-
-
-document
-.getElementById(
-"otherReason"
-)
-.style.display=
-
-"none";
+$("otherCancelReason").style.display="none";
 
 };
 
 
-/* CONFIRM CANCELLATION */
+/* SHOW OTHER CANCEL */
+
+window.showOtherCancelReason=
+
+function(){
+
+$("otherCancelReason").style.display="block";
+
+};
+
+
+/* CONFIRM CANCEL */
 
 window.confirmCancelOrder=
 
@@ -1276,14 +1513,10 @@ document.querySelector(
 );
 
 
-/* CHECK REASON */
-
 if(!selected){
 
 alert(
-
 "Please select a cancellation reason."
-
 );
 
 return;
@@ -1291,59 +1524,29 @@ return;
 }
 
 
-/* CHECK OTHER REASON */
+let reason=
+selected.value;
 
-const otherReason=
 
-document
-.getElementById(
-"otherReason"
-)
+if(reason==="Other"){
+
+reason=
+$("otherCancelReason")
 .value
 .trim();
 
 
-if(
-
-selected.value==="Other"
-
-&&
-
-!otherReason
-
-){
+if(!reason){
 
 alert(
-
 "Please type your cancellation reason."
-
 );
 
 return;
 
 }
 
-
-if(!selectedOrderId){
-
-return;
-
 }
-
-
-/* FINAL REASON */
-
-const finalReason=
-
-selected.value==="Other"
-
-?
-
-otherReason
-
-:
-
-selected.value;
 
 
 try{
@@ -1352,29 +1555,18 @@ try{
 await updateDoc(
 
 doc(
-
 db,
-
 "orders",
-
 selectedOrderId
-
 ),
 
 {
 
-status:
+status:"cancelled",
 
-"cancelled",
-
-
-cancellationReason:
-
-finalReason,
-
+cancellationReason:reason,
 
 cancelledAt:
-
 serverTimestamp()
 
 }
@@ -1383,9 +1575,7 @@ serverTimestamp()
 
 
 alert(
-
 "Your order has been cancelled successfully."
-
 );
 
 
@@ -1394,16 +1584,10 @@ closeCancelModal();
 
 }catch(error){
 
-
-console.error(
-error
-);
-
+console.error(error);
 
 alert(
-
 "Unable to cancel order. Please try again."
-
 );
 
 }
@@ -1411,15 +1595,312 @@ alert(
 };
 
 
-/* CREATE ORDER TRACKING */
+/* RETURN MODAL */
+
+window.openReturnModal=
+
+function(orderId){
+
+selectedOrderId=orderId;
+
+$("returnModal").style.display="flex";
+
+};
+
+
+window.closeReturnModal=
+
+function(){
+
+$("returnModal").style.display="none";
+
+selectedOrderId=null;
+
+document
+.querySelectorAll(
+'input[name="returnReason"]'
+)
+.forEach(
+
+input=>{
+
+input.checked=false;
+
+}
+
+);
+
+$("otherReturnReason").value="";
+
+$("otherReturnReason").style.display="none";
+
+};
+
+
+window.showOtherReturnReason=
+
+function(){
+
+$("otherReturnReason").style.display="block";
+
+};
+
+
+/* CONFIRM RETURN */
+
+window.confirmReturnRequest=
+
+async function(){
+
+const selected=
+
+document.querySelector(
+
+'input[name="returnReason"]:checked'
+
+);
+
+
+if(!selected){
+
+alert(
+"Please select a return reason."
+);
+
+return;
+
+}
+
+
+let reason=
+selected.value;
+
+
+if(reason==="Other"){
+
+reason=
+$("otherReturnReason")
+.value
+.trim();
+
+
+if(!reason){
+
+alert(
+"Please type your return reason."
+);
+
+return;
+
+}
+
+}
+
+
+try{
+
+
+await updateDoc(
+
+doc(
+db,
+"orders",
+selectedOrderId
+),
+
+{
+
+returnStatus:
+"pending",
+
+returnReason:
+reason,
+
+returnRequestedAt:
+serverTimestamp()
+
+}
+
+);
+
+
+alert(
+"Your return request has been sent to the admin."
+);
+
+
+closeReturnModal();
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Unable to submit return request."
+);
+
+}
+
+};
+
+
+/* REFUND MODAL */
+
+window.openRefundModal=
+
+function(orderId){
+
+selectedOrderId=orderId;
+
+$("refundModal").style.display="flex";
+
+};
+
+
+window.closeRefundModal=
+
+function(){
+
+$("refundModal").style.display="none";
+
+selectedOrderId=null;
+
+document
+.querySelectorAll(
+'input[name="refundReason"]'
+)
+.forEach(
+
+input=>{
+
+input.checked=false;
+
+}
+
+);
+
+$("otherRefundReason").value="";
+
+$("otherRefundReason").style.display="none";
+
+};
+
+
+window.showOtherRefundReason=
+
+function(){
+
+$("otherRefundReason").style.display="block";
+
+};
+
+
+/* CONFIRM REFUND */
+
+window.confirmRefundRequest=
+
+async function(){
+
+const selected=
+
+document.querySelector(
+
+'input[name="refundReason"]:checked'
+
+);
+
+
+if(!selected){
+
+alert(
+"Please select a refund reason."
+);
+
+return;
+
+}
+
+
+let reason=
+selected.value;
+
+
+if(reason==="Other"){
+
+reason=
+$("otherRefundReason")
+.value
+.trim();
+
+
+if(!reason){
+
+alert(
+"Please type your refund reason."
+);
+
+return;
+
+}
+
+}
+
+
+try{
+
+
+await updateDoc(
+
+doc(
+db,
+"orders",
+selectedOrderId
+),
+
+{
+
+refundStatus:
+"pending",
+
+refundReason:
+reason,
+
+refundRequestedAt:
+serverTimestamp()
+
+}
+
+);
+
+
+alert(
+"Your refund request has been sent to the admin."
+);
+
+
+closeRefundModal();
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Unable to submit refund request."
+);
+
+}
+
+};
+
+
+/* ORDER TRACKING */
 
 function createTracking(status){
 
-
 if(
-
 status==="cancelled"
-
 ){
 
 return `
@@ -1438,63 +1919,39 @@ return `
 const steps=[
 
 {
-
 key:"pending",
-
 icon:"🟡",
-
 text:"Order Placed"
-
 },
 
 {
-
 key:"confirmed",
-
 icon:"✅",
-
 text:"Order Confirmed"
-
 },
 
 {
-
 key:"packed",
-
 icon:"📦",
-
 text:"Packed"
-
 },
 
 {
-
 key:"shipped",
-
 icon:"🚚",
-
 text:"Shipped"
-
 },
 
 {
-
 key:"out-for-delivery",
-
 icon:"🚚",
-
 text:"Out for Delivery"
-
 },
 
 {
-
 key:"delivered",
-
 icon:"🎉",
-
 text:"Delivered"
-
 }
 
 ];
@@ -1505,7 +1962,6 @@ let current=
 steps.findIndex(
 
 step=>
-
 step.key===status
 
 );
@@ -1536,33 +1992,19 @@ steps.map(
 (step,index)=>{
 
 
-let state=
-
-"";
+let state="";
 
 
-if(
+if(index<current){
 
-index<current
-
-){
-
-state=
-
-"done";
+state="done";
 
 }
 
 
-if(
+if(index===current){
 
-index===current
-
-){
-
-state=
-
-"active";
+state="active";
 
 }
 
@@ -1572,14 +2014,12 @@ return `
 <div
 class="step ${state}">
 
-
 <div
 class="stepIcon">
 
 ${step.icon}
 
 </div>
-
 
 <div
 class="stepText">
@@ -1618,7 +2058,6 @@ return "Date unavailable";
 
 try{
 
-
 const date=
 
 timestamp.toDate
@@ -1629,9 +2068,7 @@ timestamp.toDate()
 
 :
 
-new Date(
-timestamp
-);
+new Date(timestamp);
 
 
 return date.toLocaleString(
@@ -1668,9 +2105,7 @@ return "Date unavailable";
 
 function escapeHtml(value){
 
-return String(
-value??""
-)
+return String(value??"")
 
 .replaceAll(
 "&",
@@ -1706,9 +2141,7 @@ window.goLogin=
 
 function(){
 
-location.href=
-
-"index.html";
+location.href="index.html";
 
 };
 
@@ -1716,4 +2149,4 @@ location.href=
 
 </body>
 
-</html>
+  </html>

@@ -219,7 +219,7 @@ Add a New Product
 
 Enter your product details and upload a product image.
 
-Your product will be sent to the admin for approval.
+Your product will be published immediately.
 
 </p>
 
@@ -369,7 +369,7 @@ required
 type="submit"
 id="addBtn">
 
-📤 Submit Product for Approval
+➕ Add Product
 
 </button>
 
@@ -579,8 +579,6 @@ return;
 try{
 
 
-/* FIND SELLER USING userId */
-
 const sellerQuery=
 
 query(
@@ -635,7 +633,7 @@ const sellerData=
 sellerDoc.data();
 
 
-/* CHECK APPROVAL */
+/* CHECK SELLER APPROVAL */
 
 if(
 sellerData.status!=="approved"
@@ -728,8 +726,6 @@ return;
 }
 
 
-/* CHECK IMAGE */
-
 if(
 !file.type.startsWith(
 "image/"
@@ -755,8 +751,6 @@ return;
 
 }
 
-
-/* CREATE PREVIEW */
 
 const imageUrl=
 
@@ -994,7 +988,7 @@ storageRef
 
 addBtn.textContent=
 
-"📤 Saving Product...";
+"💾 Saving Product...";
 
 
 /* SAVE PRODUCT */
@@ -1053,18 +1047,18 @@ sellerName:
 currentSeller.storeName,
 
 
-/* ADMIN APPROVAL */
+/* AUTOMATICALLY APPROVED AND VISIBLE */
 
 approvalStatus:
-"pending",
+"approved",
 
 
 status:
-"pending",
+"approved",
 
 
 active:
-false,
+true,
 
 
 /* DATE */
@@ -1081,9 +1075,11 @@ serverTimestamp()
 );
 
 
+/* SUCCESS MESSAGE */
+
 showMessage(
 
-"✅ Product submitted successfully! Please wait for admin approval.",
+"✅ Product added successfully! Your product is now live.",
 
 "success"
 
@@ -1100,7 +1096,7 @@ imagePreview.innerHTML=
 "📷 Product image preview";
 
 
-/* GO BACK */
+/* GO BACK TO SELLER DASHBOARD */
 
 setTimeout(
 
@@ -1129,7 +1125,7 @@ error
 
 showMessage(
 
-"❌ Unable to submit product: "+error.message,
+"❌ Unable to add product: "+error.message,
 
 "error"
 
@@ -1143,7 +1139,7 @@ false;
 
 addBtn.textContent=
 
-"📤 Submit Product for Approval";
+"➕ Add Product";
 
 
 }

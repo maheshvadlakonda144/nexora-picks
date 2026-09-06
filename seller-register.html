@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Seller Registration | NEXORA PICKS</title>
 
@@ -31,6 +30,10 @@ header{
 header h1{
     margin:0;
     font-size:22px;
+}
+
+header p{
+    margin:8px 0 0;
 }
 
 .container{
@@ -121,10 +124,6 @@ button{
     color:#172033;
 }
 
-.hidden{
-    display:none;
-}
-
 .success{
     text-align:center;
     padding:30px;
@@ -152,6 +151,8 @@ button{
 <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
 </div>
+
+
 <!-- STEP 1 -->
 
 <div class="step active" id="step1">
@@ -214,18 +215,12 @@ required>
 
 <select id="category" required>
 
-<option value="">
-Select Category
-</option>
+<option value="">Select Category</option>
 
 <option>Electronics</option>
-
 <option>Fashion</option>
-
 <option>Beauty</option>
-
 <option>Home & Kitchen</option>
-
 <option>Other</option>
 
 </select>
@@ -308,7 +303,9 @@ Submit Registration
 </div>
 
 </div>
-<!-- SUCCESS MESSAGE -->
+
+
+<!-- SUCCESS -->
 
 <div class="step" id="successStep">
 
@@ -336,6 +333,7 @@ Go to Home
 </div>
 
 </div>
+
 </div>
 
 
@@ -343,8 +341,6 @@ Go to Home
 
 let currentStep = 1;
 
-
-/* NEXT STEP */
 
 function nextStep(step){
 
@@ -359,12 +355,9 @@ function nextStep(step){
         const phone =
         document.getElementById("phone").value.trim();
 
-
         if(!fullName || !email || !phone){
 
-            alert(
-            "Please fill all required fields."
-            );
+            alert("Please fill all required fields.");
 
             return;
         }
@@ -383,16 +376,9 @@ function nextStep(step){
         const address =
         document.getElementById("address").value.trim();
 
+        if(!storeName || !category || !address){
 
-        if(
-            !storeName ||
-            !category ||
-            !address
-        ){
-
-            alert(
-            "Please fill all required fields."
-            );
+            alert("Please fill all required fields.");
 
             return;
         }
@@ -401,17 +387,13 @@ function nextStep(step){
 
 
     document
-    .getElementById(
-        "step" + currentStep
-    )
+    .getElementById("step" + currentStep)
     .classList
     .remove("active");
 
 
     document
-    .getElementById(
-        "step" + step
-    )
+    .getElementById("step" + step)
     .classList
     .add("active");
 
@@ -429,24 +411,17 @@ function nextStep(step){
 
 }
 
-
-
-/* PREVIOUS STEP */
 
 function prevStep(step){
 
     document
-    .getElementById(
-        "step" + currentStep
-    )
+    .getElementById("step" + currentStep)
     .classList
     .remove("active");
 
 
     document
-    .getElementById(
-        "step" + step
-    )
+    .getElementById("step" + step)
     .classList
     .add("active");
 
@@ -465,111 +440,79 @@ function prevStep(step){
 }
 
 
-
-/* UPDATE PROGRESS */
-
 function updateProgress(step){
 
     const progressBar =
-    document.getElementById(
-        "progressBar"
-    );
+    document.getElementById("progressBar");
 
 
     if(step === 1){
 
-        progressBar.style.width =
-        "33%";
+        progressBar.style.width = "33%";
 
     }
 
+    else if(step === 2){
 
-    if(step === 2){
-
-        progressBar.style.width =
-        "66%";
+        progressBar.style.width = "66%";
 
     }
 
+    else if(step === 3){
 
-    if(step === 3){
-
-        progressBar.style.width =
-        "100%";
+        progressBar.style.width = "100%";
 
     }
 
 }
 
-
-
-/* SUBMIT REGISTRATION */
 
 function submitRegistration(){
 
     const accountName =
     document
-    .getElementById(
-        "accountName"
-    )
+    .getElementById("accountName")
     .value
     .trim();
 
 
     const accountNumber =
     document
-    .getElementById(
-        "accountNumber"
-    )
+    .getElementById("accountNumber")
     .value
     .trim();
 
 
     const ifsc =
     document
-    .getElementById(
-        "ifsc"
-    )
+    .getElementById("ifsc")
     .value
     .trim();
 
 
-    if(
-        !accountName ||
-        !accountNumber ||
-        !ifsc
-    ){
+    if(!accountName || !accountNumber || !ifsc){
 
-        alert(
-        "Please fill all bank details."
-        );
+        alert("Please fill all bank details.");
 
         return;
     }
 
 
     document
-    .getElementById(
-        "step3"
-    )
+    .getElementById("step3")
     .classList
     .remove("active");
 
 
     document
-    .getElementById(
-        "successStep"
-    )
+    .getElementById("successStep")
     .classList
     .add("active");
 
 
     document
-    .getElementById(
-        "progressBar"
-    )
-    .style.width =
-    "100%";
+    .getElementById("progressBar")
+    .style.width = "100%";
 
 
     window.scrollTo({
@@ -578,7 +521,6 @@ function submitRegistration(){
     });
 
 }
-
 
 </script>
 

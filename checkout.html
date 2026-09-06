@@ -281,4 +281,53 @@ textarea{
   inputmode="numeric"
   placeholder="6-digit PIN code"
 >
+  </div>
+
+<!-- ORDER SUMMARY -->
+<div class="card">
+    <h2>🛒 Order Summary</h2>
+
+    <div class="summary-row">
+        <span>Subtotal</span>
+        <strong id="subtotal">₹0</strong>
+    </div>
+
+    <div class="summary-row">
+        <span>Delivery</span>
+        <strong>FREE</strong>
+    </div>
+
+    <hr>
+
+    <div class="summary-row total">
+        <strong>Total</strong>
+        <strong id="total">₹0</strong>
+    </div>
+</div>
+
+<!-- PAYMENT METHOD -->
+<div class="card">
+    <h2>💳 Payment Method</h2>
+
+    <div class="payment-option selected">
+        💵 <strong>Cash on Delivery</strong>
+        <br>
+        <span>Pay when your order is delivered.</span>
+    </div>
+</div>
+
+<!-- PLACE ORDER BUTTON -->
+<button class="place-order" onclick="placeOrder()">
+    🛍️ Place Order
+</button>
+
+</div>
+  <script>
+function placeOrder() {
+    alert("Your order has been placed successfully!");
+}
+</script>
+
+</body>
+</html>
  

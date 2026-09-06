@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Seller Registration | NEXORA PICKS</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+color:#172033;
+}
+
+header{
+background:#2874f0;
+color:white;
+padding:18px 20px;
+display:flex;
+align-items:center;
+gap:15px;
+}
+
+header a{
+color:white;
+text-decoration:none;
+font-size:28px;
+}
+
+header h1{
+margin:0;
+font-size:24px;
+}
+
+.container{
+max-width:600px;
+margin:30px auto;
+padding:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 3px 15px rgba(0,0,0,.1);
+}
+
+h2{
+margin-top:0;
+}
+
+.subtitle{
+color:#667085;
+line-height:1.6;
+margin-bottom:25px;
+}
+
+label{
+display:block;
+font-weight:bold;
+margin-top:16px;
+margin-bottom:7px;
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:14px;
+border:1px solid #d0d5dd;
+border-radius:8px;
+font-size:16px;
+outline:none;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+border-color:#2874f0;
+}
+
+textarea{
+resize:vertical;
+min-height:90px;
+}
+
+button{
+width:100%;
+margin-top:25px;
+padding:15px;
+border:0;
+border-radius:8px;
+background:#2874f0;
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:disabled{
+opacity:.6;
+cursor:not-allowed;
+}
+
+.message{
+margin-top:18px;
+padding:12px;
+border-radius:8px;
+display:none;
+}
+
+.success{
+background:#e8f5e9;
+color:#16803c;
+}
+
+.error{
+background:#ffebee;
+color:#c62828;
+}
+
+.loginBox{
+text-align:center;
+margin-top:20px;
+color:#667085;
+}
+
+.loginBox a{
+color:#2874f0;
+font-weight:bold;
+text-decoration:none;
+}
+
+@media(max-width:600px){
+
+.container{
+margin:10px auto;
+padding:12px;
+}
+
+.card{
+padding:20px;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="index.html">
+‹
+</a>
+
+<h1>
+🏪 Become a Seller
+</h1>
+
+</header>
+
+
+<div class="container">
+
+<div class="card">
+
+<h2>
+Start Selling on NEXORA PICKS
+</h2>
+
+<p class="subtitle">
+
+Create your seller account and start listing your products.
+
+</p>
+
+
+<form id="sellerForm">
+
+
+<label>
+Your Name
+</label>
+
+<input
+type="text"
+id="name"
+placeholder="Enter your full name"
+required
+>
+
+
+<label>
+Business / Store Name
+</label>
+
+<input
+type="text"
+id="storeName"
+placeholder="Enter your store name"
+required
+>
+
+
+<label>
+Email Address
+</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+required
+>
+
+
+<label>
+Mobile Number
+</label>
+
+<input
+type="tel"
+id="phone"
+placeholder="Enter your mobile number"
+required
+>
+
+
+<label>
+Business Address
+</label>
+
+<textarea
+id="address"
+placeholder="Enter your business address"
+required
+></textarea>
+
+
+<label>
+Password
+</label>
+
+<input
+type="password"
+id="password"
+placeholder="Create a password"
+minlength="6"
+required
+>
+
+
+<label>
+Confirm Password
+</label>
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm your password"
+minlength="6"
+required
+>
+
+
+<button
+type="submit"
+id="registerBtn">
+
+Create Seller Account
+
+</button>
+
+
+</form>
+
+
+<div
+id="message"
+class="message">
+
+</div>
+
+
+<div class="loginBox">
+
+Already a seller?
+
+<a href="seller-login.html">
+
+Login here
+
+</a>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+
+import{
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import{
+
+getAuth,
+
+createUserWithEmailAndPassword,
+
+updateProfile
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import{
+
+getFirestore,
+
+doc,
+
+setDoc,
+
+serverTimestamp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+const firebaseConfig={
+
+apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+
+authDomain:"nexora-picks-e887f.firebaseapp.com",
+
+projectId:"nexora-picks-e887f",
+
+storageBucket:"nexora-picks-e887f.firebasestorage.app",
+
+messagingSenderId:"621359003619",
+
+appId:"1:621359003619:web:483add8bfcd0241f4192d",
+
+measurementId:"G-LSMJ6QLLPW"
+
+};
+
+
+const app=
+
+initializeApp(
+firebaseConfig
+);
+
+
+const auth=
+
+getAuth(
+app
+);
+
+
+const db=
+
+getFirestore(
+app
+);
+
+
+const form=
+
+document.getElementById(
+"sellerForm"
+);
+
+
+const message=
+
+document.getElementById(
+"message"
+);
+
+
+const registerBtn=
+
+document.getElementById(
+"registerBtn"
+);
+
+
+function showMessage(
+text,
+type
+){
+
+message.style.display=
+
+"block";
+
+
+message.className=
+
+"message "+type;
+
+
+message.textContent=
+
+text;
+
+}
+
+
+form.addEventListener(
+
+"submit",
+
+async function(e){
+
+e.preventDefault();
+
+
+const name=
+
+document.getElementById(
+"name"
+).value.trim();
+
+
+const storeName=
+
+document.getElementById(
+"storeName"
+).value.trim();
+
+
+const email=
+
+document.getElementById(
+"email"
+).value.trim();
+
+
+const phone=
+
+document.getElementById(
+"phone"
+).value.trim();
+
+
+const address=
+
+document.getElementById(
+"address"
+).value.trim();
+
+
+const password=
+
+document.getElementById(
+"password"
+).value;
+
+
+const confirmPassword=
+
+document.getElementById(
+"confirmPassword"
+).value;
+
+
+if(
+
+password!==confirmPassword
+
+){
+
+showMessage(
+
+"Passwords do not match.",
+
+"error"
+
+);
+
+return;
+
+}
+
+
+registerBtn.disabled=
+
+true;
+
+
+registerBtn.textContent=
+
+"Creating Account...";
+
+
+try{
+
+
+const userCredential=
+
+await createUserWithEmailAndPassword(
+
+auth,
+
+email,
+
+password
+
+);
+
+
+const user=
+
+userCredential.user;
+
+
+await updateProfile(
+
+user,
+
+{
+
+displayName:name
+
+}
+
+);
+
+
+await setDoc(
+
+doc(
+
+db,
+
+"sellers",
+
+user.uid
+
+),
+
+{
+
+sellerId:
+
+user.uid,
+
+
+name:
+
+name,
+
+
+storeName:
+
+storeName,
+
+
+email:
+
+email,
+
+
+phone:
+
+phone,
+
+
+address:
+
+address,
+
+
+status:
+
+"active",
+
+
+createdAt:
+
+serverTimestamp()
+
+}
+
+);
+
+
+showMessage(
+
+"Seller account created successfully! Redirecting to your dashboard...",
+
+"success"
+
+);
+
+
+setTimeout(
+
+function(){
+
+location.href=
+
+"seller-dashboard.html";
+
+},
+
+1500
+
+);
+
+
+}catch(error){
+
+
+console.error(
+error
+);
+
+
+let errorMessage=
+
+"Unable to create seller account.";
+
+
+if(
+
+error.code===
+
+"auth/email-already-in-use"
+
+){
+
+errorMessage=
+
+"This email is already registered. Please login.";
+
+}
+
+
+if(
+
+error.code===
+
+"auth/weak-password"
+
+){
+
+errorMessage=
+
+"Password must be at least 6 characters.";
+
+}
+
+
+showMessage(
+
+errorMessage,
+
+"error"
+
+);
+
+
+registerBtn.disabled=
+
+false;
+
+
+registerBtn.textContent=
+
+"Create Seller Account";
+
+}
+
+}
+
+);
+
+
+</script>
+
+</body>
+
+</html>

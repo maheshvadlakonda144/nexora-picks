@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>Edit Product | NEXORA PICKS</title>
+
+<style>
+
+*{
+box-sizing:border-box
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+color:#172033
+}
+
+header{
+background:#2874f0;
+color:white;
+padding:18px 20px;
+display:flex;
+align-items:center;
+gap:15px
+}
+
+header a{
+color:white;
+text-decoration:none;
+font-size:28px
+}
+
+header h1{
+margin:0;
+font-size:23px
+}
+
+.wrap{
+max-width:700px;
+margin:auto;
+padding:20px
+}
+
+.card{
+background:white;
+border-radius:14px;
+padding:22px;
+box-shadow:0 2px 10px #00000010
+}
+
+label{
+display:block;
+font-weight:bold;
+margin-top:18px;
+margin-bottom:7px
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:14px;
+border:1px solid #d0d5dd;
+border-radius:8px;
+font-size:16px
+}
+
+textarea{
+min-height:110px;
+resize:vertical
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px
+}
+
+.imagePreview{
+width:100%;
+height:220px;
+margin-top:12px;
+border:2px dashed #d0d5dd;
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+background:#f7f9fc;
+color:#667085
+}
+
+.imagePreview img{
+width:100%;
+height:100%;
+object-fit:contain
+}
+
+button{
+width:100%;
+margin-top:25px;
+padding:15px;
+border:0;
+border-radius:8px;
+background:#2874f0;
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer
+}
+
+button:disabled{
+opacity:.6;
+cursor:not-allowed
+}
+
+.message{
+display:none;
+margin-top:18px;
+padding:13px;
+border-radius:8px;
+font-weight:bold
+}
+
+.success{
+background:#e8f5e9;
+color:#16803c
+}
+
+.error{
+background:#ffebee;
+color:#c62828
+}
+
+.loading{
+text-align:center;
+padding:40px
+}
+
+@media(max-width:600px){
+
+.wrap{
+padding:12px
+}
+
+.row{
+grid-template-columns:1fr
+}
+
+.card{
+padding:18px
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<a href="seller-products.html">
+‹
+</a>
+
+<h1>
+✏️ Edit Product
+</h1>
+
+</header>
+
+
+<div class="wrap">
+
+<div class="card">
+
+<div id="loading" class="loading">
+
+Loading product...
+
+</div>
+
+
+<form id="productForm" style="display:none">
+
+
+<label>
+Product Name
+</label>
+
+<input
+type="text"
+id="name"
+required
+>
+
+
+<label>
+Product Image URL
+</label>
+
+<input
+type="url"
+id="image"
+required
+>
+
+
+<div
+class="imagePreview"
+id="imagePreview">
+
+📷 Product image preview
+
+</div>
+
+
+<label>
+Product Description
+</label>
+
+<textarea
+id="description"
+required
+></textarea>
+
+
+<label>
+Category
+</label>
+
+<select
+id="category"
+required>
+
+<option value="Electronics">
+Electronics
+</option>
+
+<option value="Fashion">
+Fashion
+</option>
+
+<option value="Home">
+Home & Kitchen
+</option>
+
+<option value="Beauty">
+Beauty & Personal Care
+</option>
+
+<option value="Sports">
+Sports
+</option>
+
+<option value="Books">
+Books
+</option>
+
+<option value="Other">
+Other
+</option>
+
+</select>
+
+
+<div class="row">
+
+
+<div>
+
+<label>
+Price ₹
+</label>
+
+<input
+type="number"
+id="price"
+min="1"
+required
+>
+
+</div>
+
+
+<div>
+
+<label>
+Stock Quantity
+</label>
+
+<input
+type="number"
+id="stock"
+min="0"
+required
+>
+
+</div>
+
+
+</div>
+
+
+<button
+type="submit"
+id="saveBtn">
+
+💾 Save Changes
+
+</button>
+
+
+</form>
+
+
+<div
+id="message"
+class="message">
+
+</div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+
+import{
+initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import{
+getAuth,
+onAuthStateChanged
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import{
+getFirestore,
+doc,
+getDoc,
+updateDoc,
+serverTimestamp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+const firebaseConfig={
+
+apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+
+authDomain:"nexora-picks-e887f.firebaseapp.com",
+
+projectId:"nexora-picks-e887f",
+
+storageBucket:"nexora-picks-e887f.firebasestorage.app",
+
+messagingSenderId:"621359003619",
+
+appId:"1:621359003619:web:483add8bfcd0241f4192d",
+
+measurementId:"G-LSMJ6QLLPW"
+
+};
+
+
+const app=
+initializeApp(firebaseConfig);
+
+
+const auth=
+getAuth(app);
+
+
+const db=
+getFirestore(app);
+
+
+const params=
+new URLSearchParams(
+location.search
+);
+
+
+const productId=
+params.get(
+"id"
+);
+
+
+const loading=
+document.getElementById(
+"loading"
+);
+
+
+const form=
+document.getElementById(
+"productForm"
+);
+
+
+const saveBtn=
+document.getElementById(
+"saveBtn"
+);
+
+
+const message=
+document.getElementById(
+"message"
+);
+
+
+const imageInput=
+document.getElementById(
+"image"
+);
+
+
+const imagePreview=
+document.getElementById(
+"imagePreview"
+);
+
+
+let currentUserId=null;
+
+
+/* CHECK PRODUCT ID */
+
+if(!productId){
+
+loading.innerHTML=
+
+"❌ Product not found.";
+
+}
+
+
+/* CHECK SELLER LOGIN */
+
+onAuthStateChanged(
+
+auth,
+
+async user=>{
+
+if(!user){
+
+location.href=
+"seller-register.html";
+
+return;
+
+}
+
+
+currentUserId=
+user.uid;
+
+
+/* CHECK SELLER */
+
+const sellerSnap=
+
+await getDoc(
+
+doc(
+db,
+"sellers",
+user.uid
+)
+
+);
+
+
+if(!sellerSnap.exists()){
+
+location.href=
+"seller-register.html";
+
+return;
+
+}
+
+
+/* LOAD PRODUCT */
+
+loadProduct();
+
+}
+
+);
+
+
+/* LOAD PRODUCT */
+
+async function loadProduct(){
+
+
+try{
+
+
+const productRef=
+
+doc(
+db,
+"products",
+productId
+);
+
+
+const productSnap=
+
+await getDoc(
+productRef
+);
+
+
+if(!productSnap.exists()){
+
+
+loading.innerHTML=
+
+"❌ Product not found.";
+
+return;
+
+}
+
+
+const product=
+
+productSnap.data();
+
+
+/* SECURITY CHECK */
+
+if(
+
+product.sellerId!==currentUserId
+
+){
+
+loading.innerHTML=
+
+"❌ You cannot edit this product.";
+
+return;
+
+}
+
+
+/* FILL FORM */
+
+document.getElementById(
+"name"
+).value=
+
+product.name||
+"";
+
+
+document.getElementById(
+"image"
+).value=
+
+product.image||
+"";
+
+
+document.getElementById(
+"description"
+).value=
+
+product.description||
+"";
+
+
+document.getElementById(
+"category"
+).value=
+
+product.category||
+"Other";
+
+
+document.getElementById(
+"price"
+).value=
+
+product.price||
+0;
+
+
+document.getElementById(
+"stock"
+).value=
+
+product.stock||
+0;
+
+
+/* IMAGE PREVIEW */
+
+updatePreview(
+product.image
+);
+
+
+loading.style.display=
+
+"none";
+
+
+form.style.display=
+
+"block";
+
+
+}catch(error){
+
+
+console.error(
+error
+);
+
+
+loading.innerHTML=
+
+"❌ Unable to load product.";
+
+}
+
+}
+
+
+/* IMAGE PREVIEW */
+
+imageInput.addEventListener(
+
+"input",
+
+function(){
+
+updatePreview(
+imageInput.value.trim()
+);
+
+}
+
+);
+
+
+function updatePreview(url){
+
+
+if(!url){
+
+imagePreview.innerHTML=
+
+"📷 Product image preview";
+
+return;
+
+}
+
+
+imagePreview.innerHTML=
+
+`<img src="${escapeHtml(url)}"
+alt="Product Preview">`;
+
+}
+
+
+/* SAVE PRODUCT */
+
+form.addEventListener(
+
+"submit",
+
+async function(e){
+
+e.preventDefault();
+
+
+const name=
+
+document.getElementById(
+"name"
+).value.trim();
+
+
+const image=
+
+document.getElementById(
+"image"
+).value.trim();
+
+
+const description=
+
+document.getElementById(
+"description"
+).value.trim();
+
+
+const category=
+
+document.getElementById(
+"category"
+).value;
+
+
+const price=
+
+Number(
+
+document.getElementById(
+"price"
+).value
+
+);
+
+
+const stock=
+
+Number(
+
+document.getElementById(
+"stock"
+).value
+
+);
+
+
+saveBtn.disabled=
+
+true;
+
+
+saveBtn.textContent=
+
+"Saving...";
+
+
+try{
+
+
+await updateDoc(
+
+doc(
+db,
+"products",
+productId
+),
+
+{
+
+name:name,
+
+image:image,
+
+description:description,
+
+category:category,
+
+price:price,
+
+stock:stock,
+
+updatedAt:
+serverTimestamp()
+
+}
+
+);
+
+
+showMessage(
+
+"✅ Product updated successfully!",
+
+"success"
+
+);
+
+
+setTimeout(
+
+function(){
+
+location.href=
+
+"seller-products.html";
+
+},
+
+1200
+
+);
+
+
+}catch(error){
+
+
+console.error(
+error
+);
+
+
+showMessage(
+
+"❌ Unable to update product.",
+
+"error"
+
+);
+
+
+saveBtn.disabled=
+
+false;
+
+
+saveBtn.textContent=
+
+"💾 Save Changes";
+
+}
+
+}
+
+);
+
+
+/* MESSAGE */
+
+function showMessage(
+text,
+type
+){
+
+message.style.display=
+
+"block";
+
+
+message.className=
+
+"message "+type;
+
+
+message.textContent=
+
+text;
+
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(value){
+
+return String(
+value??""
+)
+
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
+);
+
+}
+
+
+</script>
+
+</body>
+
+  </html>

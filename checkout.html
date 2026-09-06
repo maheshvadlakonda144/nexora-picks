@@ -5,10 +5,11 @@
 
 <meta charset="utf-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1">
 
 <title>Checkout | NEXORA PICKS</title>
-
 
 <style>
 
@@ -93,9 +94,9 @@ cursor:pointer;
 margin-top:10px;
 }
 
-.back{
-background:#eef2f7;
-color:#172033;
+button:disabled{
+opacity:.6;
+cursor:not-allowed;
 }
 
 .error{
@@ -117,18 +118,17 @@ padding:30px;
 
 </head>
 
-
 <body>
-
 
 <header>
 
-<a href="index.html">‹</a>
+<a href="index.html">
+‹
+</a>
 
 🛒 Checkout
 
 </header>
-
 
 
 <div class="wrap">
@@ -136,7 +136,9 @@ padding:30px;
 
 <div class="box">
 
-<h2>🛍️ Your Order</h2>
+<h2>
+🛍️ Your Order
+</h2>
 
 <div id="items">
 
@@ -154,27 +156,31 @@ id="total">
 </div>
 
 
-
 <div class="box">
 
-<h2>📍 Delivery Details</h2>
+<h2>
+📍 Delivery Details
+</h2>
 
 
 <input
 id="cname"
-placeholder="Full Name">
+placeholder="Full Name"
+required>
 
 
 <input
 id="phone"
 type="tel"
-placeholder="Mobile Number">
+placeholder="Mobile Number"
+required>
 
 
 <textarea
 id="address"
 rows="5"
-placeholder="House / Street / Area / City / State / PIN">
+placeholder="House / Street / Area / City / State / PIN"
+required>
 </textarea>
 
 
@@ -182,12 +188,14 @@ placeholder="House / Street / Area / City / State / PIN">
 💵 Payment Method
 </h3>
 
+
 <p>
 Cash on Delivery (COD)
 </p>
 
 
 <button
+id="placeOrderBtn"
 onclick="placeOrder()">
 
 📦 Place Order
@@ -203,45 +211,32 @@ onclick="placeOrder()">
 </div>
 
 
-
 <script type="module">
 
 
 import{
 initializeApp
 }
-
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
 import{
-
 getAuth,
-
 onAuthStateChanged
-
 }
-
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import{
-
 getFirestore,
-
 collection,
-
 addDoc,
-
 serverTimestamp
-
 }
-
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
 
 
 const firebaseConfig={
@@ -270,7 +265,6 @@ measurementId:
 };
 
 
-
 const app=
 initializeApp(firebaseConfig);
 
@@ -283,11 +277,9 @@ const db=
 getFirestore(app);
 
 
-
 const $=
 id=>
 document.getElementById(id);
-
 
 
 let cart=
@@ -305,6 +297,7 @@ localStorage.getItem(
 );
 
 
+/* RENDER ORDER */
 
 function renderOrder(){
 
@@ -337,13 +330,10 @@ $("total").innerHTML=
 
 return;
 
-
 }
 
 
-
 $("items").innerHTML=
-
 
 cart.map(
 
@@ -351,46 +341,57 @@ item=>`
 
 <div class="item">
 
-
 <div>
-
 
 <b>
 
-${item.name}
+${escapeHtml(
+item.name
+)}
 
 </b>
 
-
 <br>
 
+₹${
 
-₹${Number(item.price)}
+Number(
+item.price
+)
+
+}
 
 ×
 
 
-${Number(item.qty)}
+${
 
+Number(
+item.qty
+)
+
+}
 
 </div>
-
 
 
 <b>
 
 ₹${
 
-Number(item.price)
+Number(
+item.price
+)
 
 *
 
-Number(item.qty)
+Number(
+item.qty
+)
 
 }
 
 </b>
-
 
 </div>
 
@@ -399,7 +400,6 @@ Number(item.qty)
 )
 
 .join("");
-
 
 
 const total=
@@ -412,11 +412,15 @@ sum+
 
 (
 
-Number(item.price)
+Number(
+item.price
+)
 
 *
 
-Number(item.qty)
+Number(
+item.qty
+)
 
 ),
 
@@ -425,31 +429,24 @@ Number(item.qty)
 );
 
 
-
 $("total").innerHTML=
-
 
 `
 
 <span>
-
 Total
-
 </span>
 
-
 <span>
-
 ₹${total}
-
 </span>
 
 `;
 
-
 }
 
 
+/* CHECK LOGIN */
 
 onAuthStateChanged(
 
@@ -465,11 +462,11 @@ $("msg").innerHTML=
 
 `
 
-<p class="error">
+<span class="error">
 
 Please login before placing an order.
 
-</p>
+</span>
 
 `;
 
@@ -490,20 +487,20 @@ window.location.href=
 
 }
 
-
 }
 
 );
 
 
+/* PLACE ORDER */
 
 window.placeOrder=
+
 async()=>{
 
 
 const user=
 auth.currentUser;
-
 
 
 if(!user){
@@ -520,9 +517,7 @@ window.location.href=
 
 return;
 
-
 }
-
 
 
 if(!cart.length){
@@ -535,9 +530,7 @@ alert(
 
 return;
 
-
 }
-
 
 
 const name=
@@ -547,13 +540,11 @@ $("cname")
 .trim();
 
 
-
 const phone=
 
 $("phone")
 .value
 .trim();
-
 
 
 const address=
@@ -563,10 +554,12 @@ $("address")
 .trim();
 
 
-
 const msg=
 $("msg");
 
+
+const placeOrderBtn=
+$("placeOrderBtn");
 
 
 if(
@@ -599,9 +592,41 @@ Please fill all delivery details.
 
 return;
 
-
 }
 
+
+/* CHECK SELLER IDs */
+
+const invalidProduct=
+
+cart.find(
+
+item=>
+
+!item.sellerId
+
+);
+
+
+if(invalidProduct){
+
+
+msg.innerHTML=
+
+`
+
+<span class="error">
+
+❌ This product is not connected to a seller. Please remove it and try again.
+
+</span>
+
+`;
+
+
+return;
+
+}
 
 
 const total=
@@ -614,11 +639,15 @@ sum+
 
 (
 
-Number(item.price)
+Number(
+item.price
+)
 
 *
 
-Number(item.qty)
+Number(
+item.qty
+)
 
 ),
 
@@ -626,6 +655,15 @@ Number(item.qty)
 
 );
 
+
+/* PREVENT DOUBLE CLICK */
+
+placeOrderBtn.disabled=
+true;
+
+
+placeOrderBtn.textContent=
+"Placing Order...";
 
 
 try{
@@ -636,6 +674,9 @@ msg.innerHTML=
 "Placing your order...";
 
 
+/* CREATE CUSTOMER ORDER */
+
+const customerOrderRef=
 
 await addDoc(
 
@@ -665,7 +706,6 @@ deliveryAddress:
 address,
 
 
-
 /* PRODUCTS */
 
 items:
@@ -684,21 +724,23 @@ item.name,
 
 
 price:
-Number(item.price),
+Number(
+item.price
+),
 
 
 qty:
-Number(item.qty),
+Number(
+item.qty
+),
 
 
 sellerId:
 item.sellerId
 
-
 })
 
 ),
-
 
 
 /* SELLERS */
@@ -709,17 +751,11 @@ sellerIds:
 
 ...new Set(
 
-cart
-
-.map(
+cart.map(
 
 item=>
 item.sellerId
 
-)
-
-.filter(
-Boolean
 )
 
 )
@@ -727,12 +763,10 @@ Boolean
 ],
 
 
-
-/* ORDER TOTAL */
+/* TOTAL */
 
 total:
 total,
-
 
 
 /* PAYMENT */
@@ -741,12 +775,14 @@ paymentMethod:
 "COD",
 
 
+paymentStatus:
+"pending",
 
-/* TRACKING STATUS */
+
+/* STATUS */
 
 status:
 "pending",
-
 
 
 /* DATE */
@@ -754,12 +790,204 @@ status:
 createdAt:
 serverTimestamp()
 
+}
+
+);
+
+
+/* GROUP PRODUCTS BY SELLER */
+
+const sellerGroups=
+{};
+
+
+cart.forEach(
+
+item=>{
+
+
+const sellerId=
+item.sellerId;
+
+
+if(
+
+!sellerGroups[
+sellerId
+]
+
+){
+
+
+sellerGroups[
+sellerId
+]=
+[];
 
 }
 
 
+sellerGroups[
+sellerId
+].push(
+
+{
+
+productId:
+item.id,
+
+
+name:
+item.name,
+
+
+price:
+Number(
+item.price
+),
+
+
+qty:
+Number(
+item.qty
+)
+
+}
+
 );
 
+
+}
+
+);
+
+
+/* CREATE SEPARATE SELLER ORDERS */
+
+for(
+
+const sellerId
+
+in
+
+sellerGroups
+
+){
+
+
+const sellerItems=
+
+sellerGroups[
+sellerId
+];
+
+
+const sellerTotal=
+
+sellerItems.reduce(
+
+(sum,item)=>
+
+sum+
+
+(
+
+Number(
+item.price
+)
+
+*
+
+Number(
+item.qty
+)
+
+),
+
+0
+
+);
+
+
+await addDoc(
+
+collection(
+db,
+"sellerOrders"
+),
+
+{
+
+
+/* LINK TO CUSTOMER ORDER */
+
+customerOrderId:
+customerOrderRef.id,
+
+
+/* SELLER */
+
+sellerId:
+sellerId,
+
+
+/* CUSTOMER */
+
+customerId:
+user.uid,
+
+
+customerName:
+name,
+
+
+customerPhone:
+phone,
+
+
+deliveryAddress:
+address,
+
+
+/* PRODUCTS FOR THIS SELLER ONLY */
+
+items:
+sellerItems,
+
+
+/* SELLER ORDER TOTAL */
+
+total:
+sellerTotal,
+
+
+/* PAYMENT */
+
+paymentMethod:
+"COD",
+
+
+paymentStatus:
+"pending",
+
+
+/* DELIVERY STATUS */
+
+status:
+"pending",
+
+
+/* DATE */
+
+createdAt:
+serverTimestamp()
+
+}
+
+);
+
+
+}
 
 
 /* CLEAR CART */
@@ -772,11 +1000,14 @@ localStorage.setItem(
 
 "nexora_cart",
 
-JSON.stringify(cart)
+JSON.stringify(
+cart
+)
 
 );
 
 
+/* SUCCESS */
 
 msg.innerHTML=
 
@@ -789,7 +1020,6 @@ msg.innerHTML=
 </span>
 
 `;
-
 
 
 setTimeout(
@@ -822,26 +1052,72 @@ msg.innerHTML=
 
 <span class="error">
 
-❌ ${error.message}
+❌ ${escapeHtml(
+error.message
+)}
 
 </span>
 
 `;
 
 
-}
+placeOrderBtn.disabled=
+false;
 
+
+placeOrderBtn.textContent=
+"📦 Place Order";
+
+}
 
 };
 
 
+/* ESCAPE HTML */
+
+function escapeHtml(
+value
+){
+
+return String(
+value??""
+)
+
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
+);
+
+}
+
+
+/* START */
 
 renderOrder();
 
 
 </script>
 
-
 </body>
 
-  </html>
+</html>

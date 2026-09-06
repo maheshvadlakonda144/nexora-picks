@@ -317,16 +317,16 @@ textarea{
 </div>
 
 <!-- PLACE ORDER BUTTON -->
-<button class="place-order" onclick="placeOrder()">
-    🛍️ Place Order
+  <button class="checkout-btn" onclick="goToCheckout()">
+    🛒 Proceed to Checkout
 </button>
 
-</div>
-  <script>
-function placeOrder() {
-    alert("Your order has been placed successfully!");
+<script>
+function goToCheckout() {
+    window.location.href = "checkout.html";
 }
 </script>
+
 
 </body>
 </html>

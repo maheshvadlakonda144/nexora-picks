@@ -1,311 +1,509 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>NEXORA PICKS — Seller Orders</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1">
+
+<title>Become a Seller | NEXORA PICKS</title>
 
 <style>
 
 *{
-  box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f3f5f8;
-  color:#17202a;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+color:#172033;
 }
 
 header{
-  background:#2874f0;
-  color:white;
-  padding:18px 16px;
-  font-size:22px;
-  font-weight:800;
+background:#2874f0;
+color:white;
+padding:18px 20px;
+display:flex;
+align-items:center;
+gap:15px;
+position:sticky;
+top:0;
+z-index:10;
 }
 
-main{
-  max-width:900px;
-  margin:auto;
-  padding:16px;
+header a{
+color:white;
+text-decoration:none;
+font-size:28px;
 }
 
-.box{
-  background:white;
-  border-radius:14px;
-  padding:18px;
-  margin-bottom:16px;
-  box-shadow:0 2px 10px #00000012;
+header h1{
+margin:0;
+font-size:23px;
 }
 
-h1,h2,h3,h4{
-  margin-top:0;
+.container{
+max-width:650px;
+margin:auto;
+padding:20px 15px 40px;
+}
+
+.card{
+background:white;
+border-radius:16px;
+padding:22px;
+box-shadow:0 3px 15px #00000012;
+}
+
+.card h2{
+margin-top:0;
+margin-bottom:8px;
+}
+
+.subtitle{
+color:#687386;
+line-height:1.5;
+margin-bottom:25px;
+}
+
+.sectionTitle{
+font-size:18px;
+font-weight:bold;
+margin-top:25px;
+margin-bottom:15px;
+padding-bottom:10px;
+border-bottom:1px solid #eee;
+}
+
+label{
+display:block;
+font-weight:bold;
+margin-bottom:7px;
+}
+
+input,
+textarea,
+select{
+width:100%;
+padding:13px;
+border:1px solid #d5d9e0;
+border-radius:9px;
+font-size:16px;
+margin-bottom:18px;
+outline:none;
+font-family:Arial,sans-serif;
+}
+
+input:focus,
+textarea:focus,
+select:focus{
+border-color:#2874f0;
+box-shadow:0 0 0 3px #2874f020;
+}
+
+textarea{
+resize:vertical;
+min-height:100px;
+}
+
+.checkboxBox{
+display:flex;
+gap:10px;
+align-items:flex-start;
+margin:10px 0 20px;
+}
+
+.checkboxBox input{
+width:auto;
+margin-top:4px;
+}
+
+.checkboxBox label{
+font-weight:normal;
+line-height:1.5;
+margin:0;
 }
 
 button{
-  border:0;
-  border-radius:8px;
-  padding:11px 15px;
-  font-weight:700;
-  cursor:pointer;
+width:100%;
+border:none;
+border-radius:9px;
+padding:15px;
+background:#2874f0;
+color:white;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
 }
 
-.back{
-  background:#eef2f7;
-  color:#17202a;
-  margin-bottom:15px;
+button:disabled{
+opacity:.6;
+cursor:not-allowed;
 }
 
-.order{
-  border:1px solid #dfe4ea;
-  border-radius:12px;
-  padding:16px;
-  margin:15px 0;
+.message{
+margin-top:18px;
+padding:14px;
+border-radius:9px;
+display:none;
+font-weight:bold;
+line-height:1.5;
 }
 
-.status{
-  display:inline-block;
-  padding:7px 12px;
-  border-radius:20px;
-  font-size:13px;
-  font-weight:800;
-  text-transform:uppercase;
-}
-
-.pending{
-  background:#fff3cd;
-  color:#856404;
-}
-
-.accepted{
-  background:#dbeafe;
-  color:#1d4ed8;
-}
-
-.packed{
-  background:#ede9fe;
-  color:#6d28d9;
-}
-
-.shipped{
-  background:#cffafe;
-  color:#0e7490;
-}
-
-.delivered{
-  background:#dcfce7;
-  color:#15803d;
-}
-
-.cancelled{
-  background:#fee2e2;
-  color:#b91c1c;
-}
-
-.product{
-  background:#f7f9fc;
-  padding:12px;
-  border-radius:9px;
-  margin:8px 0;
-}
-
-.total{
-  font-size:20px;
-  font-weight:800;
-  margin-top:15px;
-}
-
-.muted{
-  color:#68717d;
-}
-
-.empty{
-  text-align:center;
-  padding:35px 10px;
-  color:#68717d;
+.success{
+display:block;
+background:#e8f7ed;
+color:#16803c;
 }
 
 .error{
-  color:#c62828;
-  font-weight:700;
+display:block;
+background:#fff0f0;
+color:#c62828;
 }
 
-.actionBox{
-  margin-top:18px;
-  padding-top:15px;
-  border-top:1px solid #e5e7eb;
+.loginBox{
+background:white;
+border-radius:16px;
+padding:30px 20px;
+text-align:center;
+box-shadow:0 3px 15px #00000012;
 }
 
-.actionTitle{
-  font-weight:800;
-  margin-bottom:10px;
+.loginBox button{
+margin-top:15px;
 }
 
-.actionButtons{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-}
-
-.acceptBtn{
-  background:#2874f0;
-  color:white;
-}
-
-.packBtn{
-  background:#7c3aed;
-  color:white;
-}
-
-.shipBtn{
-  background:#0891b2;
-  color:white;
-}
-
-.deliverBtn{
-  background:#16a34a;
-  color:white;
-}
-
-.cancelBtn{
-  background:#dc2626;
-  color:white;
-}
-
-.trackingBox{
-  margin-top:12px;
-}
-
-.trackingBox input{
-  width:100%;
-  padding:12px;
-  border:1px solid #ccd3dd;
-  border-radius:8px;
-  margin:5px 0 10px;
-}
-
-.saveTracking{
-  background:#17202a;
-  color:white;
-  width:100%;
-}
-
-.timeline{
-  margin-top:18px;
-  padding:14px;
-  background:#f8fafc;
-  border-radius:10px;
-}
-
-.step{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  margin:10px 0;
-  color:#9ca3af;
-  font-weight:700;
-}
-
-.step.active{
-  color:#17202a;
-}
-
-.step.done{
-  color:#16a34a;
-}
-
-.dot{
-  width:24px;
-  height:24px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:#e5e7eb;
-  font-size:13px;
-}
-
-.step.active .dot{
-  background:#2874f0;
-  color:white;
-}
-
-.step.done .dot{
-  background:#16a34a;
-  color:white;
-}
-
-@media(max-width:600px){
-
-header{
-  font-size:18px;
-}
-
-.actionButtons{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-}
-
-.actionButtons button{
-  width:100%;
-}
-
+.note{
+font-size:13px;
+color:#687386;
+line-height:1.5;
+margin-top:5px;
 }
 
 </style>
+
 </head>
 
 <body>
 
+
 <header>
-📦 NEXORA PICKS — SELLER ORDERS
+
+<a href="index.html">
+‹
+</a>
+
+<h1>
+🏪 Become a Seller
+</h1>
+
 </header>
 
-<main>
+
+<div class="container">
+
+
+<div id="loginRequired"
+style="display:none">
+
+<div class="loginBox">
+
+<h2>
+🔐 Login Required
+</h2>
+
+<p>
+Please login before registering as a seller.
+</p>
+
+<button onclick="goLogin()">
+
+Login Now
+
+</button>
+
+</div>
+
+</div>
+
+
+<div id="sellerFormContainer"
+style="display:none">
+
+<div class="card">
+
+<h2>
+Sell on NEXORA PICKS
+</h2>
+
+<p class="subtitle">
+
+Create your seller account. After registration,
+your application will be reviewed by the admin.
+
+</p>
+
+
+<form id="sellerForm">
+
+
+<div class="sectionTitle">
+
+👤 Personal Information
+
+</div>
+
+
+<label>
+Full Name
+</label>
+
+<input
+type="text"
+id="fullName"
+placeholder="Enter your full name"
+required>
+
+
+<label>
+Email Address
+</label>
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email"
+readonly>
+
+
+<label>
+Mobile Number
+</label>
+
+<input
+type="tel"
+id="phone"
+placeholder="Enter mobile number"
+pattern="[0-9]{10}"
+maxlength="10"
+required>
+
+
+<div class="sectionTitle">
+
+🏪 Store Information
+
+</div>
+
+
+<label>
+Store Name
+</label>
+
+<input
+type="text"
+id="storeName"
+placeholder="Enter your store name"
+required>
+
+
+<label>
+Business Category
+</label>
+
+<select
+id="businessCategory"
+required>
+
+<option value="">
+Select category
+</option>
+
+<option>
+Electronics
+</option>
+
+<option>
+Fashion
+</option>
+
+<option>
+Beauty & Personal Care
+</option>
+
+<option>
+Home & Kitchen
+</option>
+
+<option>
+Mobiles & Accessories
+</option>
+
+<option>
+Books
+</option>
+
+<option>
+Sports
+</option>
+
+<option>
+Grocery
+</option>
+
+<option>
+Other
+</option>
+
+</select>
+
+
+<label>
+Business Address
+</label>
+
+<textarea
+id="businessAddress"
+placeholder="Enter your business address"
+required>
+</textarea>
+
+
+<div class="sectionTitle">
+
+🧾 Business Details
+
+</div>
+
+
+<label>
+PAN Number
+</label>
+
+<input
+type="text"
+id="panNumber"
+placeholder="Enter PAN number">
+
+
+<label>
+GST Number
+</label>
+
+<input
+type="text"
+id="gstNumber"
+placeholder="Enter GST number (if available)">
+
+
+<div class="sectionTitle">
+
+🏦 Bank Details
+
+</div>
+
+
+<label>
+Account Holder Name
+</label>
+
+<input
+type="text"
+id="accountHolder"
+placeholder="Enter account holder name"
+required>
+
+
+<label>
+Bank Name
+</label>
+
+<input
+type="text"
+id="bankName"
+placeholder="Enter bank name"
+required>
+
+
+<label>
+Account Number
+</label>
+
+<input
+type="text"
+id="accountNumber"
+placeholder="Enter bank account number"
+required>
+
+
+<label>
+IFSC Code
+</label>
+
+<input
+type="text"
+id="ifscCode"
+placeholder="Enter IFSC code"
+required>
+
+
+<div class="checkboxBox">
+
+<input
+type="checkbox"
+id="agreement"
+required>
+
+<label for="agreement">
+
+I confirm that the information provided is correct
+and I agree to the NEXORA PICKS seller terms and conditions.
+
+</label>
+
+</div>
+
 
 <button
-class="back"
-onclick="location.href='nexora-seller.html'">
+type="submit"
+id="submitBtn">
 
-← Seller Dashboard
+🚀 Submit Seller Application
 
 </button>
 
 
-<div class="box">
-
-<h2>
-📦 Customer Orders
-</h2>
-
-<p class="muted">
-Manage customer orders, packing and delivery status.
-</p>
-
-<div id="sellerInfo"></div>
+<div
+id="message"
+class="message">
 
 </div>
 
 
-<div class="box">
-
-<div id="orders">
-Loading orders...
-</div>
+</form>
 
 </div>
 
-</main>
+</div>
+
+
+</div>
 
 
 <script type="module">
 
+
 import{
 initializeApp
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
@@ -313,21 +511,24 @@ import{
 getAuth,
 onAuthStateChanged
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import{
 getFirestore,
 collection,
+addDoc,
+serverTimestamp,
 query,
 where,
-onSnapshot,
-doc,
-updateDoc,
-serverTimestamp
+getDocs
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
@@ -351,946 +552,458 @@ measurementId:"G-LSMJ6QLLPW"
 
 
 const app=
-initializeApp(firebaseConfig);
+
+initializeApp(
+firebaseConfig
+);
 
 
 const auth=
-getAuth(app);
+
+getAuth(
+app
+);
 
 
 const db=
-getFirestore(app);
+
+getFirestore(
+app
+);
 
 
 const $=
-id=>document.getElementById(id);
+
+id=>document.getElementById(
+id
+);
 
 
-let currentSellerId="";
+let currentUser=null;
 
 
-function esc(v){
-
-return String(v??"")
-.replace(/[&<>"']/g,c=>({
-
-"&":"&amp;",
-
-"<":"&lt;",
-
-">":"&gt;",
-
-'"':"&quot;",
-
-"'":"&#39;"
-
-}[c]));
-
-}
-
-
-function getStatusClass(status){
-
-const s=
-String(status||"pending")
-.toLowerCase();
-
-return s;
-
-}
-
-
-function statusLabel(status){
-
-const s=
-String(status||"pending")
-.toLowerCase();
-
-const labels={
-
-pending:"Pending",
-
-accepted:"Accepted",
-
-packed:"Packed",
-
-shipped:"Shipped",
-
-delivered:"Delivered",
-
-cancelled:"Cancelled"
-
-};
-
-return labels[s]||"Pending";
-
-}
-
-
-function statusLevel(status){
-
-const s=
-String(status||"pending")
-.toLowerCase();
-
-const levels={
-
-pending:1,
-
-accepted:2,
-
-packed:3,
-
-shipped:4,
-
-delivered:5
-
-};
-
-return levels[s]||1;
-
-}
-
+/* CHECK LOGIN */
 
 onAuthStateChanged(
+
 auth,
 
-user=>{
+async user=>{
+
 
 if(!user){
 
-$("orders").innerHTML=
 
-`
-<p class="error">
-Please login as a seller first.
-</p>
-`;
+$("loginRequired").style.display=
+
+"block";
+
+
+$("sellerFormContainer").style.display=
+
+"none";
+
 
 return;
 
 }
 
 
-currentSellerId=
-user.uid;
+currentUser=
+
+user;
 
 
-$("sellerInfo").innerHTML=
+$("loginRequired").style.display=
 
-`
-<b>Seller:</b>
-${esc(
-user.displayName||"Seller"
-)}
-`;
+"none";
 
 
-loadOrders(
-user.uid
-);
+$("sellerFormContainer").style.display=
 
-}
-
-);
+"block";
 
 
-function loadOrders(sellerId){
+$("email").value=
+
+user.email||"";
+
+
+/* CHECK IF USER ALREADY APPLIED */
+
+try{
 
 
 const q=
 
 query(
 
-collection(db,"orders"),
+collection(
+db,
+"sellers"
+),
 
 where(
-"sellerIds",
-"array-contains",
-sellerId
+"userId",
+"==",
+user.uid
 )
 
 );
 
 
-onSnapshot(
+const snapshot=
 
-q,
-
-snapshot=>{
-
-
-if(snapshot.empty){
-
-$("orders").innerHTML=
-
-`
-<div class="empty">
-
-<h3>
-📭 No orders yet
-</h3>
-
-<p>
-Customer orders for your products
-will appear here.
-</p>
-
-</div>
-`;
-
-return;
-
-}
-
-
-let orders=[];
-
-
-snapshot.forEach(docSnap=>{
-
-orders.push({
-
-id:docSnap.id,
-
-...docSnap.data()
-
-});
-
-});
-
-
-orders.sort(
-(a,b)=>{
-
-const ta=
-a.createdAt?.seconds||0;
-
-const tb=
-b.createdAt?.seconds||0;
-
-return tb-ta;
-
-}
+await getDocs(
+q
 );
 
 
-$("orders").innerHTML=
-
-orders.map(order=>{
+if(!snapshot.empty){
 
 
-const myItems=
+const seller=
 
-(order.items||[])
-
-.filter(
-item=>
-item.sellerId===sellerId
-);
+snapshot.docs[0].data();
 
 
-const myTotal=
+$("sellerForm").innerHTML=
 
-myItems.reduce(
+`
 
-(sum,item)=>
+<div class="sectionTitle">
 
-sum+
+🏪 Seller Application
 
-(Number(item.price)||0)
+</div>
 
-*
+<div class="message success">
 
-(Number(item.qty)||0),
+${
 
-0
-
-);
-
-
-const date=
-
-order.createdAt?.seconds
+seller.status==="approved"
 
 ?
 
-new Date(
-
-order.createdAt.seconds*1000
-
-)
-
-.toLocaleString()
+"🎉 Your seller account has been approved!"
 
 :
 
-"Recently";
+seller.status==="rejected"
 
+?
 
-const status=
+"❌ Your seller application was rejected. Please contact support."
 
-String(
-order.status||"pending"
-)
-.toLowerCase();
+:
 
+"⏳ Your seller application is under review."
 
-const level=
+}
 
-statusLevel(
-status
-);
+</div>
 
+<p class="note">
 
-return`
-
-<div class="order">
-
-
-<h3>
-
-Order #
-
-${esc(
-order.id.slice(0,8)
-)}
-
-</h3>
-
-
-<span
-class="status ${getStatusClass(status)}">
-
-${statusLabel(status)}
-
-</span>
-
-
-<p class="muted">
-
-${esc(date)}
-
-</p>
-
-
-<hr>
-
-
-<p>
-
-<b>
-Customer:
-</b>
-
-${esc(
-order.customerName||"Customer"
+Store: ${escapeHtml(
+seller.storeName||""
 )}
 
 </p>
 
+<p class="note">
 
-<p>
-
-<b>
-Mobile:
-</b>
-
-${esc(
-order.customerPhone||""
-)}
+Status: ${escapeHtml(
+seller.status||"pending"
+).toUpperCase()}
 
 </p>
-
-
-<p>
-
-<b>
-Delivery address:
-</b>
-
-<br>
-
-${esc(
-order.deliveryAddress||""
-)}
-
-</p>
-
-
-<h4>
-🛍️ Your Products
-</h4>
-
-
-${
-myItems.length
-
-?
-
-myItems.map(
-item=>`
-
-<div class="product">
-
-<b>
-
-${esc(
-item.name
-)}
-
-</b>
-
-<br>
-
-₹${Number(
-item.price
-)||0}
-
-×
-
-${Number(
-item.qty
-)||0}
-
-=
-
-<b>
-
-₹${
-(Number(item.price)||0)
-*
-(Number(item.qty)||0)
-}
-
-</b>
-
-</div>
-
-`
-)
-.join("")
-
-:
-
-""
-
-}
-
-
-<div class="total">
-
-Your order value:
-
-₹${myTotal}
-
-</div>
-
-
-<p>
-
-<b>
-Payment:
-</b>
-
-${esc(
-order.paymentMethod||"COD"
-)}
-
-</p>
-
-
-${
-order.trackingNumber
-
-?
-
-`
-
-<p>
-
-<b>
-Tracking Number:
-</b>
-
-${esc(
-order.trackingNumber
-)}
-
-</p>
-
-`
-
-:
-
-""
-
-}
-
-
-<div class="timeline">
-
-
-<div class="step ${level>1?"done":level===1?"active":""}">
-
-<div class="dot">
-
-${level>1?"✓":"1"}
-
-</div>
-
-Pending
-
-</div>
-
-
-<div class="step ${level>2?"done":level===2?"active":""}">
-
-<div class="dot">
-
-${level>2?"✓":"2"}
-
-</div>
-
-Accepted
-
-</div>
-
-
-<div class="step ${level>3?"done":level===3?"active":""}">
-
-<div class="dot">
-
-${level>3?"✓":"3"}
-
-</div>
-
-Packed
-
-</div>
-
-
-<div class="step ${level>4?"done":level===4?"active":""}">
-
-<div class="dot">
-
-${level>4?"✓":"4"}
-
-</div>
-
-Shipped
-
-</div>
-
-
-<div class="step ${level===5?"done":""}">
-
-<div class="dot">
-
-${level===5?"✓":"5"}
-
-</div>
-
-Delivered
-
-</div>
-
-
-</div>
-
-
-${
-status!=="delivered"
-
-&&
-
-status!=="cancelled"
-
-?
-
-`
-
-<div class="actionBox">
-
-
-<div class="actionTitle">
-
-Update Order Status
-
-</div>
-
-
-<div class="actionButtons">
-
-
-${
-status==="pending"
-
-?
-
-`
-
-<button
-class="acceptBtn"
-
-onclick="updateOrderStatus(
-'${order.id}',
-'accepted'
-)">
-
-✓ Accept Order
-
-</button>
-
-`
-
-:
-
-""
-}
-
-
-${
-status==="accepted"
-
-?
-
-`
-
-<button
-class="packBtn"
-
-onclick="updateOrderStatus(
-'${order.id}',
-'packed'
-)">
-
-📦 Mark Packed
-
-</button>
-
-`
-
-:
-
-""
-}
-
-
-${
-status==="packed"
-
-?
-
-`
-
-<button
-class="shipBtn"
-
-onclick="showTracking(
-'${order.id}'
-)">
-
-🚚 Ship Order
-
-</button>
-
-`
-
-:
-
-""
-}
-
-
-${
-status==="shipped"
-
-?
-
-`
-
-<button
-class="deliverBtn"
-
-onclick="updateOrderStatus(
-'${order.id}',
-'delivered'
-)">
-
-✓ Mark Delivered
-
-</button>
-
-`
-
-:
-
-""
-}
-
-
-<button
-class="cancelBtn"
-
-onclick="updateOrderStatus(
-'${order.id}',
-'cancelled'
-)">
-
-Cancel
-
-</button>
-
-
-</div>
-
-
-${
-status==="packed"
-
-?
-
-`
-
-<div
-class="trackingBox"
-id="tracking-${order.id}">
-
-</div>
-
-`
-
-:
-
-""
-}
-
-
-</div>
-
-`
-
-:
-
-status==="delivered"
-
-?
-
-`
-
-<div class="actionBox">
-
-<b>
-🎉 Order completed successfully.
-</b>
-
-</div>
-
-`
-
-:
-
-`
-
-<div class="actionBox">
-
-<b>
-❌ Order cancelled.
-</b>
-
-</div>
-
-`
-
-}
-
-
-</div>
 
 `;
 
-})
-.join("");
-
-},
-
-error=>{
-
-$("orders").innerHTML=
-
-`
-<p class="error">
-
-Unable to load orders:
-
-${esc(
-error.message
-)}
-
-</p>
-`;
 
 }
-
-);
-
-}
-
-
-window.updateOrderStatus=
-async(
-orderId,
-newStatus
-)=>{
-
-
-try{
-
-
-await updateDoc(
-
-doc(
-db,
-"orders",
-orderId
-),
-
-{
-
-status:newStatus,
-
-statusUpdatedAt:
-serverTimestamp()
-
-}
-
-);
 
 
 }catch(error){
 
-alert(
-"Unable to update order: "
-+
-error.message
+
+console.error(
+error
 );
+
 
 }
 
-};
 
+}
 
-window.showTracking=
-orderId=>{
-
-
-const box=
-
-document.getElementById(
-"tracking-"+orderId
 );
 
 
-if(!box)return;
+/* SUBMIT SELLER FORM */
+
+$("sellerForm").addEventListener(
+
+"submit",
+
+async function(event){
 
 
-box.innerHTML=
-
-`
-
-<input
-
-id="trackingInput-${orderId}"
-
-placeholder="Enter courier tracking number">
-
-<button
-
-class="saveTracking"
-
-onclick="shipOrder(
-'${orderId}'
-)">
-
-🚚 Confirm Shipment
-
-</button>
-
-`;
-
-};
+event.preventDefault();
 
 
-window.shipOrder=
-async orderId=>{
-
-
-const input=
-
-document.getElementById(
-"trackingInput-"+orderId
-);
-
-
-const tracking=
-
-input.value.trim();
-
-
-if(!tracking){
-
-alert(
-"Please enter a tracking number."
-);
+if(!currentUser){
 
 return;
 
 }
 
 
+const submitBtn=
+
+$("submitBtn");
+
+
+submitBtn.disabled=
+
+true;
+
+
+submitBtn.innerText=
+
+"Submitting...";
+
+
+$("message").className=
+
+"message";
+
+
+$("message").style.display=
+
+"none";
+
+
 try{
 
 
-await updateDoc(
+const sellerData={
 
-doc(
-db,
-"orders",
-orderId
-),
 
-{
+userId:
 
-status:"shipped",
+currentUser.uid,
 
-trackingNumber:
-tracking,
 
-shippedAt:
+email:
+
+currentUser.email||"",
+
+
+fullName:
+
+$("fullName").value.trim(),
+
+
+phone:
+
+$("phone").value.trim(),
+
+
+storeName:
+
+$("storeName").value.trim(),
+
+
+businessCategory:
+
+$("businessCategory").value,
+
+
+businessAddress:
+
+$("businessAddress").value.trim(),
+
+
+panNumber:
+
+$("panNumber").value.trim(),
+
+
+gstNumber:
+
+$("gstNumber").value.trim(),
+
+
+accountHolder:
+
+$("accountHolder").value.trim(),
+
+
+bankName:
+
+$("bankName").value.trim(),
+
+
+accountNumber:
+
+$("accountNumber").value.trim(),
+
+
+ifscCode:
+
+$("ifscCode").value.trim().toUpperCase(),
+
+
+status:
+
+"pending",
+
+
+sellerVerified:
+
+false,
+
+
+createdAt:
+
 serverTimestamp(),
 
-statusUpdatedAt:
+
+updatedAt:
+
 serverTimestamp()
 
-}
+};
+
+
+await addDoc(
+
+collection(
+db,
+"sellers"
+),
+
+sellerData
 
 );
+
+
+$("message").innerHTML=
+
+"🎉 Seller application submitted successfully! Your application is now under admin review.";
+
+
+$("message").className=
+
+"message success";
+
+
+$("sellerForm").reset();
+
+
+$("email").value=
+
+currentUser.email||"";
 
 
 }catch(error){
 
-alert(
-"Unable to ship order: "
+
+console.error(
+error
+);
+
+
+$("message").innerHTML=
+
+"❌ Unable to submit application: "
 +
+escapeHtml(
 error.message
 );
 
+
+$("message").className=
+
+"message error";
+
+
 }
 
+
+submitBtn.disabled=
+
+false;
+
+
+submitBtn.innerText=
+
+"🚀 Submit Seller Application";
+
+
+}
+
+);
+
+
+/* LOGIN */
+
+window.goLogin=
+
+function(){
+
+
+location.href=
+
+"index.html";
+
+
 };
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(value){
+
+
+return String(
+value??""
+)
+
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
+);
+
+
+}
+
 
 </script>
 
+
 </body>
+
 </html>

@@ -9,9 +9,7 @@
 name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>
-Add Product | NEXORA PICKS
-</title>
+<title>Add Product | NEXORA PICKS</title>
 
 <style>
 
@@ -83,7 +81,8 @@ padding:14px;
 border:1px solid #d0d5dd;
 border-radius:8px;
 font-size:16px;
-font-family:Arial,sans-serif
+font-family:Arial,sans-serif;
+background:white
 }
 
 input:focus,
@@ -160,11 +159,6 @@ background:#ffebee;
 color:#c62828
 }
 
-.info{
-background:#e8f0fe;
-color:#1a5cc8
-}
-
 .uploadNote{
 font-size:13px;
 color:#667085;
@@ -206,7 +200,6 @@ padding:18px
 
 </header>
 
-
 <div class="wrap">
 
 <div class="card">
@@ -217,15 +210,11 @@ Add a New Product
 
 <p class="subtitle">
 
-Enter your product details and upload a product image.
-
-Your product will be published immediately.
+Enter your product details and choose whether the product should be visible publicly or hidden.
 
 </p>
 
-
 <form id="productForm">
-
 
 <label>
 Product Name
@@ -238,7 +227,6 @@ placeholder="Example: Wireless Bluetooth Headphones"
 required
 >
 
-
 <label>
 Product Image
 </label>
@@ -250,13 +238,11 @@ accept="image/*"
 required
 >
 
-
 <div class="uploadNote">
 
 📱 Select a product image from your phone or computer.
 
 </div>
-
 
 <div
 class="imagePreview"
@@ -265,7 +251,6 @@ id="imagePreview">
 📷 Product image preview
 
 </div>
-
 
 <label>
 Product Description
@@ -277,14 +262,14 @@ placeholder="Write product details..."
 required
 ></textarea>
 
-
 <label>
 Category
 </label>
 
 <select
 id="category"
-required>
+required
+>
 
 <option value="">
 Select Category
@@ -324,9 +309,7 @@ Other
 
 </select>
 
-
 <div class="row">
-
 
 <div>
 
@@ -344,7 +327,6 @@ required
 
 </div>
 
-
 <div>
 
 <label>
@@ -361,28 +343,48 @@ required
 
 </div>
 
-
 </div>
+
+
+<!-- PRODUCT VISIBILITY -->
+
+<label>
+Product Visibility
+</label>
+
+<select
+id="visibility"
+required
+>
+
+<option value="public">
+Yes — Show Publicly
+</option>
+
+<option value="hidden">
+No — Hide Product
+</option>
+
+</select>
 
 
 <button
 type="submit"
-id="addBtn">
+id="addBtn"
+>
 
 ➕ Add Product
 
 </button>
 
-
 </form>
-
 
 <div
 id="message"
-class="message">
+class="message"
+>
 
 </div>
-
 
 </div>
 
@@ -565,7 +567,6 @@ auth,
 
 async user=>{
 
-
 if(!user){
 
 location.href=
@@ -575,9 +576,7 @@ return;
 
 }
 
-
 try{
-
 
 const sellerQuery=
 
@@ -608,7 +607,6 @@ if(
 sellerSnapshot.empty
 ){
 
-
 alert(
 "Please register as a seller first."
 );
@@ -633,12 +631,9 @@ const sellerData=
 sellerDoc.data();
 
 
-/* CHECK SELLER APPROVAL */
-
 if(
 sellerData.status!=="approved"
 ){
-
 
 showMessage(
 
@@ -658,8 +653,6 @@ return;
 }
 
 
-/* SAVE SELLER INFORMATION */
-
 currentSeller={
 
 id:
@@ -677,7 +670,6 @@ sellerData.storeName||
 
 }catch(error){
 
-
 console.error(
 error
 );
@@ -690,7 +682,6 @@ showMessage(
 "error"
 
 );
-
 
 }
 
@@ -707,14 +698,12 @@ imageFile.addEventListener(
 
 function(){
 
-
 const file=
 
 imageFile.files[0];
 
 
 if(!file){
-
 
 imagePreview.innerHTML=
 
@@ -731,7 +720,6 @@ if(
 "image/"
 )
 ){
-
 
 showMessage(
 
@@ -763,7 +751,6 @@ imagePreview.innerHTML=
 
 `<img src="${imageUrl}" alt="Product Preview">`;
 
-
 }
 
 );
@@ -777,12 +764,10 @@ form.addEventListener(
 
 async function(e){
 
-
 e.preventDefault();
 
 
 if(!currentSeller){
-
 
 showMessage(
 
@@ -805,7 +790,6 @@ imageFile.files[0];
 
 if(!file){
 
-
 showMessage(
 
 "Please select a product image.",
@@ -820,13 +804,10 @@ return;
 }
 
 
-/* FILE SIZE LIMIT 5MB */
-
 if(
 file.size>
 5*1024*1024
 ){
-
 
 showMessage(
 
@@ -897,7 +878,23 @@ document
 );
 
 
-/* DISABLE BUTTON */
+/* GET VISIBILITY */
+
+const visibility=
+
+document
+.getElementById(
+"visibility"
+)
+.value;
+
+
+/* PUBLIC = ACTIVE TRUE */
+
+const isActive=
+
+visibility==="public";
+
 
 addBtn.disabled=
 
@@ -911,8 +908,6 @@ addBtn.textContent=
 
 try{
 
-
-/* CREATE UNIQUE IMAGE NAME */
 
 const safeFileName=
 
@@ -949,8 +944,6 @@ Date.now()
 safeFileName;
 
 
-/* STORAGE REFERENCE */
-
 const storageRef=
 
 ref(
@@ -980,11 +973,8 @@ const imageUrl=
 await getDownloadURL(
 
 storageRef
-
 );
 
-
-/* UPDATE BUTTON */
 
 addBtn.textContent=
 
@@ -1047,7 +1037,7 @@ sellerName:
 currentSeller.storeName,
 
 
-/* AUTOMATICALLY APPROVED AND VISIBLE */
+/* PRODUCT APPROVAL */
 
 approvalStatus:
 "approved",
@@ -1057,8 +1047,14 @@ status:
 "approved",
 
 
+/* PRODUCT VISIBILITY */
+
+visibility:
+visibility,
+
+
 active:
-true,
+isActive,
 
 
 /* DATE */
@@ -1075,18 +1071,30 @@ serverTimestamp()
 );
 
 
-/* SUCCESS MESSAGE */
+if(
+isActive
+){
 
 showMessage(
 
-"✅ Product added successfully! Your product is now live.",
+"✅ Product added successfully! Your product is now visible publicly.",
 
 "success"
 
 );
 
+}else{
 
-/* RESET FORM */
+showMessage(
+
+"✅ Product added successfully! Your product is currently hidden.",
+
+"success"
+
+);
+
+}
+
 
 form.reset();
 
@@ -1096,17 +1104,13 @@ imagePreview.innerHTML=
 "📷 Product image preview";
 
 
-/* GO BACK TO SELLER DASHBOARD */
-
 setTimeout(
 
 function(){
 
-
 location.href=
 
 "seller-dashboard.html";
-
 
 },
 
@@ -1116,7 +1120,6 @@ location.href=
 
 
 }catch(error){
-
 
 console.error(
 error
@@ -1141,7 +1144,6 @@ addBtn.textContent=
 
 "➕ Add Product";
 
-
 }
 
 }
@@ -1159,7 +1161,6 @@ type
 
 ){
 
-
 message.style.display=
 
 "block";
@@ -1173,7 +1174,6 @@ message.className=
 message.textContent=
 
 text;
-
 
 }
 

@@ -525,16 +525,58 @@ function placeOrder(){
   }
 
 
-  alert(
-    "🎉 Order placed successfully!"
-  );
+  const order = {
+
+  orderId:
+
+  "NEXORA" +
+  Date.now(),
+
+  cart:
+
+  cart,
+
+  address:{
+
+    name:name,
+
+    mobile:mobile,
+
+    house:house,
+
+    street:
+
+    document.getElementById(
+      "street"
+    ).value.trim(),
+
+    city:city,
+
+    state:state,
+
+    pincode:pincode
+
+  }
+
+};
 
 
-  localStorage.removeItem(CART_KEY);
+localStorage.setItem(
+
+  "nexora_last_order",
+
+  JSON.stringify(order)
+
+);
 
 
-  window.location.href =
-  "index.html";
+localStorage.removeItem(
+  CART_KEY
+);
+
+
+window.location.href =
+"order-success.html";
 
 }
 

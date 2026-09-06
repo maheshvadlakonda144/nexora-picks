@@ -3,392 +3,522 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>Product | NEXORA PICKS</title>
 
 <style>
 *{box-sizing:border-box}
 
 body{
-margin:0;
-background:#f1f3f6;
-font-family:Arial,sans-serif;
-color:#17202a
+  margin:0;
+  background:#f1f3f6;
+  font-family:Arial,sans-serif;
+  color:#17202a;
 }
 
-.top{
-background:#2874f0;
-color:white;
-padding:12px 16px;
-position:sticky;
-top:0;
-z-index:10
-}
-
-.nav{
-max-width:1100px;
-margin:auto;
-display:flex;
-align-items:center;
-gap:15px
-}
-
-.logo{
-font-size:22px;
-font-weight:900
-}
-
-.logo b{
-color:#ffe500
+.header{
+  background:#2874f0;
+  color:white;
+  padding:16px;
+  display:flex;
+  align-items:center;
+  gap:14px;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
 .back{
-background:white;
-color:#2874f0;
-border:0;
-padding:9px 14px;
-border-radius:5px;
-font-weight:800
+  color:white;
+  text-decoration:none;
+  font-size:30px;
 }
 
-.wrap{
-max-width:1100px;
-margin:25px auto;
-padding:0 15px
+.logo{
+  font-size:25px;
+  font-weight:800;
+}
+
+.container{
+  max-width:1100px;
+  margin:20px auto;
+  padding:0 15px;
 }
 
 .product{
-background:white;
-border-radius:14px;
-padding:20px;
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:30px
+  background:white;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 2px 12px #0001;
+  display:grid;
+  grid-template-columns:1fr 1fr;
 }
 
 .photo{
-height:450px;
-background:#f7f8fa;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-overflow:hidden
+  min-height:480px;
+  background:#fafafa;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
 }
 
 .photo img{
-width:100%;
-height:100%;
-object-fit:contain
+  max-width:100%;
+  max-height:450px;
+  object-fit:contain;
+  border-radius:12px;
 }
 
 .emoji{
-font-size:100px
+  font-size:130px;
+}
+
+.info{
+  padding:35px;
 }
 
 .category{
-color:#2874f0;
-font-weight:800;
-text-transform:uppercase;
-font-size:13px
+  display:inline-block;
+  background:#eef4ff;
+  color:#2874f0;
+  padding:7px 12px;
+  border-radius:20px;
+  font-size:14px;
+  font-weight:bold;
 }
 
-h1{
-font-size:32px;
-margin:10px 0
-}
-
-.description{
-color:#667085;
-line-height:1.6;
-font-size:16px
+.name{
+  font-size:34px;
+  margin:18px 0 12px;
+  font-weight:800;
 }
 
 .price{
-font-size:30px;
-font-weight:900;
-margin:18px 0
+  font-size:32px;
+  font-weight:800;
+  margin:15px 0;
 }
 
 .stock{
-color:#16803c;
-font-weight:700;
-margin-bottom:18px
+  color:#188038;
+  font-weight:bold;
+  font-size:18px;
+  margin:18px 0;
 }
 
 .seller{
-background:#f7f8fa;
-padding:14px;
-border-radius:8px;
-margin:15px 0
+  background:#f1f5ff;
+  padding:16px;
+  border-radius:12px;
+  margin:20px 0;
+  font-size:17px;
 }
 
-button.action{
-width:100%;
-border:0;
-padding:14px;
-border-radius:7px;
-font-weight:900;
-font-size:16px;
-margin-top:10px;
-cursor:pointer
+.detailsTitle{
+  font-size:23px;
+  font-weight:bold;
+  margin-top:25px;
+}
+
+.description{
+  color:#555;
+  font-size:17px;
+  line-height:1.6;
+  margin-top:10px;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  margin-top:30px;
+}
+
+button{
+  border:0;
+  border-radius:8px;
+  padding:16px 22px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
 }
 
 .cart{
-background:#eaf2ff;
-color:#2874f0
+  background:#ffb000;
+  color:white;
 }
 
 .buy{
-background:#ff7a00;
-color:white
+  background:#ff641f;
+  color:white;
 }
 
 .message{
-margin-top:12px;
-font-weight:700
+  background:white;
+  padding:40px;
+  text-align:center;
+  border-radius:14px;
+  font-size:20px;
 }
 
 @media(max-width:700px){
-.product{
-grid-template-columns:1fr
-}
+  .product{
+    grid-template-columns:1fr;
+  }
 
-.photo{
-height:330px
-}
+  .photo{
+    min-height:330px;
+  }
 
-h1{
-font-size:26px
-}
+  .photo img{
+    max-height:300px;
+  }
+
+  .info{
+    padding:25px;
+  }
+
+  .name{
+    font-size:28px;
+  }
+
+  .price{
+    font-size:28px;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  button{
+    width:100%;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<header class="top">
-
-<div class="nav">
-
-<button class="back" onclick="history.back()">
-← Back
-</button>
-
-<div class="logo">
-NEXORA <b>PICKS</b>
-</div>
-
-</div>
-
+<header class="header">
+  <a class="back" href="index.html">‹</a>
+  <div class="logo">NEXORA PICKS</div>
 </header>
 
-<main class="wrap">
+<main class="container">
 
-<div id="loading">
-Loading product...
-</div>
+  <div id="loading" class="message">
+    Loading product...
+  </div>
 
-<div id="productBox"></div>
+  <div id="productBox" class="product" style="display:none">
+
+    <div class="photo">
+
+      <img id="productImage"
+           style="display:none"
+           alt="Product">
+
+      <div id="productEmoji" class="emoji">
+        🛍️
+      </div>
+
+    </div>
+
+    <div class="info">
+
+      <div id="category" class="category">
+        Featured
+      </div>
+
+      <div id="name" class="name">
+        Product
+      </div>
+
+      <div id="price" class="price">
+        ₹0
+      </div>
+
+      <div id="stock" class="stock">
+        ✓ In Stock
+      </div>
+
+      <div class="seller">
+        🏪 <b>Seller:</b>
+        <span id="seller">NEXORA PICKS</span>
+      </div>
+
+      <div class="detailsTitle">
+        Product Details
+      </div>
+
+      <div id="description" class="description">
+        No description available.
+      </div>
+
+      <div class="actions">
+
+        <button class="cart" id="cartBtn">
+          🛒 Add to Cart
+        </button>
+
+        <button class="buy" id="buyBtn">
+          ⚡ Buy Now
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
 
 </main>
 
 <script type="module">
 
-import{initializeApp}
-from"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-import{
-getFirestore,
-doc,
-getDoc
-}
-from"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import {
+  getFirestore,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-const firebaseConfig={
-apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
-authDomain:"nexora-picks-e887f.firebaseapp.com",
-projectId:"nexora-picks-e887f",
-storageBucket:"nexora-picks-e887f.firebasestorage.app",
-messagingSenderId:"621359003619",
-appId:"1:621359003619:web:483add8bfcd0241f4192d",
-measurementId:"G-LSMJ6QLLPW"
+
+const firebaseConfig = {
+  apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+  authDomain:"nexora-picks-e887f.firebaseapp.com",
+  projectId:"nexora-picks-e887f",
+  storageBucket:"nexora-picks-e887f.firebasestorage.app",
+  messagingSenderId:"621359003619",
+  appId:"1:621359003619:web:483add8bfcd0241f4192d",
+  measurementId:"G-LSMJ6QLLPW"
 };
 
-const app=initializeApp(firebaseConfig);
-const db=getFirestore(app);
 
-const id=new URLSearchParams(location.search).get("id");
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-const box=document.getElementById("productBox");
-const loading=document.getElementById("loading");
 
-const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#39;"
-}[c]));
+const params = new URLSearchParams(location.search);
+const productId = params.get("id");
 
-let product=null;
+
+const $ = id => document.getElementById(id);
+
+
+function money(value){
+  return "₹" + Number(value || 0).toLocaleString("en-IN");
+}
+
+
+function addToCart(product){
+
+  let cart = [];
+
+  try{
+    cart = JSON.parse(localStorage.getItem("nexora_cart") || "[]");
+  }catch(e){
+    cart = [];
+  }
+
+
+  const existing = cart.find(x => x.id === product.id);
+
+
+  if(existing){
+    existing.qty = Number(existing.qty || 1) + 1;
+  }else{
+
+    cart.push({
+      id:product.id,
+      name:product.name,
+      price:Number(product.price || 0),
+      image:product.imageUrl || "",
+      emoji:product.emoji || "🛍️",
+      sellerName:product.sellerName || "NEXORA PICKS",
+      qty:1
+    });
+
+  }
+
+
+  localStorage.setItem("nexora_cart",JSON.stringify(cart));
+
+
+  alert("Added to cart 🛒");
+}
+
 
 async function loadProduct(){
 
-if(!id){
+  if(!productId){
 
-loading.textContent="Product not found.";
-return;
+    $("loading").innerHTML =
+      "Product not found.<br><br>" +
+      "<a href='index.html'>← Back to NEXORA PICKS</a>";
+
+    return;
+  }
+
+
+  try{
+
+    const ref = doc(db,"products",productId);
+    const snap = await getDoc(ref);
+
+
+    if(!snap.exists()){
+
+      $("loading").innerHTML =
+        "Product not found.<br><br>" +
+        "<a href='index.html'>← Back to Products</a>";
+
+      return;
+    }
+
+
+    const p = {
+      id:snap.id,
+      ...snap.data()
+    };
+
+
+    // Security/display check
+    if(
+      p.active === false ||
+      (
+        p.approvalStatus &&
+        p.approvalStatus !== "approved"
+      )
+    ){
+
+      $("loading").innerHTML =
+        "This product is currently unavailable.<br><br>" +
+        "<a href='index.html'>← Back to Products</a>";
+
+      return;
+    }
+
+
+    const name = p.name || p.title || "Product";
+    const price = Number(p.price || 0);
+    const stock = Number(p.stock || 0);
+    const image = p.imageUrl || "";
+    const emoji = p.emoji || "🛍️";
+    const seller = p.sellerName || "NEXORA PICKS";
+    const category = p.category || "Featured";
+    const description =
+      p.description || "No product description available.";
+
+
+    document.title =
+      name + " | NEXORA PICKS";
+
+
+    $("category").textContent = category;
+
+    $("name").textContent = name;
+
+    $("price").textContent = money(price);
+
+    $("seller").textContent = seller;
+
+    $("description").textContent = description;
+
+
+    if(stock > 0){
+
+      $("stock").textContent =
+        "✓ In Stock (" + stock + " available)";
+
+      $("stock").style.color = "#188038";
+
+    }else{
+
+      $("stock").textContent =
+        "✕ Out of Stock";
+
+      $("stock").style.color = "#d93025";
+
+      $("cartBtn").disabled = true;
+      $("buyBtn").disabled = true;
+
+      $("cartBtn").style.opacity = ".5";
+      $("buyBtn").style.opacity = ".5";
+
+    }
+
+
+    if(image){
+
+      $("productImage").src = image;
+
+      $("productImage").alt = name;
+
+      $("productImage").style.display = "block";
+
+      $("productEmoji").style.display = "none";
+
+
+      $("productImage").onerror = function(){
+
+        this.style.display = "none";
+
+        $("productEmoji").style.display = "block";
+
+      };
+
+    }else{
+
+      $("productEmoji").textContent = emoji;
+
+      $("productEmoji").style.display = "block";
+
+    }
+
+
+    $("cartBtn").onclick = function(){
+
+      if(stock <= 0) return;
+
+      addToCart(p);
+
+    };
+
+
+    $("buyBtn").onclick = function(){
+
+      if(stock <= 0) return;
+
+      addToCart(p);
+
+      location.href = "cart.html";
+
+    };
+
+
+    $("loading").style.display = "none";
+
+    $("productBox").style.display = "grid";
+
+
+  }catch(error){
+
+    console.error(error);
+
+    $("loading").innerHTML =
+      "Unable to load product.<br><br>" +
+      "<a href='index.html'>← Back to Products</a>";
+
+  }
+
 }
 
-try{
-
-const snap=await getDoc(doc(db,"products",id));
-
-if(!snap.exists()){
-
-loading.textContent="Product not found.";
-return;
-}
-
-product={
-id:snap.id,
-...snap.data()
-};
-
-loading.style.display="none";
-
-const img=product.imageUrl||"";
-const price=Number(product.price)||0;
-const stock=Number(product.stock)||0;
-
-box.innerHTML=`
-
-<div class="product">
-
-<div class="photo">
-
-${img?
-
-`<img src="${esc(img)}"
-alt="${esc(product.name||"Product")}"
-onerror="this.style.display='none';this.nextElementSibling.style.display='block'">`
-
-:""}
-
-<span class="emoji" style="${img?"display:none":""}">
-${product.emoji||"🛍️"}
-</span>
-
-</div>
-
-<div>
-
-<div class="category">
-${esc(product.category||"Featured")}
-</div>
-
-<h1>
-${esc(product.name||"Product")}
-</h1>
-
-<div class="description">
-${esc(product.description||"No description available.")}
-</div>
-
-<div class="price">
-₹${price}
-</div>
-
-<div class="stock">
-${stock>0?stock+" in stock":"Out of stock"}
-</div>
-
-<div class="seller">
-<b>Sold by</b><br>
-${esc(product.sellerName||"NEXORA PICKS Seller")}
-</div>
-
-<button class="action cart"
-onclick="addCart()"
-${stock<=0?"disabled":""}>
-🛒 Add to Cart
-</button>
-
-<button class="action buy"
-onclick="buyNow()"
-${stock<=0?"disabled":""}>
-Buy Now
-</button>
-
-<div class="message" id="message"></div>
-
-</div>
-
-</div>
-`;
-
-}catch(e){
-
-loading.textContent="Unable to load product.";
-
-console.error(e);
-
-}
-
-}
-
-window.addCart=()=>{
-
-if(!product)return;
-
-let cart=JSON.parse(
-localStorage.getItem("nexora_cart")||"[]"
-);
-
-let item=cart.find(x=>x.id===product.id);
-
-if(item){
-
-item.qty++;
-
-}else{
-
-cart.push({
-id:product.id,
-name:product.name,
-price:Number(product.price)||0,
-image:product.imageUrl||"",
-emoji:product.emoji||"🛍️",
-sellerId:product.sellerId,
-qty:1
-});
-
-}
-
-localStorage.setItem(
-"nexora_cart",
-JSON.stringify(cart)
-);
-
-document.getElementById("message").textContent=
-"Added to cart ✓";
-
-};
-
-window.buyNow=()=>{
-
-addCart();
-
-setTimeout(()=>{
-location.href="index.html";
-},500);
-
-};
 
 loadProduct();
 
 </script>
 
 </body>
-</html>
+  </html>

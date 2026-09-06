@@ -92,6 +92,7 @@ color:#2874f0;
 padding:10px 13px;
 border-radius:4px;
 font-weight:800;
+cursor:pointer;
 }
 
 
@@ -512,16 +513,6 @@ color:#17202a;
 font-weight:800;
 }
 
-.drawer a.sellerLink{
-color:#d96b00;
-
-background:#fff7e6;
-
-border-radius:8px;
-
-margin-top:10px;
-}
-
 
 /* MOBILE */
 
@@ -650,15 +641,6 @@ and sellers fulfill orders.
 
 </p>
 
-
-<a
-class="navbtn"
-href="nexora-seller.html">
-
-🏪 Seller Registration / Login
-
-</a>
-
 </div>
 
 </section>
@@ -673,7 +655,7 @@ href="nexora-seller.html">
 
 <div>
 
-<h2>
+<h2 id="products">
 Products
 </h2>
 
@@ -793,15 +775,6 @@ openAuth()
 ">
 
 👤 Login / Account
-
-</a>
-
-
-<a
-class="sellerLink"
-href="nexora-seller.html">
-
-🏪 Seller Registration / Login
 
 </a>
 
@@ -945,7 +918,8 @@ placeholder="Password">
 
 <input
 id="fullName"
-placeholder="Full name">
+placeholder="Full name"
+style="display:none">
 
 
 <button
@@ -1063,8 +1037,6 @@ measurementId:
 };
 
 
-
-/* FIREBASE START */
 
 const app=
 initializeApp(firebaseConfig);
@@ -1649,14 +1621,8 @@ return;
 }
 
 
-
-/* CLOSE CART */
-
 closeCart();
 
-
-
-/* OPEN CHECKOUT PAGE */
 
 window.location.href=
 "checkout.html";
@@ -1680,8 +1646,6 @@ $("cartFoot");
 
 
 
-/* EMPTY CART */
-
 if(!cart.length){
 
 
@@ -1700,8 +1664,6 @@ return;
 }
 
 
-
-/* CART ITEMS */
 
 box.innerHTML=
 
@@ -1807,8 +1769,6 @@ Remove
 
 
 
-/* TOTAL */
-
 let total=
 
 cart.reduce(
@@ -1824,8 +1784,6 @@ x.qty,
 );
 
 
-
-/* CART FOOTER */
 
 foot.innerHTML=`
 

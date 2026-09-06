@@ -302,55 +302,32 @@ Loading seller dashboard...
 
 
 import{
-
 initializeApp
-
 }
-
 from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
 import{
-
 getAuth,
-
 onAuthStateChanged,
-
 signOut
-
 }
-
 from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import{
-
 getFirestore,
-
 collection,
-
 query,
-
 where,
-
-getDocs,
-
-getDoc,
-
 doc,
-
+getDoc,
 onSnapshot
-
 }
-
 from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
 
 
 const firebaseConfig={
@@ -372,55 +349,29 @@ measurementId:"G-LSMJ6QLLPW"
 };
 
 
+const app=initializeApp(firebaseConfig);
 
-const app=
+const auth=getAuth(app);
 
-initializeApp(
-firebaseConfig
-);
-
-
-const auth=
-
-getAuth(
-app
-);
-
-
-const db=
-
-getFirestore(
-app
-);
-
+const db=getFirestore(app);
 
 const dashboard=
-
-document.getElementById(
-"dashboard"
-);
+document.getElementById("dashboard");
 
 
 let currentSeller=null;
 
 
-
-/* CHECK LOGIN */
+/* CHECK LOGIN AND SELLER APPROVAL */
 
 onAuthStateChanged(
-
 auth,
-
 async user=>{
 
 
 if(!user){
 
-
-location.href=
-
-"seller-register.html";
-
+location.href="seller-register.html";
 
 return;
 
@@ -430,30 +381,17 @@ return;
 try{
 
 
-/*
-GET SELLER DIRECTLY USING USER UID
-
-Your seller-register.html saves seller as:
-
-sellers / user.uid
-*/
-
+/* GET SELLER DOCUMENT */
 
 const sellerRef=
-
 doc(
-
 db,
-
 "sellers",
-
 user.uid
-
 );
 
 
 const sellerSnap=
-
 await getDoc(
 sellerRef
 );
@@ -461,57 +399,7 @@ sellerRef
 
 /* SELLER NOT FOUND */
 
-if(
-
-!sellerSnap.exists()
-
-){
-
-
-alert(
-"This account is not registered as a seller."
-);
-
-
-location.href=
-
-"seller-register.html";
-
-
-return;
-
-}
-
-
-
-/* GET SELLER DATA */
-
-const sellerData=
-
-sellerSnap.data();
-
-
-
-currentSeller={
-
-id:user.uid,
-
-sellerDocId:user.uid,
-
-...sellerData
-
-};
-
-
-
-/* CHECK APPROVAL */
-
-if(
-
-sellerData.status!=="approved"
-
-){
-
+if(!sellerSnap.exists()){
 
 dashboard.innerHTML=
 
@@ -521,9 +409,100 @@ dashboard.innerHTML=
 
 <div class="empty">
 
-⏳ Your seller application is currently under review.
+<h2>
+❌ Seller Account Not Found
+</h2>
 
-<br><br>
+<p>
+
+This account is not registered as a seller.
+
+</p>
+
+<br>
+
+<a
+href="seller-register.html"
+class="actionBtn primaryBtn">
+
+Register as Seller
+
+</a>
+
+</div>
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+/* GET SELLER DATA */
+
+const sellerData=
+sellerSnap.data();
+
+
+/* CHECK ADMIN APPROVAL */
+
+const sellerApproved=
+
+sellerData.status==="approved" &&
+
+sellerData.sellerVerified===true;
+
+
+/* BLOCK UNAPPROVED SELLERS */
+
+if(!sellerApproved){
+
+
+let title="⏳ Waiting for Admin Approval";
+
+let message=
+"Your seller application is waiting for admin approval. Product publishing and seller dashboard access are locked until approval.";
+
+
+/* REJECTED SELLER */
+
+if(sellerData.status==="rejected"){
+
+title="❌ Seller Application Rejected";
+
+message=
+"Your seller application was rejected. Please contact NEXORA PICKS support.";
+
+}
+
+
+/* PENDING / REJECTED SCREEN */
+
+dashboard.innerHTML=
+
+`
+
+<div class="section">
+
+<div class="empty">
+
+<h2>
+
+${title}
+
+</h2>
+
+<p>
+
+${message}
+
+</p>
+
+<br>
+
+<p>
 
 Current Status:
 
@@ -538,6 +517,18 @@ sellerData.status||
 
 </b>
 
+</p>
+
+<br>
+
+<button
+class="actionBtn secondaryBtn"
+onclick="logoutSeller()">
+
+Logout
+
+</button>
+
 </div>
 
 </div>
@@ -550,11 +541,22 @@ return;
 }
 
 
+/* APPROVED SELLER */
 
-/* SHOW DASHBOARD */
+currentSeller={
+
+id:user.uid,
+
+sellerDocId:user.uid,
+
+...sellerData
+
+};
+
+
+/* SHOW FULL DASHBOARD */
 
 showDashboard();
-
 
 
 /* LOAD PRODUCTS */
@@ -562,7 +564,6 @@ showDashboard();
 loadProducts(
 user.uid
 );
-
 
 
 /* LOAD ORDERS */
@@ -575,9 +576,7 @@ user.uid
 }catch(error){
 
 
-console.error(
-error
-);
+console.error(error);
 
 
 dashboard.innerHTML=
@@ -592,9 +591,7 @@ dashboard.innerHTML=
 
 <br><br>
 
-${escapeHtml(
-error.message
-)}
+${escapeHtml(error.message)}
 
 </div>
 
@@ -607,7 +604,6 @@ error.message
 
 
 }
-
 );
 
 
@@ -637,7 +633,6 @@ currentSeller.name||
 
 </h2>
 
-
 <div>
 
 Manage your products and customer orders.
@@ -654,11 +649,8 @@ Manage your products and customer orders.
 <div class="stat">
 
 <div>
-
 📦 Products
-
 </div>
-
 
 <div
 class="statNumber"
@@ -675,11 +667,8 @@ id="productCount">
 <div class="stat">
 
 <div>
-
 🟢 Live Products
-
 </div>
-
 
 <div
 class="statNumber"
@@ -696,11 +685,8 @@ id="liveProductCount">
 <div class="stat">
 
 <div>
-
 🛒 Orders
-
 </div>
-
 
 <div
 class="statNumber"
@@ -753,13 +739,10 @@ class="actionBtn secondaryBtn">
 
 <div class="section">
 
-
 <div class="sectionHead">
 
 <h2>
-
 📦 Recent Products
-
 </h2>
 
 </div>
@@ -771,20 +754,16 @@ Loading products...
 
 </div>
 
-
 </div>
 
 
 
 <div class="section">
 
-
 <div class="sectionHead">
 
 <h2>
-
 🛒 Recent Orders
-
 </h2>
 
 </div>
@@ -796,11 +775,9 @@ Loading orders...
 
 </div>
 
-
 </div>
 
 `;
-
 
 }
 
@@ -829,7 +806,6 @@ sellerId
 );
 
 
-
 onSnapshot(
 
 productsQuery,
@@ -840,23 +816,17 @@ snap=>{
 const products=
 
 snap.docs.map(
-
 productDoc=>({
 
-id:
-
-productDoc.id,
+id:productDoc.id,
 
 ...productDoc.data()
 
 })
-
 );
 
 
-
 const count=
-
 document.getElementById(
 "productCount"
 );
@@ -864,11 +834,8 @@ document.getElementById(
 
 if(count){
 
-
 count.textContent=
-
 products.length;
-
 
 }
 
@@ -877,7 +844,6 @@ products.length;
 /* LIVE PRODUCT COUNT */
 
 const liveCount=
-
 document.getElementById(
 "liveProductCount"
 );
@@ -889,7 +855,6 @@ if(liveCount){
 const liveProducts=
 
 products.filter(
-
 product=>
 
 product.active===true||
@@ -897,14 +862,11 @@ product.active===true||
 product.status==="approved"||
 
 product.approvalStatus==="approved"
-
 );
 
 
 liveCount.textContent=
-
 liveProducts.length;
-
 
 }
 
@@ -913,7 +875,6 @@ liveProducts.length;
 /* PRODUCT LIST */
 
 const list=
-
 document.getElementById(
 "productsList"
 );
@@ -921,12 +882,9 @@ document.getElementById(
 
 if(!list){
 
-
 return;
 
-
 }
-
 
 
 if(!products.length){
@@ -942,7 +900,6 @@ No products yet.
 
 <br><br>
 
-
 <a
 href="add-product.html"
 class="actionBtn primaryBtn">
@@ -957,7 +914,6 @@ class="actionBtn primaryBtn">
 
 
 return;
-
 
 }
 
@@ -975,13 +931,7 @@ products
 )
 
 .map(
-
 product=>{
-
-
-/*
-SUPPORT MULTIPLE IMAGE FIELD NAMES
-*/
 
 
 const image=
@@ -1021,13 +971,10 @@ return `
 
 <div class="product">
 
-
 <div class="productLeft">
-
 
 <div
 class="productImageBox">
-
 
 ${
 image
@@ -1036,22 +983,14 @@ image
 `
 
 <img
-
 class="productImage"
-
-src="${escapeHtml(
-image
-)}"
-
+src="${escapeHtml(image)}"
 alt="${escapeHtml(
 product.name||
 product.productName||
 "Product"
 )}"
-
-onerror="this.remove()"
-
->
+onerror="this.style.display='none'">
 
 `
 
@@ -1061,9 +1000,7 @@ emoji
 
 }
 
-
 </div>
-
 
 
 <div>
@@ -1082,7 +1019,6 @@ product.productName||
 )}
 
 </div>
-
 
 
 <div class="productPrice">
@@ -1108,7 +1044,6 @@ product.productPrice||
 </div>
 
 
-
 <div class="productStock">
 
 Stock:
@@ -1130,9 +1065,7 @@ product.quantity||
 </div>
 
 
-
 <div
-
 class="productStatus ${
 
 isApproved
@@ -1146,7 +1079,6 @@ isApproved
 "pending"
 
 }">
-
 
 ${
 
@@ -1162,27 +1094,22 @@ isApproved
 
 }
 
-
 </div>
 
 
 </div>
 
-
 </div>
-
 
 </div>
 
 `;
 
 }
-
 )
 
-.join(
-""
-);
+.join("");
+
 
 
 },
@@ -1197,14 +1124,12 @@ error
 
 
 const list=
-
 document.getElementById(
 "productsList"
 );
 
 
 if(list){
-
 
 list.innerHTML=
 
@@ -1217,7 +1142,6 @@ list.innerHTML=
 </div>
 
 `;
-
 
 }
 
@@ -1254,7 +1178,6 @@ sellerId
 );
 
 
-
 onSnapshot(
 
 ordersQuery,
@@ -1265,23 +1188,17 @@ snap=>{
 const orders=
 
 snap.docs.map(
-
 orderDoc=>({
 
-id:
-
-orderDoc.id,
+id:orderDoc.id,
 
 ...orderDoc.data()
 
 })
-
 );
 
 
-
 const count=
-
 document.getElementById(
 "orderCount"
 );
@@ -1289,18 +1206,13 @@ document.getElementById(
 
 if(count){
 
-
 count.textContent=
-
 orders.length;
-
 
 }
 
 
-
 const list=
-
 document.getElementById(
 "ordersList"
 );
@@ -1308,16 +1220,12 @@ document.getElementById(
 
 if(!list){
 
-
 return;
-
 
 }
 
 
-
 if(!orders.length){
-
 
 list.innerHTML=
 
@@ -1331,12 +1239,9 @@ No customer orders yet.
 
 `;
 
-
 return;
 
-
 }
-
 
 
 list.innerHTML=
@@ -1349,24 +1254,17 @@ orders
 )
 
 .map(
-
 order=>`
 
 <div class="order">
 
-
 <div class="orderTop">
-
 
 <div>
 
-
 <b>
-
 Order
-
 </b>
-
 
 <div class="orderId">
 
@@ -1376,9 +1274,7 @@ order.id
 
 </div>
 
-
 </div>
-
 
 
 <div class="status">
@@ -1399,9 +1295,7 @@ order.status||
 
 </div>
 
-
 </div>
-
 
 
 <div>
@@ -1432,16 +1326,12 @@ order.totalAmount||
 
 </div>
 
-
 </div>
 
 `
-
 )
 
-.join(
-""
-);
+.join("");
 
 
 },
@@ -1456,14 +1346,12 @@ error
 
 
 const list=
-
 document.getElementById(
 "ordersList"
 );
 
 
 if(list){
-
 
 list.innerHTML=
 
@@ -1476,7 +1364,6 @@ list.innerHTML=
 </div>
 
 `;
-
 
 }
 
@@ -1496,16 +1383,12 @@ window.logoutSeller=
 
 async function(){
 
-
 await signOut(
 auth
 );
 
-
 location.href=
-
 "index.html";
-
 
 };
 
@@ -1514,7 +1397,6 @@ location.href=
 /* ESCAPE HTML */
 
 function escapeHtml(value){
-
 
 return String(
 value??""
@@ -1545,12 +1427,9 @@ value??""
 "&#039;"
 );
 
-
 }
 
-
 </script>
-
 
 </body>
 

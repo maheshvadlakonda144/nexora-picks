@@ -13,14 +13,14 @@ content="width=device-width,initial-scale=1">
 <style>
 
 *{
-box-sizing:border-box
+box-sizing:border-box;
 }
 
 body{
 margin:0;
 font-family:Arial,sans-serif;
 background:#f4f6f9;
-color:#172033
+color:#172033;
 }
 
 header{
@@ -30,24 +30,24 @@ padding:18px 20px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:15px
+gap:15px;
 }
 
 .headerLeft{
 display:flex;
 align-items:center;
-gap:15px
+gap:15px;
 }
 
 header a{
 color:white;
 text-decoration:none;
-font-size:28px
+font-size:28px;
 }
 
 header h1{
 margin:0;
-font-size:22px
+font-size:22px;
 }
 
 .addBtn{
@@ -56,82 +56,127 @@ color:#2874f0;
 text-decoration:none;
 padding:10px 14px;
 border-radius:8px;
-font-weight:bold
+font-weight:bold;
+font-size:15px;
 }
 
 .wrap{
 max-width:1000px;
 margin:auto;
-padding:20px
+padding:20px;
 }
 
 .loading,
 .empty{
 text-align:center;
 padding:40px 20px;
-color:#667085
+color:#667085;
 }
 
 .products{
 display:grid;
 grid-template-columns:
 repeat(auto-fit,minmax(260px,1fr));
-gap:18px
+gap:18px;
 }
 
 .product{
 background:white;
 border-radius:14px;
 overflow:hidden;
-box-shadow:0 2px 10px #00000010
+box-shadow:0 2px 10px #00000010;
+}
+
+.productImageBox{
+width:100%;
+height:200px;
+background:#f7f9fc;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
 }
 
 .productImage{
 width:100%;
-height:200px;
+height:100%;
 object-fit:contain;
-background:#f7f9fc
+}
+
+.noImage{
+font-size:55px;
 }
 
 .productInfo{
-padding:16px
+padding:16px;
 }
 
 .productName{
 font-size:18px;
 font-weight:bold;
-margin-bottom:8px
+margin-bottom:8px;
 }
 
 .productCategory{
 color:#667085;
 font-size:14px;
-margin-bottom:10px
+margin-bottom:10px;
+}
+
+.description{
+color:#667085;
+font-size:14px;
+line-height:1.5;
+margin-bottom:12px;
 }
 
 .price{
 font-size:20px;
 font-weight:bold;
 color:#2874f0;
-margin-bottom:8px
+margin-bottom:8px;
 }
 
 .stock{
-margin-bottom:15px;
-font-weight:bold
+margin-bottom:10px;
+font-weight:bold;
 }
 
 .stock.low{
-color:#d93025
+color:#d93025;
 }
 
 .stock.good{
-color:#16803c
+color:#16803c;
+}
+
+.status{
+display:inline-block;
+padding:6px 10px;
+border-radius:20px;
+font-size:13px;
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.status.approved{
+background:#e8f5e9;
+color:#16803c;
+}
+
+.status.pending{
+background:#fff3cd;
+color:#856404;
+}
+
+.status.rejected{
+background:#ffebee;
+color:#c62828;
 }
 
 .buttons{
 display:flex;
-gap:10px
+gap:10px;
 }
 
 .editBtn,
@@ -142,34 +187,32 @@ border-radius:8px;
 padding:12px;
 font-size:15px;
 font-weight:bold;
-cursor:pointer
+cursor:pointer;
 }
 
 .editBtn{
 background:#2874f0;
-color:white
+color:white;
 }
 
 .deleteBtn{
 background:#ffebee;
-color:#c62828
-}
-
-.description{
-color:#667085;
-font-size:14px;
-line-height:1.5;
-margin-bottom:12px
+color:#c62828;
 }
 
 @media(max-width:600px){
 
 .wrap{
-padding:12px
+padding:12px;
 }
 
 header h1{
-font-size:18px
+font-size:18px;
+}
+
+.addBtn{
+padding:9px 10px;
+font-size:13px;
 }
 
 }
@@ -220,7 +263,6 @@ Loading your products...
 
 <script type="module">
 
-
 import{
 initializeApp
 }
@@ -244,7 +286,8 @@ where,
 onSnapshot,
 doc,
 deleteDoc,
-getDoc
+getDoc,
+getDocs
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
@@ -308,20 +351,58 @@ return;
 try{
 
 
-const sellerSnap=
+/* CHECK SELLER USING userId */
 
-await getDoc(
+const sellerQuery=
 
-doc(
+query(
+
+collection(
 db,
-"sellers",
+"sellers"
+),
+
+where(
+"userId",
+"==",
 user.uid
 )
 
 );
 
 
-if(!sellerSnap.exists()){
+const sellerSnapshot=
+
+await getDocs(
+sellerQuery
+);
+
+
+/* ALSO CHECK DOCUMENT ID */
+
+const sellerRef=
+
+doc(
+db,
+"sellers",
+user.uid
+);
+
+
+const sellerDoc=
+
+await getDoc(
+sellerRef
+);
+
+
+/* SELLER NOT FOUND */
+
+if(
+sellerSnapshot.empty
+&&
+!sellerDoc.exists()
+){
 
 alert(
 "Only registered sellers can access this page."
@@ -335,6 +416,8 @@ return;
 }
 
 
+/* LOAD PRODUCTS */
+
 loadProducts(
 user.uid
 );
@@ -342,15 +425,27 @@ user.uid
 
 }catch(error){
 
-console.error(error);
+console.error(
+error
+);
+
+productsList.className=
+"empty";
+
 
 productsList.innerHTML=
 
-`<div class="empty">
+`
 
 ❌ Unable to verify seller account.
 
-</div>`;
+<br><br>
+
+${escapeHtml(
+error.message
+)}
+
+`;
 
 }
 
@@ -365,7 +460,7 @@ function loadProducts(
 sellerId
 ){
 
-const q=
+const productsQuery=
 
 query(
 
@@ -385,7 +480,7 @@ sellerId
 
 onSnapshot(
 
-q,
+productsQuery,
 
 snap=>{
 
@@ -408,11 +503,13 @@ productDoc.id,
 
 if(!products.length){
 
+productsList.className=
+"empty";
+
+
 productsList.innerHTML=
 
 `
-
-<div class="empty">
 
 <h2>
 📦 No Products Yet
@@ -437,8 +534,6 @@ display:inline-block;
 
 </a>
 
-</div>
-
 `;
 
 return;
@@ -456,22 +551,82 @@ products.map(
 
 product=>{
 
+
 const stock=
+
 Number(
 product.stock||0
 );
+
+
+const status=
+
+String(
+product.approvalStatus||
+product.status||
+"approved"
+).toLowerCase();
+
+
+const imageUrl=
+
+product.image||
+product.imageUrl||
+"";
+
+
+let statusText=
+"✓ Approved";
+
+
+if(
+status==="pending"
+){
+
+statusText=
+"⏳ Pending Approval";
+
+}
+
+
+if(
+status==="rejected"
+){
+
+statusText=
+"✕ Rejected";
+
+}
 
 
 return `
 
 <div class="product">
 
-<img
+
+<div class="productImageBox">
+
+${
+imageUrl
+?
+
+`<img
 class="productImage"
-src="${escapeHtml(product.image||'')}"
+src="${escapeHtml(imageUrl)}"
 alt="${escapeHtml(product.name||'Product')}"
-onerror="this.style.display='none'"
->
+onerror="
+this.style.display='none';
+this.parentElement.innerHTML='<div class=\\'noImage\\'>📦</div>';
+"
+>`
+
+:
+
+`<div class="noImage">📦</div>`
+
+}
+
+</div>
 
 
 <div class="productInfo">
@@ -530,6 +685,16 @@ class="stock ${stock<=5?'low':'good'}">
 </div>
 
 
+<div
+class="status ${escapeHtml(status)}">
+
+${escapeHtml(
+statusText
+)}
+
+</div>
+
+
 <div class="buttons">
 
 
@@ -567,7 +732,11 @@ onclick="deleteProduct('${product.id}')">
 
 error=>{
 
-console.error(error);
+
+console.error(
+error
+);
+
 
 productsList.className=
 "empty";
@@ -616,12 +785,11 @@ window.deleteProduct=
 
 async function(productId){
 
+
 const confirmDelete=
 
 confirm(
-
 "Are you sure you want to delete this product?"
-
 );
 
 
@@ -660,7 +828,7 @@ error
 
 
 alert(
-"Unable to delete product."
+"Unable to delete product: "+error.message
 );
 
 }
@@ -702,7 +870,6 @@ value??""
 );
 
 }
-
 
 </script>
 

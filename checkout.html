@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout - NEXORA PICKS</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
+
+.header{
+  background:#2874f0;
+  color:white;
+  padding:14px 16px;
+  font-size:21px;
+  font-weight:bold;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.container{
+  max-width:900px;
+  margin:20px auto;
+  padding:0 14px;
+}
+
+.card{
+  background:white;
+  border-radius:8px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 1px 5px rgba(0,0,0,.12);
+}
+
+h2{
+  font-size:20px;
+  margin-bottom:15px;
+}
+
+h3{
+  margin-bottom:12px;
+}
+
+input,
+textarea{
+  width:100%;
+  padding:13px;
+  margin-bottom:12px;
+  border:1px solid #ccc;
+  border-radius:5px;
+  font-size:15px;
+}
+
+textarea{
+  min-height:100px;
+  resize:vertical;
+}
+
+label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:6px;
+}
+
+.item{
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.item:last-child{
+  border-bottom:none;
+}
+
+.itemName{
+  font-weight:bold;
+}
+
+.itemSmall{
+  color:#666;
+  font-size:14px;
+  margin-top:5px;
+}
+
+.price{
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+.totalRow{
+  display:flex;
+  justify-content:space-between;
+  padding:9px 0;
+}
+
+.grandTotal{
+  font-size:20px;
+  font-weight:bold;
+  border-top:1px solid #ddd;
+  margin-top:8px;
+  padding-top:14px;
+}
+
+.cod{
+  border:2px solid #2874f0;
+  padding:14px;
+  border-radius:6px;
+  background:#f8fbff;
+}
+
+.cod strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+button{
+  width:100%;
+  border:none;
+  padding:15px;
+  border-radius:6px;
+  font-size:17px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+.placeBtn{
+  background:#ff9f00;
+  color:white;
+}
+
+.placeBtn:disabled{
+  background:#aaa;
+  cursor:not-allowed;
+}
+
+.back{
+  display:inline-block;
+  margin-bottom:15px;
+  color:#2874f0;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+#loginMessage{
+  display:none;
+  background:#fff3cd;
+  color:#856404;
+  padding:14px;
+  border-radius:6px;
+  margin-bottom:15px;
+}
+
+#success{
+  display:none;
+  text-align:center;
+}
+
+.successIcon{
+  font-size:55px;
+  margin-bottom:10px;
+}
+
+.successBtn{
+  background:#2874f0;
+  color:white;
+  margin-top:15px;
+}
+
+.empty{
+  text-align:center;
+  padding:30px 10px;
+  color:#666;
+}
+
+@media(max-width:600px){
+  .container{
+    margin:12px auto;
+  }
+
+  .card{
+    padding:15px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  NEXORA PICKS
+</div>
+
+<div class="container">
+
+  <a href="cart.html" class="back">← Back to Cart</a>
+
+  <div id="loginMessage">
+    🔐 Please login to your NEXORA PICKS account before placing the order.
+  </div>
+
+  <!-- CUSTOMER DETAILS -->
+  <div class="card">
+    <h2>📍 Delivery Address</h2>
+
+    <label>Full Name</label>
+    <input id="name" type="text" placeholder="Enter your full name">
+
+    <label>Mobile Number</label>
+    <input id="mobile" type="tel" maxlength="10"
+           placeholder="Enter 10-digit mobile number">
+
+    <label>House / Flat / Building</label>
+    <input id="house" type="text"
+           placeholder="House / Flat / Building">
+
+    <label>Street / Area</label>
+    <input id="street" type="text"
+           placeholder="Street / Area">
+
+    <label>Village / Town / City</label>
+    <input id="city" type="text"
+           placeholder="Village / Town / City">
+
+    <label>State</label>
+    <input id="state" type="text"
+           placeholder="State">
+
+    <label>PIN Code</label>
+    <input id="pincode" type="tel" maxlength="6"
+           placeholder="6-digit PIN code">
+
+  </div>
+
+  <!-- ORDER SUMMARY -->
+  <div class="card">
+    <h2>🛒 Order Summary</h2>
+
+    <div id="items"></div>
+
+    <div class="totalRow">
+      <span>Subtotal</span>
+      <strong id="subtotal">₹0</strong>
+    </div>
+
+    <div class="totalRow">
+      <span>Delivery</span>
+      <strong id="delivery">FREE</strong>
+    </div>
+
+    <div class="totalRow grandTotal">
+      <span>Total</span>
+      <strong id="total">₹0</strong>
+    </div>
+  </div>
+
+  <!-- PAYMENT -->
+  <div class="card">
+    <h2>💳 Payment Method</h2>
+
+    <div class="cod">
+      <strong>💵 Cash on Delivery</strong>
+      Pay when your order is delivered.
+    </div>
+  </div>
+
+  <!-- PLACE ORDER -->
+  <div class="card">
+    <button id="placeOrder" class="placeBtn" onclick="placeOrder()">
+      🛍️ Place Order
+    </button>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="card" id="success">
+    <div class="successIcon">✅</div>
+    <h2>Order Placed Successfully!</h2>
+    <p id="orderNumber"></p>
+
+    <button class="successBtn"
+            onclick="location.href='my-orders.html'">
+      📦 View My Orders
+    </button>
+  </div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp }
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+}
+from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* FIREBASE */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+  authDomain: "nexora-picks-e887f.firebaseapp.com",
+  projectId: "nexora-picks-e887f",
+  storageBucket: "nexora-picks-e887f.firebasestorage.app",
+  messagingSenderId: "621359003619",
+  appId: "1:621359003619:web:483add8bfcd0241f4192d",
+ 

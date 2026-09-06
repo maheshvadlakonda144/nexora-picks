@@ -1,165 +1,116 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
 
-<meta charset="UTF-8">
+<meta charset="utf-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Checkout | NEXORA PICKS</title>
+
 
 <style>
 
 *{
-  box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  color:#222;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+color:#172033;
 }
 
 header{
-  background:#2874f0;
-  color:white;
-  padding:18px;
-  font-size:25px;
-  font-weight:bold;
-  position:sticky;
-  top:0;
-  z-index:10;
+background:#2874f0;
+color:white;
+padding:18px;
+font-size:22px;
+font-weight:bold;
 }
 
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:20px 14px 40px;
+header a{
+color:white;
+text-decoration:none;
+margin-right:15px;
 }
 
-.back{
-  display:inline-block;
-  margin-bottom:20px;
-  color:#2874f0;
-  text-decoration:none;
-  font-size:20px;
-  font-weight:bold;
+.wrap{
+max-width:700px;
+margin:auto;
+padding:20px;
 }
 
 .box{
-  background:white;
-  border-radius:15px;
-  padding:22px;
-  margin-bottom:20px;
-  box-shadow:0 2px 10px #ddd;
+background:white;
+padding:20px;
+border-radius:14px;
+margin-bottom:18px;
+box-shadow:0 2px 10px #00000012;
 }
 
 h2{
-  margin-top:0;
-  font-size:28px;
+margin-top:0;
 }
 
-label{
-  display:block;
-  font-size:18px;
-  font-weight:bold;
-  margin-top:18px;
-  margin-bottom:8px;
-}
-
-input{
-  width:100%;
-  padding:16px;
-  font-size:18px;
-  border:1px solid #ccc;
-  border-radius:10px;
-}
-
-.order-item{
-  display:flex;
-  gap:15px;
-  padding:15px 0;
-  border-bottom:1px solid #eee;
-}
-
-.order-item img{
-  width:110px;
-  height:110px;
-  object-fit:contain;
-  border-radius:10px;
-  background:#f7f7f7;
-}
-
-.item-info{
-  flex:1;
-}
-
-.item-name{
-  font-size:20px;
-  font-weight:bold;
-}
-
-.item-qty{
-  margin-top:8px;
-  color:#666;
-  font-size:18px;
-}
-
-.item-price{
-  margin-top:10px;
-  font-size:20px;
-  font-weight:bold;
-}
-
-.summary-row{
-  display:flex;
-  justify-content:space-between;
-  margin:15px 0;
-  font-size:20px;
+.item{
+display:flex;
+justify-content:space-between;
+padding:12px 0;
+border-bottom:1px solid #eee;
 }
 
 .total{
-  border-top:2px solid #ddd;
-  padding-top:18px;
-  font-size:28px;
-  font-weight:bold;
+font-size:22px;
+font-weight:bold;
+display:flex;
+justify-content:space-between;
+padding-top:15px;
 }
 
-.payment{
-  font-size:22px;
-  font-weight:bold;
-  margin-bottom:10px;
+input,
+textarea{
+width:100%;
+padding:13px;
+margin:7px 0;
+border:1px solid #ccd3dd;
+border-radius:7px;
+font-size:16px;
 }
 
-.payment-text{
-  font-size:18px;
-  color:#555;
+button{
+width:100%;
+border:0;
+background:#2874f0;
+color:white;
+padding:14px;
+border-radius:8px;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
 }
 
-.checkout{
-  width:100%;
-  padding:18px;
-  border:0;
-  border-radius:12px;
-  background:#ff6d00;
-  color:white;
-  font-size:23px;
-  font-weight:bold;
-  cursor:pointer;
-  margin-top:10px;
+.back{
+background:#eef2f7;
+color:#172033;
 }
 
-.checkout:active{
-  transform:scale(0.98);
+.error{
+color:#d32f2f;
+font-weight:bold;
+}
+
+.success{
+color:#16803c;
+font-weight:bold;
 }
 
 .empty{
-  text-align:center;
-  padding:30px;
-  font-size:20px;
-  color:#666;
+text-align:center;
+padding:30px;
 }
 
 </style>
@@ -169,543 +120,721 @@ input{
 
 <body>
 
+
 <header>
-  NEXORA PICKS
+
+<a href="index.html">‹</a>
+
+🛒 Checkout
+
 </header>
 
 
-<div class="container">
 
-<a href="cart.html" class="back">
-  ← Back to Cart
-</a>
+<div class="wrap">
 
 
 <div class="box">
 
-<h2>📍 Delivery Address</h2>
+<h2>🛍️ Your Order</h2>
 
+<div id="items">
 
-<label>Full Name</label>
-
-<input
-  type="text"
-  id="name"
-  placeholder="Enter your full name"
->
-
-
-<label>Mobile Number</label>
-
-<input
-  type="tel"
-  id="mobile"
-  placeholder="Enter 10-digit mobile number"
-  maxlength="10"
->
-
-
-<label>House / Flat / Building</label>
-
-<input
-  type="text"
-  id="house"
-  placeholder="House / Flat / Building"
->
-
-
-<label>Street / Area</label>
-
-<input
-  type="text"
-  id="street"
-  placeholder="Street / Area"
->
-
-
-<label>Village / Town / City</label>
-
-<input
-  type="text"
-  id="city"
-  placeholder="Village / Town / City"
->
-
-
-<label>State</label>
-
-<input
-  type="text"
-  id="state"
-  placeholder="State"
->
-
-
-<label>PIN Code</label>
-
-<input
-  type="tel"
-  id="pincode"
-  placeholder="6-digit PIN code"
-  maxlength="6"
->
+Loading...
 
 </div>
+
+
+<div
+class="total"
+id="total">
+
+</div>
+
+</div>
+
 
 
 <div class="box">
 
-<h2>🛒 Order Summary</h2>
-
-<div id="orderItems"></div>
-
-<div id="summary"></div>
-
-</div>
+<h2>📍 Delivery Details</h2>
 
 
-<div class="box">
+<input
+id="cname"
+placeholder="Full Name">
 
-<h2>💳 Payment Method</h2>
 
-<div class="payment">
-  💵 Cash on Delivery
-</div>
+<input
+id="phone"
+type="tel"
+placeholder="Mobile Number">
 
-<div class="payment-text">
-  Pay when your order is delivered.
-</div>
 
-</div>
+<textarea
+id="address"
+rows="5"
+placeholder="House / Street / Area / City / State / PIN">
+</textarea>
+
+
+<h3>
+💵 Payment Method
+</h3>
+
+<p>
+Cash on Delivery (COD)
+</p>
 
 
 <button
-  class="checkout"
-  onclick="placeOrder()"
->
-  🛒 Proceed to Checkout
+onclick="placeOrder()">
+
+📦 Place Order
+
 </button>
+
+
+<p id="msg"></p>
+
+</div>
 
 
 </div>
 
 
-<script>
 
-/* CART STORAGE KEY */
-
-const CART_KEY = "nexora_cart";
+<script type="module">
 
 
-/* GET CART */
+import{
+initializeApp
+}
 
-function getCart(){
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-  try{
 
-    return JSON.parse(
-      localStorage.getItem(CART_KEY)
-    ) || [];
+import{
 
-  }catch(error){
+getAuth,
 
-    return [];
-
-  }
+onAuthStateChanged
 
 }
 
-
-/* FORMAT MONEY */
-
-function money(amount){
-
-  return "₹" +
-  Number(amount || 0)
-  .toLocaleString("en-IN");
-
-}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-/* ESCAPE HTML */
+import{
 
-function escapeHTML(text){
+getFirestore,
 
-  const div =
-  document.createElement("div");
+collection,
 
-  div.textContent =
-  String(text || "");
+addDoc,
 
-  return div.innerHTML;
+serverTimestamp
 
 }
 
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
-/* RENDER ORDER */
+
+
+const firebaseConfig={
+
+apiKey:
+"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+
+authDomain:
+"nexora-picks-e887f.firebaseapp.com",
+
+projectId:
+"nexora-picks-e887f",
+
+storageBucket:
+"nexora-picks-e887f.firebasestorage.app",
+
+messagingSenderId:
+"621359003619",
+
+appId:
+"1:621359003619:web:483add8bfcd0241f4192d",
+
+measurementId:
+"G-LSMJ6QLLPW"
+
+};
+
+
+
+const app=
+initializeApp(firebaseConfig);
+
+
+const auth=
+getAuth(app);
+
+
+const db=
+getFirestore(app);
+
+
+
+const $=
+id=>
+document.getElementById(id);
+
+
+
+let cart=
+
+JSON.parse(
+
+localStorage.getItem(
+"nexora_cart"
+)
+
+||
+
+"[]"
+
+);
+
+
 
 function renderOrder(){
 
-  const cart =
-  getCart();
+
+if(!cart.length){
 
 
-  const orderItems =
-  document.getElementById(
-    "orderItems"
-  );
+$("items").innerHTML=
+
+`
+
+<div class="empty">
+
+<h3>
+🛒 Your cart is empty
+</h3>
+
+<p>
+Please add products first.
+</p>
+
+</div>
+
+`;
 
 
-  const summary =
-  document.getElementById(
-    "summary"
-  );
+$("total").innerHTML=
+"";
 
 
-  if(!cart.length){
+return;
 
-    orderItems.innerHTML =
-    `
-      <div class="empty">
-        Your cart is empty.
-      </div>
-    `;
-
-
-    summary.innerHTML = "";
-
-    return;
-
-  }
-
-
-  let subtotal = 0;
-
-
-  orderItems.innerHTML =
-  cart.map(function(item){
-
-    const qty =
-    Number(item.qty) || 1;
-
-
-    const price =
-    Number(item.price) || 0;
-
-
-    const total =
-    price * qty;
-
-
-    subtotal += total;
-
-
-    return `
-
-      <div class="order-item">
-
-        <img
-          src="${escapeHTML(item.image || '')}"
-          alt="${escapeHTML(item.name || 'Product')}"
-        >
-
-
-        <div class="item-info">
-
-          <div class="item-name">
-
-            ${escapeHTML(
-              item.name || "Product"
-            )}
-
-          </div>
-
-
-          <div class="item-qty">
-
-            Quantity: ${qty}
-
-          </div>
-
-
-          <div class="item-price">
-
-            ${money(total)}
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    `;
-
-  }).join("");
-
-
-  summary.innerHTML =
-  `
-
-    <div class="summary-row">
-
-      <span>Subtotal</span>
-
-      <b>${money(subtotal)}</b>
-
-    </div>
-
-
-    <div class="summary-row">
-
-      <span>Delivery</span>
-
-      <b>FREE</b>
-
-    </div>
-
-
-    <div class="summary-row total">
-
-      <span>Total</span>
-
-      <span>${money(subtotal)}</span>
-
-    </div>
-
-  `;
 
 }
 
 
-/* PLACE ORDER */
 
-function placeOrder(){
+$("items").innerHTML=
 
-  const cart =
-  getCart();
 
+cart.map(
 
-  if(!cart.length){
+item=>`
 
-    alert(
-      "Your cart is empty."
-    );
+<div class="item">
 
-    window.location.href =
-    "cart.html";
 
-    return;
+<div>
 
-  }
 
+<b>
 
-  const name =
-  document
-  .getElementById("name")
-  .value
-  .trim();
+${item.name}
 
+</b>
 
-  const mobile =
-  document
-  .getElementById("mobile")
-  .value
-  .trim();
 
+<br>
 
-  const house =
-  document
-  .getElementById("house")
-  .value
-  .trim();
 
+₹${Number(item.price)}
 
-  const street =
-  document
-  .getElementById("street")
-  .value
-  .trim();
+×
 
 
-  const city =
-  document
-  .getElementById("city")
-  .value
-  .trim();
+${Number(item.qty)}
 
 
-  const state =
-  document
-  .getElementById("state")
-  .value
-  .trim();
+</div>
 
 
-  const pincode =
-  document
-  .getElementById("pincode")
-  .value
-  .trim();
 
+<b>
 
-  /* CHECK REQUIRED DETAILS */
+₹${
 
-  if(
+Number(item.price)
 
-    !name ||
-    !mobile ||
-    !house ||
-    !city ||
-    !state ||
-    !pincode
+*
 
-  ){
+Number(item.qty)
 
-    alert(
-      "Please fill all required address details."
-    );
+}
 
-    return;
+</b>
 
-  }
 
+</div>
 
-  /* MOBILE VALIDATION */
+`
 
-  if(
+)
 
-    !/^[0-9]{10}$/
-    .test(mobile)
+.join("");
 
-  ){
 
-    alert(
-      "Please enter a valid 10-digit mobile number."
-    );
 
-    return;
+const total=
 
-  }
+cart.reduce(
 
+(sum,item)=>
 
-  /* PIN CODE VALIDATION */
+sum+
 
-  if(
+(
 
-    !/^[0-9]{6}$/
-    .test(pincode)
+Number(item.price)
 
-  ){
+*
 
-    alert(
-      "Please enter a valid 6-digit PIN code."
-    );
+Number(item.qty)
 
-    return;
+),
 
-  }
+0
 
+);
 
-  /* CALCULATE TOTAL */
 
-  let subtotal = 0;
 
+$("total").innerHTML=
 
-  cart.forEach(function(item){
 
-    const price =
-    Number(item.price) || 0;
+`
 
+<span>
 
-    const qty =
-    Number(item.qty) || 1;
+Total
 
+</span>
 
-    subtotal +=
-    price * qty;
 
-  });
+<span>
 
+₹${total}
 
-  /* CREATE ORDER */
+</span>
 
-  const order = {
+`;
 
-    orderId:
-
-    "NEXORA" +
-    Date.now(),
-
-
-    cart:
-
-    cart,
-
-
-    subtotal:
-
-    subtotal,
-
-
-    total:
-
-    subtotal,
-
-
-    paymentMethod:
-
-    "Cash on Delivery",
-
-
-    address:{
-
-      name:name,
-
-      mobile:mobile,
-
-      house:house,
-
-      street:street,
-
-      city:city,
-
-      state:state,
-
-      pincode:pincode
-
-    }
-
-  };
-
-
-  /* SAVE ORDER */
-
-  localStorage.setItem(
-
-    "nexora_last_order",
-
-    JSON.stringify(order)
-
-  );
-
-
-  /* CLEAR CART */
-
-  localStorage.removeItem(
-    CART_KEY
-  );
-
-
-  /* REDIRECT TO SUCCESS PAGE */
-
-  window.location.href =
-  "order-success.html";
 
 }
 
 
-/* SHOW ORDER */
+
+onAuthStateChanged(
+
+auth,
+
+user=>{
+
+
+if(!user){
+
+
+$("msg").innerHTML=
+
+`
+
+<p class="error">
+
+Please login before placing an order.
+
+</p>
+
+`;
+
+
+setTimeout(
+
+()=>{
+
+window.location.href=
+"index.html";
+
+},
+
+1500
+
+);
+
+
+}
+
+
+}
+
+);
+
+
+
+window.placeOrder=
+async()=>{
+
+
+const user=
+auth.currentUser;
+
+
+
+if(!user){
+
+
+alert(
+"Please login first."
+);
+
+
+window.location.href=
+"index.html";
+
+
+return;
+
+
+}
+
+
+
+if(!cart.length){
+
+
+alert(
+"Your cart is empty."
+);
+
+
+return;
+
+
+}
+
+
+
+const name=
+
+$("cname")
+.value
+.trim();
+
+
+
+const phone=
+
+$("phone")
+.value
+.trim();
+
+
+
+const address=
+
+$("address")
+.value
+.trim();
+
+
+
+const msg=
+$("msg");
+
+
+
+if(
+
+!name
+
+||
+
+!phone
+
+||
+
+!address
+
+){
+
+
+msg.innerHTML=
+
+`
+
+<span class="error">
+
+Please fill all delivery details.
+
+</span>
+
+`;
+
+
+return;
+
+
+}
+
+
+
+const total=
+
+cart.reduce(
+
+(sum,item)=>
+
+sum+
+
+(
+
+Number(item.price)
+
+*
+
+Number(item.qty)
+
+),
+
+0
+
+);
+
+
+
+try{
+
+
+msg.innerHTML=
+
+"Placing your order...";
+
+
+
+await addDoc(
+
+collection(
+db,
+"orders"
+),
+
+{
+
+
+/* CUSTOMER */
+
+customerId:
+user.uid,
+
+
+customerName:
+name,
+
+
+customerPhone:
+phone,
+
+
+deliveryAddress:
+address,
+
+
+
+/* PRODUCTS */
+
+items:
+
+cart.map(
+
+item=>
+({
+
+productId:
+item.id,
+
+
+name:
+item.name,
+
+
+price:
+Number(item.price),
+
+
+qty:
+Number(item.qty),
+
+
+sellerId:
+item.sellerId
+
+
+})
+
+),
+
+
+
+/* SELLERS */
+
+sellerIds:
+
+[
+
+...new Set(
+
+cart
+
+.map(
+
+item=>
+item.sellerId
+
+)
+
+.filter(
+Boolean
+)
+
+)
+
+],
+
+
+
+/* ORDER TOTAL */
+
+total:
+total,
+
+
+
+/* PAYMENT */
+
+paymentMethod:
+"COD",
+
+
+
+/* TRACKING STATUS */
+
+status:
+"pending",
+
+
+
+/* DATE */
+
+createdAt:
+serverTimestamp()
+
+
+}
+
+
+);
+
+
+
+/* CLEAR CART */
+
+cart=
+[];
+
+
+localStorage.setItem(
+
+"nexora_cart",
+
+JSON.stringify(cart)
+
+);
+
+
+
+msg.innerHTML=
+
+`
+
+<span class="success">
+
+✅ Order placed successfully!
+
+</span>
+
+`;
+
+
+
+setTimeout(
+
+()=>{
+
+
+window.location.href=
+"my-orders.html";
+
+
+},
+
+1500
+
+);
+
+
+}catch(error){
+
+
+console.error(
+error
+);
+
+
+msg.innerHTML=
+
+`
+
+<span class="error">
+
+❌ ${error.message}
+
+</span>
+
+`;
+
+
+}
+
+
+};
+
+
 
 renderOrder();
 
@@ -715,4 +844,4 @@ renderOrder();
 
 </body>
 
-</html>
+  </html>

@@ -1,333 +1,547 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Checkout - NEXORA PICKS</title>
+<title>Checkout | NEXORA PICKS</title>
 
 <style>
+
 *{
   box-sizing:border-box;
 }
 
 body{
   margin:0;
-  background:#f1f3f6;
+  font-family:Arial,sans-serif;
+  background:#f5f5f5;
   color:#222;
-  font-family:Arial,Helvetica,sans-serif;
 }
 
-.header{
+header{
   background:#2874f0;
-  color:#fff;
-  padding:18px 16px;
-  font-size:26px;
-  font-weight:900;
+  color:white;
+  padding:18px;
+  font-size:25px;
+  font-weight:bold;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
 .container{
   max-width:900px;
   margin:auto;
-  padding:18px 14px 40px;
+  padding:20px 14px 40px;
 }
 
 .back{
   display:inline-block;
+  margin-bottom:20px;
   color:#2874f0;
-  font-size:18px;
-  font-weight:bold;
   text-decoration:none;
-  margin-bottom:15px;
+  font-size:20px;
+  font-weight:bold;
 }
 
-.card{
-  background:#fff;
-  border-radius:10px;
-  padding:20px;
-  margin-bottom:16px;
-  box-shadow:0 2px 8px #00000015;
+.box{
+  background:white;
+  border-radius:15px;
+  padding:22px;
+  margin-bottom:20px;
+  box-shadow:0 2px 10px #ddd;
 }
 
 h2{
-  margin:0 0 18px;
-  font-size:23px;
+  margin-top:0;
+  font-size:28px;
 }
 
 label{
   display:block;
+  font-size:18px;
   font-weight:bold;
-  margin:12px 0 6px;
+  margin-top:18px;
+  margin-bottom:8px;
 }
 
-input,
-textarea{
+input{
   width:100%;
-  padding:14px;
-  border:1px solid #cfd5dd;
-  border-radius:6px;
-  font-size:16px;
-  outline:none;
+  padding:16px;
+  font-size:18px;
+  border:1px solid #ccc;
+  border-radius:10px;
 }
 
-input:focus,
-textarea:focus{
-  border-color:#2874f0;
-}
-
-textarea{
-  min-height:90px;
-  resize:vertical;
-}
-
-.item{
+.cart-product{
   display:flex;
-  justify-content:space-between;
-  gap:12px;
-  padding:14px 0;
+  gap:15px;
+  padding:12px 0;
   border-bottom:1px solid #eee;
 }
 
-.item:last-child{
-  border-bottom:0;
+.cart-product img{
+  width:80px;
+  height:80px;
+  object-fit:contain;
+  background:#f7f7f7;
+  border-radius:8px;
 }
 
-.itemName{
-  font-size:17px;
+.product-info{
+  flex:1;
+}
+
+.product-name{
+  font-size:18px;
   font-weight:bold;
 }
 
-.itemInfo{
-  color:#666;
-  font-size:14px;
-  margin-top:5px;
-}
-
-.itemPrice{
+.product-price{
+  margin-top:8px;
   font-size:17px;
   font-weight:bold;
-  white-space:nowrap;
 }
 
 .row{
   display:flex;
   justify-content:space-between;
-  padding:10px 0;
-  font-size:17px;
+  margin:14px 0;
+  font-size:19px;
 }
 
 .total{
-  border-top:1px solid #ddd;
-  margin-top:8px;
-  padding-top:15px;
-  font-size:22px;
-  font-weight:900;
-}
-
-.cod{
-  border:2px solid #2874f0;
-  border-radius:8px;
-  padding:16px;
-  background:#f7fbff;
-}
-
-.codTitle{
-  font-size:18px;
+  font-size:27px;
   font-weight:bold;
+  border-top:2px solid #ddd;
+  padding-top:15px;
 }
 
-.codText{
-  color:#666;
-  margin-top:6px;
+.payment{
+  font-size:20px;
+  margin-top:10px;
 }
 
-.place{
+.payment strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.checkout-btn{
   width:100%;
+  padding:17px;
   border:0;
-  border-radius:7px;
-  padding:16px;
-  background:#ff9f00;
-  color:#fff;
-  font-size:18px;
-  font-weight:900;
+  border-radius:10px;
+  background:#ff6d00;
+  color:white;
+  font-size:21px;
+  font-weight:bold;
   cursor:pointer;
 }
 
-.place:disabled{
-  background:#999;
-}
-
-.message{
-  display:none;
-  padding:15px;
-  border-radius:7px;
-  margin-bottom:15px;
-  background:#fff3cd;
-  color:#795600;
-  font-weight:bold;
-}
-
-.success{
-  display:none;
-  text-align:center;
-}
-
-.successIcon{
-  font-size:55px;
-}
-
-.successButton{
-  display:block;
-  margin-top:18px;
-  padding:14px;
-  background:#2874f0;
-  color:#fff;
-  text-decoration:none;
-  border-radius:6px;
-  font-weight:bold;
+.checkout-btn:active{
+  transform:scale(0.98);
 }
 
 .empty{
   text-align:center;
   padding:30px;
-  color:#777;
 }
 
 @media(max-width:600px){
 
-  .header{
-    font-size:23px;
-  }
-
-  .card{
-    padding:16px;
+  h2{
+    font-size:25px;
   }
 
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="header">
+<header>
   NEXORA PICKS
-</div>
+</header>
 
 <div class="container">
 
 <a href="cart.html" class="back">
-  ← Back to Cart
+← Back to Cart
 </a>
 
-<div id="loginMessage" class="message">
-  🔐 Please login before placing your order.
-</div>
 
-
-<!-- DELIVERY ADDRESS -->
-
-<div class="card">
+<div class="box">
 
 <h2>📍 Delivery Address</h2>
 
 <label>Full Name</label>
-<input
-  id="name"
-  type="text"
-  placeholder="Enter your full name"
->
+<input type="text" id="name" placeholder="Enter your full name">
 
 <label>Mobile Number</label>
-<input
-  id="mobile"
-  type="tel"
-  inputmode="numeric"
-  maxlength="10"
-  placeholder="Enter 10-digit mobile number"
->
+<input type="tel" id="mobile" placeholder="Enter 10-digit mobile number">
 
 <label>House / Flat / Building</label>
-<input
-  id="house"
-  type="text"
-  placeholder="House / Flat / Building"
->
+<input type="text" id="house" placeholder="House / Flat / Building">
 
 <label>Street / Area</label>
-<input
-  id="street"
-  type="text"
-  placeholder="Street / Area"
->
+<input type="text" id="street" placeholder="Street / Area">
 
 <label>Village / Town / City</label>
-<input
-  id="city"
-  type="text"
-  placeholder="Village / Town / City"
->
+<input type="text" id="city" placeholder="Village / Town / City">
 
 <label>State</label>
-<input
-  id="state"
-  type="text"
-  placeholder="State"
->
+<input type="text" id="state" placeholder="State">
 
 <label>PIN Code</label>
-<input
-  id="pincode"
-  type="tel"
-  inputmode="numeric"
-  placeholder="6-digit PIN code"
->
-  </div>
+<input type="text" id="pincode" placeholder="6-digit PIN code">
 
-<!-- ORDER SUMMARY -->
-<div class="card">
-    <h2>🛒 Order Summary</h2>
-
-    <div class="summary-row">
-        <span>Subtotal</span>
-        <strong id="subtotal">₹0</strong>
-    </div>
-
-    <div class="summary-row">
-        <span>Delivery</span>
-        <strong>FREE</strong>
-    </div>
-
-    <hr>
-
-    <div class="summary-row total">
-        <strong>Total</strong>
-        <strong id="total">₹0</strong>
-    </div>
 </div>
 
-<!-- PAYMENT METHOD -->
-<div class="card">
-    <h2>💳 Payment Method</h2>
 
-    <div class="payment-option selected">
-        💵 <strong>Cash on Delivery</strong>
-        <br>
-        <span>Pay when your order is delivered.</span>
-    </div>
+<div class="box">
+
+<h2>🛒 Order Summary</h2>
+
+<div id="orderItems"></div>
+
+<div class="row">
+<span>Subtotal</span>
+<strong id="subtotal">₹0</strong>
 </div>
 
-<!-- PLACE ORDER BUTTON -->
-  <button class="checkout-btn" onclick="goToCheckout()">
-    🛒 Proceed to Checkout
+<div class="row">
+<span>Delivery</span>
+<strong>FREE</strong>
+</div>
+
+<div class="row total">
+<span>Total</span>
+<span id="total">₹0</span>
+</div>
+
+</div>
+
+
+<div class="box">
+
+<h2>💳 Payment Method</h2>
+
+<div class="payment">
+
+<strong>💵 Cash on Delivery</strong>
+
+<span>Pay when your order is delivered.</span>
+
+</div>
+
+</div>
+
+
+<button class="checkout-btn" onclick="placeOrder()">
+🛒 Proceed to Checkout
 </button>
 
-<script>
-function goToCheckout() {
-    window.location.href = "checkout.html";
-}
-</script>
+</div>
 
+
+<script>
+
+const CART_KEY = "nexora_cart";
+
+
+function getCart(){
+
+  try{
+
+    return JSON.parse(
+      localStorage.getItem(CART_KEY)
+    ) || [];
+
+  }catch(e){
+
+    return [];
+
+  }
+
+}
+
+
+function money(value){
+
+  return "₹" +
+  Number(value || 0).toLocaleString("en-IN");
+
+}
+
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+
+  .replace(/&/g,"&amp;")
+  .replace(/</g,"&lt;")
+  .replace(/>/g,"&gt;")
+  .replace(/"/g,"&quot;")
+  .replace(/'/g,"&#039;");
+
+}
+
+
+function renderOrder(){
+
+  const cart = getCart();
+
+  const orderItems =
+  document.getElementById("orderItems");
+
+  let subtotal = 0;
+
+
+  if(!cart.length){
+
+    orderItems.innerHTML = `
+
+      <div class="empty">
+
+        <p>Your cart is empty.</p>
+
+        <a href="index.html">
+        Continue Shopping
+        </a>
+
+      </div>
+
+    `;
+
+    document.getElementById("subtotal")
+    .textContent = "₹0";
+
+    document.getElementById("total")
+    .textContent = "₹0";
+
+    return;
+
+  }
+
+
+  orderItems.innerHTML =
+  cart.map(item => {
+
+
+    const price =
+    Number(item.price) || 0;
+
+
+    const qty =
+    Number(item.qty) || 1;
+
+
+    const itemTotal =
+    price * qty;
+
+
+    subtotal += itemTotal;
+
+
+    let image = "";
+
+
+    if(item.imageUrl){
+
+      image = `
+
+        <img
+        src="${escapeHTML(item.imageUrl)}"
+        alt="${escapeHTML(item.name)}"
+        >
+
+      `;
+
+    }else{
+
+      image = `
+
+        <div style="
+        width:80px;
+        height:80px;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:40px;
+        background:#f7f7f7;
+        border-radius:8px;
+        ">
+
+        ${item.emoji || "🛍️"}
+
+        </div>
+
+      `;
+
+    }
+
+
+    return `
+
+      <div class="cart-product">
+
+        ${image}
+
+        <div class="product-info">
+
+          <div class="product-name">
+
+            ${escapeHTML(
+              item.name || "Product"
+            )}
+
+          </div>
+
+
+          <div style="
+          color:#666;
+          margin-top:5px
+          ">
+
+            Quantity: ${qty}
+
+          </div>
+
+
+          <div class="product-price">
+
+            ${money(itemTotal)}
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+
+  document.getElementById("subtotal")
+  .textContent =
+  money(subtotal);
+
+
+  document.getElementById("total")
+  .textContent =
+  money(subtotal);
+
+}
+
+
+function placeOrder(){
+
+
+  const cart = getCart();
+
+
+  if(!cart.length){
+
+    alert("Your cart is empty.");
+
+    window.location.href =
+    "index.html";
+
+    return;
+
+  }
+
+
+  const name =
+  document.getElementById("name").value.trim();
+
+
+  const mobile =
+  document.getElementById("mobile").value.trim();
+
+
+  const house =
+  document.getElementById("house").value.trim();
+
+
+  const city =
+  document.getElementById("city").value.trim();
+
+
+  const state =
+  document.getElementById("state").value.trim();
+
+
+  const pincode =
+  document.getElementById("pincode").value.trim();
+
+
+  if(
+    !name ||
+    !mobile ||
+    !house ||
+    !city ||
+    !state ||
+    !pincode
+  ){
+
+    alert(
+      "Please fill all required address details."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !/^[0-9]{10}$/.test(mobile)
+  ){
+
+    alert(
+      "Please enter a valid 10-digit mobile number."
+    );
+
+    return;
+
+  }
+
+
+  if(
+    !/^[0-9]{6}$/.test(pincode)
+  ){
+
+    alert(
+      "Please enter a valid 6-digit PIN code."
+    );
+
+    return;
+
+  }
+
+
+  alert(
+    "🎉 Order placed successfully!"
+  );
+
+
+  localStorage.removeItem(CART_KEY);
+
+
+  window.location.href =
+  "index.html";
+
+}
+
+
+renderOrder();
+
+</script>
 
 </body>
 </html>
- 

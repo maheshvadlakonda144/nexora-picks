@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEXORA PICKS — Seller Orders</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f3f5f8;
+  color:#17202a;
+}
+header{
+  background:#2874f0;
+  color:white;
+  padding:18px 16px;
+  font-size:22px;
+  font-weight:800;
+}
+main{
+  max-width:800px;
+  margin:auto;
+  padding:16px;
+}
+.box{
+  background:white;
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:16px;
+  box-shadow:0 2px 10px #00000012;
+}
+h1,h2,h3{margin-top:0}
+button{
+  border:0;
+  border-radius:8px;
+  padding:11px 15px;
+  font-weight:700;
+  cursor:pointer;
+}
+.back{
+  background:#eef2f7;
+  color:#17202a;
+  margin-bottom:15px;
+}
+.order{
+  border:1px solid #dfe4ea;
+  border-radius:12px;
+  padding:15px;
+  margin:12px 0;
+}
+.status{
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  background:#fff3cd;
+  color:#856404;
+  font-size:13px;
+  font-weight:800;
+}
+.product{
+  background:#f7f9fc;
+  padding:10px;
+  border-radius:9px;
+  margin:8px 0;
+}
+.total{
+  font-size:20px;
+  font-weight:800;
+  margin-top:12px;
+}
+.muted{
+  color:#68717d;
+}
+.empty{
+  text-align:center;
+  padding:35px 10px;
+  color:#68717d;
+}
+.error{
+  color:#c62828;
+  font-weight:700;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  📦 NEXORA PICKS — SELLER ORDERS
+</header>
+
+<main>
+
+<button class="back" onclick="location.href='nexora-seller.html'">
+  ← Seller Dashboard
+</button>
+
+<div class="box">
+  <h2>📦 Customer Orders</h2>
+  <p class="muted">
+    Orders containing your products will appear here.
+  </p>
+  <div id="sellerInfo"></div>
+</div>
+
+<div class="box">
+  <div id="orders">
+    Loading orders...
+  </div>
+</div>
+
+</main>
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  query,
+  where,
+  onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+  authDomain: "nexora-picks-e887f.firebaseapp.com",
+  projectId: "nexora-picks-e887f",
+  storageBucket: "nexora-picks-e887f.firebasestorage.app",
+  messagingSenderId: "621359003619",
+  appId: "1:621359003619:web:483add8bfcd0241f4192d",
+  measurementId: "G-LSMJ6QLLPW"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const $ = id => document.getElementById(id);
+
+function esc(v){
+  return String(v ?? "").replace(/[&<>"']/g,c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c]));
+}
+
+
+onAuthStateChanged(auth, async user => {
+
+  if(!user){
+    $("orders").innerHTML =
+      '<p class="error">Please login as a seller first.</p>';
+    return;
+  }
+
+  $("sellerInfo").innerHTML =
+    `<b>Seller:</b> ${esc(user.displayName || "Seller")}`;
+
+  loadOrders(user.uid);
+});
+
+
+function loadOrders(sellerId){
+
+  const q = query(
+    collection(db,"orders"),
+    where("sellerIds","array-contains",sellerId)
+  );
+
+  onSnapshot(q, snapshot => {
+
+    if(snapshot.empty){
+      $("orders").innerHTML = `
+        <div class="empty">
+          <h3>📭 No orders yet</h3>
+          <p>Customer orders for your products will appear here.</p>
+        </div>
+      `;
+      return;
+    }
+
+    let orders = [];
+
+    snapshot.forEach(doc => {
+      orders.push({
+        id:doc.id,
+        ...doc.data()
+      });
+    });
+
+    orders.sort((a,b)=>{
+
+      const ta = a.createdAt?.seconds || 0;
+      const tb = b.createdAt?.seconds || 0;
+
+      return tb-ta;
+    });
+
+    $("orders").innerHTML = orders.map(order => {
+
+      const myItems = (order.items || [])
+        .filter(item => item.sellerId === sellerId);
+
+      const myTotal = myItems.reduce(
+        (sum,item) =>
+          sum + (Number(item.price)||0) * (Number(item.qty)||0),
+        0
+      );
+
+      const date = order.createdAt?.seconds
+        ? new Date(order.createdAt.seconds*1000).toLocaleString()
+        : "Recently";
+
+      return `
+        <div class="order">
+
+          <h3>
+            Order #${esc(order.id.slice(0,8))}
+          </h3>
+
+          <span class="status">
+            ${esc(order.status || "pending")}
+          </span>
+
+          <p class="muted">
+            ${esc(date)}
+          </p>
+
+          <hr>
+
+          <p>
+            <b>Customer:</b>
+            ${esc(order.customerName || "Customer")}
+          </p>
+
+          <p>
+            <b>Mobile:</b>
+            ${esc(order.customerPhone || "")}
+          </p>
+
+          <p>
+            <b>Delivery address:</b><br>
+            ${esc(order.deliveryAddress || "")}
+          </p>
+
+          <h4>🛍️ Your Products</h4>
+
+          ${
+            myItems.length
+            ? myItems.map(item=>`
+                <div class="product">
+                  <b>${esc(item.name)}</b><br>
+                  ₹${Number(item.price)||0}
+                  × ${Number(item.qty)||0}
+                  =
+                  <b>
+                    ₹${(Number(item.price)||0)*(Number(item.qty)||0)}
+                  </b>
+                </div>
+              `).join("")
+            : ""
+          }
+
+          <div class="total">
+            Your order value: ₹${myTotal}
+          </div>
+
+          <p>
+            <b>Payment:</b>
+            ${esc(order.paymentMethod || "COD")}
+          </p>
+
+        </div>
+      `;
+
+    }).join("");
+
+  }, error => {
+
+    $("orders").innerHTML =
+      `<p class="error">
+        Unable to load orders: ${esc(error.message)}
+      </p>`;
+
+  });
+
+}
+
+</script>
+
+</body>
+</html>

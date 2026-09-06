@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -283,7 +284,9 @@ background:white;
 width:100%;
 max-width:420px;
 border-radius:16px;
-padding:22px
+padding:22px;
+max-height:90vh;
+overflow-y:auto
 }
 
 .modalContent h2{
@@ -301,6 +304,26 @@ cursor:pointer
 
 .reasonOption input{
 margin-right:10px
+}
+
+/* OTHER REASON TEXT BOX */
+
+#otherReason{
+display:none;
+width:100%;
+min-height:100px;
+margin-top:10px;
+padding:12px;
+border:1px solid #ddd;
+border-radius:8px;
+font-size:16px;
+font-family:Arial,sans-serif;
+resize:vertical;
+outline:none
+}
+
+#otherReason:focus{
+border-color:#2874f0
 }
 
 .confirmCancel{
@@ -396,6 +419,7 @@ Cancel Order
 Please select a reason for cancellation:
 </p>
 
+
 <label class="reasonOption">
 
 <input
@@ -449,11 +473,18 @@ Delivery taking too long
 <input
 type="radio"
 name="cancelReason"
-value="Other">
+value="Other"
+id="otherOption">
 
 Other
 
 </label>
+
+
+<textarea
+id="otherReason"
+placeholder="Please type your cancellation reason...">
+</textarea>
 
 
 <button
@@ -846,8 +877,6 @@ No product details available.
 </p>`;
 
 
-/* ORDER HTML */
-
 return `
 
 <div class="order">
@@ -1056,6 +1085,41 @@ selectedOrderId=
 orderId;
 
 
+/* RESET PREVIOUS REASON */
+
+document
+.querySelectorAll(
+'input[name="cancelReason"]'
+)
+.forEach(
+
+input=>{
+
+input.checked=false;
+
+}
+
+);
+
+
+document
+.getElementById(
+"otherReason"
+)
+.value=
+
+"";
+
+
+document
+.getElementById(
+"otherReason"
+)
+.style.display=
+
+"none";
+
+
 document
 .getElementById(
 "cancelModal"
@@ -1065,6 +1129,81 @@ document
 "flex";
 
 };
+
+
+/* SHOW OTHER REASON TEXT BOX */
+
+document
+.getElementById(
+"otherOption"
+)
+.addEventListener(
+
+"change",
+
+function(){
+
+document
+.getElementById(
+"otherReason"
+)
+.style.display=
+
+"block";
+
+}
+
+);
+
+
+/* HIDE OTHER BOX WHEN ANOTHER REASON IS SELECTED */
+
+document
+.querySelectorAll(
+'input[name="cancelReason"]'
+)
+.forEach(
+
+input=>{
+
+input.addEventListener(
+
+"change",
+
+function(){
+
+if(
+
+this.value!=="Other"
+
+){
+
+document
+.getElementById(
+"otherReason"
+)
+.style.display=
+
+"none";
+
+
+document
+.getElementById(
+"otherReason"
+)
+.value=
+
+"";
+
+}
+
+}
+
+);
+
+}
+
+);
 
 
 /* CLOSE CANCEL POPUP */
@@ -1087,8 +1226,6 @@ selectedOrderId=
 null;
 
 
-/* UNCHECK REASONS */
-
 document
 .querySelectorAll(
 'input[name="cancelReason"]'
@@ -1102,6 +1239,24 @@ input.checked=false;
 }
 
 );
+
+
+document
+.getElementById(
+"otherReason"
+)
+.value=
+
+"";
+
+
+document
+.getElementById(
+"otherReason"
+)
+.style.display=
+
+"none";
 
 };
 
@@ -1121,6 +1276,8 @@ document.querySelector(
 );
 
 
+/* CHECK REASON */
+
 if(!selected){
 
 alert(
@@ -1134,11 +1291,59 @@ return;
 }
 
 
+/* CHECK OTHER REASON */
+
+const otherReason=
+
+document
+.getElementById(
+"otherReason"
+)
+.value
+.trim();
+
+
+if(
+
+selected.value==="Other"
+
+&&
+
+!otherReason
+
+){
+
+alert(
+
+"Please type your cancellation reason."
+
+);
+
+return;
+
+}
+
+
 if(!selectedOrderId){
 
 return;
 
 }
+
+
+/* FINAL REASON */
+
+const finalReason=
+
+selected.value==="Other"
+
+?
+
+otherReason
+
+:
+
+selected.value;
 
 
 try{
@@ -1165,7 +1370,7 @@ status:
 
 cancellationReason:
 
-selected.value,
+finalReason,
 
 
 cancelledAt:
@@ -1305,8 +1510,6 @@ step.key===status
 
 );
 
-
-/* IF UNKNOWN STATUS */
 
 if(current===-1){
 

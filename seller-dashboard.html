@@ -5,21 +5,22 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
 
 <title>Seller Dashboard | NEXORA PICKS</title>
 
 <style>
 
 *{
-box-sizing:border-box
+box-sizing:border-box;
 }
 
 body{
 margin:0;
 font-family:Arial,sans-serif;
 background:#f4f6f9;
-color:#172033
+color:#172033;
 }
 
 header{
@@ -29,12 +30,12 @@ padding:18px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-gap:15px
+gap:15px;
 }
 
 header h1{
 margin:0;
-font-size:22px
+font-size:22px;
 }
 
 .logoutBtn{
@@ -44,20 +45,20 @@ border:0;
 border-radius:8px;
 padding:10px 14px;
 font-weight:bold;
-cursor:pointer
+cursor:pointer;
 }
 
 .wrap{
 max-width:1000px;
 margin:auto;
-padding:20px
+padding:20px;
 }
 
 .loading,
 .empty{
 text-align:center;
 padding:30px;
-color:#667085
+color:#667085;
 }
 
 .welcome{
@@ -65,39 +66,39 @@ background:linear-gradient(135deg,#2874f0,#1557b0);
 color:white;
 padding:25px;
 border-radius:15px;
-margin-bottom:20px
+margin-bottom:20px;
 }
 
 .welcome h2{
-margin:0 0 8px
+margin:0 0 8px;
 }
 
 .stats{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
 gap:15px;
-margin-bottom:20px
+margin-bottom:20px;
 }
 
 .stat{
 background:white;
 padding:20px;
 border-radius:14px;
-box-shadow:0 2px 10px #00000010
+box-shadow:0 2px 10px #00000010;
 }
 
 .statNumber{
 font-size:30px;
 font-weight:bold;
 color:#2874f0;
-margin-top:8px
+margin-top:8px;
 }
 
 .actions{
 display:flex;
 gap:12px;
 flex-wrap:wrap;
-margin-bottom:20px
+margin-bottom:20px;
 }
 
 .actionBtn{
@@ -108,18 +109,18 @@ font-size:16px;
 font-weight:bold;
 cursor:pointer;
 text-decoration:none;
-display:inline-block
+display:inline-block;
 }
 
 .primaryBtn{
 background:#2874f0;
-color:white
+color:white;
 }
 
 .secondaryBtn{
 background:white;
 color:#172033;
-border:1px solid #ddd
+border:1px solid #ddd;
 }
 
 .section{
@@ -127,15 +128,15 @@ background:white;
 padding:20px;
 border-radius:14px;
 margin-bottom:20px;
-box-shadow:0 2px 10px #00000010
+box-shadow:0 2px 10px #00000010;
 }
 
 .sectionHead{
-margin-bottom:15px
+margin-bottom:15px;
 }
 
 .sectionHead h2{
-margin:0
+margin:0;
 }
 
 .product{
@@ -144,77 +145,89 @@ justify-content:space-between;
 align-items:center;
 gap:15px;
 padding:15px 0;
-border-bottom:1px solid #eee
+border-bottom:1px solid #eee;
 }
 
 .product:last-child{
-border-bottom:0
+border-bottom:0;
 }
 
 .productLeft{
 display:flex;
 align-items:center;
-gap:12px
+gap:12px;
 }
 
-.productImage{
+.productImageBox{
 width:65px;
 height:65px;
 border-radius:8px;
+background:#f1f3f6;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+flex-shrink:0;
+}
+
+.productImage{
+width:100%;
+height:100%;
 object-fit:cover;
-background:#f1f3f6
+display:block;
 }
 
 .productName{
 font-weight:bold;
-font-size:17px
+font-size:17px;
 }
 
 .productPrice{
 color:#2874f0;
 font-weight:bold;
-margin-top:5px
+margin-top:5px;
 }
 
 .productStock{
 margin-top:5px;
-color:#667085
+color:#667085;
 }
 
 .productStatus{
 margin-top:6px;
 font-size:13px;
-font-weight:bold
+font-weight:bold;
 }
 
 .approved{
-color:#16803c
+color:#16803c;
 }
 
 .pending{
-color:#d97706
+color:#d97706;
 }
 
 .order{
 padding:15px 0;
-border-bottom:1px solid #eee
+border-bottom:1px solid #eee;
 }
 
 .order:last-child{
-border-bottom:0
+border-bottom:0;
 }
 
 .orderTop{
 display:flex;
 justify-content:space-between;
 gap:10px;
-margin-bottom:8px
+margin-bottom:8px;
 }
 
 .orderId{
 font-size:13px;
 color:#667085;
-word-break:break-all
+word-break:break-all;
 }
 
 .status{
@@ -223,26 +236,26 @@ border-radius:20px;
 font-size:12px;
 font-weight:bold;
 background:#fff3cd;
-color:#856404
+color:#856404;
 }
 
 @media(max-width:600px){
 
 .wrap{
-padding:12px
+padding:12px;
 }
 
 header h1{
-font-size:18px
+font-size:18px;
 }
 
 .product{
 align-items:flex-start;
-flex-direction:column
+flex-direction:column;
 }
 
 .productLeft{
-width:100%
+width:100%;
 }
 
 }
@@ -252,6 +265,7 @@ width:100%
 </head>
 
 <body>
+
 
 <header>
 
@@ -283,34 +297,60 @@ Loading seller dashboard...
 </div>
 
 
+
 <script type="module">
 
+
 import{
+
 initializeApp
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
 import{
+
 getAuth,
+
 onAuthStateChanged,
+
 signOut
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import{
+
 getFirestore,
+
 collection,
+
 query,
+
 where,
+
 getDocs,
+
+getDoc,
+
+doc,
+
 onSnapshot
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 
 const firebaseConfig={
@@ -332,75 +372,183 @@ measurementId:"G-LSMJ6QLLPW"
 };
 
 
-const app=initializeApp(firebaseConfig);
 
-const auth=getAuth(app);
+const app=
 
-const db=getFirestore(app);
+initializeApp(
+firebaseConfig
+);
 
-const dashboard=document.getElementById("dashboard");
+
+const auth=
+
+getAuth(
+app
+);
+
+
+const db=
+
+getFirestore(
+app
+);
+
+
+const dashboard=
+
+document.getElementById(
+"dashboard"
+);
+
 
 let currentSeller=null;
 
 
+
 /* CHECK LOGIN */
 
-onAuthStateChanged(auth,async user=>{
+onAuthStateChanged(
+
+auth,
+
+async user=>{
+
 
 if(!user){
 
-location.href="seller-register.html";
+
+location.href=
+
+"seller-register.html";
+
 
 return;
 
 }
+
 
 try{
 
 
-/* FIND SELLER USING userId */
+/*
+GET SELLER DIRECTLY USING USER UID
 
-const sellerQuery=query(
+Your seller-register.html saves seller as:
 
-collection(db,"sellers"),
+sellers / user.uid
+*/
 
-where("userId","==",user.uid)
+
+const sellerRef=
+
+doc(
+
+db,
+
+"sellers",
+
+user.uid
 
 );
 
 
-const sellerSnapshot=await getDocs(sellerQuery);
+const sellerSnap=
+
+await getDoc(
+sellerRef
+);
 
 
 /* SELLER NOT FOUND */
 
-if(sellerSnapshot.empty){
+if(
 
-alert("This account is not registered as a seller.");
+!sellerSnap.exists()
 
-location.href="seller-register.html";
+){
+
+
+alert(
+"This account is not registered as a seller."
+);
+
+
+location.href=
+
+"seller-register.html";
+
 
 return;
 
 }
 
 
+
 /* GET SELLER DATA */
 
-const sellerDoc=sellerSnapshot.docs[0];
+const sellerData=
 
-const sellerData=sellerDoc.data();
+sellerSnap.data();
+
 
 
 currentSeller={
 
 id:user.uid,
 
-sellerDocId:sellerDoc.id,
+sellerDocId:user.uid,
 
 ...sellerData
 
 };
+
+
+
+/* CHECK APPROVAL */
+
+if(
+
+sellerData.status!=="approved"
+
+){
+
+
+dashboard.innerHTML=
+
+`
+
+<div class="section">
+
+<div class="empty">
+
+⏳ Your seller application is currently under review.
+
+<br><br>
+
+Current Status:
+
+<b>
+
+${escapeHtml(
+String(
+sellerData.status||
+"pending"
+).toUpperCase()
+)}
+
+</b>
+
+</div>
+
+</div>
+
+`;
+
+
+return;
+
+}
+
 
 
 /* SHOW DASHBOARD */
@@ -408,23 +556,34 @@ sellerDocId:sellerDoc.id,
 showDashboard();
 
 
+
 /* LOAD PRODUCTS */
 
-loadProducts(user.uid);
+loadProducts(
+user.uid
+);
+
 
 
 /* LOAD ORDERS */
 
-loadOrders(user.uid);
+loadOrders(
+user.uid
+);
 
 
 }catch(error){
 
-console.error(error);
+
+console.error(
+error
+);
+
 
 dashboard.innerHTML=
 
 `
+
 <div class="section">
 
 <div class="empty">
@@ -433,21 +592,30 @@ dashboard.innerHTML=
 
 <br><br>
 
-${escapeHtml(error.message)}
+${escapeHtml(
+error.message
+)}
 
 </div>
 
 </div>
+
 `;
+
 
 }
 
-});
+
+}
+
+);
+
 
 
 /* SHOW DASHBOARD */
 
 function showDashboard(){
+
 
 dashboard.innerHTML=
 
@@ -458,12 +626,17 @@ dashboard.innerHTML=
 <h2>
 
 Welcome, ${escapeHtml(
+
 currentSeller.storeName||
+
 currentSeller.name||
+
 "Seller"
+
 )}
 
 </h2>
+
 
 <div>
 
@@ -472,6 +645,7 @@ Manage your products and customer orders.
 </div>
 
 </div>
+
 
 
 <div class="stats">
@@ -485,6 +659,7 @@ Manage your products and customer orders.
 
 </div>
 
+
 <div
 class="statNumber"
 id="productCount">
@@ -496,6 +671,7 @@ id="productCount">
 </div>
 
 
+
 <div class="stat">
 
 <div>
@@ -503,6 +679,7 @@ id="productCount">
 🟢 Live Products
 
 </div>
+
 
 <div
 class="statNumber"
@@ -515,6 +692,7 @@ id="liveProductCount">
 </div>
 
 
+
 <div class="stat">
 
 <div>
@@ -522,6 +700,7 @@ id="liveProductCount">
 🛒 Orders
 
 </div>
+
 
 <div
 class="statNumber"
@@ -535,6 +714,7 @@ id="orderCount">
 
 
 </div>
+
 
 
 <div class="actions">
@@ -570,13 +750,20 @@ class="actionBtn secondaryBtn">
 </div>
 
 
+
 <div class="section">
+
 
 <div class="sectionHead">
 
-<h2>📦 Recent Products</h2>
+<h2>
+
+📦 Recent Products
+
+</h2>
 
 </div>
+
 
 <div id="productsList">
 
@@ -584,16 +771,24 @@ Loading products...
 
 </div>
 
+
 </div>
+
 
 
 <div class="section">
 
+
 <div class="sectionHead">
 
-<h2>🛒 Recent Orders</h2>
+<h2>
+
+🛒 Recent Orders
+
+</h2>
 
 </div>
+
 
 <div id="ordersList">
 
@@ -601,52 +796,101 @@ Loading orders...
 
 </div>
 
+
 </div>
 
 `;
 
+
 }
+
 
 
 /* LOAD PRODUCTS */
 
 function loadProducts(sellerId){
 
-const productsQuery=query(
 
-collection(db,"products"),
+const productsQuery=
 
-where("sellerId","==",sellerId)
+query(
+
+collection(
+db,
+"products"
+),
+
+where(
+"sellerId",
+"==",
+sellerId
+)
 
 );
 
 
-onSnapshot(productsQuery,snap=>{
+
+onSnapshot(
+
+productsQuery,
+
+snap=>{
 
 
-const products=snap.docs.map(productDoc=>({
+const products=
 
-id:productDoc.id,
+snap.docs.map(
+
+productDoc=>({
+
+id:
+
+productDoc.id,
 
 ...productDoc.data()
 
-}));
+})
+
+);
 
 
-const count=document.getElementById("productCount");
+
+const count=
+
+document.getElementById(
+"productCount"
+);
+
 
 if(count){
 
-count.textContent=products.length;
+
+count.textContent=
+
+products.length;
+
 
 }
 
 
-const liveCount=document.getElementById("liveProductCount");
+
+/* LIVE PRODUCT COUNT */
+
+const liveCount=
+
+document.getElementById(
+"liveProductCount"
+);
+
 
 if(liveCount){
 
-const liveProducts=products.filter(product=>
+
+const liveProducts=
+
+products.filter(
+
+product=>
 
 product.active===true||
 
@@ -656,21 +900,37 @@ product.approvalStatus==="approved"
 
 );
 
-liveCount.textContent=liveProducts.length;
+
+liveCount.textContent=
+
+liveProducts.length;
+
 
 }
 
 
-const list=document.getElementById("productsList");
+
+/* PRODUCT LIST */
+
+const list=
+
+document.getElementById(
+"productsList"
+);
+
 
 if(!list){
 
+
 return;
+
 
 }
 
 
+
 if(!products.length){
+
 
 list.innerHTML=
 
@@ -681,6 +941,7 @@ list.innerHTML=
 No products yet.
 
 <br><br>
+
 
 <a
 href="add-product.html"
@@ -694,16 +955,33 @@ class="actionBtn primaryBtn">
 
 `;
 
+
 return;
+
 
 }
 
 
-list.innerHTML=products
 
-.slice(0,5)
+/* SHOW PRODUCTS */
 
-.map(product=>{
+list.innerHTML=
+
+products
+
+.slice(
+0,
+5
+)
+
+.map(
+
+product=>{
+
+
+/*
+SUPPORT MULTIPLE IMAGE FIELD NAMES
+*/
 
 
 const image=
@@ -712,7 +990,22 @@ product.image||
 
 product.imageUrl||
 
+product.productImage||
+
+product.productImageUrl||
+
+product.imageURL||
+
 "";
+
+
+const emoji=
+
+product.emoji||
+
+product.emojiFallback||
+
+"🛍️";
 
 
 const isApproved=
@@ -732,33 +1025,45 @@ return `
 <div class="productLeft">
 
 
+<div
+class="productImageBox">
+
+
 ${
 image
 ?
-`
-<img
-class="productImage"
-src="${escapeHtml(image)}"
-alt="Product Image"
-onerror="this.style.display='none'"
->
-`
-:
-`
-<div
-class="productImage"
-style="
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px
-">
 
-🛍️
+`
+
+<img
+
+class="productImage"
+
+src="${escapeHtml(
+image
+)}"
+
+alt="${escapeHtml(
+product.name||
+product.productName||
+"Product"
+)}"
+
+onerror="this.remove()"
+
+>
+
+`
+
+:
+
+emoji
+
+}
+
 
 </div>
-`
-}
+
 
 
 <div>
@@ -767,11 +1072,17 @@ font-size:28px
 <div class="productName">
 
 ${escapeHtml(
+
 product.name||
+
+product.productName||
+
 "Product"
+
 )}
 
 </div>
+
 
 
 <div class="productPrice">
@@ -779,14 +1090,23 @@ product.name||
 ₹${
 
 Number(
+
 product.price||
+
+product.productPrice||
+
 0
+
 )
-.toLocaleString("en-IN")
+
+.toLocaleString(
+"en-IN"
+)
 
 }
 
 </div>
+
 
 
 <div class="productStock">
@@ -796,8 +1116,13 @@ Stock:
 ${
 
 Number(
+
 product.stock||
+
+product.quantity||
+
 0
+
 )
 
 }
@@ -805,22 +1130,38 @@ product.stock||
 </div>
 
 
+
 <div
+
 class="productStatus ${
+
 isApproved
+
 ?
+
 "approved"
+
 :
+
 "pending"
+
 }">
 
+
 ${
+
 isApproved
+
 ?
+
 "✔ Live"
+
 :
-"⏳ Pending"
+
+"⏳ Pending Admin Approval"
+
 }
+
 
 </div>
 
@@ -835,59 +1176,148 @@ isApproved
 
 `;
 
-})
+}
 
-.join("");
+)
 
-});
+.join(
+""
+);
+
+
+},
+
+error=>{
+
+
+console.error(
+"Product loading error:",
+error
+);
+
+
+const list=
+
+document.getElementById(
+"productsList"
+);
+
+
+if(list){
+
+
+list.innerHTML=
+
+`
+
+<div class="empty">
+
+❌ Unable to load products.
+
+</div>
+
+`;
+
 
 }
+
+
+}
+
+);
+
+
+}
+
 
 
 /* LOAD ORDERS */
 
 function loadOrders(sellerId){
 
-const ordersQuery=query(
 
-collection(db,"orders"),
+const ordersQuery=
 
-where("sellerId","==",sellerId)
+query(
+
+collection(
+db,
+"orders"
+),
+
+where(
+"sellerId",
+"==",
+sellerId
+)
 
 );
 
 
-onSnapshot(ordersQuery,snap=>{
+
+onSnapshot(
+
+ordersQuery,
+
+snap=>{
 
 
-const orders=snap.docs.map(orderDoc=>({
+const orders=
 
-id:orderDoc.id,
+snap.docs.map(
+
+orderDoc=>({
+
+id:
+
+orderDoc.id,
 
 ...orderDoc.data()
 
-}));
+})
+
+);
 
 
-const count=document.getElementById("orderCount");
+
+const count=
+
+document.getElementById(
+"orderCount"
+);
+
 
 if(count){
 
-count.textContent=orders.length;
+
+count.textContent=
+
+orders.length;
+
 
 }
 
 
-const list=document.getElementById("ordersList");
+
+const list=
+
+document.getElementById(
+"ordersList"
+);
+
 
 if(!list){
 
+
 return;
+
 
 }
 
 
+
 if(!orders.length){
+
 
 list.innerHTML=
 
@@ -901,16 +1331,26 @@ No customer orders yet.
 
 `;
 
+
 return;
+
 
 }
 
 
-list.innerHTML=orders
 
-.slice(0,5)
+list.innerHTML=
 
-.map(order=>`
+orders
+
+.slice(
+0,
+5
+)
+
+.map(
+
+order=>`
 
 <div class="order">
 
@@ -930,12 +1370,15 @@ Order
 
 <div class="orderId">
 
-${escapeHtml(order.id)}
+${escapeHtml(
+order.id
+)}
 
 </div>
 
 
 </div>
+
 
 
 <div class="status">
@@ -943,9 +1386,13 @@ ${escapeHtml(order.id)}
 ${escapeHtml(
 
 String(
+
 order.status||
+
 "pending"
+
 )
+
 .toUpperCase()
 
 )}
@@ -954,6 +1401,7 @@ order.status||
 
 
 </div>
+
 
 
 <div>
@@ -965,10 +1413,18 @@ Total:
 ₹${
 
 Number(
+
 order.total||
+
+order.totalAmount||
+
 0
+
 )
-.toLocaleString("en-IN")
+
+.toLocaleString(
+"en-IN"
+)
 
 }
 
@@ -979,45 +1435,122 @@ order.total||
 
 </div>
 
-`)
+`
 
-.join("");
+)
 
-});
+.join(
+""
+);
+
+
+},
+
+error=>{
+
+
+console.error(
+"Order loading error:",
+error
+);
+
+
+const list=
+
+document.getElementById(
+"ordersList"
+);
+
+
+if(list){
+
+
+list.innerHTML=
+
+`
+
+<div class="empty">
+
+❌ Unable to load orders.
+
+</div>
+
+`;
+
 
 }
 
 
+}
+
+);
+
+
+}
+
+
+
 /* LOGOUT */
 
-window.logoutSeller=async function(){
+window.logoutSeller=
 
-await signOut(auth);
+async function(){
 
-location.href="index.html";
+
+await signOut(
+auth
+);
+
+
+location.href=
+
+"index.html";
+
 
 };
+
 
 
 /* ESCAPE HTML */
 
 function escapeHtml(value){
 
-return String(value??"")
 
-.replaceAll("&","&amp;")
+return String(
+value??""
+)
 
-.replaceAll("<","&lt;")
+.replaceAll(
+"&",
+"&amp;"
+)
 
-.replaceAll(">","&gt;")
+.replaceAll(
+"<",
+"&lt;"
+)
 
-.replaceAll('"',"&quot;")
+.replaceAll(
+">",
+"&gt;"
+)
 
-.replaceAll("'","&#039;");
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
+);
+
 
 }
 
+
 </script>
+
 
 </body>
 

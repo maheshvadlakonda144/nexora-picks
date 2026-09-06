@@ -5,17 +5,11 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>NEXORA PICKS | Seller Center</title>
 
-
 <style>
-
-/* =========================
-   RESET
-========================= */
 
 *{
 box-sizing:border-box;
@@ -123,11 +117,6 @@ margin:auto;
 padding:28px 25px 40px;
 }
 
-
-/* =========================
-   LOADING
-========================= */
-
 .loading,
 .empty{
 text-align:center;
@@ -141,8 +130,7 @@ color:#667085;
 ========================= */
 
 .welcomeHero{
-background:
-linear-gradient(
+background:linear-gradient(
 135deg,
 #fff6ef,
 #f4f5ff,
@@ -158,9 +146,7 @@ align-items:center;
 justify-content:space-between;
 gap:20px;
 
-box-shadow:
-0 8px 25px
-rgba(20,34,56,.08);
+box-shadow:0 8px 25px rgba(20,34,56,.08);
 }
 
 .welcomeText h2{
@@ -177,9 +163,7 @@ max-width:500px;
 }
 
 .approvalBox{
-background:
-rgba(255,255,255,.75);
-
+background:rgba(255,255,255,.75);
 padding:22px;
 border-radius:15px;
 
@@ -224,12 +208,8 @@ line-height:1.5;
 
 .stats{
 display:grid;
-
-grid-template-columns:
-repeat(4,1fr);
-
+grid-template-columns:repeat(4,1fr);
 gap:20px;
-
 margin-bottom:32px;
 }
 
@@ -237,10 +217,7 @@ margin-bottom:32px;
 background:white;
 border-radius:16px;
 padding:25px;
-
-box-shadow:
-0 5px 20px
-rgba(20,34,56,.08);
+box-shadow:0 5px 20px rgba(20,34,56,.08);
 }
 
 .statIcon{
@@ -266,39 +243,27 @@ color:#667085;
 
 .sectionTitle{
 font-size:28px;
-margin:
-0 0 20px;
+margin:0 0 20px;
 }
 
 .quickActions{
 display:grid;
-
-grid-template-columns:
-repeat(3,1fr);
-
+grid-template-columns:repeat(3,1fr);
 gap:20px;
-
 margin-bottom:35px;
 }
 
 .quickCard{
 border-radius:16px;
 padding:28px 20px;
-
 text-align:center;
-
 text-decoration:none;
-
-box-shadow:
-0 5px 20px
-rgba(20,34,56,.08);
-
+box-shadow:0 5px 20px rgba(20,34,56,.08);
 transition:.2s;
 }
 
 .quickCard:hover{
-transform:
-translateY(-3px);
+transform:translateY(-3px);
 }
 
 .quickIcon{
@@ -319,52 +284,45 @@ line-height:1.4;
 }
 
 .addProduct{
-background:
-linear-gradient(
+background:linear-gradient(
 135deg,
 #ff5d3d,
 #ff7553
 );
-
 color:white;
 }
 
 .addProduct .quickText{
-color:#fff;
+color:white;
 }
 
 .myProducts{
-background:
-linear-gradient(
+background:linear-gradient(
 135deg,
 #e6efff,
 #d8e5fa
 );
-
 color:#172033;
 }
 
 .orders{
-background:
-linear-gradient(
+background:linear-gradient(
 135deg,
 #d9f5e6,
 #c9efda
 );
-
 color:#172033;
 }
 
 
 /* =========================
-   SECTION
+   SECTION HEADER
 ========================= */
 
 .sectionHeader{
 display:flex;
 justify-content:space-between;
 align-items:center;
-
 margin-bottom:16px;
 }
 
@@ -382,39 +340,24 @@ font-size:16px;
 
 
 /* =========================
-   RECENT PRODUCTS
+   PRODUCTS
 ========================= */
 
 .productsBox{
 background:white;
 border-radius:17px;
-
 padding:8px 20px;
-
 margin-bottom:35px;
-
-box-shadow:
-0 5px 20px
-rgba(20,34,56,.08);
+box-shadow:0 5px 20px rgba(20,34,56,.08);
 }
 
 .productRow{
 display:grid;
-
-grid-template-columns:
-75px
-1fr
-110px
-130px;
-
+grid-template-columns:75px 1fr 110px 130px;
 align-items:center;
-
 gap:20px;
-
 padding:18px 0;
-
-border-bottom:
-1px solid #edf0f5;
+border-bottom:1px solid #edf0f5;
 }
 
 .productRow:last-child{
@@ -424,17 +367,12 @@ border-bottom:0;
 .productImageBox{
 width:70px;
 height:70px;
-
 background:#f2f4f8;
-
 border-radius:12px;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
 overflow:hidden;
-
 font-size:30px;
 }
 
@@ -462,30 +400,20 @@ font-weight:bold;
 
 .statusApproved{
 justify-self:end;
-
 background:#ddf5e6;
-
 color:#287647;
-
 padding:9px 16px;
-
 border-radius:25px;
-
 font-size:14px;
 font-weight:bold;
 }
 
 .statusPending{
 justify-self:end;
-
 background:#fff3cd;
-
 color:#856404;
-
 padding:9px 16px;
-
 border-radius:25px;
-
 font-size:14px;
 font-weight:bold;
 }
@@ -497,34 +425,22 @@ font-weight:bold;
 
 .ordersBox{
 background:white;
-
 border-radius:17px;
-
 padding:35px 20px;
-
 text-align:center;
-
-box-shadow:
-0 5px 20px
-rgba(20,34,56,.08);
-
+box-shadow:0 5px 20px rgba(20,34,56,.08);
 margin-bottom:30px;
 }
 
 .emptyOrderIcon{
 width:80px;
 height:80px;
-
 margin:auto auto 15px;
-
 border-radius:50%;
-
 background:#edf1f7;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
 font-size:40px;
 }
 
@@ -539,11 +455,6 @@ margin:0;
 font-size:16px;
 }
 
-
-/* =========================
-   ORDER ROW
-========================= */
-
 .orderRow{
 padding:18px 0;
 border-bottom:1px solid #edf0f5;
@@ -551,6 +462,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 gap:15px;
+text-align:left;
 }
 
 .orderRow:last-child{
@@ -585,14 +497,9 @@ font-weight:bold;
 
 footer{
 text-align:center;
-
 padding-top:25px;
-
-border-top:
-1px solid #d8dee8;
-
+border-top:1px solid #d8dee8;
 color:#667085;
-
 font-size:14px;
 }
 
@@ -604,13 +511,11 @@ font-size:14px;
 @media(max-width:850px){
 
 .stats{
-grid-template-columns:
-repeat(2,1fr);
+grid-template-columns:repeat(2,1fr);
 }
 
 .quickActions{
-grid-template-columns:
-1fr;
+grid-template-columns:1fr;
 }
 
 .welcomeHero{
@@ -689,10 +594,7 @@ font-size:25px;
 }
 
 .productRow{
-grid-template-columns:
-60px
-1fr;
-
+grid-template-columns:60px 1fr;
 gap:12px;
 }
 
@@ -702,18 +604,18 @@ height:60px;
 }
 
 .productPrice{
-grid-column:
-2;
-
+grid-column:2;
 font-size:18px;
 }
 
 .statusApproved,
 .statusPending{
-grid-column:
-2;
-
+grid-column:2;
 justify-self:start;
+}
+
+.orderRow{
+flex-wrap:wrap;
 }
 
 }
@@ -730,19 +632,14 @@ justify-self:start;
 
 <div class="headerContainer">
 
-
 <div class="logoBox">
 
 <div class="logo">
-
 NEXORA PICKS
-
 </div>
 
 <div class="logoSub">
-
 Seller Center
-
 </div>
 
 </div>
@@ -750,31 +647,20 @@ Seller Center
 
 <div class="userArea">
 
-
 <div class="userInfo">
 
 <div class="userAvatar">
-
 👤
-
 </div>
-
 
 <div>
 
-<div
-class="userName"
-id="sellerName">
-
+<div class="userName" id="sellerName">
 Seller
-
 </div>
 
-
 <div class="approvedSeller">
-
 Approved Seller
-
 </div>
 
 </div>
@@ -785,14 +671,10 @@ Approved Seller
 <button
 class="logoutBtn"
 onclick="logoutSeller()">
-
 Logout
-
 </button>
 
-
 </div>
-
 
 </div>
 
@@ -802,17 +684,13 @@ Logout
 
 <div class="wrap">
 
-
 <div id="dashboard">
 
 <div class="loading">
-
 Loading seller dashboard...
-
 </div>
 
 </div>
-
 
 </div>
 
@@ -820,10 +698,6 @@ Loading seller dashboard...
 
 <script type="module">
 
-
-/* =========================
-   FIREBASE IMPORTS
-========================= */
 
 import{
 initializeApp
@@ -884,16 +758,8 @@ measurementId:
 };
 
 
-/* IMPORTANT:
-   Your original API key starts with AIza.
-   Replace the apiKey above with your exact original API key.
-*/
-
-
 const app=
-initializeApp(
-firebaseConfig
-);
+initializeApp(firebaseConfig);
 
 
 const auth=
@@ -905,9 +771,7 @@ getFirestore(app);
 
 
 const dashboard=
-document.getElementById(
-"dashboard"
-);
+document.getElementById("dashboard");
 
 
 let currentSeller=null;
@@ -927,11 +791,9 @@ auth,
 
 async user=>{
 
-
 if(!user){
 
-location.href=
-"seller-register.html";
+location.href="seller-register.html";
 
 return;
 
@@ -957,7 +819,7 @@ sellerRef
 );
 
 
-/* SELLER NOT FOUND */
+/* SELLER ACCOUNT NOT FOUND */
 
 if(!sellerSnap.exists()){
 
@@ -969,38 +831,30 @@ dashboard.innerHTML=
 <div class="ordersBox">
 
 <div class="emptyOrderIcon">
-
 ❌
-
 </div>
 
 <h3>
-
 Seller Account Not Found
-
 </h3>
 
 <p>
-
 This account is not registered as a seller.
-
 </p>
 
 <br>
 
 <a
 href="seller-register.html"
-class="quickCard addProduct"
-style="display:inline-block;padding:15px 25px;">
+class="viewAll">
 
-Register as Seller
+Register as Seller →
 
 </a>
 
 </div>
 
 `;
-
 
 return;
 
@@ -1011,14 +865,18 @@ const sellerData=
 sellerSnap.data();
 
 
+/* =========================
+   APPROVAL CHECK
+========================= */
+
 const sellerApproved=
 
-sellerData.status==="approved" &&
+sellerData.status==="approved" ||
 
 sellerData.sellerVerified===true;
 
 
-/* UNAPPROVED SELLER */
+/* WAITING APPROVAL */
 
 if(!sellerApproved){
 
@@ -1030,27 +888,20 @@ dashboard.innerHTML=
 <div class="ordersBox">
 
 <div class="emptyOrderIcon">
-
 ⏳
-
 </div>
 
 <h3>
-
 Waiting for Admin Approval
-
 </h3>
 
 <p>
-
 Your seller application is waiting for approval.
-
 </p>
 
 </div>
 
 `;
-
 
 return;
 
@@ -1068,18 +919,20 @@ id:user.uid,
 };
 
 
-showDashboard();
-
-
 document.getElementById(
 "sellerName"
 ).textContent=
 
-currentSeller.storeName||
+currentSeller.storeName ||
 
-currentSeller.name||
+currentSeller.name ||
+
+currentSeller.fullName ||
 
 "Seller";
+
+
+showDashboard();
 
 
 loadProducts(
@@ -1104,24 +957,21 @@ dashboard.innerHTML=
 
 <div class="ordersBox">
 
+<div class="emptyOrderIcon">
+❌
+</div>
+
 <h3>
-
-❌ Unable to load dashboard
-
+Unable to load dashboard
 </h3>
 
 <p>
-
-${escapeHtml(
-error.message
-)}
-
+${escapeHtml(error.message)}
 </p>
 
 </div>
 
 `;
-
 
 }
 
@@ -1140,9 +990,11 @@ function showDashboard(){
 
 const sellerName=
 
-currentSeller.storeName||
+currentSeller.storeName ||
 
-currentSeller.name||
+currentSeller.name ||
+
+currentSeller.fullName ||
 
 "Seller";
 
@@ -1152,24 +1004,17 @@ dashboard.innerHTML=
 `
 
 
-<!-- WELCOME -->
-
 <div class="welcomeHero">
-
 
 <div class="welcomeText">
 
 <h2>
-
 Welcome, ${escapeHtml(sellerName)}! 👋
-
 </h2>
 
 <p>
-
 Your seller account is approved.
 Start managing your business with NEXORA PICKS.
-
 </p>
 
 </div>
@@ -1177,40 +1022,28 @@ Start managing your business with NEXORA PICKS.
 
 <div class="approvalBox">
 
-
 <div class="approvalIcon">
-
 ✓
-
 </div>
 
 
 <div>
 
 <div class="approvalTitle">
-
 Seller Approved
-
 </div>
-
 
 <div class="approvalText">
-
 You can now manage your products and orders.
+</div>
+
+</div>
 
 </div>
 
 </div>
 
 
-</div>
-
-
-</div>
-
-
-
-<!-- STATS -->
 
 <div class="stats">
 
@@ -1218,25 +1051,15 @@ You can now manage your products and orders.
 <div class="statCard">
 
 <div class="statIcon">
-
 📦
-
 </div>
 
-
-<div
-class="statNumber"
-id="productCount">
-
+<div class="statNumber" id="productCount">
 0
-
 </div>
-
 
 <div class="statLabel">
-
 Total Products
-
 </div>
 
 </div>
@@ -1246,25 +1069,15 @@ Total Products
 <div class="statCard">
 
 <div class="statIcon">
-
 🟢
-
 </div>
 
-
-<div
-class="statNumber"
-id="liveProductCount">
-
+<div class="statNumber" id="liveProductCount">
 0
-
 </div>
-
 
 <div class="statLabel">
-
 Live Products
-
 </div>
 
 </div>
@@ -1274,25 +1087,15 @@ Live Products
 <div class="statCard">
 
 <div class="statIcon">
-
 🛒
-
 </div>
 
-
-<div
-class="statNumber"
-id="orderCount">
-
+<div class="statNumber" id="orderCount">
 0
-
 </div>
-
 
 <div class="statLabel">
-
 Total Orders
-
 </div>
 
 </div>
@@ -1302,40 +1105,25 @@ Total Orders
 <div class="statCard">
 
 <div class="statIcon">
-
 ₹
-
 </div>
 
-
-<div
-class="statNumber"
-id="salesCount">
-
+<div class="statNumber" id="salesCount">
 ₹0
-
 </div>
-
 
 <div class="statLabel">
-
 Total Sales
-
 </div>
 
 </div>
 
-
 </div>
 
 
-
-<!-- QUICK ACTIONS -->
 
 <h2 class="sectionTitle">
-
 Quick Actions
-
 </h2>
 
 
@@ -1347,23 +1135,15 @@ href="add-product.html"
 class="quickCard addProduct">
 
 <div class="quickIcon">
-
 ➕
-
 </div>
-
 
 <div class="quickTitle">
-
 Add Product
-
 </div>
 
-
 <div class="quickText">
-
 List a new product
-
 </div>
 
 </a>
@@ -1375,23 +1155,15 @@ href="seller-products.html"
 class="quickCard myProducts">
 
 <div class="quickIcon">
-
 📦
-
 </div>
-
 
 <div class="quickTitle">
-
 My Products
-
 </div>
 
-
 <div class="quickText">
-
 View and manage your products
-
 </div>
 
 </a>
@@ -1403,23 +1175,15 @@ href="seller-orders.html"
 class="quickCard orders">
 
 <div class="quickIcon">
-
 🛒
-
 </div>
-
 
 <div class="quickTitle">
-
 Orders
-
 </div>
 
-
 <div class="quickText">
-
 View customer orders
-
 </div>
 
 </a>
@@ -1429,26 +1193,17 @@ View customer orders
 
 
 
-<!-- RECENT PRODUCTS -->
-
 <div class="sectionHeader">
 
-
 <h2>
-
 Recent Products
-
 </h2>
-
 
 <a
 href="seller-products.html"
 class="viewAll">
-
 View All →
-
 </a>
-
 
 </div>
 
@@ -1463,26 +1218,17 @@ Loading products...
 
 
 
-<!-- RECENT ORDERS -->
-
 <div class="sectionHeader">
 
-
 <h2>
-
 Recent Orders
-
 </h2>
-
 
 <a
 href="seller-orders.html"
 class="viewAll">
-
 View All →
-
 </a>
-
 
 </div>
 
@@ -1503,30 +1249,23 @@ All rights reserved.
 
 </footer>
 
-
 `;
 
 }
-
 
 
 /* =========================
    LOAD PRODUCTS
 ========================= */
 
-function loadProducts(
-sellerId
-){
+function loadProducts(sellerId){
 
 
 const productsQuery=
 
 query(
 
-collection(
-db,
-"products"
-),
+collection(db,"products"),
 
 where(
 "sellerId",
@@ -1550,8 +1289,7 @@ snap.docs.map(
 
 productDoc=>({
 
-id:
-productDoc.id,
+id:productDoc.id,
 
 ...productDoc.data()
 
@@ -1572,7 +1310,6 @@ console.error(error);
 
 
 const list=
-
 document.getElementById(
 "productsList"
 );
@@ -1583,22 +1320,16 @@ if(list){
 list.innerHTML=
 
 `
-
 <div class="empty">
-
 Unable to load products.
-
 </div>
-
 `;
 
 }
 
-
 }
 
 );
-
 
 }
 
@@ -1611,14 +1342,12 @@ function updateProducts(){
 
 
 const productCount=
-
 document.getElementById(
 "productCount"
 );
 
 
 const liveProductCount=
-
 document.getElementById(
 "liveProductCount"
 );
@@ -1627,7 +1356,6 @@ document.getElementById(
 if(productCount){
 
 productCount.textContent=
-
 productsData.length;
 
 }
@@ -1639,9 +1367,9 @@ productsData.filter(
 
 product=>
 
-product.active===true||
+product.active===true ||
 
-product.status==="approved"||
+product.status==="approved" ||
 
 product.approvalStatus==="approved"
 
@@ -1651,14 +1379,12 @@ product.approvalStatus==="approved"
 if(liveProductCount){
 
 liveProductCount.textContent=
-
 liveProducts.length;
 
 }
 
 
 const list=
-
 document.getElementById(
 "productsList"
 );
@@ -1670,6 +1396,8 @@ return;
 
 }
 
+
+/* NO PRODUCTS */
 
 if(!productsData.length){
 
@@ -1696,21 +1424,19 @@ Add your first product →
 
 `;
 
-
 return;
 
 }
 
+
+/* SHOW PRODUCTS */
 
 list.innerHTML=
 
 
 productsData
 
-.slice(
-0,
-5
-)
+.slice(0,5)
 
 .map(
 
@@ -1719,29 +1445,29 @@ product=>{
 
 const image=
 
-product.image||
+product.image ||
 
-product.imageUrl||
+product.imageUrl ||
 
-product.productImage||
+product.productImage ||
 
-product.productImageUrl||
+product.productImageUrl ||
 
 "";
 
 
 const name=
 
-product.name||
+product.name ||
 
-product.productName||
+product.productName ||
 
 "Product";
 
 
 const category=
 
-product.category||
+product.category ||
 
 "Other";
 
@@ -1749,34 +1475,26 @@ product.category||
 const stock=
 
 Number(
-
-product.stock||
-
-product.quantity||
-
+product.stock ||
+product.quantity ||
 0
-
 );
 
 
 const price=
 
 Number(
-
-product.price||
-
-product.productPrice||
-
+product.price ||
+product.productPrice ||
 0
-
 );
 
 
 const isApproved=
 
-product.active===true||
+product.active===true ||
 
-product.status==="approved"||
+product.status==="approved" ||
 
 product.approvalStatus==="approved";
 
@@ -1800,10 +1518,7 @@ image
 class="productImage"
 src="${escapeHtml(image)}"
 alt="${escapeHtml(name)}"
-onerror="
-this.style.display='none';
-this.parentElement.innerHTML='📦';
-">
+onerror="this.style.display='none';this.parentElement.innerHTML='📦';">
 
 `
 
@@ -1819,7 +1534,6 @@ this.parentElement.innerHTML='📦';
 
 
 <div>
-
 
 <div class="productName">
 
@@ -1885,28 +1599,21 @@ isApproved
 
 .join("");
 
-
 }
-
 
 
 /* =========================
    LOAD ORDERS
 ========================= */
 
-function loadOrders(
-sellerId
-){
+function loadOrders(sellerId){
 
 
 const ordersQuery=
 
 query(
 
-collection(
-db,
-"orders"
-),
+collection(db,"orders"),
 
 where(
 "sellerId",
@@ -1930,8 +1637,7 @@ snap.docs.map(
 
 orderDoc=>({
 
-id:
-orderDoc.id,
+id:orderDoc.id,
 
 ...orderDoc.data()
 
@@ -1952,7 +1658,6 @@ console.error(error);
 
 
 const list=
-
 document.getElementById(
 "ordersList"
 );
@@ -1974,11 +1679,9 @@ Unable to load orders.
 
 }
 
-
 }
 
 );
-
 
 }
 
@@ -1991,14 +1694,12 @@ function updateOrders(){
 
 
 const orderCount=
-
 document.getElementById(
 "orderCount"
 );
 
 
 const salesCount=
-
 document.getElementById(
 "salesCount"
 );
@@ -2007,7 +1708,6 @@ document.getElementById(
 if(orderCount){
 
 orderCount.textContent=
-
 ordersData.length;
 
 }
@@ -2024,9 +1724,9 @@ totalSales+=
 
 Number(
 
-order.total||
+order.total ||
 
-order.totalAmount||
+order.totalAmount ||
 
 0
 
@@ -2051,7 +1751,6 @@ totalSales.toLocaleString(
 
 
 const list=
-
 document.getElementById(
 "ordersList"
 );
@@ -2074,28 +1773,18 @@ list.innerHTML=
 `
 
 <div class="emptyOrderIcon">
-
 🛒
-
 </div>
 
-
 <h3>
-
 No orders yet
-
 </h3>
 
-
 <p>
-
 Your customer orders will appear here.
-
 </p>
 
-
 `;
-
 
 return;
 
@@ -2106,12 +1795,10 @@ return;
 
 list.innerHTML=
 
+
 ordersData
 
-.slice(
-0,
-5
-)
+.slice(0,5)
 
 .map(
 
@@ -2122,9 +1809,9 @@ const total=
 
 Number(
 
-order.total||
+order.total ||
 
-order.totalAmount||
+order.totalAmount ||
 
 0
 
@@ -2139,20 +1826,15 @@ return `
 
 <div>
 
-
 <b>
-
 Order
-
 </b>
-
 
 <div class="orderId">
 
 ${escapeHtml(order.id)}
 
 </div>
-
 
 </div>
 
@@ -2169,11 +1851,8 @@ ${escapeHtml(order.id)}
 ${escapeHtml(
 
 String(
-
-order.status||
-
+order.status ||
 "pending"
-
 ).toUpperCase()
 
 )}
@@ -2193,9 +1872,7 @@ order.status||
 
 .join("");
 
-
 }
-
 
 
 /* =========================
@@ -2210,9 +1887,7 @@ async function(){
 try{
 
 
-await signOut(
-auth
-);
+await signOut(auth);
 
 
 location.href=
@@ -2230,7 +1905,6 @@ error.message
 
 }
 
-
 };
 
 
@@ -2242,7 +1916,7 @@ function escapeHtml(value){
 
 
 return String(
-value??""
+value ?? ""
 )
 
 .replaceAll(
@@ -2270,7 +1944,6 @@ value??""
 "&#039;"
 );
 
-
 }
 
 
@@ -2279,4 +1952,4 @@ value??""
 
 </body>
 
-</html>
+   </html>

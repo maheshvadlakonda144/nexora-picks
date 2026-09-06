@@ -16,87 +16,128 @@ content="width=device-width,initial-scale=1">
 box-sizing:border-box;
 }
 
+:root{
+--primary:#ff5a3c;
+--dark:#172033;
+--muted:#667085;
+--bg:#f4f6f9;
+--white:#ffffff;
+--border:#e5e7eb;
+--green:#16803c;
+--orange:#d97706;
+}
+
 body{
 margin:0;
 font-family:Arial,sans-serif;
-background:#f4f6f9;
-color:#172033;
+background:var(--bg);
+color:var(--dark);
 }
 
 header{
-background:#2874f0;
+background:var(--dark);
 color:white;
-padding:18px 20px;
+padding:16px 20px;
 display:flex;
 justify-content:space-between;
 align-items:center;
 gap:15px;
+position:sticky;
+top:0;
+z-index:100;
 }
 
-header h1{
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo h1{
 margin:0;
-font-size:22px;
+font-size:20px;
+}
+
+.logo span{
+font-size:13px;
+color:#cbd5e1;
 }
 
 .logoutBtn{
-background:white;
-color:#2874f0;
-border:0;
+background:transparent;
+color:white;
+border:1px solid #475569;
 border-radius:8px;
-padding:10px 14px;
+padding:10px 16px;
 font-weight:bold;
 cursor:pointer;
+font-size:14px;
+}
+
+.logoutBtn:hover{
+background:#ffffff10;
 }
 
 .wrap{
-max-width:1000px;
+max-width:1100px;
 margin:auto;
-padding:20px;
+padding:24px 18px 40px;
 }
 
 .loading,
 .empty{
 text-align:center;
-padding:30px;
-color:#667085;
+padding:35px 15px;
+color:var(--muted);
 }
 
-.welcome{
-background:linear-gradient(135deg,#2874f0,#1557b0);
+.hero{
+background:linear-gradient(135deg,#ff5a3c,#ff7a3d);
 color:white;
-padding:25px;
-border-radius:15px;
+padding:28px;
+border-radius:16px;
 margin-bottom:20px;
 }
 
-.welcome h2{
+.hero h2{
 margin:0 0 8px;
+font-size:26px;
+}
+
+.hero p{
+margin:0;
+opacity:.95;
 }
 
 .stats{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+grid-template-columns:repeat(3,1fr);
 gap:15px;
 margin-bottom:20px;
 }
 
 .stat{
 background:white;
-padding:20px;
+border:1px solid var(--border);
 border-radius:14px;
-box-shadow:0 2px 10px #00000010;
+padding:20px;
+}
+
+.statLabel{
+color:var(--muted);
+font-size:14px;
+margin-bottom:10px;
 }
 
 .statNumber{
-font-size:30px;
+font-size:28px;
 font-weight:bold;
-color:#2874f0;
-margin-top:8px;
+color:var(--dark);
 }
 
 .actions{
 display:flex;
-gap:12px;
+gap:10px;
 flex-wrap:wrap;
 margin-bottom:20px;
 }
@@ -104,48 +145,57 @@ margin-bottom:20px;
 .actionBtn{
 border:0;
 border-radius:8px;
-padding:14px 18px;
-font-size:16px;
+padding:13px 18px;
+font-size:15px;
 font-weight:bold;
 cursor:pointer;
 text-decoration:none;
-display:inline-block;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:8px;
 }
 
 .primaryBtn{
-background:#2874f0;
+background:var(--primary);
 color:white;
 }
 
 .secondaryBtn{
 background:white;
-color:#172033;
-border:1px solid #ddd;
+color:var(--dark);
+border:1px solid var(--border);
 }
 
 .section{
 background:white;
-padding:20px;
+border:1px solid var(--border);
 border-radius:14px;
 margin-bottom:20px;
-box-shadow:0 2px 10px #00000010;
+overflow:hidden;
 }
 
 .sectionHead{
-margin-bottom:15px;
+padding:20px;
+border-bottom:1px solid var(--border);
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
 }
 
 .sectionHead h2{
 margin:0;
+font-size:19px;
 }
 
 .product{
 display:flex;
-justify-content:space-between;
 align-items:center;
+justify-content:space-between;
 gap:15px;
-padding:15px 0;
-border-bottom:1px solid #eee;
+padding:16px 20px;
+border-bottom:1px solid var(--border);
 }
 
 .product:last-child{
@@ -155,19 +205,20 @@ border-bottom:0;
 .productLeft{
 display:flex;
 align-items:center;
-gap:12px;
+gap:14px;
+min-width:0;
 }
 
 .productImageBox{
-width:65px;
-height:65px;
-border-radius:8px;
+width:60px;
+height:60px;
+border-radius:10px;
 background:#f1f3f6;
 overflow:hidden;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:28px;
+font-size:26px;
 flex-shrink:0;
 }
 
@@ -178,39 +229,54 @@ object-fit:cover;
 display:block;
 }
 
+.productInfo{
+min-width:0;
+}
+
 .productName{
 font-weight:bold;
-font-size:17px;
+font-size:16px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.productDetails{
+display:flex;
+gap:12px;
+flex-wrap:wrap;
+margin-top:7px;
+font-size:14px;
+color:var(--muted);
 }
 
 .productPrice{
-color:#2874f0;
 font-weight:bold;
-margin-top:5px;
+color:var(--dark);
 }
 
-.productStock{
-margin-top:5px;
-color:#667085;
-}
-
-.productStatus{
-margin-top:6px;
-font-size:13px;
+.badge{
+display:inline-block;
+padding:7px 11px;
+border-radius:20px;
+font-size:12px;
 font-weight:bold;
+white-space:nowrap;
 }
 
 .approved{
-color:#16803c;
+background:#dcfce7;
+color:var(--green);
 }
 
 .pending{
-color:#d97706;
+background:#fef3c7;
+color:var(--orange);
 }
 
 .order{
-padding:15px 0;
-border-bottom:1px solid #eee;
+padding:18px 20px;
+border-bottom:1px solid var(--border);
 }
 
 .order:last-child{
@@ -220,42 +286,96 @@ border-bottom:0;
 .orderTop{
 display:flex;
 justify-content:space-between;
+align-items:flex-start;
 gap:10px;
-margin-bottom:8px;
+margin-bottom:10px;
 }
 
 .orderId{
 font-size:13px;
-color:#667085;
+color:var(--muted);
 word-break:break-all;
+margin-top:5px;
 }
 
 .status{
 padding:6px 10px;
 border-radius:20px;
-font-size:12px;
+font-size:11px;
 font-weight:bold;
-background:#fff3cd;
-color:#856404;
+background:#fef3c7;
+color:#92400e;
+white-space:nowrap;
 }
 
-@media(max-width:600px){
+.orderTotal{
+font-size:15px;
+}
+
+@media(max-width:700px){
 
 .wrap{
-padding:12px;
+padding:16px 12px 30px;
 }
 
-header h1{
-font-size:18px;
+header{
+padding:14px;
+}
+
+.logo h1{
+font-size:17px;
+}
+
+.logo span{
+display:none;
+}
+
+.hero{
+padding:22px 18px;
+}
+
+.hero h2{
+font-size:22px;
+}
+
+.stats{
+grid-template-columns:1fr;
+gap:10px;
+}
+
+.stat{
+padding:16px;
 }
 
 .product{
+padding:15px;
 align-items:flex-start;
 flex-direction:column;
 }
 
 .productLeft{
 width:100%;
+}
+
+.badge{
+margin-left:74px;
+}
+
+.actions{
+display:grid;
+grid-template-columns:1fr;
+}
+
+.actionBtn{
+width:100%;
+}
+
+.sectionHead{
+padding:18px 15px;
+}
+
+.order{
+padding:16px 15px;
 }
 
 }
@@ -269,7 +389,15 @@ width:100%;
 
 <header>
 
-<h1>🏪 Seller Dashboard</h1>
+<div class="logo">
+
+<div>
+<h1>NEXORA PICKS</h1>
+<span>Seller Dashboard</span>
+</div>
+
+</div>
+
 
 <button
 class="logoutBtn"
@@ -288,18 +416,16 @@ Logout
 
 <div class="loading">
 
-Loading seller dashboard...
+Loading your dashboard...
 
 </div>
 
 </div>
 
 </div>
-
 
 
 <script type="module">
-
 
 import{
 initializeApp
@@ -349,11 +475,17 @@ measurementId:"G-LSMJ6QLLPW"
 };
 
 
-const app=initializeApp(firebaseConfig);
+const app=
+initializeApp(firebaseConfig);
 
-const auth=getAuth(app);
 
-const db=getFirestore(app);
+const auth=
+getAuth(app);
+
+
+const db=
+getFirestore(app);
+
 
 const dashboard=
 document.getElementById("dashboard");
@@ -362,7 +494,7 @@ document.getElementById("dashboard");
 let currentSeller=null;
 
 
-/* CHECK LOGIN AND SELLER APPROVAL */
+/* CHECK SELLER LOGIN */
 
 onAuthStateChanged(
 auth,
@@ -381,8 +513,6 @@ return;
 try{
 
 
-/* GET SELLER DOCUMENT */
-
 const sellerRef=
 doc(
 db,
@@ -397,9 +527,8 @@ sellerRef
 );
 
 
-/* SELLER NOT FOUND */
-
 if(!sellerSnap.exists()){
+
 
 dashboard.innerHTML=
 
@@ -410,13 +539,11 @@ dashboard.innerHTML=
 <div class="empty">
 
 <h2>
-❌ Seller Account Not Found
+Seller Account Not Found
 </h2>
 
 <p>
-
 This account is not registered as a seller.
-
 </p>
 
 <br>
@@ -435,18 +562,15 @@ Register as Seller
 
 `;
 
+
 return;
 
 }
 
 
-/* GET SELLER DATA */
-
 const sellerData=
 sellerSnap.data();
 
-
-/* CHECK ADMIN APPROVAL */
 
 const sellerApproved=
 
@@ -455,30 +579,32 @@ sellerData.status==="approved" &&
 sellerData.sellerVerified===true;
 
 
-/* BLOCK UNAPPROVED SELLERS */
+/* UNAPPROVED SELLER */
 
 if(!sellerApproved){
 
 
-let title="⏳ Waiting for Admin Approval";
+let title=
+"Waiting for Admin Approval";
+
 
 let message=
-"Your seller application is waiting for admin approval. Product publishing and seller dashboard access are locked until approval.";
+"Your seller application is being reviewed. You will get dashboard access after approval.";
 
 
-/* REJECTED SELLER */
+if(
+sellerData.status==="rejected"
+){
 
-if(sellerData.status==="rejected"){
+title=
+"Seller Application Rejected";
 
-title="❌ Seller Application Rejected";
 
 message=
 "Your seller application was rejected. Please contact NEXORA PICKS support.";
 
 }
 
-
-/* PENDING / REJECTED SCREEN */
 
 dashboard.innerHTML=
 
@@ -489,30 +615,28 @@ dashboard.innerHTML=
 <div class="empty">
 
 <h2>
-
 ${title}
-
 </h2>
 
 <p>
-
 ${message}
-
 </p>
 
 <br>
 
 <p>
 
-Current Status:
+Status:
 
 <b>
 
 ${escapeHtml(
+
 String(
 sellerData.status||
 "pending"
 ).toUpperCase()
+
 )}
 
 </b>
@@ -547,33 +671,30 @@ currentSeller={
 
 id:user.uid,
 
-sellerDocId:user.uid,
-
 ...sellerData
 
 };
 
 
-/* SHOW FULL DASHBOARD */
+/* SHOW DASHBOARD */
 
 showDashboard();
 
 
-/* LOAD PRODUCTS */
+/* LOAD DATA */
 
 loadProducts(
 user.uid
 );
 
 
-/* LOAD ORDERS */
-
 loadOrders(
 user.uid
 );
 
 
-}catch(error){
+}
+catch(error){
 
 
 console.error(error);
@@ -587,11 +708,13 @@ dashboard.innerHTML=
 
 <div class="empty">
 
-❌ Unable to load seller dashboard.
+<h2>
+Unable to load dashboard
+</h2>
 
-<br><br>
-
-${escapeHtml(error.message)}
+<p>
+Please refresh and try again.
+</p>
 
 </div>
 
@@ -613,34 +736,36 @@ ${escapeHtml(error.message)}
 function showDashboard(){
 
 
-dashboard.innerHTML=
-
-`
-
-<div class="welcome">
-
-<h2>
-
-Welcome, ${escapeHtml(
+const sellerName=
 
 currentSeller.storeName||
 
 currentSeller.name||
 
-"Seller"
+currentSeller.fullName||
 
-)}
+"Seller";
+
+
+dashboard.innerHTML=
+
+`
+
+<div class="hero">
+
+<h2>
+
+Welcome, ${escapeHtml(sellerName)}
 
 </h2>
 
-<div>
+<p>
 
-Manage your products and customer orders.
+Manage your products and customer orders from one place.
+
+</p>
 
 </div>
-
-</div>
-
 
 
 <div class="stats">
@@ -648,8 +773,10 @@ Manage your products and customer orders.
 
 <div class="stat">
 
-<div>
-📦 Products
+<div class="statLabel">
+
+Total Products
+
 </div>
 
 <div
@@ -663,11 +790,12 @@ id="productCount">
 </div>
 
 
-
 <div class="stat">
 
-<div>
-🟢 Live Products
+<div class="statLabel">
+
+Live Products
+
 </div>
 
 <div
@@ -681,11 +809,12 @@ id="liveProductCount">
 </div>
 
 
-
 <div class="stat">
 
-<div>
-🛒 Orders
+<div class="statLabel">
+
+Total Orders
+
 </div>
 
 <div
@@ -702,7 +831,6 @@ id="orderCount">
 </div>
 
 
-
 <div class="actions">
 
 
@@ -710,7 +838,7 @@ id="orderCount">
 href="add-product.html"
 class="actionBtn primaryBtn">
 
-➕ Add Product
+Add Product
 
 </a>
 
@@ -719,7 +847,7 @@ class="actionBtn primaryBtn">
 href="seller-products.html"
 class="actionBtn secondaryBtn">
 
-📦 My Products
+My Products
 
 </a>
 
@@ -728,7 +856,7 @@ class="actionBtn secondaryBtn">
 href="seller-orders.html"
 class="actionBtn secondaryBtn">
 
-🛒 Manage Orders
+Manage Orders
 
 </a>
 
@@ -736,13 +864,12 @@ class="actionBtn secondaryBtn">
 </div>
 
 
-
 <div class="section">
 
 <div class="sectionHead">
 
 <h2>
-📦 Recent Products
+Recent Products
 </h2>
 
 </div>
@@ -750,12 +877,15 @@ class="actionBtn secondaryBtn">
 
 <div id="productsList">
 
+<div class="loading">
+
 Loading products...
 
 </div>
 
 </div>
 
+</div>
 
 
 <div class="section">
@@ -763,7 +893,7 @@ Loading products...
 <div class="sectionHead">
 
 <h2>
-🛒 Recent Orders
+Recent Orders
 </h2>
 
 </div>
@@ -771,13 +901,18 @@ Loading products...
 
 <div id="ordersList">
 
+<div class="loading">
+
 Loading orders...
 
 </div>
 
 </div>
 
+</div>
+
 `;
+
 
 }
 
@@ -840,18 +975,6 @@ products.length;
 }
 
 
-
-/* LIVE PRODUCT COUNT */
-
-const liveCount=
-document.getElementById(
-"liveProductCount"
-);
-
-
-if(liveCount){
-
-
 const liveProducts=
 
 products.filter(
@@ -865,14 +988,19 @@ product.approvalStatus==="approved"
 );
 
 
+const liveCount=
+document.getElementById(
+"liveProductCount"
+);
+
+
+if(liveCount){
+
 liveCount.textContent=
 liveProducts.length;
 
 }
 
-
-
-/* PRODUCT LIST */
 
 const list=
 document.getElementById(
@@ -896,7 +1024,7 @@ list.innerHTML=
 
 <div class="empty">
 
-No products yet.
+No products added yet.
 
 <br><br>
 
@@ -904,7 +1032,7 @@ No products yet.
 href="add-product.html"
 class="actionBtn primaryBtn">
 
-➕ Add Your First Product
+Add Your First Product
 
 </a>
 
@@ -916,7 +1044,6 @@ class="actionBtn primaryBtn">
 return;
 
 }
-
 
 
 /* SHOW PRODUCTS */
@@ -967,11 +1094,50 @@ product.status==="approved"||
 product.approvalStatus==="approved";
 
 
+const productName=
+
+product.name||
+
+product.productName||
+
+"Product";
+
+
+const productPrice=
+
+Number(
+
+product.price||
+
+product.productPrice||
+
+0
+
+).toLocaleString(
+"en-IN"
+);
+
+
+const productStock=
+
+Number(
+
+product.stock||
+
+product.quantity||
+
+0
+
+);
+
+
 return `
 
 <div class="product">
 
+
 <div class="productLeft">
+
 
 <div
 class="productImageBox">
@@ -985,12 +1151,8 @@ image
 <img
 class="productImage"
 src="${escapeHtml(image)}"
-alt="${escapeHtml(
-product.name||
-product.productName||
-"Product"
-)}"
-onerror="this.style.display='none'">
+alt="${escapeHtml(productName)}"
+onerror="this.remove()">
 
 `
 
@@ -1003,70 +1165,43 @@ emoji
 </div>
 
 
-<div>
+<div
+class="productInfo">
 
 
 <div class="productName">
 
-${escapeHtml(
-
-product.name||
-
-product.productName||
-
-"Product"
-
-)}
+${escapeHtml(productName)}
 
 </div>
 
 
-<div class="productPrice">
+<div class="productDetails">
 
-₹${
+<span class="productPrice">
 
-Number(
+₹${productPrice}
 
-product.price||
+</span>
 
-product.productPrice||
 
-0
+<span>
 
-)
+Stock: ${productStock}
 
-.toLocaleString(
-"en-IN"
-)
-
-}
+</span>
 
 </div>
 
 
-<div class="productStock">
+</div>
 
-Stock:
-
-${
-
-Number(
-
-product.stock||
-
-product.quantity||
-
-0
-
-)
-
-}
 
 </div>
 
 
 <div
-class="productStatus ${
+class="badge ${
 
 isApproved
 
@@ -1086,30 +1221,26 @@ isApproved
 
 ?
 
-"✔ Live"
+"Live"
 
 :
 
-"⏳ Pending Admin Approval"
+"Pending"
 
 }
 
 </div>
 
-
-</div>
-
-</div>
 
 </div>
 
 `;
 
 }
+
 )
 
 .join("");
-
 
 
 },
@@ -1117,10 +1248,7 @@ isApproved
 error=>{
 
 
-console.error(
-"Product loading error:",
-error
-);
+console.error(error);
 
 
 const list=
@@ -1137,7 +1265,7 @@ list.innerHTML=
 
 <div class="empty">
 
-❌ Unable to load products.
+Unable to load products.
 
 </div>
 
@@ -1227,6 +1355,7 @@ return;
 
 if(!orders.length){
 
+
 list.innerHTML=
 
 `
@@ -1238,6 +1367,7 @@ No customer orders yet.
 </div>
 
 `;
+
 
 return;
 
@@ -1254,25 +1384,48 @@ orders
 )
 
 .map(
-order=>`
+order=>{
+
+
+const total=
+
+Number(
+
+order.total||
+
+order.totalAmount||
+
+0
+
+).toLocaleString(
+"en-IN"
+);
+
+
+return `
 
 <div class="order">
 
+
 <div class="orderTop">
+
 
 <div>
 
+
 <b>
+
 Order
+
 </b>
+
 
 <div class="orderId">
 
-${escapeHtml(
-order.id
-)}
+${escapeHtml(order.id)}
 
 </div>
+
 
 </div>
 
@@ -1287,48 +1440,35 @@ order.status||
 
 "pending"
 
-)
-
-.toUpperCase()
+).toUpperCase()
 
 )}
 
 </div>
 
+
 </div>
 
 
-<div>
+<div class="orderTotal">
 
 Total:
 
 <b>
 
-₹${
-
-Number(
-
-order.total||
-
-order.totalAmount||
-
-0
-
-)
-
-.toLocaleString(
-"en-IN"
-)
-
-}
+₹${total}
 
 </b>
 
 </div>
 
+
 </div>
 
-`
+`;
+
+}
+
 )
 
 .join("");
@@ -1339,10 +1479,7 @@ order.totalAmount||
 error=>{
 
 
-console.error(
-"Order loading error:",
-error
-);
+console.error(error);
 
 
 const list=
@@ -1359,7 +1496,7 @@ list.innerHTML=
 
 <div class="empty">
 
-❌ Unable to load orders.
+Unable to load orders.
 
 </div>
 
@@ -1383,12 +1520,15 @@ window.logoutSeller=
 
 async function(){
 
+
 await signOut(
 auth
 );
 
+
 location.href=
 "index.html";
+
 
 };
 
@@ -1397,6 +1537,7 @@ location.href=
 /* ESCAPE HTML */
 
 function escapeHtml(value){
+
 
 return String(
 value??""
@@ -1427,10 +1568,11 @@ value??""
 "&#039;"
 );
 
+
 }
 
 </script>
 
 </body>
 
-</html>
+  </html>

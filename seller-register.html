@@ -1,815 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<title>
-Become a Seller | NEXORA PICKS
-</title>
-
+<title>Seller Registration | NEXORA PICKS</title>
 
 <style>
 
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f4f6f9;
-color:#172033;
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+    color:#172033;
 }
-
-
-/* HEADER */
 
 header{
-background:#2874f0;
-color:white;
-padding:16px 20px;
-display:flex;
-align-items:center;
-gap:15px;
-position:sticky;
-top:0;
-z-index:100;
-box-shadow:0 2px 10px #00000018;
-}
-
-header a{
-color:white;
-text-decoration:none;
-font-size:30px;
-line-height:1;
+    background:#172033;
+    color:white;
+    padding:18px;
+    text-align:center;
 }
 
 header h1{
-margin:0;
-font-size:21px;
+    margin:0;
+    font-size:22px;
 }
-
-
-/* CONTAINER */
 
 .container{
-max-width:700px;
-margin:auto;
-padding:20px 15px 80px;
+    max-width:650px;
+    margin:30px auto;
+    padding:20px;
 }
 
-
-/* LOGIN */
-
-.loginBox{
-background:white;
-border-radius:18px;
-padding:35px 20px;
-text-align:center;
-box-shadow:0 3px 15px #00000012;
+.form-box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(0,0,0,0.08);
 }
 
-
-/* MAIN CARD */
-
-.card{
-background:white;
-border-radius:18px;
-padding:24px;
-box-shadow:0 4px 20px #00000012;
+.progress-container{
+    width:100%;
+    height:8px;
+    background:#e5e7eb;
+    border-radius:10px;
+    margin-bottom:30px;
+    overflow:hidden;
 }
 
-
-/* TOP */
-
-.mainTitle{
-margin:0;
-font-size:26px;
+.progress-bar{
+    height:100%;
+    width:33%;
+    background:#ff5a3c;
+    transition:0.3s;
 }
 
-.subtitle{
-color:#687386;
-line-height:1.6;
-margin-top:8px;
+.step{
+    display:none;
 }
 
-
-/* PROGRESS */
-
-.progressBox{
-margin:25px 0 30px;
+.step.active{
+    display:block;
 }
 
-.progressText{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-bottom:10px;
-font-weight:bold;
-color:#475467;
+h2{
+    margin-top:0;
 }
-
-.progressPercent{
-background:#fff3d6;
-color:#e89500;
-padding:7px 13px;
-border-radius:20px;
-font-size:14px;
-}
-
-.progressBar{
-height:8px;
-background:#e9edf3;
-border-radius:20px;
-overflow:hidden;
-}
-
-.progressFill{
-height:100%;
-width:25%;
-background:#2874f0;
-border-radius:20px;
-transition:.4s;
-}
-
-
-/* STEPS */
-
-.steps{
-display:flex;
-justify-content:space-between;
-gap:8px;
-margin-bottom:30px;
-}
-
-.stepIndicator{
-flex:1;
-text-align:center;
-font-size:12px;
-color:#8b95a5;
-position:relative;
-}
-
-.stepCircle{
-width:32px;
-height:32px;
-border-radius:50%;
-border:2px solid #d6dce5;
-display:flex;
-align-items:center;
-justify-content:center;
-margin:0 auto 7px;
-background:white;
-font-weight:bold;
-}
-
-.stepIndicator.active{
-color:#2874f0;
-font-weight:bold;
-}
-
-.stepIndicator.active .stepCircle{
-border-color:#2874f0;
-background:#2874f0;
-color:white;
-}
-
-.stepIndicator.completed{
-color:#16803c;
-}
-
-.stepIndicator.completed .stepCircle{
-background:#25a86b;
-border-color:#25a86b;
-color:white;
-}
-
-
-/* FORM STEP */
-
-.formStep{
-display:none;
-animation:fade .25s ease;
-}
-
-.formStep.active{
-display:block;
-}
-
-@keyframes fade{
-
-from{
-opacity:0;
-transform:translateY(8px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-
-/* SECTION */
-
-.sectionTitle{
-font-size:21px;
-font-weight:bold;
-margin-bottom:8px;
-color:#263445;
-}
-
-.sectionSubtitle{
-color:#687386;
-line-height:1.5;
-margin-bottom:25px;
-}
-
-
-/* INPUT */
 
 label{
-display:block;
-font-weight:bold;
-margin-bottom:8px;
-color:#344054;
+    display:block;
+    margin-top:15px;
+    margin-bottom:6px;
+    font-weight:bold;
 }
 
 input,
-textarea,
-select{
-width:100%;
-padding:15px;
-border:1px solid #d5d9e0;
-border-radius:10px;
-font-size:16px;
-margin-bottom:20px;
-outline:none;
-font-family:Arial,sans-serif;
-background:white;
-}
-
-input:focus,
-textarea:focus,
-select:focus{
-border-color:#2874f0;
-box-shadow:0 0 0 3px #2874f018;
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:8px;
+    font-size:15px;
 }
 
 textarea{
-resize:vertical;
-min-height:110px;
+    resize:vertical;
 }
 
-
-/* TWO COLUMNS */
-
-.grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-}
-
-@media(max-width:550px){
-
-.grid{
-grid-template-columns:1fr;
-}
-
-}
-
-
-/* CATEGORY BOX */
-
-.categoryGrid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-bottom:25px;
-}
-
-.categoryOption{
-border:2px solid #dce2ea;
-border-radius:14px;
-padding:25px 15px;
-text-align:center;
-cursor:pointer;
-transition:.2s;
-}
-
-.categoryOption:hover{
-border-color:#2874f0;
-}
-
-.categoryOption.selected{
-border-color:#2874f0;
-background:#f0f6ff;
-}
-
-.categoryIcon{
-font-size:32px;
-margin-bottom:10px;
-}
-
-.categoryOption strong{
-display:block;
-font-size:18px;
-}
-
-.categoryOption small{
-color:#687386;
-display:block;
-margin-top:6px;
-}
-
-
-/* HIDDEN */
-
-.hidden{
-display:none !important;
-}
-
-
-/* VERIFY */
-
-.verifyRow{
-display:flex;
-gap:10px;
-align-items:flex-start;
-}
-
-.verifyRow input{
-margin-bottom:20px;
-}
-
-.smallButton{
-width:auto;
-min-width:130px;
-height:52px;
-padding:0 15px;
-background:#eef5ff;
-color:#2874f0;
-border:1px solid #2874f0;
-font-weight:bold;
-margin-top:0;
-}
-
-.smallButton:disabled{
-opacity:.5;
-}
-
-
-/* VERIFIED */
-
-.verifiedBadge{
-background:#e8f7ed;
-color:#16803c;
-padding:8px 12px;
-border-radius:20px;
-font-size:14px;
-font-weight:bold;
-display:inline-block;
-margin-bottom:18px;
-}
-
-
-/* PICKUP */
-
-.pickupBox{
-border:1px solid #dfe4ea;
-background:#fafcff;
-border-radius:15px;
-padding:20px;
-margin-top:10px;
-}
-
-.pickupBox h3{
-margin-top:0;
-margin-bottom:8px;
-}
-
-.pickupBox p{
-color:#687386;
-line-height:1.5;
-}
-
-.locationButton{
-background:white;
-color:#2874f0;
-border:1px solid #2874f0;
-margin-top:10px;
-}
-
-
-/* UPLOAD */
-
-.uploadBox{
-border:2px dashed #cbd5e1;
-border-radius:12px;
-padding:25px;
-text-align:center;
-margin-bottom:20px;
-}
-
-.uploadBox input{
-margin:15px 0 0;
-border:none;
-padding:0;
-}
-
-
-/* SIGNATURE */
-
-.signatureOptions{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px;
-margin-bottom:20px;
-}
-
-.signatureOption{
-border:2px solid #dce2ea;
-border-radius:14px;
-padding:25px 10px;
-text-align:center;
-cursor:pointer;
-background:white;
-}
-
-.signatureOption.active{
-border-color:#2874f0;
-background:#f3f8ff;
-}
-
-.signatureCanvasBox{
-border:1px solid #d5d9e0;
-border-radius:12px;
-overflow:hidden;
-background:white;
-margin-bottom:15px;
-}
-
-canvas{
-display:block;
-width:100%;
-height:220px;
-touch-action:none;
-}
-
-.clearSignature{
-background:#fff0f0;
-color:#c62828;
-border:1px solid #f1b4b4;
-margin-bottom:20px;
-}
-
-
-/* LISTING */
-
-.listingOption{
-border:1px solid #dce2ea;
-border-radius:12px;
-padding:18px;
-margin-bottom:15px;
-cursor:pointer;
-}
-
-.listingOption.selected{
-border:2px solid #2874f0;
-background:#f3f8ff;
-}
-
-
-/* CHECKBOX */
-
-.checkboxBox{
-display:flex;
-gap:10px;
-align-items:flex-start;
-margin:20px 0;
-}
-
-.checkboxBox input{
-width:auto;
-margin-top:4px;
-margin-bottom:0;
-}
-
-.checkboxBox label{
-font-weight:normal;
-line-height:1.5;
-margin:0;
-}
-
-
-/* BUTTONS */
-
-.buttonRow{
-display:flex;
-gap:12px;
-margin-top:25px;
+.buttons{
+    display:flex;
+    justify-content:space-between;
+    margin-top:25px;
+    gap:10px;
 }
 
 button{
-border:none;
-border-radius:10px;
-padding:15px;
-background:#2874f0;
-color:white;
-font-size:16px;
-font-weight:bold;
-cursor:pointer;
-transition:.2s;
+    border:none;
+    padding:12px 20px;
+    border-radius:8px;
+    font-size:16px;
+    cursor:pointer;
 }
 
-button:hover{
-opacity:.92;
+.next-btn,
+.submit-btn{
+    background:#ff5a3c;
+    color:white;
 }
 
-button:disabled{
-opacity:.6;
-cursor:not-allowed;
+.prev-btn{
+    background:#e5e7eb;
+    color:#172033;
 }
 
-.buttonRow button{
-flex:1;
-}
-
-.backButton{
-background:#eef1f5;
-color:#344054;
-}
-
-
-/* MESSAGE */
-
-.message{
-margin-top:20px;
-padding:15px;
-border-radius:10px;
-display:none;
-font-weight:bold;
-line-height:1.5;
+.hidden{
+    display:none;
 }
 
 .success{
-display:block;
-background:#e8f7ed;
-color:#16803c;
+    text-align:center;
+    padding:30px;
 }
 
-.error{
-display:block;
-background:#fff0f0;
-color:#c62828;
-}
-
-.pending{
-display:block;
-background:#fff8e1;
-color:#856404;
-}
-
-
-/* STATUS */
-
-.statusCard{
-background:white;
-border-radius:18px;
-padding:25px;
-box-shadow:0 4px 20px #00000012;
-text-align:center;
-}
-
-.statusCard h2{
-margin-top:0;
-}
-
-.note{
-font-size:14px;
-color:#687386;
-line-height:1.5;
+.success h2{
+    color:#16a34a;
 }
 
 </style>
 
 </head>
 
-
 <body>
 
-
 <header>
-
-<a href="index.html">
-
-‹
-
-</a>
-
-<h1>
-🏪 Become a Seller
-</h1>
-
+    <h1>NEXORA PICKS</h1>
+    <p>Seller Registration</p>
 </header>
-
-
 
 <div class="container">
 
+<div class="form-box">
 
-<!-- LOGIN REQUIRED -->
-
-<div
-id="loginRequired"
-style="display:none">
-
-<div class="loginBox">
-
-<h2>
-🔐 Login Required
-</h2>
-
-<p>
-Please login before registering as a seller.
-</p>
-
-<button
-onclick="goLogin()">
-
-Login Now
-
-</button>
-
+<div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
 </div>
-
-</div>
-
-
-
-<!-- SELLER REGISTRATION -->
-
-<div
-id="sellerFormContainer"
-style="display:none">
-
-
-<div class="card">
-
-
-<h2 class="mainTitle">
-
-Sell on NEXORA PICKS
-
-</h2>
-
-
-<p class="subtitle">
-
-Complete your seller profile to start selling products
-on NEXORA PICKS.
-
-</p>
-
-
-
-<!-- PROGRESS -->
-
-<div class="progressBox">
-
-<div class="progressText">
-
-<span id="progressLabel">
-
-Step 1 of 4
-
-</span>
-
-<span
-id="progressPercent"
-class="progressPercent">
-
-25% Complete
-
-</span>
-
-</div>
-
-
-<div class="progressBar">
-
-<div
-id="progressFill"
-class="progressFill">
-
-</div>
-
-</div>
-
-</div>
-
-
-
-<!-- STEP INDICATORS -->
-
-<div class="steps">
-
-
-<div
-class="stepIndicator active"
-id="indicator1">
-
-<div class="stepCircle">
-1
-</div>
-
-Account
-
-</div>
-
-
-<div
-class="stepIndicator"
-id="indicator2">
-
-<div class="stepCircle">
-2
-</div>
-
-Business
-
-</div>
-
-
-<div
-class="stepIndicator"
-id="indicator3">
-
-<div class="stepCircle">
-3
-</div>
-
-Store
-
-</div>
-
-
-<div
-class="stepIndicator"
-id="indicator4">
-
-<div class="stepCircle">
-4
-</div>
-
-Complete
-
-</div>
-
-
-</div>
-
-
-
-<form id="sellerForm">
-
-
-<!-- ========================= -->
 <!-- STEP 1 -->
-<!-- ========================= -->
 
-<div
-class="formStep active"
-data-step="1">
+<div class="step active" id="step1">
 
+<h2>Basic Information</h2>
 
-<div class="sectionTitle">
-
-Mobile & Email Verification
-
-</div>
-
-
-<p class="sectionSubtitle">
-
-Enter your personal details for your seller profile.
-
-</p>
-
-
-<label>
-
-Full Name *
-
-</label>
-
+<label>Full Name</label>
 
 <input
 type="text"
@@ -817,697 +166,114 @@ id="fullName"
 placeholder="Enter your full name"
 required>
 
-
-
-<label>
-
-Email Address *
-
-</label>
-
+<label>Email Address</label>
 
 <input
 type="email"
 id="email"
-readonly>
+placeholder="Enter your email"
+required>
 
-
-<div
-id="emailVerifiedBox"
-class="verifiedBadge hidden">
-
-✓ Email Verified
-
-</div>
-
-
-
-<label>
-
-Mobile Number *
-
-</label>
-
+<label>Phone Number</label>
 
 <input
 type="tel"
 id="phone"
-placeholder="Enter 10 digit mobile number"
-pattern="[0-9]{10}"
-maxlength="10"
+placeholder="Enter your phone number"
 required>
 
-
-
-<label>
-
-Create Display Name *
-
-</label>
-
-
-<input
-type="text"
-id="displayName"
-placeholder="Example: MaheshStore"
-required>
-
-
-<p class="note">
-
-Your display name should not contain spaces.
-
-</p>
-
-
-
-<div class="buttonRow">
+<div class="buttons">
 
 <button
 type="button"
-onclick="nextStep()">
-
-Continue →
-
+class="next-btn"
+onclick="nextStep(2)">
+Next
 </button>
 
 </div>
 
-
 </div>
 
 
-
-<!-- ========================= -->
 <!-- STEP 2 -->
-<!-- ========================= -->
 
-<div
-class="formStep"
-data-step="2">
+<div class="step" id="step2">
 
+<h2>Business Information</h2>
 
-<div class="sectionTitle">
-
-Business & ID Verification
-
-</div>
-
-
-<p class="sectionSubtitle">
-
-Select what you want to sell and enter your
-business identification details.
-
-</p>
-
-
-
-<label>
-
-What are you looking to sell? *
-
-</label>
-
-
-<div class="categoryGrid">
-
-
-<div
-class="categoryOption selected"
-id="allCategoriesOption"
-onclick="selectSellingType('all')">
-
-<div class="categoryIcon">
-
-📦
-
-</div>
-
-<strong>
-
-All Categories
-
-</strong>
-
-<small>
-
-GSTIN required
-
-</small>
-
-</div>
-
-
-
-<div
-class="categoryOption"
-id="booksOption"
-onclick="selectSellingType('books')">
-
-<div class="categoryIcon">
-
-📚
-
-</div>
-
-<strong>
-
-Only Books
-
-</strong>
-
-<small>
-
-PAN required
-
-</small>
-
-</div>
-
-
-</div>
-
-
+<label>Store Name</label>
 
 <input
-type="hidden"
-id="sellingType"
-value="all">
+type="text"
+id="storeName"
+placeholder="Enter your store name"
+required>
 
+<label>Business Category</label>
 
-
-<div
-id="categorySelectBox">
-
-
-<label>
-
-Primary Business Category *
-
-</label>
-
-
-<select
-id="businessCategory">
+<select id="category" required>
 
 <option value="">
-
-Select category
-
+Select Category
 </option>
 
-<option>
+<option>Electronics</option>
 
-Electronics
+<option>Fashion</option>
 
-</option>
+<option>Beauty</option>
 
-<option>
+<option>Home & Kitchen</option>
 
-Fashion
-
-</option>
-
-<option>
-
-Beauty & Personal Care
-
-</option>
-
-<option>
-
-Home & Kitchen
-
-</option>
-
-<option>
-
-Mobiles & Accessories
-
-</option>
-
-<option>
-
-Books
-
-</option>
-
-<option>
-
-Sports
-
-</option>
-
-<option>
-
-Grocery
-
-</option>
-
-<option>
-
-Other
-
-</option>
+<option>Other</option>
 
 </select>
 
-
-</div>
-
-
-
-<div
-id="gstBox">
-
-
-<label>
-
-GSTIN *
-
-</label>
-
-
-<input
-type="text"
-id="gstNumber"
-placeholder="Enter GSTIN">
-
-
-<p class="note">
-
-GSTIN is required for selling products in
-multiple categories.
-
-</p>
-
-
-</div>
-
-
-
-<label>
-
-PAN Number *
-
-</label>
-
-
-<input
-type="text"
-id="panNumber"
-placeholder="Enter PAN number"
-style="text-transform:uppercase;">
-
-
-
-<div class="buttonRow">
-
-<button
-type="button"
-class="backButton"
-onclick="previousStep()">
-
-← Back
-
-</button>
-
-
-<button
-type="button"
-onclick="nextStep()">
-
-Continue →
-
-</button>
-
-</div>
-
-
-</div>
-
-
-
-<!-- ========================= -->
-<!-- STEP 3 -->
-<!-- ========================= -->
-
-<div
-class="formStep"
-data-step="3">
-
-
-<div class="sectionTitle">
-
-Store & Pickup Details
-
-</div>
-
-
-<p class="sectionSubtitle">
-
-Add your store information and pickup location.
-
-</p>
-
-
-
-<label>
-
-Business Name *
-
-</label>
-
-
-<input
-type="text"
-id="businessName"
-placeholder="Enter your business name"
-required>
-
-
-
-<label>
-
-Business Address *
-
-</label>
-
+<label>Business Address</label>
 
 <textarea
-id="businessAddress"
-placeholder="Enter your complete business address"
+id="address"
+placeholder="Enter your business address"
+rows="4"
 required></textarea>
 
+<div class="buttons">
+
+<button
+type="button"
+class="prev-btn"
+onclick="prevStep(1)">
+Back
+</button>
+
+<button
+type="button"
+class="next-btn"
+onclick="nextStep(3)">
+Next
+</button>
+
+</div>
+
+</div>
 
 
-<label>
+<!-- STEP 3 -->
 
-Pincode *
+<div class="step" id="step3">
 
-</label>
+<h2>Bank Details</h2>
 
+<label>Account Holder Name</label>
 
 <input
 type="text"
-id="pincode"
-placeholder="Enter 6 digit pincode"
-pattern="[0-9]{6}"
-maxlength="6"
+id="accountName"
+placeholder="Enter account holder name"
 required>
 
-
-
-<div class="pickupBox">
-
-
-<h3>
-
-📍 Add Pickup Address
-
-</h3>
-
-
-<p>
-
-NEXORA PICKS delivery partners can pick up your
-orders from this location.
-
-</p>
-
-
-<button
-type="button"
-class="locationButton"
-onclick="useCurrentLocation()">
-
-📍 Use Current Location
-
-</button>
-
-
-<p
-id="locationStatus"
-class="note">
-
-</p>
-
-
-</div>
-
-
-
-<label style="margin-top:20px;">
-
-Address Proof *
-
-</label>
-
-
-<div class="uploadBox">
-
-
-<strong>
-
-📄 Upload Address Proof
-
-</strong>
-
-
-<p class="note">
-
-Accepted documents:
-Voter ID, Passport, Electricity Bill,
-Telephone Bill or Bank Statement.
-
-</p>
-
-
-<input
-type="file"
-id="addressProof"
-accept=".jpg,.jpeg,.png,.pdf">
-
-
-<p
-id="fileStatus"
-class="note">
-
-</p>
-
-
-</div>
-
-
-
-<div class="buttonRow">
-
-<button
-type="button"
-class="backButton"
-onclick="previousStep()">
-
-← Back
-
-</button>
-
-
-<button
-type="button"
-onclick="nextStep()">
-
-Continue →
-
-</button>
-
-</div>
-
-
-</div>
-
-
-
-<!-- ========================= -->
-<!-- STEP 4 -->
-<!-- ========================= -->
-
-<div
-class="formStep"
-data-step="4">
-
-
-<div class="sectionTitle">
-
-Signature, Bank & Listing
-
-</div>
-
-
-<p class="sectionSubtitle">
-
-Complete your seller information.
-
-</p>
-
-
-
-<!-- SIGNATURE -->
-
-<label>
-
-Add Your e-Signature *
-
-</label>
-
-
-<div class="signatureOptions">
-
-
-<div
-class="signatureOption active"
-id="drawSignatureOption"
-onclick="selectSignatureType('draw')">
-
-✍️
-
-<br><br>
-
-<strong>
-
-Draw Signature
-
-</strong>
-
-</div>
-
-
-
-<div
-class="signatureOption"
-id="uploadSignatureOption"
-onclick="selectSignatureType('upload')">
-
-📁
-
-<br><br>
-
-<strong>
-
-Upload Signature
-
-</strong>
-
-</div>
-
-
-</div>
-
-
-
-<div
-id="drawSignatureBox">
-
-
-<div class="signatureCanvasBox">
-
-<canvas
-id="signatureCanvas">
-
-</canvas>
-
-</div>
-
-
-<button
-type="button"
-class="clearSignature"
-onclick="clearSignature()">
-
-Clear Signature
-
-</button>
-
-
-</div>
-
-
-
-<div
-id="uploadSignatureBox"
-class="hidden">
-
-
-<input
-type="file"
-id="signatureFile"
-accept=".jpg,.jpeg,.png">
-
-
-</div>
-
-
-
-<!-- BANK -->
-
-<div class="sectionTitle"
-style="margin-top:25px;">
-
-Bank Details
-
-</div>
-
-
-<div class="grid">
-
-
-<div>
-
-<label>
-
-Account Holder *
-
-</label>
-
-
-<input
-type="text"
-id="accountHolder"
-placeholder="Account holder name"
-required>
-
-</div>
-
-
-
-<div>
-
-<label>
-
-Bank Name *
-
-</label>
-
-
-<input
-type="text"
-id="bankName"
-placeholder="Bank name"
-required>
-
-</div>
-
-
-</div>
-
-
-
-<label>
-
-Account Number *
-
-</label>
-
+<label>Bank Account Number</label>
 
 <input
 type="text"
@@ -1515,757 +281,307 @@ id="accountNumber"
 placeholder="Enter account number"
 required>
 
-
-
-<label>
-
-IFSC Code *
-
-</label>
-
+<label>IFSC Code</label>
 
 <input
 type="text"
-id="ifscCode"
+id="ifsc"
 placeholder="Enter IFSC code"
-style="text-transform:uppercase;"
 required>
 
-
-
-<!-- LISTING -->
-
-<div class="sectionTitle">
-
-Listing & Stock Availability
-
-</div>
-
-
-<p class="sectionSubtitle">
-
-How would you like to start selling?
-
-</p>
-
-
-
-<div
-class="listingOption selected"
-onclick="selectListing('existing')"
-id="existingListing">
-
-🔍
-
-<strong>
-
-Search Existing Products
-
-</strong>
-
-<p class="note">
-
-List products already available on NEXORA PICKS.
-
-</p>
-
-</div>
-
-
-
-<div
-class="listingOption"
-onclick="selectListing('new')"
-id="newListing">
-
-➕
-
-<strong>
-
-List Your Own Products
-
-</strong>
-
-<p class="note">
-
-Add completely new products to the marketplace.
-
-</p>
-
-</div>
-
-
-
-<div
-class="listingOption"
-onclick="selectListing('trending')"
-id="trendingListing">
-
-🔥
-
-<strong>
-
-Explore Trending Products
-
-</strong>
-
-<p class="note">
-
-Discover products with high demand.
-
-</p>
-
-</div>
-
-
-
-<input
-type="hidden"
-id="listingPreference"
-value="existing">
-
-
-
-<div class="checkboxBox">
-
-
-<input
-type="checkbox"
-id="agreement"
-required>
-
-
-<label
-for="agreement">
-
-I confirm that all information provided is correct
-and I agree to the NEXORA PICKS seller
-terms and conditions.
-
-</label>
-
-
-</div>
-
-
-
-<div class="buttonRow">
-
+<div class="buttons">
 
 <button
 type="button"
-class="backButton"
-onclick="previousStep()">
-
-← Back
-
+class="prev-btn"
+onclick="prevStep(2)">
+Back
 </button>
-
 
 <button
-type="submit"
-id="submitBtn">
-
-🚀 Submit Application
-
+type="button"
+class="submit-btn"
+onclick="submitRegistration()">
+Submit Registration
 </button>
 
-
-</div>
-
-
-
-<div
-id="message"
-class="message">
-
-</div>
-
-
-</div>
-
-
-</form>
-
-
 </div>
 
 </div>
+<!-- SUCCESS MESSAGE -->
 
+<div class="step" id="successStep">
 
-</div>
+<div class="success">
 
+<h2>Registration Successful! 🎉</h2>
 
+<p>
+Your seller registration has been submitted successfully.
+</p>
 
-<script type="module">
-
-
-import{
-
-initializeApp
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
-
-
-import{
-
-getAuth,
-
-onAuthStateChanged
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
-
-
-import{
-
-getFirestore,
-
-doc,
-
-getDoc,
-
-setDoc,
-
-serverTimestamp
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
-
-
-
-import{
-
-getStorage,
-
-ref,
-
-uploadBytes,
-
-getDownloadURL
-
-}
-
-from
-
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-storage.js";
-
-
-
-const firebaseConfig={
-
-apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
-
-authDomain:"nexora-picks-e887f.firebaseapp.com",
-
-projectId:"nexora-picks-e887f",
-
-storageBucket:"nexora-picks-e887f.firebasestorage.app",
-
-messagingSenderId:"621359003619",
-
-appId:"1:621359003619:web:483add8bfcd0241f4192d",
-
-measurementId:"G-LSMJ6QLLPW"
-
-};
-
-
-
-const app=
-
-initializeApp(
-firebaseConfig
-);
-
-
-
-const auth=
-
-getAuth(
-app
-);
-
-
-
-const db=
-
-getFirestore(
-app
-);
-
-
-
-const storage=
-
-getStorage(
-app
-);
-
-
-
-const $=
-
-id=>
-document.getElementById(
-id
-);
-
-
-
-let currentUser=null;
-
-let currentStep=1;
-
-let sellingType="all";
-
-let listingPreference="existing";
-
-let signatureType="draw";
-
-let signatureDrawn=false;
-
-let pickupLatitude=null;
-
-let pickupLongitude=null;
-
-
-
-/* CHECK LOGIN */
-
-onAuthStateChanged(
-
-auth,
-
-async user=>{
-
-
-if(!user){
-
-
-$("loginRequired").style.display=
-
-"block";
-
-
-$("sellerFormContainer").style.display=
-
-"none";
-
-
-return;
-
-}
-
-
-
-currentUser=user;
-
-
-
-$("loginRequired").style.display=
-
-"none";
-
-
-$("sellerFormContainer").style.display=
-
-"block";
-
-
-$("email").value=
-
-user.email||"";
-
-
-
-if(user.emailVerified){
-
-
-$("emailVerifiedBox").classList.remove(
-"hidden"
-);
-
-
-}
-
-
-
-try{
-
-
-const sellerRef=
-
-doc(
-db,
-"sellers",
-user.uid
-);
-
-
-
-const sellerSnap=
-
-await getDoc(
-sellerRef
-);
-
-
-
-if(sellerSnap.exists()){
-
-
-
-const seller=
-
-sellerSnap.data();
-
-
-
-showExistingSellerStatus(
-seller
-);
-
-
-
-}
-
-
-
-}catch(error){
-
-
-console.error(
-error
-);
-
-
-}
-
-
-}
-
-);
-
-
-
-
-/* EXISTING SELLER */
-
-function showExistingSellerStatus(
-seller
-){
-
-
-let title="";
-
-let text="";
-
-let button="";
-
-
-
-if(seller.status==="approved"){
-
-
-title=
-
-"🎉 Seller Account Approved";
-
-
-text=
-
-"Your seller account is active. You can now manage your products.";
-
-
-button=
-
-`
+<p>
+We will review your information and contact you soon.
+</p>
 
 <button
-onclick="goSellerDashboard()">
-
-Open Seller Dashboard
-
+type="button"
+class="next-btn"
+onclick="window.location.href='index.html'">
+Go to Home
 </button>
-
-`;
-
-
-}
-
-
-
-else if(seller.status==="rejected"){
-
-
-title=
-
-"❌ Application Rejected";
-
-
-text=
-
-"Your seller application was rejected. Please contact support.";
-
-
-}
-
-
-
-else{
-
-
-title=
-
-"⏳ Application Under Review";
-
-
-text=
-
-"Your seller application has been submitted successfully and is waiting for admin approval.";
-
-
-}
-
-
-
-$("sellerFormContainer").innerHTML=
-
-`
-
-<div class="statusCard">
-
-<h2>
-
-${title}
-
-</h2>
-
-
-<p class="subtitle">
-
-${text}
-
-</p>
-
-
-<p class="note">
-
-<b>
-Business:
-</b>
-
-${escapeHtml(
-seller.businessName||
-seller.storeName||
-""
-)}
-
-</p>
-
-
-<p class="note">
-
-<b>
-Status:
-</b>
-
-${escapeHtml(
-seller.status||
-"pending"
-).toUpperCase()}
-
-</p>
-
-
-${button}
-
 
 </div>
 
-`;
+</div>
 
+</div>
+</div>
+
+
+<script>
+
+let currentStep = 1;
+
+
+/* NEXT STEP */
+
+function nextStep(step){
+
+    if(step === 2){
+
+        const fullName =
+        document.getElementById("fullName").value.trim();
+
+        const email =
+        document.getElementById("email").value.trim();
+
+        const phone =
+        document.getElementById("phone").value.trim();
+
+
+        if(!fullName || !email || !phone){
+
+            alert(
+            "Please fill all required fields."
+            );
+
+            return;
+        }
+
+    }
+
+
+    if(step === 3){
+
+        const storeName =
+        document.getElementById("storeName").value.trim();
+
+        const category =
+        document.getElementById("category").value;
+
+        const address =
+        document.getElementById("address").value.trim();
+
+
+        if(
+            !storeName ||
+            !category ||
+            !address
+        ){
+
+            alert(
+            "Please fill all required fields."
+            );
+
+            return;
+        }
+
+    }
+
+
+    document
+    .getElementById(
+        "step" + currentStep
+    )
+    .classList
+    .remove("active");
+
+
+    document
+    .getElementById(
+        "step" + step
+    )
+    .classList
+    .add("active");
+
+
+    currentStep = step;
+
+
+    updateProgress(step);
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
 
+/* PREVIOUS STEP */
 
-/* STEP VALIDATION */
+function prevStep(step){
 
-function validateStep(
-step
-){
-
-
-if(step===1){
-
-
-const fullName=
-
-$("fullName").value.trim();
+    document
+    .getElementById(
+        "step" + currentStep
+    )
+    .classList
+    .remove("active");
 
 
-const phone=
-
-$("phone").value.trim();
-
-
-const displayName=
-
-$("displayName").value.trim();
+    document
+    .getElementById(
+        "step" + step
+    )
+    .classList
+    .add("active");
 
 
-
-if(
-
-!fullName||
-
-phone.length!==10||
-
-!displayName
-
-){
+    currentStep = step;
 
 
-alert(
-
-"Please enter your full name, valid mobile number and display name."
-
-);
+    updateProgress(step);
 
 
-return false;
-
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
 
-if(
+/* UPDATE PROGRESS */
 
-displayName.includes(" ")
+function updateProgress(step){
 
-){
-
-
-alert(
-
-"Display name should not contain spaces."
-
-);
+    const progressBar =
+    document.getElementById(
+        "progressBar"
+    );
 
 
-return false;
+    if(step === 1){
+
+        progressBar.style.width =
+        "33%";
+
+    }
 
 
-}
+    if(step === 2){
+
+        progressBar.style.width =
+        "66%";
+
+    }
 
 
-}
+    if(step === 3){
 
+        progressBar.style.width =
+        "100%";
 
-
-if(step===2){
-
-
-const pan=
-
-$("panNumber").value.trim();
-
-
-
-if(!pan){
-
-
-alert(
-
-"Please enter your PAN number."
-
-);
-
-
-return false;
-
+    }
 
 }
 
 
 
-if(sellingType==="all"){
+/* SUBMIT REGISTRATION */
+
+function submitRegistration(){
+
+    const accountName =
+    document
+    .getElementById(
+        "accountName"
+    )
+    .value
+    .trim();
 
 
-const category=
-
-$("businessCategory").value;
-
-
-const gst=
-
-$("gstNumber").value.trim();
-
+    const accountNumber =
+    document
+    .getElementById(
+        "accountNumber"
+    )
+    .value
+    .trim();
 
 
-if(
-
-!category||
-
-!gst
-
-){
-
-
-alert(
-
-"Please select a category and enter your GSTIN."
-
-);
+    const ifsc =
+    document
+    .getElementById(
+        "ifsc"
+    )
+    .value
+    .trim();
 
 
-return false;
+    if(
+        !accountName ||
+        !accountNumber ||
+        !ifsc
+    ){
 
+        alert(
+        "Please fill all bank details."
+        );
+
+        return;
+    }
+
+
+    document
+    .getElementById(
+        "step3"
+    )
+    .classList
+    .remove("active");
+
+
+    document
+    .getElementById(
+        "successStep"
+    )
+    .classList
+    .add("active");
+
+
+    document
+    .getElementById(
+        "progressBar"
+    )
+    .style.width =
+    "100%";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
 
 }
 
 
-}
+</script>
 
+</body>
 
-}
-
-
-
-if(step===3){
-
-
-const businessName=
-
-$("businessName").value.trim();
-
-
-const address=
-
-$("businessAddress").value.trim();
-
-
-const pincode=
-
-$("pincode").value.trim();
-
-
-const addressProof=
-
-$("addressProof").files[
+</html>

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +7,6 @@
 <title>Seller Registration | NEXORA PICKS</title>
 
 <style>
-
 *{
     box-sizing:border-box;
 }
@@ -132,7 +130,6 @@ button{
 .success h2{
     color:#16a34a;
 }
-
 </style>
 
 </head>
@@ -145,105 +142,68 @@ button{
 </header>
 
 <div class="container">
-
 <div class="form-box">
 
 <div class="progress-container">
     <div class="progress-bar" id="progressBar"></div>
 </div>
 
-
 <!-- STEP 1 -->
-
 <div class="step active" id="step1">
 
 <h2>Basic Information</h2>
 
 <label>Full Name</label>
-
-<input
-type="text"
-id="fullName"
-placeholder="Enter your full name"
-required>
+<input type="text" id="fullName" placeholder="Enter your full name">
 
 <label>Email Address</label>
-
-<input
-type="email"
-id="email"
-placeholder="Enter your email"
-required>
+<input type="email" id="email" placeholder="Enter your email">
 
 <label>Phone Number</label>
-
-<input
-type="tel"
-id="phone"
-placeholder="Enter your phone number"
-required>
+<input type="tel" id="phone" placeholder="Enter your phone number">
 
 <div class="buttons">
-
-<button
-type="button"
-class="next-btn"
-onclick="nextStep(2)">
+<button type="button" class="next-btn" onclick="nextStep(2)">
 Next
 </button>
-
 </div>
 
 </div>
-
 
 <!-- STEP 2 -->
-
 <div class="step" id="step2">
 
 <h2>Business Information</h2>
 
 <label>Store Name</label>
-
-<input
-type="text"
-id="storeName"
-placeholder="Enter your store name"
-required>
+<input type="text" id="storeName" placeholder="Enter your store name">
 
 <label>Business Category</label>
 
-<select id="category" required>
-
+<select id="category">
 <option value="">Select Category</option>
-
 <option>Electronics</option>
 <option>Fashion</option>
 <option>Beauty</option>
 <option>Home & Kitchen</option>
 <option>Other</option>
-
 </select>
 
 <label>Business Address</label>
 
-<textarea
-id="address"
+<textarea id="address"
 placeholder="Enter your business address"
-rows="4"
-required></textarea>
+rows="4"></textarea>
 
 <div class="buttons">
 
-<button
-type="button"
+<button type="button"
 class="prev-btn"
 onclick="prevStep(1)">
 Back
 </button>
 
-<button
-type="button"
+<button type="button"
 class="next-btn"
 onclick="nextStep(3)">
 Next
@@ -253,48 +213,35 @@ Next
 
 </div>
 
-
 <!-- STEP 3 -->
-
 <div class="step" id="step3">
 
 <h2>Bank Details</h2>
 
 <label>Account Holder Name</label>
-
-<input
-type="text"
+<input type="text"
 id="accountName"
-placeholder="Enter account holder name"
-required>
+placeholder="Enter account holder name">
 
 <label>Bank Account Number</label>
-
-<input
-type="text"
+<input type="text"
 id="accountNumber"
-placeholder="Enter account number"
-required>
+placeholder="Enter account number">
 
 <label>IFSC Code</label>
-
-<input
-type="text"
+<input type="text"
 id="ifsc"
-placeholder="Enter IFSC code"
-required>
+placeholder="Enter IFSC code">
 
 <div class="buttons">
 
-<button
-type="button"
+<button type="button"
 class="prev-btn"
 onclick="prevStep(2)">
 Back
 </button>
 
-<button
-type="button"
+<button type="button"
 class="submit-btn"
 onclick="submitRegistration()">
 Submit Registration
@@ -304,25 +251,18 @@ Submit Registration
 
 </div>
 
-
 <!-- SUCCESS -->
-
 <div class="step" id="successStep">
 
 <div class="success">
 
 <h2>Registration Successful! 🎉</h2>
 
-<p>
-Your seller registration has been submitted successfully.
-</p>
+<p>Your seller registration has been submitted successfully.</p>
 
-<p>
-We will review your information and contact you soon.
-</p>
+<p>We will review your information and contact you soon.</p>
 
-<button
-type="button"
+<button type="button"
 class="next-btn"
 onclick="window.location.href='index.html'">
 Go to Home
@@ -333,14 +273,11 @@ Go to Home
 </div>
 
 </div>
-
 </div>
-
 
 <script>
 
 let currentStep = 1;
-
 
 function nextStep(step){
 
@@ -361,9 +298,7 @@ function nextStep(step){
 
             return;
         }
-
     }
-
 
     if(step === 3){
 
@@ -382,113 +317,75 @@ function nextStep(step){
 
             return;
         }
-
     }
-
 
     document
     .getElementById("step" + currentStep)
-    .classList
-    .remove("active");
-
+    .classList.remove("active");
 
     document
     .getElementById("step" + step)
-    .classList
-    .add("active");
-
+    .classList.add("active");
 
     currentStep = step;
 
-
     updateProgress(step);
-
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
-
 }
-
 
 function prevStep(step){
 
     document
     .getElementById("step" + currentStep)
-    .classList
-    .remove("active");
-
+    .classList.remove("active");
 
     document
     .getElementById("step" + step)
-    .classList
-    .add("active");
-
+    .classList.add("active");
 
     currentStep = step;
 
-
     updateProgress(step);
-
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
-
 }
-
 
 function updateProgress(step){
 
     const progressBar =
     document.getElementById("progressBar");
 
-
     if(step === 1){
-
         progressBar.style.width = "33%";
-
     }
-
     else if(step === 2){
-
         progressBar.style.width = "66%";
-
     }
-
     else if(step === 3){
-
         progressBar.style.width = "100%";
-
     }
-
 }
-
 
 function submitRegistration(){
 
     const accountName =
-    document
-    .getElementById("accountName")
-    .value
-    .trim();
-
+    document.getElementById("accountName")
+    .value.trim();
 
     const accountNumber =
-    document
-    .getElementById("accountNumber")
-    .value
-    .trim();
-
+    document.getElementById("accountNumber")
+    .value.trim();
 
     const ifsc =
-    document
-    .getElementById("ifsc")
-    .value
-    .trim();
-
+    document.getElementById("ifsc")
+    .value.trim();
 
     if(!accountName || !accountNumber || !ifsc){
 
@@ -497,33 +394,25 @@ function submitRegistration(){
         return;
     }
 
-
     document
     .getElementById("step3")
-    .classList
-    .remove("active");
-
+    .classList.remove("active");
 
     document
     .getElementById("successStep")
-    .classList
-    .add("active");
-
+    .classList.add("active");
 
     document
     .getElementById("progressBar")
     .style.width = "100%";
 
-
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
-
 }
 
 </script>
 
 </body>
-
 </html>

@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
 <title>Seller Registration | NEXORA PICKS</title>
 
 <style>
+
 *{
     box-sizing:border-box;
 }
@@ -21,8 +26,11 @@ body{
 header{
     background:#172033;
     color:white;
-    padding:18px;
+    padding:18px 15px;
     text-align:center;
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
 header h1{
@@ -31,37 +39,93 @@ header h1{
 }
 
 header p{
-    margin:8px 0 0;
+    margin:6px 0 0;
+    color:#cbd5e1;
 }
 
+/* CONTAINER */
+
 .container{
-    max-width:650px;
-    margin:30px auto;
-    padding:20px;
+    max-width:700px;
+    margin:25px auto;
+    padding:15px;
 }
 
 .form-box{
     background:white;
     padding:25px;
-    border-radius:12px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.08);
+    border-radius:16px;
+    box-shadow:0 5px 25px rgba(0,0,0,0.08);
 }
+
+/* STEP HEADER */
+
+.steps-header{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    margin-bottom:25px;
+}
+
+.step-indicator{
+    flex:1;
+    text-align:center;
+    font-size:12px;
+    color:#94a3b8;
+}
+
+.step-circle{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    border:2px solid #cbd5e1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 7px;
+    font-weight:bold;
+}
+
+.step-indicator.active{
+    color:#ff5a3c;
+    font-weight:bold;
+}
+
+.step-indicator.active .step-circle{
+    border-color:#ff5a3c;
+    background:#ff5a3c;
+    color:white;
+}
+
+.step-indicator.completed{
+    color:#16a34a;
+}
+
+.step-indicator.completed .step-circle{
+    background:#16a34a;
+    border-color:#16a34a;
+    color:white;
+}
+
+/* PROGRESS */
 
 .progress-container{
     width:100%;
-    height:8px;
+    height:7px;
     background:#e5e7eb;
     border-radius:10px;
-    margin-bottom:30px;
     overflow:hidden;
+    margin-bottom:30px;
 }
 
 .progress-bar{
     height:100%;
-    width:33%;
+    width:20%;
     background:#ff5a3c;
-    transition:0.3s;
+    transition:0.4s;
 }
+
+/* STEPS */
 
 .step{
     display:none;
@@ -73,42 +137,157 @@ header p{
 
 h2{
     margin-top:0;
+    margin-bottom:8px;
 }
+
+.subtitle{
+    color:#64748b;
+    margin-bottom:20px;
+}
+
+/* FORM */
 
 label{
     display:block;
-    margin-top:15px;
-    margin-bottom:6px;
+    margin-top:17px;
+    margin-bottom:7px;
     font-weight:bold;
+}
+
+.required{
+    color:#dc2626;
 }
 
 input,
 select,
 textarea{
     width:100%;
-    padding:12px;
+    padding:14px;
     border:1px solid #d1d5db;
-    border-radius:8px;
-    font-size:15px;
+    border-radius:10px;
+    font-size:16px;
+    outline:none;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#ff5a3c;
+    box-shadow:0 0 0 3px rgba(255,90,60,0.1);
 }
 
 textarea{
     resize:vertical;
 }
 
+/* OTP */
+
+.input-row{
+    display:flex;
+    gap:10px;
+}
+
+.input-row input{
+    flex:1;
+}
+
+.otp-btn{
+    background:#172033;
+    color:white;
+    border:none;
+    padding:12px 15px;
+    border-radius:10px;
+    font-size:14px;
+    cursor:pointer;
+    white-space:nowrap;
+}
+
+.otp-btn:disabled{
+    opacity:0.5;
+}
+
+.otp-section{
+    display:none;
+    margin-top:15px;
+    padding:15px;
+    background:#f8fafc;
+    border-radius:12px;
+}
+
+.otp-section.show{
+    display:block;
+}
+
+.verified{
+    color:#16a34a;
+    font-size:14px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+/* CATEGORY */
+
+.category-options{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+    margin-top:15px;
+}
+
+.category-card{
+    border:2px solid #e2e8f0;
+    padding:20px;
+    border-radius:12px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.category-card.selected{
+    border-color:#ff5a3c;
+    background:#fff4f1;
+}
+
+.category-card h3{
+    margin:0 0 8px;
+}
+
+.category-card p{
+    margin:0;
+    color:#64748b;
+    font-size:14px;
+}
+
+/* FILE */
+
+.upload-box{
+    border:2px dashed #cbd5e1;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    margin-top:10px;
+}
+
+.upload-box input{
+    border:none;
+    padding:5px;
+}
+
+/* BUTTONS */
+
 .buttons{
     display:flex;
     justify-content:space-between;
-    margin-top:25px;
     gap:10px;
+    margin-top:30px;
 }
 
 button{
     border:none;
-    padding:12px 20px;
-    border-radius:8px;
+    padding:13px 20px;
+    border-radius:10px;
     font-size:16px;
     cursor:pointer;
+    font-weight:bold;
 }
 
 .next-btn,
@@ -122,297 +301,1540 @@ button{
     color:#172033;
 }
 
+.save-btn{
+    width:100%;
+    background:#172033;
+    color:white;
+    margin-top:20px;
+}
+
 .success{
     text-align:center;
-    padding:30px;
+    padding:30px 10px;
 }
 
 .success h2{
     color:#16a34a;
+    font-size:26px;
 }
+
+.success-icon{
+    font-size:65px;
+}
+
+.note{
+    background:#fff7ed;
+    color:#9a3412;
+    padding:12px;
+    border-radius:10px;
+    margin-top:15px;
+    font-size:14px;
+}
+
+@media(max-width:600px){
+
+    .container{
+        margin:10px auto;
+        padding:10px;
+    }
+
+    .form-box{
+        padding:18px;
+    }
+
+    .steps-header{
+        gap:3px;
+    }
+
+    .step-indicator{
+        font-size:10px;
+    }
+
+    .category-options{
+        grid-template-columns:1fr;
+    }
+
+    .input-row{
+        flex-direction:column;
+    }
+
+    .buttons{
+        flex-direction:column-reverse;
+    }
+
+    .buttons button{
+        width:100%;
+    }
+
+}
+
 </style>
 
 </head>
 
+
 <body>
 
 <header>
-    <h1>NEXORA PICKS</h1>
-    <p>Seller Registration</p>
+
+<h1>NEXORA PICKS</h1>
+
+<p>Become a Seller</p>
+
 </header>
 
+
 <div class="container">
+
 <div class="form-box">
 
+
+<!-- STEP INDICATORS -->
+
+<div class="steps-header">
+
+<div class="step-indicator active"
+id="indicator1">
+
+<div class="step-circle">1</div>
+
+Account
+
+</div>
+
+
+<div class="step-indicator"
+id="indicator2">
+
+<div class="step-circle">2</div>
+
+Business
+
+</div>
+
+
+<div class="step-indicator"
+id="indicator3">
+
+<div class="step-circle">3</div>
+
+Pickup
+
+</div>
+
+
+<div class="step-indicator"
+id="indicator4">
+
+<div class="step-circle">4</div>
+
+Bank
+
+</div>
+
+
+<div class="step-indicator"
+id="indicator5">
+
+<div class="step-circle">5</div>
+
+Done
+
+</div>
+
+</div>
+
+
+<!-- PROGRESS -->
+
 <div class="progress-container">
-    <div class="progress-bar" id="progressBar"></div>
+
+<div class="progress-bar"
+id="progressBar">
+
 </div>
 
-<!-- STEP 1 -->
-<div class="step active" id="step1">
+</div>
 
-<h2>Basic Information</h2>
 
-<label>Full Name</label>
-<input type="text" id="fullName" placeholder="Enter your full name">
+<!-- ================= STEP 1 ================= -->
 
-<label>Email Address</label>
-<input type="email" id="email" placeholder="Enter your email">
+<div class="step active"
+id="step1">
 
-<label>Phone Number</label>
-<input type="tel" id="phone" placeholder="Enter your phone number">
+<h2>Create Your Seller Account</h2>
 
-<div class="buttons">
-<button type="button" class="next-btn" onclick="nextStep(2)">
-Next
+<p class="subtitle">
+
+Verify your mobile number and email address.
+
+</p>
+
+
+<label>
+
+Mobile Number
+
+<span class="required">*</span>
+
+</label>
+
+
+<div class="input-row">
+
+<input
+type="tel"
+id="phone"
+maxlength="10"
+placeholder="Enter 10 digit mobile number">
+
+
+<button
+type="button"
+class="otp-btn"
+onclick="sendMobileOTP()">
+
+Send OTP
+
 </button>
+
+</div>
+
+
+<div class="otp-section"
+id="mobileOTPSection">
+
+<label>
+
+Enter Mobile OTP
+
+</label>
+
+<input
+type="text"
+id="mobileOTP"
+maxlength="6"
+placeholder="Enter OTP">
+
+<button
+type="button"
+class="save-btn"
+onclick="verifyMobileOTP()">
+
+Verify Mobile OTP
+
+</button>
+
+<div
+class="verified"
+id="mobileVerified">
+
 </div>
 
 </div>
 
-<!-- STEP 2 -->
-<div class="step" id="step2">
 
-<h2>Business Information</h2>
+<label>
 
-<label>Store Name</label>
-<input type="text" id="storeName" placeholder="Enter your store name">
+Email Address
 
-<label>Business Category</label>
+<span class="required">*</span>
 
-<select id="category">
-<option value="">Select Category</option>
-<option>Electronics</option>
-<option>Fashion</option>
-<option>Beauty</option>
-<option>Home & Kitchen</option>
-<option>Other</option>
-</select>
+</label>
 
-<label>Business Address</label>
 
-<textarea id="address"
-placeholder="Enter your business address"
-rows="4"></textarea>
+<div class="input-row">
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email address">
+
+
+<button
+type="button"
+class="otp-btn"
+onclick="sendEmailOTP()">
+
+Send OTP
+
+</button>
+
+</div>
+
+
+<div class="otp-section"
+id="emailOTPSection">
+
+<label>
+
+Enter Email OTP
+
+</label>
+
+<input
+type="text"
+id="emailOTP"
+maxlength="6"
+placeholder="Enter OTP">
+
+<button
+type="button"
+class="save-btn"
+onclick="verifyEmailOTP()">
+
+Verify Email OTP
+
+</button>
+
+<div
+class="verified"
+id="emailVerified">
+
+</div>
+
+</div>
+
+
+<label>
+
+Create Password
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="password"
+id="password"
+placeholder="Create password">
+
+
+<label>
+
+Confirm Password
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="password"
+id="confirmPassword"
+placeholder="Confirm password">
+
+
+<div class="note">
+
+Demo OTP for testing: Enter any 6-digit number.
+
+</div>
+
 
 <div class="buttons">
 
-<button type="button"
+<button
+type="button"
+class="next-btn"
+onclick="nextStep(2)">
+
+Continue →
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= STEP 2 ================= -->
+
+<div class="step"
+id="step2">
+
+<h2>Business Details</h2>
+
+<p class="subtitle">
+
+Tell us about your business and what you want to sell.
+
+</p>
+
+
+<label>
+
+What do you want to sell?
+
+<span class="required">*</span>
+
+</label>
+
+
+<div class="category-options">
+
+<div
+class="category-card selected"
+id="allCategories"
+onclick="selectSellerType('all')">
+
+<h3>📦 All Categories</h3>
+
+<p>
+
+Sell products across different categories
+
+</p>
+
+</div>
+
+
+<div
+class="category-card"
+id="booksOnly"
+onclick="selectSellerType('books')">
+
+<h3>📚 Books Only</h3>
+
+<p>
+
+Sell only books
+
+</p>
+
+</div>
+
+</div>
+
+
+<input
+type="hidden"
+id="sellerType"
+value="all">
+
+
+<div id="gstSection">
+
+<label>
+
+GSTIN
+
+<span class="required">*</span>
+
+</label>
+
+<div class="input-row">
+
+<input
+type="text"
+id="gstin"
+placeholder="Enter GSTIN">
+
+<button
+type="button"
+class="otp-btn"
+onclick="verifyGSTIN()">
+
+Verify
+
+</button>
+
+</div>
+
+<div
+class="verified"
+id="gstVerified">
+
+</div>
+
+</div>
+
+
+<div id="panSection"
+style="display:none">
+
+<label>
+
+PAN Number
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="text"
+id="pan"
+placeholder="Enter PAN number">
+
+</div>
+
+
+<label>
+
+Business Name
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="text"
+id="businessName"
+placeholder="Enter your business name">
+
+
+<label>
+
+Business Address
+
+<span class="required">*</span>
+
+</label>
+
+<textarea
+id="businessAddress"
+rows="4"
+placeholder="Enter business address">
+
+</textarea>
+
+
+<div class="buttons">
+
+<button
+type="button"
 class="prev-btn"
 onclick="prevStep(1)">
-Back
+
+← Back
+
 </button>
 
-<button type="button"
+
+<button
+type="button"
 class="next-btn"
 onclick="nextStep(3)">
-Next
+
+Continue →
+
 </button>
 
 </div>
 
 </div>
 
-<!-- STEP 3 -->
-<div class="step" id="step3">
+
+<!-- ================= STEP 3 ================= -->
+
+<div class="step"
+id="step3">
+
+<h2>Store & Pickup Details</h2>
+
+<p class="subtitle">
+
+Enter your store details and pickup location.
+
+</p>
+
+
+<label>
+
+Full Name
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="text"
+id="fullName"
+placeholder="Enter your full name">
+
+
+<label>
+
+Display / Store Name
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="text"
+id="storeName"
+placeholder="Example: Nexora Store">
+
+
+<label>
+
+Pickup Address
+
+<span class="required">*</span>
+
+</label>
+
+<textarea
+id="pickupAddress"
+rows="4"
+placeholder="Enter pickup address">
+
+</textarea>
+
+
+<label>
+
+Pincode
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="text"
+id="pincode"
+maxlength="6"
+placeholder="Enter 6 digit pincode">
+
+
+<label>
+
+Upload Address Proof
+
+<span class="required">*</span>
+
+</label>
+
+
+<div class="upload-box">
+
+<p>
+
+Upload address proof document
+
+</p>
+
+<input
+type="file"
+id="addressProof"
+accept=".jpg,.jpeg,.png,.pdf">
+
+<p style="font-size:13px;color:#64748b">
+
+Accepted: PDF, JPG, PNG
+
+</p>
+
+</div>
+
+
+<div class="buttons">
+
+<button
+type="button"
+class="prev-btn"
+onclick="prevStep(2)">
+
+← Back
+
+</button>
+
+
+<button
+type="button"
+class="next-btn"
+onclick="nextStep(4)">
+
+Continue →
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- ================= STEP 4 ================= -->
+
+<div class="step"
+id="step4">
 
 <h2>Bank Details</h2>
 
-<label>Account Holder Name</label>
-<input type="text"
+<p class="subtitle">
+
+Add your bank account for receiving payments.
+
+</p>
+
+
+<label>
+
+Account Holder Name
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="text"
 id="accountName"
 placeholder="Enter account holder name">
 
-<label>Bank Account Number</label>
-<input type="text"
-id="accountNumber"
-placeholder="Enter account number">
 
-<label>IFSC Code</label>
-<input type="text"
+<label>
+
+Bank Account Number
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="text"
+id="accountNumber"
+placeholder="Enter bank account number">
+
+
+<label>
+
+Confirm Account Number
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="text"
+id="confirmAccountNumber"
+placeholder="Re-enter account number">
+
+
+<label>
+
+IFSC Code
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="text"
 id="ifsc"
-placeholder="Enter IFSC code">
+placeholder="Example: SBIN0001234">
+
+
+<label>
+
+Bank Name
+
+<span class="required">*</span>
+
+</label>
+
+<input
+type="text"
+id="bankName"
+placeholder="Enter bank name">
+
 
 <div class="buttons">
 
-<button type="button"
+<button
+type="button"
 class="prev-btn"
-onclick="prevStep(2)">
-Back
+onclick="prevStep(3)">
+
+← Back
+
 </button>
 
-<button type="button"
+
+<button
+type="button"
 class="submit-btn"
 onclick="submitRegistration()">
+
 Submit Registration
+
 </button>
 
 </div>
 
 </div>
 
-<!-- SUCCESS -->
-<div class="step" id="successStep">
+
+<!-- ================= SUCCESS ================= -->
+
+<div class="step"
+id="successStep">
 
 <div class="success">
 
-<h2>Registration Successful! 🎉</h2>
+<div class="success-icon">
 
-<p>Your seller registration has been submitted successfully.</p>
+🎉
 
-<p>We will review your information and contact you soon.</p>
+</div>
 
-<button type="button"
+
+<h2>
+
+Seller Registration Successful!
+
+</h2>
+
+
+<p>
+
+Welcome to NEXORA PICKS!
+
+</p>
+
+
+<p>
+
+Your seller registration has been submitted successfully.
+
+</p>
+
+
+<p>
+
+Our team will review your information.
+
+</p>
+
+
+<button
+type="button"
 class="next-btn"
 onclick="window.location.href='index.html'">
+
 Go to Home
+
 </button>
 
 </div>
 
 </div>
 
+
 </div>
+
 </div>
+
 
 <script>
 
 let currentStep = 1;
 
+let mobileVerified = false;
+
+let emailVerified = false;
+
+
+/* ================= MOBILE OTP ================= */
+
+function sendMobileOTP(){
+
+    const phone =
+    document
+    .getElementById("phone")
+    .value
+    .trim();
+
+
+    if(!/^[0-9]{10}$/.test(phone)){
+
+        alert(
+        "Please enter a valid 10 digit mobile number."
+        );
+
+        return;
+    }
+
+
+    document
+    .getElementById("mobileOTPSection")
+    .classList
+    .add("show");
+
+
+    alert(
+    "Demo OTP sent! Enter any 6 digit OTP."
+    );
+
+}
+
+
+function verifyMobileOTP(){
+
+    const otp =
+    document
+    .getElementById("mobileOTP")
+    .value
+    .trim();
+
+
+    if(!/^[0-9]{6}$/.test(otp)){
+
+        alert(
+        "Please enter a valid 6 digit OTP."
+        );
+
+        return;
+    }
+
+
+    mobileVerified = true;
+
+
+    document
+    .getElementById("mobileVerified")
+    .innerHTML =
+    "✓ Mobile number verified";
+
+}
+
+
+
+/* ================= EMAIL OTP ================= */
+
+function sendEmailOTP(){
+
+    const email =
+    document
+    .getElementById("email")
+    .value
+    .trim();
+
+
+    if(!email.includes("@")){
+
+        alert(
+        "Please enter a valid email address."
+        );
+
+        return;
+    }
+
+
+    document
+    .getElementById("emailOTPSection")
+    .classList
+    .add("show");
+
+
+    alert(
+    "Demo OTP sent! Enter any 6 digit OTP."
+    );
+
+}
+
+
+function verifyEmailOTP(){
+
+    const otp =
+    document
+    .getElementById("emailOTP")
+    .value
+    .trim();
+
+
+    if(!/^[0-9]{6}$/.test(otp)){
+
+        alert(
+        "Please enter a valid 6 digit OTP."
+        );
+
+        return;
+    }
+
+
+    emailVerified = true;
+
+
+    document
+    .getElementById("emailVerified")
+    .innerHTML =
+    "✓ Email address verified";
+
+}
+
+
+
+/* ================= SELLER TYPE ================= */
+
+function selectSellerType(type){
+
+    document
+    .getElementById("sellerType")
+    .value = type;
+
+
+    document
+    .getElementById("allCategories")
+    .classList
+    .remove("selected");
+
+
+    document
+    .getElementById("booksOnly")
+    .classList
+    .remove("selected");
+
+
+    if(type === "all"){
+
+        document
+        .getElementById("allCategories")
+        .classList
+        .add("selected");
+
+
+        document
+        .getElementById("gstSection")
+        .style
+        .display = "block";
+
+
+        document
+        .getElementById("panSection")
+        .style
+        .display = "none";
+
+    }
+
+
+    if(type === "books"){
+
+        document
+        .getElementById("booksOnly")
+        .classList
+        .add("selected");
+
+
+        document
+        .getElementById("gstSection")
+        .style
+        .display = "none";
+
+
+        document
+        .getElementById("panSection")
+        .style
+        .display = "block";
+
+    }
+
+}
+
+
+
+/* ================= GST VERIFY ================= */
+
+function verifyGSTIN(){
+
+    const gst =
+    document
+    .getElementById("gstin")
+    .value
+    .trim();
+
+
+    if(gst.length < 10){
+
+        alert(
+        "Please enter a valid GSTIN."
+        );
+
+        return;
+    }
+
+
+    document
+    .getElementById("gstVerified")
+    .innerHTML =
+    "✓ GSTIN format verified";
+
+}
+
+
+
+/* ================= NEXT STEP ================= */
+
 function nextStep(step){
+
+    /* STEP 1 VALIDATION */
 
     if(step === 2){
 
-        const fullName =
-        document.getElementById("fullName").value.trim();
+        const password =
+        document
+        .getElementById("password")
+        .value;
 
-        const email =
-        document.getElementById("email").value.trim();
 
-        const phone =
-        document.getElementById("phone").value.trim();
+        const confirmPassword =
+        document
+        .getElementById("confirmPassword")
+        .value;
 
-        if(!fullName || !email || !phone){
 
-            alert("Please fill all required fields.");
+        if(!mobileVerified){
+
+            alert(
+            "Please verify your mobile number."
+            );
 
             return;
         }
+
+
+        if(!emailVerified){
+
+            alert(
+            "Please verify your email address."
+            );
+
+            return;
+        }
+
+
+        if(password.length < 6){
+
+            alert(
+            "Password must contain at least 6 characters."
+            );
+
+            return;
+        }
+
+
+        if(password !== confirmPassword){
+
+            alert(
+            "Passwords do not match."
+            );
+
+            return;
+        }
+
     }
+
+
+    /* STEP 2 VALIDATION */
 
     if(step === 3){
 
-        const storeName =
-        document.getElementById("storeName").value.trim();
+        const sellerType =
+        document
+        .getElementById("sellerType")
+        .value;
 
-        const category =
-        document.getElementById("category").value;
 
-        const address =
-        document.getElementById("address").value.trim();
+        const businessName =
+        document
+        .getElementById("businessName")
+        .value
+        .trim();
 
-        if(!storeName || !category || !address){
 
-            alert("Please fill all required fields.");
+        const businessAddress =
+        document
+        .getElementById("businessAddress")
+        .value
+        .trim();
+
+
+        if(
+            !businessName ||
+            !businessAddress
+        ){
+
+            alert(
+            "Please fill all business details."
+            );
 
             return;
         }
+
+
+        if(sellerType === "all"){
+
+            const gst =
+            document
+            .getElementById("gstin")
+            .value
+            .trim();
+
+
+            if(!gst){
+
+                alert(
+                "Please enter your GSTIN."
+                );
+
+                return;
+            }
+
+        }
+
+
+        if(sellerType === "books"){
+
+            const pan =
+            document
+            .getElementById("pan")
+            .value
+            .trim();
+
+
+            if(!pan){
+
+                alert(
+                "Please enter your PAN number."
+                );
+
+                return;
+            }
+
+        }
+
     }
+
+
+    /* STEP 3 VALIDATION */
+
+    if(step === 4){
+
+        const fullName =
+        document
+        .getElementById("fullName")
+        .value
+        .trim();
+
+
+        const storeName =
+        document
+        .getElementById("storeName")
+        .value
+        .trim();
+
+
+        const pickupAddress =
+        document
+        .getElementById("pickupAddress")
+        .value
+        .trim();
+
+
+        const pincode =
+        document
+        .getElementById("pincode")
+        .value
+        .trim();
+
+
+        if(
+            !fullName ||
+            !storeName ||
+            !pickupAddress ||
+            !/^[0-9]{6}$/.test(pincode)
+        ){
+
+            alert(
+            "Please complete all pickup details with a valid 6 digit pincode."
+            );
+
+            return;
+        }
+
+    }
+
 
     document
     .getElementById("step" + currentStep)
-    .classList.remove("active");
+    .classList
+    .remove("active");
+
 
     document
     .getElementById("step" + step)
-    .classList.add("active");
+    .classList
+    .add("active");
+
 
     currentStep = step;
 
+
     updateProgress(step);
 
+
+    updateIndicators(step);
+
+
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
+
 }
+
+
+
+/* ================= PREVIOUS ================= */
 
 function prevStep(step){
 
     document
     .getElementById("step" + currentStep)
-    .classList.remove("active");
+    .classList
+    .remove("active");
+
 
     document
     .getElementById("step" + step)
-    .classList.add("active");
+    .classList
+    .add("active");
+
 
     currentStep = step;
 
+
     updateProgress(step);
 
+
+    updateIndicators(step);
+
+
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
+
 }
+
+
+
+/* ================= PROGRESS ================= */
 
 function updateProgress(step){
 
     const progressBar =
-    document.getElementById("progressBar");
+    document
+    .getElementById("progressBar");
 
-    if(step === 1){
-        progressBar.style.width = "33%";
-    }
-    else if(step === 2){
-        progressBar.style.width = "66%";
-    }
-    else if(step === 3){
-        progressBar.style.width = "100%";
-    }
+
+    const progress =
+    step * 20;
+
+
+    progressBar
+    .style
+    .width =
+    progress + "%";
+
 }
 
-function submitRegistration(){
 
-    const accountName =
-    document.getElementById("accountName")
-    .value.trim();
 
-    const accountNumber =
-    document.getElementById("accountNumber")
-    .value.trim();
+/* ================= INDICATORS ================= */
 
-    const ifsc =
-    document.getElementById("ifsc")
-    .value.trim();
+function updateIndicators(step){
 
-    if(!accountName || !accountNumber || !ifsc){
+    for(let i = 1; i <= 5; i++){
 
-        alert("Please fill all bank details.");
+        const indicator =
+        document
+        .getElementById(
+        "indicator" + i
+        );
 
-        return;
+
+        indicator
+        .classList
+        .remove(
+        "active",
+        "completed"
+        );
+
+
+        if(i < step){
+
+            indicator
+            .classList
+            .add("completed");
+
+        }
+
+        else if(i === step){
+
+            indicator
+            .classList
+            .add("active");
+
+        }
+
     }
 
+}
+
+
+
+/* ================= SUBMIT REGISTRATION ========== */
+    function submitRegistration(){
+
+    const accountName =
     document
-    .getElementById("step3")
-    .classList.remove("active");
+    .getElementById("accountName")
+    .value
+    .trim();
+
+
+    const accountNumber =
+    document
+    .getElementById("accountNumber")
+    .value
+    .trim();
+
+
+    const confirmAccountNumber =
+    document
+    .getElementById("confirmAccountNumber")
+    .value
+    .trim();
+
+
+    const ifsc =
+    document
+    .getElementById("ifsc")
+    .value
+    .trim()
+    .toUpperCase();
+
+
+    const bankName =
+    document
+    .getElementById("bankName")
+    .value
+    .trim();
+
+
+    if(
+        !accountName ||
+        !accountNumber ||
+        !confirmAccountNumber ||
+        !ifsc ||
+        !bankName
+    ){
+
+        alert(
+        "Please fill all bank details."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        accountNumber !==
+        confirmAccountNumber
+    ){
+
+        alert(
+        "Bank account numbers do not match."
+        );
+
+        return;
+
+    }
+
+
+    if(
+        accountNumber.length < 9
+    ){
+
+        alert(
+        "Please enter a valid bank account number."
+        );
+
+        return;
+
+    }
+
+
+    const ifscPattern =
+    /^[A-Z]{4}0[A-Z0-9]{6}$/;
+
+
+    if(
+        !ifscPattern.test(ifsc)
+    ){
+
+        alert(
+        "Please enter a valid IFSC code."
+        );
+
+        return;
+
+    }
+
+
+    /* HIDE BANK STEP */
+
+    document
+    .getElementById("step4")
+    .classList
+    .remove("active");
+
+
+    /* SHOW SUCCESS STEP */
 
     document
     .getElementById("successStep")
-    .classList.add("active");
+    .classList
+    .add("active");
+
+
+    /* UPDATE PROGRESS */
 
     document
     .getElementById("progressBar")
-    .style.width = "100%";
+    .style
+    .width = "100%";
+
+
+    /* UPDATE INDICATORS */
+
+    updateIndicators(5);
+
 
     window.scrollTo({
+
         top:0,
+
         behavior:"smooth"
+
     });
+
+
+    alert(
+    "Seller registration submitted successfully!"
+    );
+
 }
 
 </script>
 
 </body>
+
 </html>

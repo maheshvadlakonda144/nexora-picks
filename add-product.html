@@ -182,51 +182,34 @@ padding:18px
 
 <body>
 
-
 <header>
 
 <a href="seller-dashboard.html">
-
 ‹
-
 </a>
 
 <h1>
-
 ➕ Add Product
-
 </h1>
 
 </header>
 
-
 <div class="wrap">
-
 
 <div class="card">
 
-
 <h2>
-
 Add a New Product
-
 </h2>
 
-
 <p class="subtitle">
-
 Enter your product details to list it on NEXORA PICKS.
-
 </p>
-
 
 <form id="productForm">
 
-
 <label>
-
 Product Name
-
 </label>
 
 <input
@@ -236,11 +219,8 @@ placeholder="Example: Wireless Bluetooth Headphones"
 required
 >
 
-
 <label>
-
 Product Image URL
-
 </label>
 
 <input
@@ -250,7 +230,6 @@ placeholder="Paste product image URL"
 required
 >
 
-
 <div
 class="imagePreview"
 id="imagePreview">
@@ -259,11 +238,8 @@ id="imagePreview">
 
 </div>
 
-
 <label>
-
 Product Description
-
 </label>
 
 <textarea
@@ -272,11 +248,8 @@ placeholder="Write product details..."
 required
 ></textarea>
 
-
 <label>
-
 Category
-
 </label>
 
 <select
@@ -284,65 +257,45 @@ id="category"
 required>
 
 <option value="">
-
 Select Category
-
 </option>
 
 <option value="Electronics">
-
 Electronics
-
 </option>
 
 <option value="Fashion">
-
 Fashion
-
 </option>
 
 <option value="Home">
-
 Home & Kitchen
-
 </option>
 
 <option value="Beauty">
-
 Beauty & Personal Care
-
 </option>
 
 <option value="Sports">
-
 Sports
-
 </option>
 
 <option value="Books">
-
 Books
-
 </option>
 
 <option value="Other">
-
 Other
-
 </option>
 
 </select>
 
-
 <div class="row">
-
 
 <div>
 
 <label>
-
 Price ₹
-
 </label>
 
 <input
@@ -355,13 +308,10 @@ required
 
 </div>
 
-
 <div>
 
 <label>
-
 Stock Quantity
-
 </label>
 
 <input
@@ -374,9 +324,7 @@ required
 
 </div>
 
-
 </div>
-
 
 <button
 type="submit"
@@ -386,9 +334,7 @@ id="addBtn">
 
 </button>
 
-
 </form>
-
 
 <div
 id="message"
@@ -396,58 +342,34 @@ class="message">
 
 </div>
 
-
 </div>
 
-
 </div>
-
 
 <script type="module">
 
-
 import{
-
 initializeApp
-
 }
-
 from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-
 import{
-
 getAuth,
-
 onAuthStateChanged
-
 }
-
 from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
-
 import{
-
 getFirestore,
-
 doc,
-
 getDoc,
-
 collection,
-
 addDoc,
-
 serverTimestamp
-
 }
-
 from
-
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
@@ -471,59 +393,35 @@ measurementId:"G-LSMJ6QLLPW"
 
 
 const app=
-
-initializeApp(
-firebaseConfig
-);
+initializeApp(firebaseConfig);
 
 
 const auth=
-
-getAuth(
-app
-);
+getAuth(app);
 
 
 const db=
-
-getFirestore(
-app
-);
+getFirestore(app);
 
 
 const form=
-
-document.getElementById(
-"productForm"
-);
+document.getElementById("productForm");
 
 
 const addBtn=
-
-document.getElementById(
-"addBtn"
-);
+document.getElementById("addBtn");
 
 
 const message=
-
-document.getElementById(
-"message"
-);
+document.getElementById("message");
 
 
 const imageInput=
-
-document.getElementById(
-"image"
-);
+document.getElementById("image");
 
 
 const imagePreview=
-
-document.getElementById(
-"imagePreview"
-);
+document.getElementById("imagePreview");
 
 
 let currentSeller=null;
@@ -537,33 +435,25 @@ auth,
 
 async user=>{
 
-
 if(!user){
 
 location.href=
-
 "seller-register.html";
 
 return;
 
 }
 
-
 try{
-
 
 const sellerSnap=
 
 await getDoc(
 
 doc(
-
 db,
-
 "sellers",
-
 user.uid
-
 )
 
 );
@@ -576,14 +466,10 @@ if(
 ){
 
 alert(
-
 "Only registered sellers can add products."
-
 );
 
-
 location.href=
-
 "seller-register.html";
 
 return;
@@ -591,22 +477,18 @@ return;
 }
 
 
+/* ONLY KEEP SELLER ID */
+
 currentSeller={
 
-id:user.uid,
-
-...sellerSnap.data()
+id:user.uid
 
 };
 
 
 }catch(error){
 
-
-console.error(
-error
-);
-
+console.error(error);
 
 showMessage(
 
@@ -631,19 +513,14 @@ imageInput.addEventListener(
 
 function(){
 
-
 const url=
-
 imageInput.value.trim();
 
 
 if(!url){
 
-
 imagePreview.innerHTML=
-
 "📷 Product image preview";
-
 
 return;
 
@@ -667,12 +544,10 @@ form.addEventListener(
 
 async function(e){
 
-
 e.preventDefault();
 
 
 if(!currentSeller){
-
 
 showMessage(
 
@@ -682,47 +557,32 @@ showMessage(
 
 );
 
-
 return;
 
 }
 
 
 const name=
-
-document.getElementById(
-"name"
-).value.trim();
+document.getElementById("name").value.trim();
 
 
 const image=
-
-document.getElementById(
-"image"
-).value.trim();
+document.getElementById("image").value.trim();
 
 
 const description=
-
-document.getElementById(
-"description"
-).value.trim();
+document.getElementById("description").value.trim();
 
 
 const category=
-
-document.getElementById(
-"category"
-).value;
+document.getElementById("category").value;
 
 
 const price=
 
 Number(
 
-document.getElementById(
-"price"
-).value
+document.getElementById("price").value
 
 );
 
@@ -731,20 +591,15 @@ const stock=
 
 Number(
 
-document.getElementById(
-"stock"
-).value
+document.getElementById("stock").value
 
 );
 
 
-addBtn.disabled=
-
-true;
+addBtn.disabled=true;
 
 
 addBtn.textContent=
-
 "Adding Product...";
 
 
@@ -761,60 +616,35 @@ db,
 {
 
 
-name:
-
-name,
+name:name,
 
 
-image:
-
-image,
+image:image,
 
 
-description:
-
-description,
+description:description,
 
 
-category:
-
-category,
+category:category,
 
 
-price:
-
-price,
+price:price,
 
 
-stock:
+stock:stock,
 
-stock,
 
+/* SELLER ID IS INTERNAL ONLY */
 
 sellerId:
-
 currentSeller.id,
 
 
-sellerName:
-
-currentSeller.name||
-"",
-
-
-storeName:
-
-currentSeller.storeName||
-"",
-
-
 status:
-
 "active",
 
 
 createdAt:
-
 serverTimestamp()
 
 }
@@ -828,7 +658,6 @@ showMessage(
 
 "success"
 
-
 );
 
 
@@ -836,7 +665,6 @@ form.reset();
 
 
 imagePreview.innerHTML=
-
 "📷 Product image preview";
 
 
@@ -844,26 +672,19 @@ setTimeout(
 
 function(){
 
-
 location.href=
-
 "seller-dashboard.html";
-
 
 },
 
 1500
-
 
 );
 
 
 }catch(error){
 
-
-console.error(
-error
-);
+console.error(error);
 
 
 showMessage(
@@ -875,13 +696,10 @@ showMessage(
 );
 
 
-addBtn.disabled=
-
-false;
+addBtn.disabled=false;
 
 
 addBtn.textContent=
-
 "➕ Add Product";
 
 }
@@ -898,19 +716,15 @@ text,
 type
 ){
 
-
 message.style.display=
-
 "block";
 
 
 message.className=
-
 "message "+type;
 
 
 message.textContent=
-
 text;
 
 }
@@ -921,7 +735,6 @@ text;
 function escapeHtml(
 value
 ){
-
 
 return String(
 value??""
@@ -954,10 +767,8 @@ value??""
 
 }
 
-
 </script>
-
 
 </body>
 
-</html>
+  </html>

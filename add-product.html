@@ -160,6 +160,18 @@ background:#ffebee;
 color:#c62828
 }
 
+.info{
+background:#e8f0fe;
+color:#1a5cc8
+}
+
+.uploadNote{
+font-size:13px;
+color:#667085;
+margin-top:7px;
+line-height:1.5
+}
+
 @media(max-width:600px){
 
 .wrap{
@@ -194,6 +206,7 @@ padding:18px
 
 </header>
 
+
 <div class="wrap">
 
 <div class="card">
@@ -203,10 +216,16 @@ Add a New Product
 </h2>
 
 <p class="subtitle">
-Enter your product details to list it on NEXORA PICKS.
+
+Enter your product details and upload a product image.
+
+Your product will be sent to the admin for approval.
+
 </p>
 
+
 <form id="productForm">
+
 
 <label>
 Product Name
@@ -219,16 +238,25 @@ placeholder="Example: Wireless Bluetooth Headphones"
 required
 >
 
+
 <label>
-Product Image URL
+Product Image
 </label>
 
 <input
-type="url"
-id="image"
-placeholder="Paste product image URL"
+type="file"
+id="imageFile"
+accept="image/*"
 required
 >
+
+
+<div class="uploadNote">
+
+📱 Select a product image from your phone or computer.
+
+</div>
+
 
 <div
 class="imagePreview"
@@ -237,6 +265,7 @@ id="imagePreview">
 📷 Product image preview
 
 </div>
+
 
 <label>
 Product Description
@@ -247,6 +276,7 @@ id="description"
 placeholder="Write product details..."
 required
 ></textarea>
+
 
 <label>
 Category
@@ -268,12 +298,16 @@ Electronics
 Fashion
 </option>
 
-<option value="Home">
+<option value="Home & Kitchen">
 Home & Kitchen
 </option>
 
-<option value="Beauty">
+<option value="Beauty & Personal Care">
 Beauty & Personal Care
+</option>
+
+<option value="Mobiles & Accessories">
+Mobiles & Accessories
 </option>
 
 <option value="Sports">
@@ -290,7 +324,9 @@ Other
 
 </select>
 
+
 <div class="row">
+
 
 <div>
 
@@ -308,6 +344,7 @@ required
 
 </div>
 
+
 <div>
 
 <label>
@@ -324,17 +361,21 @@ required
 
 </div>
 
+
 </div>
+
 
 <button
 type="submit"
 id="addBtn">
 
-➕ Add Product
+📤 Submit Product for Approval
 
 </button>
 
+
 </form>
+
 
 <div
 id="message"
@@ -342,36 +383,88 @@ class="message">
 
 </div>
 
+
 </div>
 
 </div>
+
 
 <script type="module">
 
+
+/* FIREBASE APP */
+
 import{
+
 initializeApp
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
+
+/* FIREBASE AUTH */
+
 import{
+
 getAuth,
+
 onAuthStateChanged
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
+
+/* FIRESTORE */
+
 import{
+
 getFirestore,
-doc,
-getDoc,
+
 collection,
+
 addDoc,
-serverTimestamp
+
+serverTimestamp,
+
+query,
+
+where,
+
+getDocs
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
+
+/* FIREBASE STORAGE */
+
+import{
+
+getStorage,
+
+ref,
+
+uploadBytes,
+
+getDownloadURL
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-storage.js";
+
+
+/* FIREBASE CONFIG */
 
 const firebaseConfig={
 
@@ -392,48 +485,86 @@ measurementId:"G-LSMJ6QLLPW"
 };
 
 
+/* INITIALIZE */
+
 const app=
-initializeApp(firebaseConfig);
+
+initializeApp(
+firebaseConfig
+);
 
 
 const auth=
-getAuth(app);
+
+getAuth(
+app
+);
 
 
 const db=
-getFirestore(app);
 
+getFirestore(
+app
+);
+
+
+const storage=
+
+getStorage(
+app
+);
+
+
+/* ELEMENTS */
 
 const form=
-document.getElementById("productForm");
+
+document.getElementById(
+"productForm"
+);
 
 
 const addBtn=
-document.getElementById("addBtn");
+
+document.getElementById(
+"addBtn"
+);
 
 
 const message=
-document.getElementById("message");
+
+document.getElementById(
+"message"
+);
 
 
-const imageInput=
-document.getElementById("image");
+const imageFile=
+
+document.getElementById(
+"imageFile"
+);
 
 
 const imagePreview=
-document.getElementById("imagePreview");
 
+document.getElementById(
+"imagePreview"
+);
+
+
+/* CURRENT SELLER */
 
 let currentSeller=null;
 
 
-/* CHECK SELLER LOGIN */
+/* CHECK LOGIN AND SELLER STATUS */
 
 onAuthStateChanged(
 
 auth,
 
 async user=>{
+
 
 if(!user){
 
@@ -444,59 +575,124 @@ return;
 
 }
 
+
 try{
 
-const sellerSnap=
 
-await getDoc(
+/* FIND SELLER USING userId */
 
-doc(
+const sellerQuery=
+
+query(
+
+collection(
 db,
-"sellers",
+"sellers"
+),
+
+where(
+"userId",
+"==",
 user.uid
 )
 
 );
 
 
+const sellerSnapshot=
+
+await getDocs(
+sellerQuery
+);
+
+
 if(
-
-!sellerSnap.exists()
-
+sellerSnapshot.empty
 ){
 
+
 alert(
-"Only registered sellers can add products."
+"Please register as a seller first."
 );
+
 
 location.href=
 "seller-register.html";
+
 
 return;
 
 }
 
 
-/* ONLY KEEP SELLER ID */
+const sellerDoc=
+
+sellerSnapshot.docs[0];
+
+
+const sellerData=
+
+sellerDoc.data();
+
+
+/* CHECK APPROVAL */
+
+if(
+sellerData.status!=="approved"
+){
+
+
+showMessage(
+
+"⏳ Your seller account is not approved yet. Please wait for admin approval.",
+
+"error"
+
+);
+
+
+form.style.display=
+"none";
+
+
+return;
+
+}
+
+
+/* SAVE SELLER INFORMATION */
 
 currentSeller={
 
-id:user.uid
+id:
+user.uid,
+
+sellerDocId:
+sellerDoc.id,
+
+storeName:
+sellerData.storeName||
+"Seller"
 
 };
 
 
 }catch(error){
 
-console.error(error);
+
+console.error(
+error
+);
+
 
 showMessage(
 
-"Unable to verify seller account.",
+"❌ Unable to verify seller account: "+error.message,
 
 "error"
 
 );
+
 
 }
 
@@ -507,29 +703,72 @@ showMessage(
 
 /* IMAGE PREVIEW */
 
-imageInput.addEventListener(
+imageFile.addEventListener(
 
-"input",
+"change",
 
 function(){
 
-const url=
-imageInput.value.trim();
+
+const file=
+
+imageFile.files[0];
 
 
-if(!url){
+if(!file){
+
 
 imagePreview.innerHTML=
+
 "📷 Product image preview";
+
 
 return;
 
 }
 
 
+/* CHECK IMAGE */
+
+if(
+!file.type.startsWith(
+"image/"
+)
+){
+
+
+showMessage(
+
+"Please select a valid image file.",
+
+"error"
+
+);
+
+
+imageFile.value=
+
+"";
+
+
+return;
+
+}
+
+
+/* CREATE PREVIEW */
+
+const imageUrl=
+
+URL.createObjectURL(
+file
+);
+
+
 imagePreview.innerHTML=
 
-`<img src="${escapeHtml(url)}" alt="Product Preview">`;
+`<img src="${imageUrl}" alt="Product Preview">`;
+
 
 }
 
@@ -544,10 +783,12 @@ form.addEventListener(
 
 async function(e){
 
+
 e.preventDefault();
 
 
 if(!currentSeller){
+
 
 showMessage(
 
@@ -557,32 +798,94 @@ showMessage(
 
 );
 
+
+return;
+
+}
+
+
+const file=
+
+imageFile.files[0];
+
+
+if(!file){
+
+
+showMessage(
+
+"Please select a product image.",
+
+"error"
+
+);
+
+
+return;
+
+}
+
+
+/* FILE SIZE LIMIT 5MB */
+
+if(
+file.size>
+5*1024*1024
+){
+
+
+showMessage(
+
+"Image size must be less than 5 MB.",
+
+"error"
+
+);
+
+
 return;
 
 }
 
 
 const name=
-document.getElementById("name").value.trim();
 
-
-const image=
-document.getElementById("image").value.trim();
+document
+.getElementById(
+"name"
+)
+.value
+.trim();
 
 
 const description=
-document.getElementById("description").value.trim();
+
+document
+.getElementById(
+"description"
+)
+.value
+.trim();
 
 
 const category=
-document.getElementById("category").value;
+
+document
+.getElementById(
+"category"
+)
+.value;
 
 
 const price=
 
 Number(
 
-document.getElementById("price").value
+document
+.getElementById(
+"price"
+)
+.value
 
 );
 
@@ -591,20 +894,110 @@ const stock=
 
 Number(
 
-document.getElementById("stock").value
+document
+.getElementById(
+"stock"
+)
+.value
 
 );
 
 
-addBtn.disabled=true;
+/* DISABLE BUTTON */
+
+addBtn.disabled=
+
+true;
 
 
 addBtn.textContent=
-"Adding Product...";
+
+"📤 Uploading Image...";
 
 
 try{
 
+
+/* CREATE UNIQUE IMAGE NAME */
+
+const safeFileName=
+
+file.name
+
+.replace(
+/[^a-zA-Z0-9.\-_]/g,
+"_"
+);
+
+
+const imagePath=
+
+"products/"
+
++
+
+currentSeller.id
+
++
+
+"/"
+
++
+
+Date.now()
+
++
+
+"_"
+
++
+
+safeFileName;
+
+
+/* STORAGE REFERENCE */
+
+const storageRef=
+
+ref(
+
+storage,
+
+imagePath
+
+);
+
+
+/* UPLOAD IMAGE */
+
+await uploadBytes(
+
+storageRef,
+
+file
+
+);
+
+
+/* GET IMAGE URL */
+
+const imageUrl=
+
+await getDownloadURL(
+
+storageRef
+
+);
+
+
+/* UPDATE BUTTON */
+
+addBtn.textContent=
+
+"📤 Saving Product...";
+
+
+/* SAVE PRODUCT */
 
 await addDoc(
 
@@ -616,35 +1009,71 @@ db,
 {
 
 
-name:name,
+/* PRODUCT DETAILS */
+
+name:
+name,
 
 
-image:image,
+image:
+imageUrl,
 
 
-description:description,
+imageUrl:
+imageUrl,
 
 
-category:category,
+description:
+description,
 
 
-price:price,
+category:
+category,
 
 
-stock:stock,
+price:
+price,
 
 
-/* SELLER ID IS INTERNAL ONLY */
+stock:
+stock,
+
+
+/* SELLER DETAILS */
 
 sellerId:
 currentSeller.id,
 
 
-status:
-"active",
+sellerDocId:
+currentSeller.sellerDocId,
 
+
+sellerName:
+currentSeller.storeName,
+
+
+/* ADMIN APPROVAL */
+
+approvalStatus:
+"pending",
+
+
+status:
+"pending",
+
+
+active:
+false,
+
+
+/* DATE */
 
 createdAt:
+serverTimestamp(),
+
+
+updatedAt:
 serverTimestamp()
 
 }
@@ -654,26 +1083,34 @@ serverTimestamp()
 
 showMessage(
 
-"✅ Product added successfully!",
+"✅ Product submitted successfully! Please wait for admin approval.",
 
 "success"
 
 );
 
 
+/* RESET FORM */
+
 form.reset();
 
 
 imagePreview.innerHTML=
+
 "📷 Product image preview";
 
+
+/* GO BACK */
 
 setTimeout(
 
 function(){
 
+
 location.href=
+
 "seller-dashboard.html";
+
 
 },
 
@@ -684,23 +1121,30 @@ location.href=
 
 }catch(error){
 
-console.error(error);
+
+console.error(
+error
+);
 
 
 showMessage(
 
-"❌ Unable to add product: "+error.message,
+"❌ Unable to submit product: "+error.message,
 
 "error"
 
 );
 
 
-addBtn.disabled=false;
+addBtn.disabled=
+
+false;
 
 
 addBtn.textContent=
-"➕ Add Product";
+
+"📤 Submit Product for Approval";
+
 
 }
 
@@ -709,61 +1153,31 @@ addBtn.textContent=
 );
 
 
-/* MESSAGE */
+/* SHOW MESSAGE */
 
 function showMessage(
+
 text,
+
 type
+
 ){
 
+
 message.style.display=
+
 "block";
 
 
 message.className=
+
 "message "+type;
 
 
 message.textContent=
+
 text;
 
-}
-
-
-/* ESCAPE HTML */
-
-function escapeHtml(
-value
-){
-
-return String(
-value??""
-)
-
-.replaceAll(
-"&",
-"&amp;"
-)
-
-.replaceAll(
-"<",
-"&lt;"
-)
-
-.replaceAll(
-">",
-"&gt;"
-)
-
-.replaceAll(
-'"',
-"&quot;"
-)
-
-.replaceAll(
-"'",
-"&#039;"
-);
 
 }
 
@@ -771,4 +1185,4 @@ value??""
 
 </body>
 
-  </html>
+</html>

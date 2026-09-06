@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Seller Dashboard | NEXORA PICKS</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+color:#172033;
+}
+
+/* HEADER */
+
+header{
+background:#2874f0;
+color:white;
+padding:16px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+position:sticky;
+top:0;
+z-index:100;
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.logoutBtn{
+background:white;
+color:#2874f0;
+border:none;
+padding:9px 14px;
+border-radius:7px;
+font-weight:bold;
+cursor:pointer;
+}
+
+/* LAYOUT */
+
+.dashboard{
+display:flex;
+min-height:calc(100vh - 58px);
+}
+
+/* SIDEBAR */
+
+.sidebar{
+width:240px;
+background:white;
+border-right:1px solid #e5e7eb;
+padding:20px 12px;
+}
+
+.sellerName{
+padding:15px;
+background:#f4f7ff;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+.sellerName small{
+display:block;
+color:#667085;
+margin-top:5px;
+}
+
+.menu{
+display:block;
+padding:14px 15px;
+margin-bottom:6px;
+text-decoration:none;
+color:#172033;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.menu:hover,
+.menu.active{
+background:#2874f0;
+color:white;
+}
+
+/* MAIN */
+
+main{
+flex:1;
+padding:25px;
+max-width:1200px;
+margin:auto;
+width:100%;
+}
+
+h1{
+margin-top:0;
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(180px,1fr));
+gap:18px;
+margin-top:20px;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:14px;
+box-shadow:0 2px 10px #00000010;
+}
+
+.cardTitle{
+color:#687386;
+font-size:14px;
+font-weight:bold;
+}
+
+.cardNumber{
+font-size:28px;
+font-weight:bold;
+margin-top:10px;
+color:#2874f0;
+}
+
+/* ACTIONS */
+
+.actions{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(220px,1fr));
+gap:18px;
+margin-top:25px;
+}
+
+.actionCard{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:0 2px 10px #00000010;
+cursor:pointer;
+text-align:center;
+transition:.2s;
+}
+
+.actionCard:hover{
+transform:translateY(-3px);
+}
+
+.actionIcon{
+font-size:38px;
+}
+
+.actionCard h3{
+margin-bottom:8px;
+}
+
+.actionCard p{
+color:#687386;
+font-size:14px;
+}
+
+/* STATUS BOX */
+
+.statusBox{
+background:#fff3cd;
+color:#856404;
+padding:20px;
+border-radius:12px;
+margin-top:20px;
+font-weight:bold;
+}
+
+.rejectedBox{
+background:#fff0f0;
+color:#c62828;
+padding:20px;
+border-radius:12px;
+margin-top:20px;
+font-weight:bold;
+}
+
+.loading{
+text-align:center;
+padding:50px;
+font-size:18px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+.dashboard{
+display:block;
+}
+
+.sidebar{
+width:100%;
+border-right:none;
+border-bottom:1px solid #e5e7eb;
+display:flex;
+overflow-x:auto;
+padding:10px;
+gap:5px;
+}
+
+.sellerName{
+display:none;
+}
+
+.menu{
+white-space:nowrap;
+margin:0;
+font-size:14px;
+}
+
+main{
+padding:18px 12px;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="logo">
+🏪 NEXORA PICKS Seller
+</div>
+
+<button
+class="logoutBtn"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</header>
+
+
+<div class="dashboard">
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<div class="sellerName">
+
+<b id="storeName">
+
+Loading...
+
+</b>
+
+<small>
+
+Seller Dashboard
+
+</small>
+
+</div>
+
+
+<a
+class="menu active"
+href="seller-dashboard.html">
+
+📊 Dashboard
+
+</a>
+
+
+<a
+class="menu"
+href="seller-add-product.html">
+
+➕ Add Product
+
+</a>
+
+
+<a
+class="menu"
+href="seller-products.html">
+
+📦 My Products
+
+</a>
+
+
+<a
+class="menu"
+href="seller-orders.html">
+
+🛒 Orders
+
+</a>
+
+
+<a
+class="menu"
+href="seller-earnings.html">
+
+💰 Earnings
+
+</a>
+
+
+<a
+class="menu"
+href="seller-returns.html">
+
+🔄 Returns
+
+</a>
+
+
+<a
+class="menu"
+href="seller-register.html">
+
+⚙️ Store Settings
+
+</a>
+
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+
+<main id="mainContent">
+
+<div class="loading">
+
+Loading seller dashboard...
+
+</div>
+
+</main>
+
+
+</div>
+
+
+<script type="module">
+
+
+import{
+initializeApp
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import{
+getAuth,
+onAuthStateChanged,
+signOut
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import{
+getFirestore,
+collection,
+query,
+where,
+getDocs
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+const firebaseConfig={
+
+apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+
+authDomain:"nexora-picks-e887f.firebaseapp.com",
+
+projectId:"nexora-picks-e887f",
+
+storageBucket:"nexora-picks-e887f.firebasestorage.app",
+
+messagingSenderId:"621359003619",
+
+appId:"1:621359003619:web:483add8bfcd0241f4192d",
+
+measurementId:"G-LSMJ6QLLPW"
+
+};
+
+
+const app=
+
+initializeApp(
+firebaseConfig
+);
+
+
+const auth=
+
+getAuth(
+app
+);
+
+
+const db=
+
+getFirestore(
+app
+);
+
+
+const $=
+
+id=>document.getElementById(
+id
+);
+
+
+/* CHECK LOGIN */
+
+onAuthStateChanged(
+
+auth,
+
+async user=>{
+
+
+if(!user){
+
+
+location.href=
+
+"seller-register.html";
+
+
+return;
+
+}
+
+
+try{
+
+
+/* FIND SELLER */
+
+const q=
+
+query(
+
+collection(
+db,
+"sellers"
+),
+
+where(
+"userId",
+"==",
+user.uid
+)
+
+);
+
+
+const snapshot=
+
+await getDocs(
+q
+);
+
+
+if(snapshot.empty){
+
+
+$("mainContent").innerHTML=
+
+`
+
+<div class="statusBox">
+
+⚠️ You have not registered as a seller yet.
+
+<br><br>
+
+<a href="seller-register.html">
+
+Register as Seller
+
+</a>
+
+</div>
+
+`;
+
+
+return;
+
+}
+
+
+/* GET SELLER DATA */
+
+const sellerDoc=
+
+snapshot.docs[0];
+
+
+const seller=
+
+sellerDoc.data();
+
+
+const status=
+
+String(
+seller.status||
+"pending"
+)
+.toLowerCase();
+
+
+$("storeName").textContent=
+
+seller.storeName||
+"Seller Store";
+
+
+/* PENDING */
+
+if(status==="pending"){
+
+
+$("mainContent").innerHTML=
+
+`
+
+<h1>
+⏳ Seller Application Pending
+</h1>
+
+<div class="statusBox">
+
+Your seller application is currently under admin review.
+
+<br><br>
+
+Please wait until your account is approved.
+
+</div>
+
+`;
+
+
+return;
+
+}
+
+
+/* REJECTED */
+
+if(status==="rejected"){
+
+
+$("mainContent").innerHTML=
+
+`
+
+<h1>
+❌ Seller Application Rejected
+</h1>
+
+<div class="rejectedBox">
+
+Your seller application has been rejected.
+
+Please contact NEXORA PICKS support.
+
+</div>
+
+`;
+
+
+return;
+
+}
+
+
+/* APPROVED SELLER */
+
+if(
+status==="approved"
+){
+
+
+showDashboard(
+seller
+);
+
+
+return;
+
+}
+
+
+/* UNKNOWN STATUS */
+
+$("mainContent").innerHTML=
+
+`
+
+<div class="statusBox">
+
+⚠️ Seller status: ${status}
+
+</div>
+
+`;
+
+
+}catch(error){
+
+
+console.error(
+error
+);
+
+
+$("mainContent").innerHTML=
+
+`
+
+<div class="rejectedBox">
+
+❌ Unable to load seller dashboard.
+
+<br><br>
+
+${escapeHtml(
+error.message
+)}
+
+</div>
+
+`;
+
+
+}
+
+
+}
+
+);
+
+
+/* SHOW DASHBOARD */
+
+function showDashboard(seller){
+
+
+$("mainContent").innerHTML=
+
+`
+
+<h1>
+Welcome, ${escapeHtml(
+seller.storeName||
+"Seller"
+)} 👋
+</h1>
+
+
+<p>
+
+Manage your products, orders and earnings from your seller dashboard.
+
+</p>
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<div class="cardTitle">
+
+📦 Total Products
+
+</div>
+
+<div
+class="cardNumber"
+id="totalProducts">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="cardTitle">
+
+🛒 Total Orders
+
+</div>
+
+<div
+class="cardNumber"
+id="totalOrders">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="cardTitle">
+
+💰 Total Earnings
+
+</div>
+
+<div
+class="cardNumber">
+
+₹0
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="cardTitle">
+
+📦 Pending Orders
+
+</div>
+
+<div
+class="cardNumber">
+
+0
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="actions">
+
+
+<div
+class="actionCard"
+onclick="location.href='seller-add-product.html'">
+
+<div class="actionIcon">
+
+➕
+
+</div>
+
+<h3>
+
+Add Product
+
+</h3>
+
+<p>
+
+Upload a new product to NEXORA PICKS.
+
+</p>
+
+</div>
+
+
+<div
+class="actionCard"
+onclick="location.href='seller-products.html'">
+
+<div class="actionIcon">
+
+📦
+
+</div>
+
+<h3>
+
+My Products
+
+</h3>
+
+<p>
+
+Manage your uploaded products.
+
+</p>
+
+</div>
+
+
+<div
+class="actionCard"
+onclick="location.href='seller-orders.html'">
+
+<div class="actionIcon">
+
+🛒
+
+</div>
+
+<h3>
+
+Orders
+
+</h3>
+
+<p>
+
+View customer orders.
+
+</p>
+
+</div>
+
+
+<div
+class="actionCard"
+onclick="location.href='seller-earnings.html'">
+
+<div class="actionIcon">
+
+💰
+
+</div>
+
+<h3>
+
+Earnings
+
+</h3>
+
+<p>
+
+Check your earnings and payments.
+
+</p>
+
+</div>
+
+
+</div>
+
+`;
+
+
+}
+
+
+/* LOGOUT */
+
+window.logout=
+
+async function(){
+
+
+try{
+
+
+await signOut(
+auth
+);
+
+
+location.href=
+
+"index.html";
+
+
+}catch(error){
+
+
+alert(
+
+"Unable to logout."
+
+);
+
+
+}
+
+
+};
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(value){
+
+
+return String(
+value??""
+)
+
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
+);
+
+
+}
+
+
+</script>
+
+
+</body>
+
+  </html>

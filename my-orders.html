@@ -1,192 +1,362 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>NEXORA PICKS — Seller Orders</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>
+My Orders | NEXORA PICKS
+</title>
+
 
 <style>
 
 *{
-  box-sizing:border-box
+box-sizing:border-box
 }
 
 body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#f3f5f8;
-  color:#17202a
+margin:0;
+font-family:Arial,sans-serif;
+background:#f4f6f9;
+color:#172033
 }
+
 
 header{
-  background:#2874f0;
-  color:white;
-  padding:18px 16px;
-  font-size:22px;
-  font-weight:800
+background:#2874f0;
+color:white;
+padding:18px 20px;
+display:flex;
+align-items:center;
+gap:15px;
+position:sticky;
+top:0;
+z-index:10
 }
 
-main{
-  max-width:800px;
-  margin:auto;
-  padding:16px
+
+header a{
+color:white;
+text-decoration:none;
+font-size:28px
 }
 
-.box{
-  background:white;
-  border-radius:14px;
-  padding:18px;
-  margin-bottom:16px;
-  box-shadow:0 2px 10px #00000012
+
+header h1{
+margin:0;
+font-size:24px
 }
 
-h1,h2,h3,h4{
-  margin-top:0
+
+.wrap{
+max-width:850px;
+margin:auto;
+padding:20px
 }
+
+
+.top{
+background:white;
+border-radius:14px;
+padding:20px;
+margin-bottom:18px;
+box-shadow:0 2px 10px #00000010
+}
+
+
+.top h2{
+margin:0 0 8px
+}
+
+
+#loginMsg{
+color:#d32f2f;
+font-weight:bold
+}
+
 
 button{
-  border:0;
-  border-radius:8px;
-  padding:11px 15px;
-  font-weight:700;
-  cursor:pointer
+border:0;
+border-radius:8px;
+padding:12px 18px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer
 }
 
-.back{
-  background:#eef2f7;
-  color:#17202a;
-  margin-bottom:15px
+
+.loginBtn{
+background:#2874f0;
+color:white
+}
+
+
+.order{
+background:white;
+border-radius:14px;
+margin-bottom:18px;
+padding:20px;
+box-shadow:0 2px 10px #00000010
+}
+
+
+.orderHead{
+display:flex;
+justify-content:space-between;
+gap:10px;
+border-bottom:1px solid #eee;
+padding-bottom:14px;
+margin-bottom:15px
+}
+
+
+.orderId{
+font-size:14px;
+color:#687386;
+word-break:break-all
+}
+
+
+.status{
+background:#fff3cd;
+color:#856404;
+padding:7px 12px;
+border-radius:20px;
+font-weight:bold;
+white-space:nowrap;
+text-transform:uppercase
+}
+
+
+.item{
+display:flex;
+justify-content:space-between;
+gap:15px;
+padding:10px 0;
+border-bottom:1px solid #f0f0f0
+}
+
+
+.itemName{
+font-weight:bold
+}
+
+
+.itemPrice{
+white-space:nowrap
+}
+
+
+.total{
+display:flex;
+justify-content:space-between;
+font-size:21px;
+font-weight:bold;
+margin-top:16px
+}
+
+
+.info{
+margin-top:18px;
+background:#f7f9fc;
+padding:15px;
+border-radius:10px;
+line-height:1.7
+}
+
+
+.empty{
+background:white;
+padding:40px 20px;
+text-align:center;
+border-radius:14px;
+color:#667085
+}
+
+
+.loading{
+text-align:center;
+padding:30px
+}
+
+
+.cod{
+color:#16803c;
+font-weight:bold
+}
+
+
+/* ORDER TRACKING */
+
+.tracking{
+margin-top:22px;
+padding:18px;
+background:#f7f9fc;
+border-radius:12px
+}
+
+
+.trackingTitle{
+font-size:18px;
+font-weight:bold;
+margin-bottom:18px
+}
+
+
+.step{
+display:flex;
+align-items:flex-start;
+gap:12px;
+margin-bottom:14px;
+position:relative
+}
+
+
+.stepIcon{
+width:32px;
+height:32px;
+border-radius:50%;
+background:#d9dee7;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:15px;
+flex-shrink:0;
+position:relative;
+z-index:2
+}
+
+
+.step.active .stepIcon{
+background:#2874f0;
+color:white
+}
+
+
+.step.done .stepIcon{
+background:#16803c;
+color:white
+}
+
+
+.stepText{
+padding-top:6px;
+font-weight:bold;
+color:#8a94a6
+}
+
+
+.step.active .stepText,
+.step.done .stepText{
+color:#172033
+}
+
+
+.step:not(:last-child)::after{
+content:"";
+position:absolute;
+left:15px;
+top:32px;
+height:16px;
+width:2px;
+background:#d9dee7
+}
+
+
+.step.done:not(:last-child)::after{
+background:#16803c
+}
+
+
+.cancelledBox{
+margin-top:18px;
+padding:15px;
+border-radius:10px;
+background:#fff0f0;
+color:#c62828;
+font-weight:bold;
+text-align:center
+}
+
+
+@media(max-width:600px){
+
+.wrap{
+padding:12px
 }
 
 .order{
-  border:1px solid #dfe4ea;
-  border-radius:12px;
-  padding:15px;
-  margin:12px 0
+padding:15px
 }
 
-.status{
-  display:inline-block;
-  padding:6px 10px;
-  border-radius:20px;
-  background:#fff3cd;
-  color:#856404;
-  font-size:13px;
-  font-weight:800;
-  text-transform:uppercase
+.orderHead{
+align-items:flex-start
 }
 
-.product{
-  background:#f7f9fc;
-  padding:10px;
-  border-radius:9px;
-  margin:8px 0
+.item{
+font-size:15px
 }
 
-.total{
-  font-size:20px;
-  font-weight:800;
-  margin-top:12px
-}
-
-.muted{
-  color:#68717d
-}
-
-.empty{
-  text-align:center;
-  padding:35px 10px;
-  color:#68717d
-}
-
-.error{
-  color:#c62828;
-  font-weight:700
-}
-
-.statusBox{
-  margin-top:18px;
-  padding-top:15px;
-  border-top:1px solid #eee
-}
-
-.statusBox label{
-  display:block;
-  font-weight:bold;
-  margin-bottom:8px
-}
-
-.statusSelect{
-  width:100%;
-  padding:12px;
-  border:1px solid #ccd3dd;
-  border-radius:8px;
-  font-size:16px;
-  background:white
-}
-
-.saveStatus{
-  width:100%;
-  margin-top:10px;
-  background:#2874f0;
-  color:white;
-  font-size:16px
-}
-
-.saveStatus:hover{
-  opacity:.9
 }
 
 </style>
 
 </head>
 
+
 <body>
 
+
 <header>
-📦 NEXORA PICKS — SELLER ORDERS
+
+<a href="index.html">
+‹
+</a>
+
+<h1>
+📦 My Orders
+</h1>
+
 </header>
 
-<main>
-
-<button
-class="back"
-onclick="location.href='nexora-seller.html'">
-
-← Seller Dashboard
-
-</button>
 
 
-<div class="box">
+<div class="wrap">
+
+
+<div class="top">
 
 <h2>
-📦 Customer Orders
+My Orders
 </h2>
 
-<p class="muted">
+<div id="userInfo">
+Checking login...
+</div>
 
-Orders containing your products will appear here.
-
-</p>
-
-<div id="sellerInfo"></div>
+<div id="loginMsg"></div>
 
 </div>
 
 
-<div class="box">
 
 <div id="orders">
 
-Loading orders...
-
+<div class="loading">
+Loading your orders...
 </div>
 
 </div>
 
-</main>
+
+</div>
+
 
 
 <script type="module">
@@ -212,9 +382,7 @@ getFirestore,
 collection,
 query,
 where,
-onSnapshot,
-doc,
-updateDoc
+onSnapshot
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
@@ -253,63 +421,59 @@ const db=
 getFirestore(app);
 
 
-
 const $=
 id=>document.getElementById(id);
 
 
 
-function esc(v){
-
-return String(v??"")
-.replace(/[&<>"']/g,c=>({
-
-"&":"&amp;",
-
-"<":"&lt;",
-
-">":"&gt;",
-
-'"':"&quot;",
-
-"'":"&#39;"
-
-}[c]));
-
-}
-
-
-
-/* CURRENT SELLER */
-
-let currentSellerId=null;
-
-
-
 onAuthStateChanged(
 auth,
-async user=>{
+user=>{
 
 
 if(!user){
 
-$("orders").innerHTML=
 
-'<p class="error">Please login as a seller first.</p>';
+$("userInfo").innerHTML=`
+
+<button
+class="loginBtn"
+onclick="goLogin()">
+
+Login to view your orders
+
+</button>
+
+`;
+
+
+$("orders").innerHTML=`
+
+<div class="empty">
+
+🔐 Please login to see your orders.
+
+</div>
+
+`;
+
 
 return;
 
 }
 
 
-currentSellerId=
-user.uid;
 
+$("userInfo").innerHTML=
 
-$("sellerInfo").innerHTML=
+`Logged in as
+<b>
 
-`<b>Seller:</b>
-${esc(user.displayName||"Seller")}`;
+${escapeHtml(
+user.email||""
+)}
+
+</b>`;
 
 
 
@@ -324,15 +488,14 @@ user.uid
 
 
 
-/* LOAD SELLER ORDERS */
+/* REAL-TIME ORDERS */
 
 
-function loadOrders(
-sellerId
-){
+function loadOrders(uid){
 
 
 const q=
+
 query(
 
 collection(
@@ -341,9 +504,9 @@ db,
 ),
 
 where(
-"sellerIds",
-"array-contains",
-sellerId
+"customerId",
+"==",
+uid
 )
 
 );
@@ -354,28 +517,71 @@ onSnapshot(
 
 q,
 
-snapshot=>{
+snap=>{
 
 
-if(
-snapshot.empty
-){
+let orders=
+
+snap.docs.map(
+doc=>({
+
+id:doc.id,
+
+...doc.data()
+
+})
+
+);
+
+
+
+orders.sort(
+(a,b)=>{
+
+
+const aTime=
+
+a.createdAt?.seconds||
+0;
+
+
+const bTime=
+
+b.createdAt?.seconds||
+0;
+
+
+return bTime-aTime;
+
+
+}
+
+);
+
+
+
+if(!orders.length){
 
 
 $("orders").innerHTML=`
 
 <div class="empty">
 
-<h3>
-📭 No orders yet
-</h3>
+<h2>
+📦 No orders yet
+</h2>
 
 <p>
-
-Customer orders for your products
-will appear here.
-
+Your placed orders will appear here.
 </p>
+
+<button
+class="loginBtn"
+onclick="location.href='index.html'">
+
+Start Shopping
+
+</button>
 
 </div>
 
@@ -388,284 +594,153 @@ return;
 
 
 
-let orders=[];
-
-
-
-snapshot.forEach(
-docSnap=>{
-
-
-orders.push({
-
-id:
-docSnap.id,
-
-...docSnap.data()
-
-});
-
-
-}
-
-);
-
-
-
-orders.sort(
-(a,b)=>{
-
-
-const ta=
-a.createdAt?.seconds||0;
-
-
-const tb=
-b.createdAt?.seconds||0;
-
-
-return tb-ta;
-
-
-}
-
-);
-
-
-
 $("orders").innerHTML=
 
+orders
+.map(showOrder)
+.join("");
 
-orders.map(
-order=>{
+
+},
+
+error=>{
 
 
-const myItems=
+console.error(
+error
+);
 
-(
-order.items||[]
-)
 
-.filter(
-item=>
+$("orders").innerHTML=`
 
-item.sellerId===
-sellerId
+<div class="empty">
+
+❌ Unable to load orders.
+
+<br><br>
+
+${escapeHtml(
+error.message
+)}
+
+</div>
+
+`;
+
+
+}
+
 
 );
 
 
+}
 
-const myTotal=
 
-myItems.reduce(
 
-(sum,item)=>
+/* SHOW ORDER */
 
-sum+
 
-(
-Number(item.price)||0
-)
-
-*
-
-(
-Number(item.qty)||0
-),
-
-0
-
-);
-
+function showOrder(order){
 
 
 const date=
 
-order.createdAt?.seconds
-
-?
-
-new Date(
-
-order.createdAt.seconds*
-1000
-
-)
-
-.toLocaleString()
-
-:
-
-"Recently";
+formatDate(
+order.createdAt
+);
 
 
+const status=
 
-return `
-
-
-<div class="order">
-
-
-<h3>
-
-Order #
-
-${esc(
-order.id.slice(0,8)
-)}
-
-</h3>
-
-
-
-<span class="status">
-
-${esc(
+String(
 order.status||
 "pending"
-)}
-
-</span>
-
+)
+.toLowerCase();
 
 
-<p class="muted">
+const items=
 
-${esc(
-date
-)}
+Array.isArray(
+order.items
+)
 
-</p>
-
-
-<hr>
+?
+order.items
+:
+[];
 
 
 
-<p>
+const itemHTML=
 
-<b>
-Customer:
-</b>
-
-${esc(
-order.customerName||
-"Customer"
-)}
-
-</p>
-
-
-
-<p>
-
-<b>
-Mobile:
-</b>
-
-${esc(
-order.customerPhone||
-""
-)}
-
-</p>
-
-
-
-<p>
-
-<b>
-Delivery address:
-</b>
-
-<br>
-
-${esc(
-order.deliveryAddress||
-""
-)}
-
-</p>
-
-
-
-<h4>
-
-🛍️ Your Products
-
-</h4>
-
-
-
-${
-
-myItems.length
+items.length
 
 ?
 
-myItems.map(
+items.map(
 item=>`
 
 
-<div class="product">
+<div class="item">
 
 
-<b>
+<div>
 
-${esc(
-item.name
+
+<div class="itemName">
+
+${escapeHtml(
+item.name||
+"Product"
 )}
 
-</b>
-
-<br>
+</div>
 
 
-₹${
+<div>
 
-Number(
-item.price
-)||0
+Quantity:
 
-}
-
-
-×
-
-${
-
-Number(
+${Number(
 item.qty
-)||0
+)||1}
 
-}
-
-
-=
+</div>
 
 
-<b>
+</div>
+
+
+
+<div class="itemPrice">
 
 ₹${
 
 (
+
 Number(
-item.price
-)||0
+item.price||
+0
 )
 
 *
 
-(
 Number(
-item.qty
-)||0
+item.qty||
+1
+)
+
+)
+
+.toLocaleString(
+"en-IN"
 )
 
 }
 
-</b>
+</div>
 
 
 </div>
@@ -678,131 +753,162 @@ item.qty
 
 :
 
-""
+`<p>
+No product details available.
+</p>`;
 
-}
 
 
+return `
 
-<div class="total">
 
-Your order value:
+<div class="order">
 
-₹${
 
-myTotal
+<div class="orderHead">
 
-}
+
+<div>
+
+
+<b>
+Order ID
+</b>
+
+
+<div class="orderId">
+
+${escapeHtml(
+order.id
+)}
+
+</div>
+
+
+<div
+style="margin-top:6px">
+
+${date}
+
+</div>
+
 
 </div>
 
 
 
-<p>
+<div
+class="status">
 
-<b>
-Payment:
-</b>
-
-${esc(
-order.paymentMethod||
-"COD"
+${escapeHtml(
+status.replaceAll(
+"-",
+" "
+)
+.toUpperCase()
 )}
 
-</p>
+</div>
+
+
+</div>
 
 
 
-<div class="statusBox">
+<h3>
+📦 Products
+</h3>
 
 
-<label>
-
-Update Order Status
-
-</label>
-
-
-<select
-class="statusSelect"
-id="status-${order.id}">
-
-
-<option
-value="pending"
-${order.status==="pending"?"selected":""}>
-
-🟡 Pending
-
-</option>
-
-
-<option
-value="confirmed"
-${order.status==="confirmed"?"selected":""}>
-
-✅ Confirmed
-
-</option>
-
-
-<option
-value="packed"
-${order.status==="packed"?"selected":""}>
-
-📦 Packed
-
-</option>
-
-
-<option
-value="shipped"
-${order.status==="shipped"?"selected":""}>
-
-🚚 Shipped
-
-</option>
-
-
-<option
-value="out-for-delivery"
-${order.status==="out-for-delivery"?"selected":""}>
-
-🚚 Out for Delivery
-
-</option>
-
-
-<option
-value="delivered"
-${order.status==="delivered"?"selected":""}>
-
-🎉 Delivered
-
-</option>
-
-
-<option
-value="cancelled"
-${order.status==="cancelled"?"selected":""}>
-
-❌ Cancelled
-
-</option>
-
-
-</select>
+${itemHTML}
 
 
 
-<button
-class="saveStatus"
-onclick="updateOrderStatus('${order.id}')">
+/* TRACKING */
+
+${createTracking(status)}
 
 
-💾 Update Status
 
-</button>
+<div class="total">
+
+
+<span>
+Total
+</span>
+
+
+<span>
+
+₹${
+
+Number(
+order.total||
+0
+)
+
+.toLocaleString(
+"en-IN"
+)
+
+}
+
+</span>
+
+
+</div>
+
+
+
+<div
+style="margin-top:12px"
+class="cod">
+
+💵 Cash on Delivery
+
+</div>
+
+
+
+<div class="info">
+
+
+<b>
+📍 Delivery Details
+</b>
+
+
+<br>
+
+
+Name:
+
+${escapeHtml(
+order.customerName||
+""
+)}
+
+
+<br>
+
+
+Mobile:
+
+${escapeHtml(
+order.customerPhone||
+""
+)}
+
+
+<br>
+
+
+Address:
+
+${escapeHtml(
+order.deliveryAddress||
+""
+)}
 
 
 </div>
@@ -816,109 +922,298 @@ onclick="updateOrderStatus('${order.id}')">
 
 }
 
-).join("");
 
 
-},
-
-error=>{
+/* CREATE ORDER TRACKING */
 
 
-$("orders").innerHTML=
+function createTracking(status){
 
 
-`<p class="error">
-
-Unable to load orders:
-
-${esc(
-error.message
-)}
-
-</p>`;
-
-
-}
-
-
-);
-
-
-}
-
-
-
-/* UPDATE ORDER STATUS */
-
-
-window.updateOrderStatus=
-async function(
-orderId
+if(
+status==="cancelled"
 ){
 
 
-const select=
+return `
 
-document.getElementById(
+<div class="cancelledBox">
 
-"status-"+
-orderId
+❌ This order has been cancelled.
+
+</div>
+
+`;
+
+
+}
+
+
+
+const steps=[
+
+
+{
+key:"pending",
+icon:"🟡",
+text:"Order Placed"
+},
+
+
+{
+key:"confirmed",
+icon:"✅",
+text:"Order Confirmed"
+},
+
+
+{
+key:"packed",
+icon:"📦",
+text:"Packed"
+},
+
+
+{
+key:"shipped",
+icon:"🚚",
+text:"Shipped"
+},
+
+
+{
+key:"out-for-delivery",
+icon:"🚚",
+text:"Out for Delivery"
+},
+
+
+{
+key:"delivered",
+icon:"🎉",
+text:"Delivered"
+}
+
+
+];
+
+
+
+const current=
+
+steps.findIndex(
+step=>
+
+step.key===
+status
 
 );
 
 
 
-const newStatus=
+return `
 
-select.value;
 
+<div class="tracking">
+
+
+<div class="trackingTitle">
+
+📍 Order Tracking
+
+</div>
+
+
+${
+
+steps.map(
+(step,index)=>{
+
+
+let state=
+"";
+
+
+if(
+index<current
+){
+
+state=
+"done";
+
+}
+
+
+if(
+index===current
+){
+
+state=
+"active";
+
+}
+
+
+return `
+
+
+<div
+class="step
+${state}">
+
+
+<div
+class="stepIcon">
+
+${step.icon}
+
+</div>
+
+
+<div
+class="stepText">
+
+${step.text}
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+}
+
+).join("")
+
+
+}
+
+
+</div>
+
+
+`;
+
+
+}
+
+
+
+/* FORMAT DATE */
+
+
+function formatDate(timestamp){
+
+
+if(!timestamp){
+
+return "Date unavailable";
+
+}
 
 
 try{
 
 
-await updateDoc(
+const date=
 
-doc(
+timestamp.toDate
 
-db,
-"orders",
-orderId
+?
 
-),
+timestamp.toDate()
+
+:
+
+new Date(
+timestamp
+);
+
+
+
+return date.toLocaleString(
+
+"en-IN",
 
 {
 
-status:
-newStatus
+day:"2-digit",
+
+month:"short",
+
+year:"numeric",
+
+hour:"2-digit",
+
+minute:"2-digit"
 
 }
 
 );
 
 
+}catch(e){
 
-alert(
+return "Date unavailable";
 
-"Order status updated successfully ✓"
-
-);
-
-
-}catch(error){
+}
 
 
-alert(
+}
 
-"Unable to update status: "+
 
-error.message
 
+/* ESCAPE HTML */
+
+
+function escapeHtml(value){
+
+
+return String(
+value??""
+)
+
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
 );
 
 
 }
 
+
+
+/* LOGIN */
+
+
+window.goLogin=
+function(){
+
+location.href=
+"index.html";
 
 };
 

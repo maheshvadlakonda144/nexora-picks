@@ -5,10 +5,13 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1">
 
-<title>Seller Registration | NEXORA PICKS</title>
+<title>
+Become a Seller | NEXORA PICKS
+</title>
 
 <style>
 
@@ -30,6 +33,9 @@ padding:18px 20px;
 display:flex;
 align-items:center;
 gap:15px;
+position:sticky;
+top:0;
+z-index:10;
 }
 
 header a{
@@ -40,36 +46,45 @@ font-size:28px;
 
 header h1{
 margin:0;
-font-size:24px;
+font-size:23px;
 }
 
 .container{
-max-width:600px;
-margin:30px auto;
-padding:20px;
+max-width:650px;
+margin:auto;
+padding:20px 15px 40px;
 }
 
 .card{
 background:white;
-padding:25px;
-border-radius:15px;
-box-shadow:0 3px 15px rgba(0,0,0,.1);
+border-radius:16px;
+padding:22px;
+box-shadow:0 3px 15px #00000012;
 }
 
-h2{
+.card h2{
 margin-top:0;
+margin-bottom:8px;
 }
 
 .subtitle{
-color:#667085;
-line-height:1.6;
+color:#687386;
+line-height:1.5;
 margin-bottom:25px;
+}
+
+.sectionTitle{
+font-size:18px;
+font-weight:bold;
+margin-top:25px;
+margin-bottom:15px;
+padding-bottom:10px;
+border-bottom:1px solid #eee;
 }
 
 label{
 display:block;
 font-weight:bold;
-margin-top:16px;
 margin-bottom:7px;
 }
 
@@ -77,30 +92,50 @@ input,
 textarea,
 select{
 width:100%;
-padding:14px;
-border:1px solid #d0d5dd;
-border-radius:8px;
+padding:13px;
+border:1px solid #d5d9e0;
+border-radius:9px;
 font-size:16px;
+margin-bottom:18px;
 outline:none;
+font-family:Arial,sans-serif;
 }
 
 input:focus,
 textarea:focus,
 select:focus{
 border-color:#2874f0;
+box-shadow:0 0 0 3px #2874f020;
 }
 
 textarea{
 resize:vertical;
-min-height:90px;
+min-height:100px;
+}
+
+.checkboxBox{
+display:flex;
+gap:10px;
+align-items:flex-start;
+margin:10px 0 20px;
+}
+
+.checkboxBox input{
+width:auto;
+margin-top:4px;
+}
+
+.checkboxBox label{
+font-weight:normal;
+line-height:1.5;
+margin:0;
 }
 
 button{
 width:100%;
-margin-top:25px;
+border:none;
+border-radius:9px;
 padding:15px;
-border:0;
-border-radius:8px;
 background:#2874f0;
 color:white;
 font-size:17px;
@@ -115,44 +150,48 @@ cursor:not-allowed;
 
 .message{
 margin-top:18px;
-padding:12px;
-border-radius:8px;
+padding:14px;
+border-radius:9px;
 display:none;
+font-weight:bold;
+line-height:1.5;
 }
 
 .success{
-background:#e8f5e9;
+display:block;
+background:#e8f7ed;
 color:#16803c;
 }
 
 .error{
-background:#ffebee;
+display:block;
+background:#fff0f0;
 color:#c62828;
 }
 
+.pending{
+display:block;
+background:#fff8e1;
+color:#856404;
+}
+
 .loginBox{
+background:white;
+border-radius:16px;
+padding:30px 20px;
 text-align:center;
-margin-top:20px;
-color:#667085;
+box-shadow:0 3px 15px #00000012;
 }
 
-.loginBox a{
-color:#2874f0;
-font-weight:bold;
-text-decoration:none;
+.loginBox button{
+margin-top:15px;
 }
 
-@media(max-width:600px){
-
-.container{
-margin:10px auto;
-padding:12px;
-}
-
-.card{
-padding:20px;
-}
-
+.note{
+font-size:14px;
+color:#687386;
+line-height:1.5;
+margin-top:12px;
 }
 
 </style>
@@ -160,6 +199,7 @@ padding:20px;
 </head>
 
 <body>
+
 
 <header>
 
@@ -176,15 +216,52 @@ padding:20px;
 
 <div class="container">
 
+
+<!-- LOGIN REQUIRED -->
+
+<div
+id="loginRequired"
+style="display:none">
+
+<div class="loginBox">
+
+<h2>
+🔐 Login Required
+</h2>
+
+<p>
+Please login before registering as a seller.
+</p>
+
+<button
+onclick="goLogin()">
+
+Login Now
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<!-- SELLER FORM -->
+
+<div
+id="sellerFormContainer"
+style="display:none">
+
 <div class="card">
 
 <h2>
-Start Selling on NEXORA PICKS
+Sell on NEXORA PICKS
 </h2>
 
 <p class="subtitle">
 
-Create your seller account and start listing your products.
+Create your seller account. After registration,
+your application will be reviewed by the admin.
 
 </p>
 
@@ -192,28 +269,22 @@ Create your seller account and start listing your products.
 <form id="sellerForm">
 
 
+<div class="sectionTitle">
+
+👤 Personal Information
+
+</div>
+
+
 <label>
-Your Name
+Full Name
 </label>
 
 <input
 type="text"
-id="name"
+id="fullName"
 placeholder="Enter your full name"
-required
->
-
-
-<label>
-Business / Store Name
-</label>
-
-<input
-type="text"
-id="storeName"
-placeholder="Enter your store name"
-required
->
+required>
 
 
 <label>
@@ -224,8 +295,7 @@ Email Address
 type="email"
 id="email"
 placeholder="Enter your email"
-required
->
+readonly>
 
 
 <label>
@@ -235,9 +305,80 @@ Mobile Number
 <input
 type="tel"
 id="phone"
-placeholder="Enter your mobile number"
-required
->
+placeholder="Enter mobile number"
+pattern="[0-9]{10}"
+maxlength="10"
+required>
+
+
+
+<div class="sectionTitle">
+
+🏪 Store Information
+
+</div>
+
+
+<label>
+Store Name
+</label>
+
+<input
+type="text"
+id="storeName"
+placeholder="Enter your store name"
+required>
+
+
+<label>
+Business Category
+</label>
+
+<select
+id="businessCategory"
+required>
+
+<option value="">
+Select category
+</option>
+
+<option>
+Electronics
+</option>
+
+<option>
+Fashion
+</option>
+
+<option>
+Beauty & Personal Care
+</option>
+
+<option>
+Home & Kitchen
+</option>
+
+<option>
+Mobiles & Accessories
+</option>
+
+<option>
+Books
+</option>
+
+<option>
+Sports
+</option>
+
+<option>
+Grocery
+</option>
+
+<option>
+Other
+</option>
+
+</select>
 
 
 <label>
@@ -245,48 +386,119 @@ Business Address
 </label>
 
 <textarea
-id="address"
+id="businessAddress"
 placeholder="Enter your business address"
-required
-></textarea>
+required></textarea>
+
+
+
+<div class="sectionTitle">
+
+🧾 Business Details
+
+</div>
 
 
 <label>
-Password
+PAN Number
 </label>
 
 <input
-type="password"
-id="password"
-placeholder="Create a password"
-minlength="6"
-required
->
+type="text"
+id="panNumber"
+placeholder="Enter PAN number">
 
 
 <label>
-Confirm Password
+GST Number
 </label>
 
 <input
-type="password"
-id="confirmPassword"
-placeholder="Confirm your password"
-minlength="6"
-required
->
+type="text"
+id="gstNumber"
+placeholder="Enter GST number (if available)">
+
+
+
+<div class="sectionTitle">
+
+🏦 Bank Details
+
+</div>
+
+
+<label>
+Account Holder Name
+</label>
+
+<input
+type="text"
+id="accountHolder"
+placeholder="Enter account holder name"
+required>
+
+
+<label>
+Bank Name
+</label>
+
+<input
+type="text"
+id="bankName"
+placeholder="Enter bank name"
+required>
+
+
+<label>
+Account Number
+</label>
+
+<input
+type="text"
+id="accountNumber"
+placeholder="Enter bank account number"
+required>
+
+
+<label>
+IFSC Code
+</label>
+
+<input
+type="text"
+id="ifscCode"
+placeholder="Enter IFSC code"
+required>
+
+
+
+<div class="checkboxBox">
+
+<input
+type="checkbox"
+id="agreement"
+required>
+
+
+<label
+for="agreement">
+
+I confirm that the information provided is correct
+and I agree to the NEXORA PICKS seller terms and conditions.
+
+</label>
+
+</div>
+
 
 
 <button
 type="submit"
-id="registerBtn">
+id="submitBtn">
 
-Create Seller Account
+🚀 Submit Seller Application
 
 </button>
-
-
-</form>
 
 
 <div
@@ -296,22 +508,15 @@ class="message">
 </div>
 
 
-<div class="loginBox">
+</form>
 
-Already a seller?
-
-<a href="seller-login.html">
-
-Login here
-
-</a>
+</div>
 
 </div>
 
 
 </div>
 
-</div>
 
 
 <script type="module">
@@ -332,9 +537,7 @@ import{
 
 getAuth,
 
-createUserWithEmailAndPassword,
-
-updateProfile
+onAuthStateChanged
 
 }
 
@@ -349,6 +552,8 @@ getFirestore,
 
 doc,
 
+getDoc,
+
 setDoc,
 
 serverTimestamp
@@ -358,6 +563,7 @@ serverTimestamp
 from
 
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 
 const firebaseConfig={
@@ -379,11 +585,13 @@ measurementId:"G-LSMJ6QLLPW"
 };
 
 
+
 const app=
 
 initializeApp(
 firebaseConfig
 );
+
 
 
 const auth=
@@ -393,6 +601,7 @@ app
 );
 
 
+
 const db=
 
 getFirestore(
@@ -400,171 +609,82 @@ app
 );
 
 
-const form=
 
+const $=
+
+id=>
 document.getElementById(
-"sellerForm"
+id
 );
 
 
-const message=
 
-document.getElementById(
-"message"
-);
+let currentUser=null;
 
 
-const registerBtn=
 
-document.getElementById(
-"registerBtn"
-);
+/* CHECK LOGIN */
+
+onAuthStateChanged(
+
+auth,
+
+async user=>{
 
 
-function showMessage(
-text,
-type
-){
+if(!user){
 
-message.style.display=
+
+$("loginRequired").style.display=
 
 "block";
 
 
-message.className=
+$("sellerFormContainer").style.display=
 
-"message "+type;
+"none";
 
-
-message.textContent=
-
-text;
-
-}
-
-
-form.addEventListener(
-
-"submit",
-
-async function(e){
-
-e.preventDefault();
-
-
-const name=
-
-document.getElementById(
-"name"
-).value.trim();
-
-
-const storeName=
-
-document.getElementById(
-"storeName"
-).value.trim();
-
-
-const email=
-
-document.getElementById(
-"email"
-).value.trim();
-
-
-const phone=
-
-document.getElementById(
-"phone"
-).value.trim();
-
-
-const address=
-
-document.getElementById(
-"address"
-).value.trim();
-
-
-const password=
-
-document.getElementById(
-"password"
-).value;
-
-
-const confirmPassword=
-
-document.getElementById(
-"confirmPassword"
-).value;
-
-
-if(
-
-password!==confirmPassword
-
-){
-
-showMessage(
-
-"Passwords do not match.",
-
-"error"
-
-);
 
 return;
 
 }
 
 
-registerBtn.disabled=
 
-true;
+currentUser=
+
+user;
 
 
-registerBtn.textContent=
 
-"Creating Account...";
+$("loginRequired").style.display=
+
+"none";
+
+
+$("sellerFormContainer").style.display=
+
+"block";
+
+
+
+$("email").value=
+
+user.email||"";
+
 
 
 try{
 
 
-const userCredential=
-
-await createUserWithEmailAndPassword(
-
-auth,
-
-email,
-
-password
-
-);
+/*
+IMPORTANT:
+SELLER DOCUMENT ID =
+FIREBASE USER UID
+*/
 
 
-const user=
-
-userCredential.user;
-
-
-await updateProfile(
-
-user,
-
-{
-
-displayName:name
-
-}
-
-);
-
-
-await setDoc(
+const sellerRef=
 
 doc(
 
@@ -574,76 +694,161 @@ db,
 
 user.uid
 
-),
-
-{
-
-sellerId:
-
-user.uid,
+);
 
 
-name:
 
-name,
+const sellerSnap=
 
-
-storeName:
-
-storeName,
+await getDoc(
+sellerRef
+);
 
 
-email:
 
-email,
+if(
 
+sellerSnap.exists()
 
-phone:
-
-phone,
+){
 
 
-address:
+const seller=
 
-address,
-
-
-status:
-
-"active",
+sellerSnap.data();
 
 
-createdAt:
 
-serverTimestamp()
+let statusMessage="";
+
+
+if(
+
+seller.status==="approved"
+
+){
+
+
+statusMessage=
+
+`
+
+<div class="message success">
+
+🎉 Your seller account has been approved!
+
+<br><br>
+
+<button
+onclick="goSellerDashboard()">
+
+Open Seller Dashboard
+
+</button>
+
+</div>
+
+`;
+
 
 }
 
-);
+
+else if(
+
+seller.status==="rejected"
+
+){
 
 
-showMessage(
+statusMessage=
 
-"Seller account created successfully! Redirecting to your dashboard...",
+`
 
-"success"
+<div class="message error">
 
-);
+❌ Your seller application was rejected.
+
+Please contact support.
+
+</div>
+
+`;
 
 
-setTimeout(
+}
 
-function(){
 
-location.href=
+else{
 
-"seller-dashboard.html";
 
-},
+statusMessage=
 
-1500
+`
 
-);
+<div class="message pending">
+
+⏳ Your seller application is under review.
+
+Please wait for admin approval.
+
+</div>
+
+`;
+
+
+}
+
+
+
+$("sellerForm").innerHTML=
+
+`
+
+<div class="sectionTitle">
+
+🏪 Seller Application
+
+</div>
+
+
+${statusMessage}
+
+
+<p class="note">
+
+<b>
+Store:
+</b>
+
+${escapeHtml(
+seller.storeName||
+""
+)}
+
+</p>
+
+
+<p class="note">
+
+<b>
+Status:
+</b>
+
+${escapeHtml(
+seller.status||
+"pending"
+).toUpperCase()}
+
+</p>
+
+`;
+
+
+
+return;
+
+}
 
 
 }catch(error){
@@ -654,68 +859,374 @@ error
 );
 
 
-let errorMessage=
-
-"Unable to create seller account.";
-
-
-if(
-
-error.code===
-
-"auth/email-already-in-use"
-
-){
-
-errorMessage=
-
-"This email is already registered. Please login.";
-
 }
 
 
-if(
-
-error.code===
-
-"auth/weak-password"
-
-){
-
-errorMessage=
-
-"Password must be at least 6 characters.";
-
 }
-
-
-showMessage(
-
-errorMessage,
-
-"error"
 
 );
 
 
-registerBtn.disabled=
+
+/* SUBMIT SELLER FORM */
+
+$("sellerForm").addEventListener(
+
+"submit",
+
+async function(event){
+
+
+event.preventDefault();
+
+
+
+if(
+
+!currentUser
+
+){
+
+
+return;
+
+}
+
+
+
+const submitBtn=
+
+$("submitBtn");
+
+
+
+submitBtn.disabled=
+
+true;
+
+
+
+submitBtn.innerText=
+
+"Submitting...";
+
+
+
+$("message").className=
+
+"message";
+
+
+$("message").style.display=
+
+"none";
+
+
+
+try{
+
+
+const sellerData={
+
+
+
+/* USER ID */
+
+userId:
+
+currentUser.uid,
+
+
+
+/* PERSONAL */
+
+email:
+
+currentUser.email||"",
+
+
+fullName:
+
+$("fullName").value.trim(),
+
+
+phone:
+
+$("phone").value.trim(),
+
+
+
+/* STORE */
+
+storeName:
+
+$("storeName").value.trim(),
+
+
+businessCategory:
+
+$("businessCategory").value,
+
+
+businessAddress:
+
+$("businessAddress").value.trim(),
+
+
+
+/* BUSINESS */
+
+panNumber:
+
+$("panNumber").value.trim().toUpperCase(),
+
+
+gstNumber:
+
+$("gstNumber").value.trim().toUpperCase(),
+
+
+
+/* BANK */
+
+accountHolder:
+
+$("accountHolder").value.trim(),
+
+
+bankName:
+
+$("bankName").value.trim(),
+
+
+accountNumber:
+
+$("accountNumber").value.trim(),
+
+
+ifscCode:
+
+$("ifscCode").value.trim().toUpperCase(),
+
+
+
+/* SELLER STATUS */
+
+status:
+
+"pending",
+
+
+sellerVerified:
+
+false,
+
+
+
+/* DATES */
+
+createdAt:
+
+serverTimestamp(),
+
+
+updatedAt:
+
+serverTimestamp()
+
+};
+
+
+
+/*
+IMPORTANT FIX
+
+USE USER UID AS DOCUMENT ID
+*/
+
+
+await setDoc(
+
+doc(
+
+db,
+
+"sellers",
+
+currentUser.uid
+
+),
+
+sellerData
+
+);
+
+
+
+$("message").innerHTML=
+
+`
+
+🎉 Seller application submitted successfully!
+
+<br><br>
+
+⏳ Your application is now under admin review.
+
+`;
+
+
+
+$("message").className=
+
+"message success";
+
+
+
+/* DISABLE FORM */
+
+document
+.querySelectorAll(
+
+"#sellerForm input, #sellerForm textarea, #sellerForm select, #sellerForm button"
+
+)
+
+.forEach(
+
+element=>{
+
+
+element.disabled=
+
+true;
+
+
+}
+
+);
+
+
+
+}catch(error){
+
+
+console.error(
+error
+);
+
+
+
+$("message").innerHTML=
+
+"❌ Unable to submit application: "
++
+escapeHtml(
+error.message
+);
+
+
+
+$("message").className=
+
+"message error";
+
+
+
+submitBtn.disabled=
 
 false;
 
 
-registerBtn.textContent=
 
-"Create Seller Account";
+submitBtn.innerText=
+
+"🚀 Submit Seller Application";
+
+
 
 }
+
 
 }
 
 );
 
 
+
+/* LOGIN */
+
+window.goLogin=
+
+function(){
+
+
+location.href=
+
+"index.html";
+
+
+};
+
+
+
+/* SELLER DASHBOARD */
+
+window.goSellerDashboard=
+
+function(){
+
+
+location.href=
+
+"seller-dashboard.html";
+
+
+};
+
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(value){
+
+
+return String(
+value??""
+)
+
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
+);
+
+
+}
+
+
 </script>
+
 
 </body>
 
-</html>
+  </html>

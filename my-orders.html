@@ -251,41 +251,70 @@ font-weight:bold;
 text-align:center
 }
 
-/* ORDER ACTIONS */
-
-.orderActions{
-margin-top:18px;
-display:flex;
-gap:10px;
-flex-wrap:wrap
-}
+/* CANCEL ORDER BUTTON */
 
 .cancelBtn{
-background:#d32f2f;
-color:white
-}
-
-.returnBtn{
-background:#f57c00;
-color:white
-}
-
-.refundBox{
+width:100%;
 margin-top:18px;
-padding:15px;
-border-radius:10px;
-background:#e8f5e9;
-color:#176b36;
-font-weight:bold
+background:#d93025;
+color:white;
+font-size:18px;
+padding:15px
 }
 
-.requestBox{
-margin-top:18px;
-padding:15px;
-border-radius:10px;
-background:#fff8e1;
-color:#8a6500;
-font-weight:bold
+/* CANCEL POPUP */
+
+.modal{
+display:none;
+position:fixed;
+z-index:100;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.55);
+padding:20px;
+align-items:center;
+justify-content:center
+}
+
+.modalContent{
+background:white;
+width:100%;
+max-width:420px;
+border-radius:16px;
+padding:22px
+}
+
+.modalContent h2{
+margin-top:0
+}
+
+.reasonOption{
+display:block;
+padding:13px;
+border:1px solid #ddd;
+border-radius:8px;
+margin:10px 0;
+cursor:pointer
+}
+
+.reasonOption input{
+margin-right:10px
+}
+
+.confirmCancel{
+width:100%;
+background:#d93025;
+color:white;
+margin-top:15px
+}
+
+.closeCancel{
+width:100%;
+background:#e9ecef;
+color:#333;
+margin-top:10px
 }
 
 @media(max-width:600px){
@@ -304,14 +333,6 @@ align-items:flex-start
 
 .item{
 font-size:15px
-}
-
-.orderActions{
-flex-direction:column
-}
-
-.orderActions button{
-width:100%
 }
 
 }
@@ -360,6 +381,103 @@ Loading your orders...
 
 </div>
 
+
+<!-- CANCEL ORDER POPUP -->
+
+<div id="cancelModal" class="modal">
+
+<div class="modalContent">
+
+<h2>
+Cancel Order
+</h2>
+
+<p>
+Please select a reason for cancellation:
+</p>
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="cancelReason"
+value="Changed my mind">
+
+Changed my mind
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="cancelReason"
+value="Ordered by mistake">
+
+Ordered by mistake
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="cancelReason"
+value="Found a better price">
+
+Found a better price
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="cancelReason"
+value="Delivery taking too long">
+
+Delivery taking too long
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="cancelReason"
+value="Other">
+
+Other
+
+</label>
+
+
+<button
+class="confirmCancel"
+onclick="confirmCancelOrder()">
+
+❌ Confirm Cancellation
+
+</button>
+
+
+<button
+class="closeCancel"
+onclick="closeCancelModal()">
+
+Keep Order
+
+</button>
+
+</div>
+
+</div>
+
+
 <script type="module">
 
 import{
@@ -368,12 +486,14 @@ initializeApp
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
+
 import{
 getAuth,
 onAuthStateChanged
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
 
 import{
 getFirestore,
@@ -387,6 +507,7 @@ serverTimestamp
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 const firebaseConfig={
 
@@ -406,25 +527,30 @@ measurementId:"G-LSMJ6QLLPW"
 
 };
 
+
 const app=
 initializeApp(firebaseConfig);
+
 
 const auth=
 getAuth(app);
 
+
 const db=
 getFirestore(app);
+
 
 const $=
 id=>document.getElementById(id);
 
-let currentUser=null;
+
+/* LOGIN CHECK */
 
 onAuthStateChanged(
-auth,
-user=>{
 
-currentUser=user;
+auth,
+
+user=>{
 
 if(!user){
 
@@ -454,6 +580,7 @@ return;
 
 }
 
+
 $("userInfo").innerHTML=
 
 `Logged in as
@@ -465,6 +592,7 @@ user.email||""
 
 </b>`;
 
+
 loadOrders(
 user.uid
 );
@@ -472,6 +600,7 @@ user.uid
 }
 
 );
+
 
 /* REAL-TIME ORDERS */
 
@@ -494,26 +623,31 @@ uid
 
 );
 
+
 onSnapshot(
 
 q,
 
 snap=>{
 
+
 let orders=
 
 snap.docs.map(
-doc=>({
 
-id:doc.id,
+docSnap=>({
 
-...doc.data()
+id:docSnap.id,
+
+...docSnap.data()
 
 })
 
 );
 
+
 orders.sort(
+
 (a,b)=>{
 
 const aTime=
@@ -531,6 +665,7 @@ return bTime-aTime;
 }
 
 );
+
 
 if(!orders.length){
 
@@ -562,6 +697,7 @@ return;
 
 }
 
+
 $("orders").innerHTML=
 
 orders
@@ -575,6 +711,7 @@ error=>{
 console.error(
 error
 );
+
 
 $("orders").innerHTML=`
 
@@ -598,6 +735,7 @@ error.message
 
 }
 
+
 /* SHOW ORDER */
 
 function showOrder(order){
@@ -608,6 +746,7 @@ formatDate(
 order.createdAt
 );
 
+
 const status=
 
 String(
@@ -615,6 +754,7 @@ order.status||
 "pending"
 )
 .toLowerCase();
+
 
 const items=
 
@@ -627,6 +767,7 @@ order.items
 :
 [];
 
+
 const itemHTML=
 
 items.length
@@ -634,6 +775,7 @@ items.length
 ?
 
 items.map(
+
 item=>`
 
 <div class="item">
@@ -649,6 +791,7 @@ item.name||
 
 </div>
 
+
 <div>
 
 Quantity:
@@ -660,6 +803,7 @@ item.qty
 </div>
 
 </div>
+
 
 <div class="itemPrice">
 
@@ -701,18 +845,8 @@ item.qty||
 No product details available.
 </p>`;
 
-const actionHTML=
 
-createActions(
-order,
-status
-);
-
-const refundHTML=
-
-createRefund(
-order
-);
+/* ORDER HTML */
 
 return `
 
@@ -726,6 +860,7 @@ return `
 Order ID
 </b>
 
+
 <div class="orderId">
 
 ${escapeHtml(
@@ -733,6 +868,7 @@ order.id
 )}
 
 </div>
+
 
 <div
 style="margin-top:6px">
@@ -743,38 +879,49 @@ ${date}
 
 </div>
 
+
 <div
 class="status">
 
 ${escapeHtml(
-status.replaceAll(
+
+status
+.replaceAll(
 "-",
 " "
 )
 .toUpperCase()
+
 )}
 
 </div>
 
 </div>
 
+
 <h3>
 📦 Products
 </h3>
 
+
 ${itemHTML}
+
 
 ${createTracking(status)}
 
-${actionHTML}
 
-${refundHTML}
+${createCancelButton(
+status,
+order.id
+)}
+
 
 <div class="total">
 
 <span>
 Total
 </span>
+
 
 <span>
 
@@ -795,25 +942,15 @@ order.total||
 
 </div>
 
+
 <div
 style="margin-top:12px"
 class="cod">
 
-${
-
-order.paymentMethod==="online"
-
-?
-
-"💳 Online Payment"
-
-:
-
-"💵 Cash on Delivery"
-
-}
+💵 Cash on Delivery
 
 </div>
+
 
 <div class="info">
 
@@ -822,6 +959,7 @@ order.paymentMethod==="online"
 </b>
 
 <br>
+
 
 Name:
 
@@ -832,6 +970,7 @@ order.customerName||
 
 <br>
 
+
 Mobile:
 
 ${escapeHtml(
@@ -840,6 +979,7 @@ order.customerPhone||
 )}
 
 <br>
+
 
 Address:
 
@@ -856,295 +996,225 @@ order.deliveryAddress||
 
 }
 
-/* CANCEL / RETURN BUTTONS */
 
-function createActions(order,status){
+/* CANCEL BUTTON */
 
-let html="";
+function createCancelButton(
+status,
+orderId
+){
+
+const cancellableStatuses=[
+
+"pending",
+"confirmed"
+
+];
+
 
 if(
-order.cancelRequested
-){
 
-html+=`
-
-<div class="requestBox">
-
-⏳ Cancellation request submitted.
-We will review your request.
-
-</div>
-
-`;
-
-}
-
-else if(
-
-status==="pending"||
-status==="confirmed"
-
-){
-
-html+=`
-
-<div class="orderActions">
-
-<button
-class="cancelBtn"
-onclick="cancelOrder('${order.id}')">
-
-❌ Cancel Order
-
-</button>
-
-</div>
-
-`;
-
-}
-
-if(
-order.returnRequested
-){
-
-html+=`
-
-<div class="requestBox">
-
-🔄 Return request submitted.
-We will review your request.
-
-</div>
-
-`;
-
-}
-
-else if(
-status==="delivered"
-){
-
-html+=`
-
-<div class="orderActions">
-
-<button
-class="returnBtn"
-onclick="returnOrder('${order.id}')">
-
-🔄 Return Product
-
-</button>
-
-</div>
-
-`;
-
-}
-
-return html;
-
-}
-
-/* REFUND STATUS */
-
-function createRefund(order){
-
-const refundStatus=
-
-String(
-order.refundStatus||
-""
+!cancellableStatuses.includes(
+status
 )
-.toLowerCase();
 
-if(!refundStatus){
+){
 
 return "";
 
 }
 
-let message="";
-
-if(
-refundStatus==="requested"
-){
-
-message="💰 Refund requested";
-
-}
-
-else if(
-refundStatus==="initiated"
-){
-
-message="💰 Refund initiated";
-
-}
-
-else if(
-refundStatus==="processing"
-){
-
-message="⏳ Refund processing";
-
-}
-
-else if(
-refundStatus==="completed"
-){
-
-message="✅ Refund completed";
-
-}
-
-else if(
-refundStatus==="rejected"
-){
-
-message="❌ Refund rejected";
-
-}
-
-else{
-
-message="💰 Refund status: "+refundStatus;
-
-}
 
 return `
 
-<div class="refundBox">
+<button
+class="cancelBtn"
+onclick="openCancelModal('${orderId}')">
 
-${message}
+❌ Cancel Order
 
-</div>
+</button>
 
 `;
 
 }
 
-/* CANCEL ORDER REQUEST */
 
-window.cancelOrder=
-async function(orderId){
+/* CANCEL ORDER VARIABLES */
 
-if(
-!confirm(
-"Are you sure you want to cancel this order?"
+let selectedOrderId=null;
+
+
+/* OPEN CANCEL POPUP */
+
+window.openCancelModal=
+
+function(orderId){
+
+selectedOrderId=
+
+orderId;
+
+
+document
+.getElementById(
+"cancelModal"
 )
-){
+.style.display=
+
+"flex";
+
+};
+
+
+/* CLOSE CANCEL POPUP */
+
+window.closeCancelModal=
+
+function(){
+
+document
+.getElementById(
+"cancelModal"
+)
+.style.display=
+
+"none";
+
+
+selectedOrderId=
+
+null;
+
+
+/* UNCHECK REASONS */
+
+document
+.querySelectorAll(
+'input[name="cancelReason"]'
+)
+.forEach(
+
+input=>{
+
+input.checked=false;
+
+}
+
+);
+
+};
+
+
+/* CONFIRM CANCELLATION */
+
+window.confirmCancelOrder=
+
+async function(){
+
+const selected=
+
+document.querySelector(
+
+'input[name="cancelReason"]:checked'
+
+);
+
+
+if(!selected){
+
+alert(
+
+"Please select a cancellation reason."
+
+);
 
 return;
 
 }
 
+
+if(!selectedOrderId){
+
+return;
+
+}
+
+
 try{
+
 
 await updateDoc(
 
 doc(
+
 db,
+
 "orders",
-orderId
+
+selectedOrderId
+
 ),
 
 {
 
-cancelRequested:true,
+status:
 
-cancelRequestedAt:
+"cancelled",
+
+
+cancellationReason:
+
+selected.value,
+
+
+cancelledAt:
+
 serverTimestamp()
 
 }
 
 );
 
+
 alert(
-"Cancellation request submitted successfully."
+
+"Your order has been cancelled successfully."
+
 );
 
-}
 
-catch(error){
+closeCancelModal();
+
+
+}catch(error){
+
 
 console.error(
 error
 );
 
+
 alert(
-"Unable to submit cancellation request: "+
-error.message
+
+"Unable to cancel order. Please try again."
+
 );
 
 }
 
 };
 
-/* RETURN ORDER REQUEST */
-
-window.returnOrder=
-async function(orderId){
-
-if(
-!confirm(
-"Do you want to request a return for this product?"
-)
-){
-
-return;
-
-}
-
-try{
-
-await updateDoc(
-
-doc(
-db,
-"orders",
-orderId
-),
-
-{
-
-returnRequested:true,
-
-returnRequestedAt:
-serverTimestamp()
-
-}
-
-);
-
-alert(
-"Return request submitted successfully."
-);
-
-}
-
-catch(error){
-
-console.error(
-error
-);
-
-alert(
-"Unable to submit return request: "+
-error.message
-);
-
-}
-
-};
 
 /* CREATE ORDER TRACKING */
 
 function createTracking(status){
 
+
 if(
+
 status==="cancelled"
+
 ){
 
 return `
@@ -1159,55 +1229,91 @@ return `
 
 }
 
+
 const steps=[
 
 {
+
 key:"pending",
+
 icon:"🟡",
+
 text:"Order Placed"
+
 },
 
 {
+
 key:"confirmed",
+
 icon:"✅",
+
 text:"Order Confirmed"
+
 },
 
 {
+
 key:"packed",
+
 icon:"📦",
+
 text:"Packed"
+
 },
 
 {
+
 key:"shipped",
+
 icon:"🚚",
+
 text:"Shipped"
+
 },
 
 {
+
 key:"out-for-delivery",
+
 icon:"🚚",
+
 text:"Out for Delivery"
+
 },
 
 {
+
 key:"delivered",
+
 icon:"🎉",
+
 text:"Delivered"
+
 }
 
 ];
 
-const current=
+
+let current=
 
 steps.findIndex(
+
 step=>
 
-step.key===
-status
+step.key===status
 
 );
+
+
+/* IF UNKNOWN STATUS */
+
+if(current===-1){
+
+current=0;
+
+}
+
 
 return `
 
@@ -1219,37 +1325,50 @@ return `
 
 </div>
 
+
 ${
 
 steps.map(
+
 (step,index)=>{
 
+
 let state=
+
 "";
 
+
 if(
+
 index<current
+
 ){
 
 state=
+
 "done";
 
 }
 
+
 if(
+
 index===current
+
 ){
 
 state=
+
 "active";
 
 }
 
+
 return `
 
 <div
-class="step
-${state}">
+class="step ${state}">
+
 
 <div
 class="stepIcon">
@@ -1257,6 +1376,7 @@ class="stepIcon">
 ${step.icon}
 
 </div>
+
 
 <div
 class="stepText">
@@ -1281,6 +1401,7 @@ ${step.text}
 
 }
 
+
 /* FORMAT DATE */
 
 function formatDate(timestamp){
@@ -1291,7 +1412,9 @@ return "Date unavailable";
 
 }
 
+
 try{
+
 
 const date=
 
@@ -1306,6 +1429,7 @@ timestamp.toDate()
 new Date(
 timestamp
 );
+
 
 return date.toLocaleString(
 
@@ -1327,15 +1451,15 @@ minute:"2-digit"
 
 );
 
-}
 
-catch(e){
+}catch(e){
 
 return "Date unavailable";
 
 }
 
 }
+
 
 /* ESCAPE HTML */
 
@@ -1372,12 +1496,15 @@ value??""
 
 }
 
+
 /* LOGIN */
 
 window.goLogin=
+
 function(){
 
 location.href=
+
 "index.html";
 
 };

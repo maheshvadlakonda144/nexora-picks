@@ -251,6 +251,43 @@ font-weight:bold;
 text-align:center
 }
 
+/* ORDER ACTIONS */
+
+.orderActions{
+margin-top:18px;
+display:flex;
+gap:10px;
+flex-wrap:wrap
+}
+
+.cancelBtn{
+background:#d32f2f;
+color:white
+}
+
+.returnBtn{
+background:#f57c00;
+color:white
+}
+
+.refundBox{
+margin-top:18px;
+padding:15px;
+border-radius:10px;
+background:#e8f5e9;
+color:#176b36;
+font-weight:bold
+}
+
+.requestBox{
+margin-top:18px;
+padding:15px;
+border-radius:10px;
+background:#fff8e1;
+color:#8a6500;
+font-weight:bold
+}
+
 @media(max-width:600px){
 
 .wrap{
@@ -267,6 +304,14 @@ align-items:flex-start
 
 .item{
 font-size:15px
+}
+
+.orderActions{
+flex-direction:column
+}
+
+.orderActions button{
+width:100%
 }
 
 }
@@ -335,7 +380,10 @@ getFirestore,
 collection,
 query,
 where,
-onSnapshot
+onSnapshot,
+doc,
+updateDoc,
+serverTimestamp
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
@@ -370,9 +418,13 @@ getFirestore(app);
 const $=
 id=>document.getElementById(id);
 
+let currentUser=null;
+
 onAuthStateChanged(
 auth,
 user=>{
+
+currentUser=user;
 
 if(!user){
 
@@ -649,6 +701,19 @@ item.qty||
 No product details available.
 </p>`;
 
+const actionHTML=
+
+createActions(
+order,
+status
+);
+
+const refundHTML=
+
+createRefund(
+order
+);
+
 return `
 
 <div class="order">
@@ -701,6 +766,10 @@ ${itemHTML}
 
 ${createTracking(status)}
 
+${actionHTML}
+
+${refundHTML}
+
 <div class="total">
 
 <span>
@@ -730,7 +799,19 @@ order.total||
 style="margin-top:12px"
 class="cod">
 
-💵 Cash on Delivery
+${
+
+order.paymentMethod==="online"
+
+?
+
+"💳 Online Payment"
+
+:
+
+"💵 Cash on Delivery"
+
+}
 
 </div>
 
@@ -774,6 +855,289 @@ order.deliveryAddress||
 `;
 
 }
+
+/* CANCEL / RETURN BUTTONS */
+
+function createActions(order,status){
+
+let html="";
+
+if(
+order.cancelRequested
+){
+
+html+=`
+
+<div class="requestBox">
+
+⏳ Cancellation request submitted.
+We will review your request.
+
+</div>
+
+`;
+
+}
+
+else if(
+
+status==="pending"||
+status==="confirmed"
+
+){
+
+html+=`
+
+<div class="orderActions">
+
+<button
+class="cancelBtn"
+onclick="cancelOrder('${order.id}')">
+
+❌ Cancel Order
+
+</button>
+
+</div>
+
+`;
+
+}
+
+if(
+order.returnRequested
+){
+
+html+=`
+
+<div class="requestBox">
+
+🔄 Return request submitted.
+We will review your request.
+
+</div>
+
+`;
+
+}
+
+else if(
+status==="delivered"
+){
+
+html+=`
+
+<div class="orderActions">
+
+<button
+class="returnBtn"
+onclick="returnOrder('${order.id}')">
+
+🔄 Return Product
+
+</button>
+
+</div>
+
+`;
+
+}
+
+return html;
+
+}
+
+/* REFUND STATUS */
+
+function createRefund(order){
+
+const refundStatus=
+
+String(
+order.refundStatus||
+""
+)
+.toLowerCase();
+
+if(!refundStatus){
+
+return "";
+
+}
+
+let message="";
+
+if(
+refundStatus==="requested"
+){
+
+message="💰 Refund requested";
+
+}
+
+else if(
+refundStatus==="initiated"
+){
+
+message="💰 Refund initiated";
+
+}
+
+else if(
+refundStatus==="processing"
+){
+
+message="⏳ Refund processing";
+
+}
+
+else if(
+refundStatus==="completed"
+){
+
+message="✅ Refund completed";
+
+}
+
+else if(
+refundStatus==="rejected"
+){
+
+message="❌ Refund rejected";
+
+}
+
+else{
+
+message="💰 Refund status: "+refundStatus;
+
+}
+
+return `
+
+<div class="refundBox">
+
+${message}
+
+</div>
+
+`;
+
+}
+
+/* CANCEL ORDER REQUEST */
+
+window.cancelOrder=
+async function(orderId){
+
+if(
+!confirm(
+"Are you sure you want to cancel this order?"
+)
+){
+
+return;
+
+}
+
+try{
+
+await updateDoc(
+
+doc(
+db,
+"orders",
+orderId
+),
+
+{
+
+cancelRequested:true,
+
+cancelRequestedAt:
+serverTimestamp()
+
+}
+
+);
+
+alert(
+"Cancellation request submitted successfully."
+);
+
+}
+
+catch(error){
+
+console.error(
+error
+);
+
+alert(
+"Unable to submit cancellation request: "+
+error.message
+);
+
+}
+
+};
+
+/* RETURN ORDER REQUEST */
+
+window.returnOrder=
+async function(orderId){
+
+if(
+!confirm(
+"Do you want to request a return for this product?"
+)
+){
+
+return;
+
+}
+
+try{
+
+await updateDoc(
+
+doc(
+db,
+"orders",
+orderId
+),
+
+{
+
+returnRequested:true,
+
+returnRequestedAt:
+serverTimestamp()
+
+}
+
+);
+
+alert(
+"Return request submitted successfully."
+);
+
+}
+
+catch(error){
+
+console.error(
+error
+);
+
+alert(
+"Unable to submit return request: "+
+error.message
+);
+
+}
+
+};
 
 /* CREATE ORDER TRACKING */
 
@@ -963,7 +1327,9 @@ minute:"2-digit"
 
 );
 
-}catch(e){
+}
+
+catch(e){
 
 return "Date unavailable";
 

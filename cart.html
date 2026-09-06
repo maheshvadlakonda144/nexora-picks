@@ -6,13 +6,17 @@
 <title>My Cart | NEXORA PICKS</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   font-family:Arial,sans-serif;
   background:#f5f5f5;
   color:#222;
 }
+
 header{
   background:#2874f0;
   color:white;
@@ -24,32 +28,38 @@ header{
   top:0;
   z-index:10;
 }
+
 header a{
   color:white;
   text-decoration:none;
   font-size:28px;
 }
+
 header h1{
   margin:0;
   font-size:24px;
 }
+
 .container{
   max-width:900px;
   margin:20px auto;
   padding:0 14px;
 }
+
 .cart-box{
   background:white;
   border-radius:12px;
   padding:18px;
   box-shadow:0 2px 8px #ddd;
 }
+
 .cart-item{
   display:flex;
   gap:15px;
   padding:16px 0;
   border-bottom:1px solid #eee;
 }
+
 .cart-item img{
   width:110px;
   height:110px;
@@ -57,25 +67,30 @@ header h1{
   border-radius:8px;
   background:#f7f7f7;
 }
+
 .item-info{
   flex:1;
 }
+
 .item-name{
   font-size:19px;
   font-weight:bold;
   margin-bottom:8px;
 }
+
 .item-price{
   color:#111;
   font-size:18px;
   font-weight:bold;
 }
+
 .qty{
   display:flex;
   align-items:center;
   gap:10px;
   margin-top:12px;
 }
+
 .qty button{
   width:34px;
   height:34px;
@@ -83,29 +98,36 @@ header h1{
   background:white;
   border-radius:6px;
   font-size:20px;
+  cursor:pointer;
 }
+
 .remove{
   margin-top:10px;
   border:0;
   background:none;
   color:#d32f2f;
   font-weight:bold;
+  cursor:pointer;
 }
+
 .summary{
   margin-top:20px;
   padding-top:15px;
   border-top:2px solid #eee;
 }
+
 .row{
   display:flex;
   justify-content:space-between;
   margin:12px 0;
   font-size:17px;
 }
+
 .total{
   font-size:24px;
   font-weight:bold;
 }
+
 .checkout{
   width:100%;
   padding:16px;
@@ -116,14 +138,18 @@ header h1{
   color:white;
   font-size:20px;
   font-weight:bold;
+  cursor:pointer;
 }
+
 .empty{
   text-align:center;
   padding:60px 20px;
 }
+
 .empty h2{
   font-size:25px;
 }
+
 .shop{
   display:inline-block;
   margin-top:15px;
@@ -134,11 +160,18 @@ header h1{
   border-radius:7px;
   font-weight:bold;
 }
+
 @media(max-width:600px){
+
   .cart-item img{
     width:90px;
     height:90px;
   }
+
+  header h1{
+    font-size:20px;
+  }
+
 }
 </style>
 </head>
@@ -151,6 +184,7 @@ header h1{
 </header>
 
 <div class="container">
+
   <div class="cart-box">
 
     <h2>🛒 My Cart</h2>
@@ -160,6 +194,7 @@ header h1{
     <div id="summary"></div>
 
   </div>
+
 </div>
 
 <script>
@@ -167,177 +202,340 @@ header h1{
 const CART_KEY = "nexora_cart";
 
 function getCart(){
+
   try{
     return JSON.parse(localStorage.getItem(CART_KEY)) || [];
   }catch(e){
     return [];
   }
+
 }
 
 function saveCart(cart){
-  localStorage.setItem(CART_KEY,JSON.stringify(cart));
+
+  localStorage.setItem(
+    CART_KEY,
+    JSON.stringify(cart)
+  );
+
 }
 
 function money(value){
-  return "₹" + Number(value || 0).toLocaleString("en-IN");
-}
 
-function imageHTML(item){
+  return "₹" +
+    Number(value || 0)
+      .toLocaleString("en-IN");
 
-  if(item.imageUrl){
-    return `
-      <img
-        src="${escapeHTML(item.imageUrl)}"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='block'"
-      >
-      <div style="display:none;font-size:45px;padding:25px">
-        ${item.emoji || "🛍️"}
-      </div>
-    `;
-  }
-
-  return `
-    <div style="width:110px;height:110px;background:#f7f7f7;
-    display:flex;align-items:center;justify-content:center;
-    font-size:45px;border-radius:8px">
-      ${item.emoji || "🛍️"}
-    </div>
-  `;
 }
 
 function escapeHTML(value){
+
   return String(value ?? "")
     .replace(/&/g,"&amp;")
     .replace(/</g,"&lt;")
     .replace(/>/g,"&gt;")
     .replace(/"/g,"&quot;")
     .replace(/'/g,"&#039;");
+
+}
+
+function imageHTML(item){
+
+  if(item.imageUrl){
+
+    return `
+      <img
+        src="${escapeHTML(item.imageUrl)}"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"
+      >
+
+      <div
+        style="
+          display:none;
+          width:110px;
+          height:110px;
+          background:#f7f7f7;
+          align-items:center;
+          justify-content:center;
+          font-size:45px;
+          border-radius:8px
+        "
+      >
+        ${item.emoji || "🛍️"}
+      </div>
+    `;
+
+  }
+
+  return `
+    <div
+      style="
+        width:110px;
+        height:110px;
+        background:#f7f7f7;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        font-size:45px;
+        border-radius:8px
+      "
+    >
+      ${item.emoji || "🛍️"}
+    </div>
+  `;
+
 }
 
 function renderCart(){
 
   const cart = getCart();
-  const box = document.getElementById("cartItems");
-  const summary = document.getElementById("summary");
+
+  const box =
+    document.getElementById("cartItems");
+
+  const summary =
+    document.getElementById("summary");
+
 
   if(!cart.length){
 
     box.innerHTML = `
+
       <div class="empty">
-        <div style="font-size:60px">🛒</div>
+
+        <div style="font-size:60px">
+          🛒
+        </div>
+
         <h2>Your cart is empty</h2>
-        <p>Add products from NEXORA PICKS to see them here.</p>
-        <a class="shop" href="index.html">Continue Shopping</a>
+
+        <p>
+          Add products from NEXORA PICKS
+          to see them here.
+        </p>
+
+        <a
+          class="shop"
+          href="index.html"
+        >
+          Continue Shopping
+        </a>
+
       </div>
+
     `;
 
     summary.innerHTML = "";
+
     return;
+
   }
+
 
   let subtotal = 0;
 
-  box.innerHTML = cart.map((item,index)=>{
 
-    const price = Number(item.price) || 0;
-    const qty = Number(item.qty) || 1;
-    const total = price * qty;
+  box.innerHTML =
+    cart.map((item,index)=>{
 
-    subtotal += total;
+      const price =
+        Number(item.price) || 0;
 
-    return `
-      <div class="cart-item">
+      const qty =
+        Number(item.qty) || 1;
 
-        ${imageHTML(item)}
+      const total =
+        price * qty;
 
-        <div class="item-info">
 
-          <div class="item-name">
-            ${escapeHTML(item.name || "Product")}
+      subtotal += total;
+
+
+      return `
+
+        <div class="cart-item">
+
+          ${imageHTML(item)}
+
+          <div class="item-info">
+
+            <div class="item-name">
+
+              ${escapeHTML(
+                item.name || "Product"
+              )}
+
+            </div>
+
+
+            <div class="item-price">
+
+              ${money(price)}
+
+            </div>
+
+
+            <div
+              style="
+                font-size:14px;
+                color:#666;
+                margin-top:5px
+              "
+            >
+
+              Seller:
+              ${escapeHTML(
+                item.sellerName ||
+                "NEXORA Seller"
+              )}
+
+            </div>
+
+
+            <div class="qty">
+
+              <button
+                onclick="changeQty(${index},-1)"
+              >
+                −
+              </button>
+
+
+              <b>${qty}</b>
+
+
+              <button
+                onclick="changeQty(${index},1)"
+              >
+                +
+              </button>
+
+            </div>
+
+
+            <button
+              class="remove"
+              onclick="removeItem(${index})"
+            >
+              Remove
+            </button>
+
           </div>
-
-          <div class="item-price">
-            ${money(price)}
-          </div>
-
-          <div style="font-size:14px;color:#666;margin-top:5px">
-            Seller: ${escapeHTML(item.sellerName || "NEXORA Seller")}
-          </div>
-
-          <div class="qty">
-
-            <button onclick="changeQty(${index},-1)">−</button>
-
-            <b>${qty}</b>
-
-            <button onclick="changeQty(${index},1)">+</button>
-
-          </div>
-
-          <button class="remove" onclick="removeItem(${index})">
-            Remove
-          </button>
 
         </div>
 
-      </div>
-    `;
+      `;
 
-  }).join("");
+    }).join("");
+
 
   summary.innerHTML = `
+
     <div class="summary">
 
-      <div class="row">
-        <span>Subtotal</span>
-        <b>${money(subtotal)}</b>
-      </div>
 
       <div class="row">
-        <span>Delivery</span>
-        <b>FREE</b>
+
+        <span>Subtotal</span>
+
+        <b>
+          ${money(subtotal)}
+        </b>
+
       </div>
+
+
+      <div class="row">
+
+        <span>Delivery</span>
+
+        <b>FREE</b>
+
+      </div>
+
 
       <div class="row total">
+
         <span>Total</span>
-        <span>${money(subtotal)}</span>
+
+        <span>
+          ${money(subtotal)}
+        </span>
+
       </div>
 
-      <button class="checkout" onclick="checkout()">
+
+      <button
+        class="checkout"
+        onclick="checkout()"
+      >
         Continue to Checkout
       </button>
 
+
     </div>
+
   `;
+
 }
+
 
 function changeQty(index,change){
 
   const cart = getCart();
 
-  if(!cart[index]) return;
 
-  let qty = Number(cart[index].qty) || 1;
+  if(!cart[index]){
+
+    return;
+
+  }
+
+
+  let qty =
+    Number(cart[index].qty) || 1;
+
 
   qty += change;
 
+
   if(qty <= 0){
+
     cart.splice(index,1);
+
   }else{
 
-    const stock = Number(cart[index].stock);
 
-    if(stock > 0 && qty > stock){
+    const stock =
+      Number(cart[index].stock);
+
+
+    if(
+      stock > 0 &&
+      qty > stock
+    ){
+
       qty = stock;
-      alert("Maximum available stock is " + stock);
+
+      alert(
+        "Maximum available stock is " +
+        stock
+      );
+
     }
 
+
     cart[index].qty = qty;
+
   }
 
+
   saveCart(cart);
+
   renderCart();
+
 }
+
 
 function removeItem(index){
 
@@ -348,17 +546,26 @@ function removeItem(index){
   saveCart(cart);
 
   renderCart();
+
 }
+
 
 function checkout(){
 
   if(!getCart().length){
+
     alert("Your cart is empty.");
+
     return;
+
   }
 
-  window.location.href = "checkout.html";
+
+  window.location.href =
+    "checkout.html";
+
 }
+
 
 renderCart();
 

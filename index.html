@@ -346,8 +346,6 @@ price:Number(p.price),
 
 image:p.imageUrl || p.image || "",
 
-emoji:p.emoji || "🛍️",
-
 sellerId:p.sellerId || "",
 
 qty:1
@@ -524,18 +522,11 @@ x => `
 <div>
 
 ${
-x.image
-
-?
-
-`<img src="${esc(x.image)}">`
-
-:
-
-`<div style="font-size:40px">
-${esc(x.emoji || "🛍️")}
-</div>`
-
+  x.image
+  ?
+  `<img src="${esc(x.image)}" alt="${esc(x.name)}">`
+  :
+  `<div class="no-image">No image available</div>`
 }
 
 </div>
@@ -802,20 +793,17 @@ return `
 
 
 ${
-
-img
+x.image
 
 ?
 
-`<img
-src="${esc(img)}"
-onerror="
-this.style.display='none'
-">`
+`<img src="${esc(x.image)}" alt="${esc(x.name)}">`
 
 :
 
-""
+`<div class="noImage">
+No image available
+</div>`
 
 }
 
@@ -833,7 +821,7 @@ img
 
 >
 
-${esc(p.emoji || "🛍️")}
+image:p.imageUrl || "",
 
 </span>
 
@@ -1109,4 +1097,22 @@ collection exists.
 
 updateCount();
 
-  </script>
+  <style>
+
+/* Your existing CSS above */
+
+
+.noImage{
+display:flex;
+align-items:center;
+justify-content:center;
+width:100%;
+height:100%;
+min-height:180px;
+background:#f3f4f6;
+color:#777;
+font-size:14px;
+}
+
+</style>
+

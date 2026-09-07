@@ -1048,48 +1048,21 @@ id:doc.id,
 
 )
 
-.filter(
+.filter(p => {
 
-p => {
+  const approved =
+    p.approvalStatus === "approved" ||
+    p.approvalStatus === undefined ||
+    p.approvalStatus === null ||
+    p.approvalStatus === "";
 
+  const active =
+    p.active !== false;
 
-const approved =
+  return approved && active;
 
-p.approvalStatus === "approved"
-
-||
-
-p.approvalStatus === undefined
-
-||
-
-p.approvalStatus === null
-
-||
-
-p.approvalStatus === "";
-
-
-const active =
-
-p.active !== false;
-
-
-const hasStock =
-
-Number(p.stock || 0) > 0;
-
-
-return
-approved &&
-active &&
-hasStock;
-
-}
-
-);
-
-
+});
+  
 render();
 
 },

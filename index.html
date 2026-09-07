@@ -93,63 +93,63 @@ c => ({
 
 window.openAuth = () => {
 
-$("authModal")
-.classList
-.add("open");
+  $("authModal")
+  .classList
+  .add("open");
 
 };
 
 
 window.closeAuth = () => {
 
-$("authModal")
-.classList
-.remove("open");
+  $("authModal")
+  .classList
+  .remove("open");
 
 };
 
 
 window.toggleMode = () => {
 
-signup = !signup;
+  signup = !signup;
 
 
-$("authTitle").textContent =
+  $("authTitle").textContent =
 
-signup
-?
-"Create customer account"
-:
-"Customer Login";
-
-
-$("authBtn").textContent =
-
-signup
-?
-"Create account"
-:
-"Login";
+  signup
+  ?
+  "Create customer account"
+  :
+  "Customer Login";
 
 
-$("modeBtn").textContent =
+  $("authBtn").textContent =
 
-signup
-?
-"Already have an account"
-:
-"Create customer account";
+  signup
+  ?
+  "Create account"
+  :
+  "Login";
 
 
-$("fullName")
-.style
-.display =
+  $("modeBtn").textContent =
 
-signup
-?
-"block"
-:
-"none";
+  signup
+  ?
+  "Already have an account"
+  :
+  "Create customer account";
+
+
+  $("fullName")
+  .style
+  .display =
+
+  signup
+  ?
+  "block"
+  :
+  "none";
 
 };
 
@@ -158,72 +158,72 @@ signup
 
 window.authAction = async () => {
 
-const m = $("authMsg");
+  const m = $("authMsg");
 
-m.textContent = "";
-
-
-try {
+  m.textContent = "";
 
 
-if(signup){
+  try {
 
 
-const c =
-await createUserWithEmailAndPassword(
-
-auth,
-
-$("email").value.trim(),
-
-$("password").value
-
-);
+    if(signup){
 
 
-const n =
-$("fullName")
-.value
-.trim();
+      const c =
+      await createUserWithEmailAndPassword(
+
+        auth,
+
+        $("email").value.trim(),
+
+        $("password").value
+
+      );
 
 
-if(n){
-
-await updateProfile(
-c.user,
-{
-displayName:n
-}
-);
-
-}
+      const n =
+      $("fullName")
+      .value
+      .trim();
 
 
-}else{
+      if(n){
+
+        await updateProfile(
+          c.user,
+          {
+            displayName:n
+          }
+        );
+
+      }
 
 
-await signInWithEmailAndPassword(
-
-auth,
-
-$("email").value.trim(),
-
-$("password").value
-
-);
-
-}
+    }else{
 
 
-closeAuth();
+      await signInWithEmailAndPassword(
+
+        auth,
+
+        $("email").value.trim(),
+
+        $("password").value
+
+      );
+
+    }
 
 
-}catch(e){
+    closeAuth();
 
-m.textContent =
-e.message;
 
-}
+  }catch(e){
+
+    m.textContent =
+    e.message;
+
+  }
 
 };
 
@@ -232,30 +232,30 @@ e.message;
 
 onAuthStateChanged(
 
-auth,
+  auth,
 
-u => {
+  u => {
 
-$("account")
-.textContent =
+    $("account")
+    .textContent =
 
-u
-?
-(u.displayName || "Account")
-:
-"Login";
+    u
+    ?
+    (u.displayName || "Account")
+    :
+    "Login";
 
 
-$("account")
-.onclick =
+    $("account")
+    .onclick =
 
-u
-?
-() => signOut(auth)
-:
-openAuth;
+    u
+    ?
+    () => signOut(auth)
+    :
+    openAuth;
 
-}
+  }
 
 );
 
@@ -264,17 +264,17 @@ openAuth;
 
 function save(){
 
-localStorage.setItem(
+  localStorage.setItem(
 
-"nexora_cart",
+    "nexora_cart",
 
-JSON.stringify(cart)
+    JSON.stringify(cart)
 
-);
+  );
 
-updateCount();
+  updateCount();
 
-renderCart();
+  renderCart();
 
 }
 
@@ -283,17 +283,17 @@ renderCart();
 
 function updateCount(){
 
-$("cartCount")
-.textContent =
+  $("cartCount")
+  .textContent =
 
-cart.reduce(
+  cart.reduce(
 
-(s,x) =>
-s + Number(x.qty || 0),
+    (s,x) =>
+    s + Number(x.qty || 0),
 
-0
+    0
 
-);
+  );
 
 }
 
@@ -303,63 +303,63 @@ s + Number(x.qty || 0),
 window.addToCart = p => {
 
 
-if(
+  if(
 
-!Number(p.price)
+    !Number(p.price)
 
-||
+    ||
 
-Number(p.stock) <= 0
+    Number(p.stock) <= 0
 
-){
+  ){
 
-alert(
-"This product is not available for purchase."
-);
+    alert(
+      "This product is not available for purchase."
+    );
 
-return;
+    return;
 
-}
-
-
-let x =
-
-cart.find(
-i => i.id === p.id
-);
+  }
 
 
-if(x){
+  let x =
 
-x.qty++;
-
-}else{
-
-
-cart.push({
-
-id:p.id,
-
-name:p.name,
-
-price:Number(p.price),
-
-image:p.imageUrl || p.image || "",
-
-sellerId:p.sellerId || "",
-
-qty:1
-
-});
-
-}
+  cart.find(
+    i => i.id === p.id
+  );
 
 
-save();
+  if(x){
 
-alert(
-"Added to cart ✓"
-);
+    x.qty++;
+
+  }else{
+
+
+    cart.push({
+
+      id:p.id,
+
+      name:p.name,
+
+      price:Number(p.price),
+
+      image:p.imageUrl || p.image || "",
+
+      sellerId:p.sellerId || "",
+
+      qty:1
+
+    });
+
+  }
+
+
+  save();
+
+  alert(
+    "Added to cart ✓"
+  );
 
 };
 
@@ -368,9 +368,9 @@ alert(
 
 window.buyNow = p => {
 
-addToCart(p);
+  addToCart(p);
 
-openCart();
+  openCart();
 
 };
 
@@ -380,30 +380,30 @@ openCart();
 window.changeQty = (id,d) => {
 
 
-let x =
+  let x =
 
-cart.find(
-i => i.id === id
-);
-
-
-if(!x) return;
+  cart.find(
+    i => i.id === id
+  );
 
 
-x.qty += d;
+  if(!x) return;
 
 
-if(x.qty < 1){
-
-cart =
-cart.filter(
-i => i.id !== id
-);
-
-}
+  x.qty += d;
 
 
-save();
+  if(x.qty < 1){
+
+    cart =
+    cart.filter(
+      i => i.id !== id
+    );
+
+  }
+
+
+  save();
 
 };
 
@@ -412,12 +412,12 @@ save();
 
 window.removeItem = id => {
 
-cart =
-cart.filter(
-i => i.id !== id
-);
+  cart =
+  cart.filter(
+    i => i.id !== id
+  );
 
-save();
+  save();
 
 };
 
@@ -426,18 +426,18 @@ save();
 
 window.openMenu = () => {
 
-$("drawer")
-.classList
-.add("open");
+  $("drawer")
+  .classList
+  .add("open");
 
 };
 
 
 window.closeMenu = () => {
 
-$("drawer")
-.classList
-.remove("open");
+  $("drawer")
+  .classList
+  .remove("open");
 
 };
 
@@ -446,20 +446,20 @@ $("drawer")
 
 window.openCart = () => {
 
-renderCart();
+  renderCart();
 
-$("cartModal")
-.classList
-.add("open");
+  $("cartModal")
+  .classList
+  .add("open");
 
 };
 
 
 window.closeCart = () => {
 
-$("cartModal")
-.classList
-.remove("open");
+  $("cartModal")
+  .classList
+  .remove("open");
 
 };
 
@@ -469,21 +469,21 @@ $("cartModal")
 window.goToCheckout = () => {
 
 
-if(!cart.length){
+  if(!cart.length){
 
-alert(
-"Your cart is empty."
-);
+    alert(
+      "Your cart is empty."
+    );
 
-return;
+    return;
 
-}
+  }
 
 
-closeCart();
+  closeCart();
 
-window.location.href =
-"checkout.html";
+  window.location.href =
+  "checkout.html";
 
 };
 
@@ -492,137 +492,137 @@ window.location.href =
 
 function renderCart(){
 
-const box =
-$("cartItems");
+  const box =
+  $("cartItems");
 
-const foot =
-$("cartFoot");
-
-
-if(!cart.length){
-
-box.innerHTML =
-"<p>Your cart is empty.</p>";
-
-foot.innerHTML =
-"";
-
-return;
-
-}
+  const foot =
+  $("cartFoot");
 
 
-box.innerHTML =
+  if(!cart.length){
 
-cart.map(
-x => `
+    box.innerHTML =
+    "<p>Your cart is empty.</p>";
 
-<div class="cartItem">
+    foot.innerHTML =
+    "";
 
-<div>
+    return;
 
-${
-  x.image
-  ?
-  `<img src="${esc(x.image)}" alt="${esc(x.name)}">`
-  :
-  `<div class="no-image">No image available</div>`
-}
-
-</div>
+  }
 
 
-<div>
+  box.innerHTML =
 
-<b>
-${esc(x.name)}
-</b>
+  cart.map(
+    x => `
 
+    <div class="cartItem">
 
-<div>
-₹${Number(x.price)}
-</div>
+      <div>
 
+        ${
+          x.image
+          ?
+          `<img src="${esc(x.image)}" alt="${esc(x.name)}">`
+          :
+          `<div class="no-image">No image available</div>`
+        }
 
-<div class="qty">
-
-<button
-onclick="changeQty('${esc(x.id)}',-1)">
-−
-</button>
-
-
-${Number(x.qty)}
+      </div>
 
 
-<button
-onclick="changeQty('${esc(x.id)}',1)">
-+
-</button>
+      <div>
+
+        <b>
+        ${esc(x.name)}
+        </b>
 
 
-<button
-onclick="removeItem('${esc(x.id)}')">
-Remove
-</button>
-
-</div>
-
-</div>
+        <div>
+        ₹${Number(x.price)}
+        </div>
 
 
-<b>
-₹${Number(x.price) * Number(x.qty)}
-</b>
+        <div class="qty">
 
-</div>
-
-`
-
-)
-
-.join("");
+          <button
+          onclick="changeQty('${esc(x.id)}',-1)">
+          −
+          </button>
 
 
-let total =
-
-cart.reduce(
-
-(s,x) =>
-
-s +
-Number(x.price) *
-Number(x.qty),
-
-0
-
-);
+          ${Number(x.qty)}
 
 
-foot.innerHTML = `
-
-<div class="total">
-
-<span>
-Total
-</span>
-
-<span>
-₹${total}
-</span>
-
-</div>
+          <button
+          onclick="changeQty('${esc(x.id)}',1)">
+          +
+          </button>
 
 
-<button
-class="primary"
-onclick="goToCheckout()">
+          <button
+          onclick="removeItem('${esc(x.id)}')">
+          Remove
+          </button>
 
-🛒 Continue to Checkout
+        </div>
 
-</button>
+      </div>
 
-`;
+
+      <b>
+      ₹${Number(x.price) * Number(x.qty)}
+      </b>
+
+    </div>
+
+    `
+
+  )
+
+  .join("");
+
+
+  let total =
+
+  cart.reduce(
+
+    (s,x) =>
+
+    s +
+    Number(x.price) *
+    Number(x.qty),
+
+    0
+
+  );
+
+
+  foot.innerHTML = `
+
+  <div class="total">
+
+    <span>
+    Total
+    </span>
+
+    <span>
+    ₹${total}
+    </span>
+
+  </div>
+
+
+  <button
+  class="primary"
+  onclick="goToCheckout()">
+
+  🛒 Continue to Checkout
+
+  </button>
+
+  `;
 
 }
 
@@ -632,136 +632,136 @@ onclick="goToCheckout()">
 window.render = () => {
 
 
-const searchBox =
-$("search");
+  const searchBox =
+  $("search");
 
 
-const sortBox =
-$("sort");
+  const sortBox =
+  $("sort");
 
 
-const grid =
-$("grid");
+  const grid =
+  $("grid");
 
 
-const count =
-$("count");
+  const count =
+  $("count");
 
 
-let q =
+  let q =
 
-searchBox.value
-.toLowerCase()
-.trim();
-
-
-let sort =
-sortBox.value;
+  searchBox.value
+  .toLowerCase()
+  .trim();
 
 
-let a =
-
-products.filter(
-
-p =>
-
-[
-
-p.name || "",
-
-p.description || "",
-
-p.category || ""
-
-]
-
-.join(" ")
-
-.toLowerCase()
-
-.includes(q)
-
-);
+  let sort =
+  sortBox.value;
 
 
-a.sort(
+  let a =
 
-(x,y) => {
+  products.filter(
 
+    p =>
 
-if(sort === "az"){
+    [
 
-return String(
-x.name || ""
-)
+      p.name || "",
 
-.localeCompare(
+      p.description || "",
 
-String(
-y.name || ""
-)
+      p.category || ""
 
-);
+    ]
 
-}
+    .join(" ")
 
+    .toLowerCase()
 
-if(sort === "za"){
+    .includes(q)
 
-return String(
-y.name || ""
-)
-
-.localeCompare(
-
-String(
-x.name || ""
-)
-
-);
-
-}
+  );
 
 
-return 0;
+  a.sort(
 
-}
-
-);
+    (x,y) => {
 
 
-count.textContent =
+      if(sort === "az"){
 
-a.length +
+        return String(
+          x.name || ""
+        )
 
-" product" +
+        .localeCompare(
 
-(
+          String(
+            y.name || ""
+          )
 
-a.length === 1
+        );
 
-?
-
-""
-
-:
-
-"s"
-
-);
+      }
 
 
-grid.innerHTML =
+      if(sort === "za"){
 
-a.length
+        return String(
+          y.name || ""
+        )
 
-?
+        .localeCompare(
 
-a.map(card).join("")
+          String(
+            x.name || ""
+          )
 
-:
+        );
 
-'<div class="empty">No products found.</div>';
+      }
+
+
+      return 0;
+
+    }
+
+  );
+
+
+  count.textContent =
+
+  a.length +
+
+  " product" +
+
+  (
+
+    a.length === 1
+
+    ?
+
+    ""
+
+    :
+
+    "s"
+
+  );
+
+
+  grid.innerHTML =
+
+  a.length
+
+  ?
+
+  a.map(card).join("")
+
+  :
+
+  '<div class="empty">No products found.</div>';
 
 };
 
@@ -770,138 +770,304 @@ a.map(card).join("")
 
 function card(p){
 
-const img =
-p.imageUrl || p.image || "";
+  const img =
+  p.imageUrl || p.image || "";
 
-const price =
-Number(p.price) || 0;
 
-const safeProduct =
-encodeURIComponent(
-JSON.stringify(p)
+  const price =
+  Number(p.price) || 0;
+
+
+  const safeProduct =
+  encodeURIComponent(
+    JSON.stringify(p)
+  );
+
+
+  return `
+
+  <article class="card">
+
+    <div class="pic">
+
+      ${
+        img
+        ?
+        `<img src="${esc(img)}" alt="${esc(p.name || "Product")}">`
+        :
+        `<div class="noImage">
+        No image available
+        </div>`
+      }
+
+    </div>
+
+
+    <div class="info">
+
+      <div class="tag">
+
+        ${esc(
+          p.category || "Featured"
+        )}
+
+      </div>
+
+
+      <div class="name">
+
+        ${esc(
+          p.name || "Product"
+        )}
+
+      </div>
+
+
+      <div class="desc">
+
+        ${esc(
+          p.description || ""
+        )}
+
+      </div>
+
+
+      <div class="price">
+
+        ₹${price}
+
+      </div>
+
+
+      <div class="stock">
+
+        ${Number(p.stock || 0)}
+
+        in stock
+
+      </div>
+
+
+      <button
+      class="details"
+      onclick="location.href='product.html?id=${encodeURIComponent(p.id)}'">
+
+      View Product
+
+      </button>
+
+
+      <div class="actions">
+
+
+        <button
+        class="add"
+        data-product="${safeProduct}">
+
+        🛒 Add
+
+        </button>
+
+
+        <button
+        class="buy"
+        data-product="${safeProduct}">
+
+        Buy Now
+
+        </button>
+
+
+      </div>
+
+    </div>
+
+  </article>
+
+  `;
+
+}
+
+
+/* PRODUCT BUTTONS */
+
+document.addEventListener(
+
+  "click",
+
+  e => {
+
+
+    const addButton =
+    e.target.closest(".add");
+
+
+    const buyButton =
+    e.target.closest(".buy");
+
+
+    if(addButton){
+
+
+      try{
+
+
+        const product =
+
+        JSON.parse(
+
+          decodeURIComponent(
+
+            addButton.dataset.product
+
+          )
+
+        );
+
+
+        addToCart(product);
+
+
+      }catch(error){
+
+        console.error(error);
+
+      }
+
+    }
+
+
+    if(buyButton){
+
+
+      try{
+
+
+        const product =
+
+        JSON.parse(
+
+          decodeURIComponent(
+
+            buyButton.dataset.product
+
+          )
+
+        );
+
+
+        buyNow(product);
+
+
+      }catch(error){
+
+        console.error(error);
+
+      }
+
+    }
+
+  }
+
 );
 
-return `
 
-<article class="card">
+/* LOAD PRODUCTS FROM FIRESTORE */
 
-<div class="pic">
-
-${
-img
-?
-`<img src="${esc(img)}" alt="${esc(p.name || "Product")}">`
-:
-`<div class="noImage">
-No image available
-</div>`
-}
-
-</div>
+$("count").textContent =
+"Loading products...";
 
 
-<div class="info">
+onSnapshot(
 
-<div class="tag">
+  collection(
+    db,
+    "products"
+  ),
 
-${esc(
-p.category || "Featured"
-)}
-
-</div>
-
-
-<div class="name">
-
-${esc(
-p.name || "Product"
-)}
-
-</div>
+  snapshot => {
 
 
-<div class="desc">
+    products =
 
-${esc(
-p.description || ""
-)}
+    snapshot.docs
 
-</div>
+    .map(
 
+      doc => ({
 
-<div class="price">
+        id:doc.id,
 
-₹${price}
+        ...doc.data()
 
-</div>
+      })
 
+    )
 
-<div class="stock">
+    .filter(p => {
 
-${Number(p.stock || 0)}
-
-in stock
-
-</div>
-
-
-<button
-class="details"
-onclick="location.href='product.html?id=${encodeURIComponent(p.id)}'">
-
-View Product
-
-</button>
+      const approved =
+        p.approvalStatus === "approved" ||
+        p.approvalStatus === undefined ||
+        p.approvalStatus === null ||
+        p.approvalStatus === "";
 
 
-<div class="actions">
-
-<button
-class="add"
-data-product="${safeProduct}">
-
-🛒 Add
-
-</button>
+      const active =
+        p.active !== false;
 
 
-<button
-class="buy"
-data-product="${safeProduct}">
+      return approved && active;
 
-Buy Now
+    });
 
-</button>
 
-</div>
+    render();
 
-</div>
+  },
 
-</article>
 
-`;
+  error => {
 
-}
-  /* START */
+
+    console.error(
+      "Firestore error:",
+      error
+    );
+
+
+    $("count")
+    .textContent =
+
+    "Unable to load products.";
+
+
+    $("grid")
+    .innerHTML = `
+
+    <div class="empty">
+
+      <b>
+      Products could not be loaded.
+      </b>
+
+      <br><br>
+
+      Check your Firebase Firestore Rules
+      and make sure the "products"
+      collection exists.
+
+    </div>
+
+    `;
+
+  }
+
+);
+
+
+/* START */
 
 updateCount();
 
-<style>
-
-/* Your existing CSS above */
-
-.noImage{
-display:flex;
-align-items:center;
-justify-content:center;
-width:100%;
-height:100%;
-min-height:180px;
-background:#f3f4f6;
-color:#777;
-font-size:14px;
-}
-
-</style>
-</script>
-  
+    </script>

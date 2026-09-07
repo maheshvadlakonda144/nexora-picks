@@ -771,66 +771,36 @@ a.map(card).join("")
 function card(p){
 
 const img =
-p.imageUrl || "";
-
+p.imageUrl || p.image || "";
 
 const price =
 Number(p.price) || 0;
-
 
 const safeProduct =
 encodeURIComponent(
 JSON.stringify(p)
 );
 
-
 return `
 
 <article class="card">
 
-
 <div class="pic">
 
-
 ${
-x.image
-
+img
 ?
-
-`<img src="${esc(x.image)}" alt="${esc(x.name)}">`
-
+`<img src="${esc(img)}" alt="${esc(p.name || "Product")}">`
 :
-
 `<div class="noImage">
 No image available
 </div>`
-
 }
-
-
-<span
-class="emoji"
-
-style="${
-img
-?
-"display:none"
-:
-""
-}"
-
->
-
-image:p.imageUrl || "",
-
-</span>
-
 
 </div>
 
 
 <div class="info">
-
 
 <div class="tag">
 
@@ -877,12 +847,7 @@ in stock
 
 <button
 class="details"
-
-onclick="
-location.href='product.html?id=${encodeURIComponent(p.id)}'
-"
-
->
+onclick="location.href='product.html?id=${encodeURIComponent(p.id)}'">
 
 View Product
 
@@ -890,7 +855,6 @@ View Product
 
 
 <div class="actions">
-
 
 <button
 class="add"
@@ -909,7 +873,6 @@ Buy Now
 
 </button>
 
-
 </div>
 
 </div>
@@ -919,188 +882,13 @@ Buy Now
 `;
 
 }
-
-
-/* PRODUCT BUTTONS */
-
-document.addEventListener(
-
-"click",
-
-e => {
-
-
-const addButton =
-e.target.closest(".add");
-
-
-const buyButton =
-e.target.closest(".buy");
-
-
-if(addButton){
-
-
-try{
-
-
-const product =
-
-JSON.parse(
-
-decodeURIComponent(
-
-addButton.dataset.product
-
-)
-
-);
-
-
-addToCart(product);
-
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-
-if(buyButton){
-
-
-try{
-
-
-const product =
-
-JSON.parse(
-
-decodeURIComponent(
-
-buyButton.dataset.product
-
-)
-
-);
-
-
-buyNow(product);
-
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-}
-
-);
-
-
-/* LOAD PRODUCTS FROM FIRESTORE */
-
-$("count").textContent =
-"Loading products...";
-
-
-onSnapshot(
-
-collection(
-db,
-"products"
-),
-
-snapshot => {
-
-
-products =
-
-snapshot.docs
-
-.map(
-
-doc => ({
-
-id:doc.id,
-
-...doc.data()
-
-})
-
-)
-
-.filter(p => {
-
-  const approved =
-    p.approvalStatus === "approved" ||
-    p.approvalStatus === undefined ||
-    p.approvalStatus === null ||
-    p.approvalStatus === "";
-
-  const active =
-    p.active !== false;
-
-  return approved && active;
-
-});
-  
-render();
-
-},
-
-
-error => {
-
-
-console.error(
-"Firestore error:",
-error
-);
-
-
-$("count")
-.textContent =
-
-"Unable to load products.";
-
-
-$("grid")
-.innerHTML = `
-
-<div class="empty">
-
-<b>Products could not be loaded.</b>
-
-<br><br>
-
-Check your Firebase Firestore Rules
-and make sure the "products"
-collection exists.
-
-</div>
-
-`;
-
-}
-
-);
-
-
-/* START */
+  /* START */
 
 updateCount();
 
-  <style>
+<style>
 
 /* Your existing CSS above */
-
 
 .noImage{
 display:flex;
@@ -1115,4 +903,5 @@ font-size:14px;
 }
 
 </style>
-
+</script>
+  

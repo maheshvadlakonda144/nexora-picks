@@ -1,282 +1,2015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXORA PICKS | Online Shopping</title>
+
+<meta name="description"
+content="NEXORA PICKS - Discover amazing products from independent sellers.">
+
+<style>
+
+/* ============================= */
+/* RESET */
+/* ============================= */
+
+*{
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:#f1f3f6;
+color:#172033;
+}
+
+button,
+input,
+select{
+font:inherit;
+}
+
+
+/* ============================= */
+/* HEADER */
+/* ============================= */
+
+header{
+background:#2874f0;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.topbar{
+max-width:1400px;
+margin:auto;
+padding:12px 20px;
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+
+/* LOGO */
+
+.logo{
+color:white;
+font-size:25px;
+font-weight:800;
+text-decoration:none;
+white-space:nowrap;
+letter-spacing:.5px;
+}
+
+.logo span{
+color:#ffe500;
+}
+
+
+/* SEARCH */
+
+.searchWrap{
+flex:1;
+position:relative;
+}
+
+.searchWrap input{
+width:100%;
+border:none;
+outline:none;
+padding:13px 45px 13px 18px;
+border-radius:6px;
+font-size:15px;
+}
+
+.searchIcon{
+position:absolute;
+right:15px;
+top:50%;
+transform:translateY(-50%);
+font-size:20px;
+color:#2874f0;
+}
+
+
+/* HEADER BUTTONS */
+
+.headerActions{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.headerBtn{
+background:white;
+color:#2874f0;
+border:none;
+padding:10px 16px;
+border-radius:5px;
+font-weight:bold;
+cursor:pointer;
+white-space:nowrap;
+}
+
+.headerBtn:hover{
+background:#f3f6ff;
+}
+
+.cartButton{
+position:relative;
+background:transparent;
+border:none;
+color:white;
+font-weight:bold;
+font-size:15px;
+cursor:pointer;
+white-space:nowrap;
+}
+
+#cartCount{
+background:#ffdf00;
+color:#111;
+width:20px;
+height:20px;
+border-radius:50%;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
+margin-left:3px;
+}
+
+
+/* ============================= */
+/* NAVIGATION */
+/* ============================= */
+
+.nav{
+background:white;
+border-bottom:1px solid #e5e7eb;
+}
+
+.navInner{
+max-width:1400px;
+margin:auto;
+padding:12px 20px;
+display:flex;
+gap:30px;
+overflow:auto;
+}
+
+.nav a{
+text-decoration:none;
+color:#263238;
+font-size:14px;
+font-weight:600;
+white-space:nowrap;
+}
+
+.nav a:hover{
+color:#2874f0;
+}
+
+
+/* ============================= */
+/* HERO */
+/* ============================= */
+
+.hero{
+max-width:1400px;
+margin:20px auto;
+padding:0 20px;
+}
+
+.heroBox{
+min-height:330px;
+border-radius:14px;
+overflow:hidden;
+background:
+linear-gradient(
+135deg,
+#1356d8,
+#2874f0,
+#6b4eff
+);
+color:white;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:45px 55px;
+position:relative;
+}
+
+.heroContent{
+max-width:600px;
+z-index:2;
+}
+
+.heroContent h1{
+font-size:42px;
+margin:0 0 15px;
+line-height:1.1;
+}
+
+.heroContent p{
+font-size:17px;
+line-height:1.6;
+margin-bottom:25px;
+opacity:.95;
+}
+
+.shopNow{
+background:#ffdf00;
+color:#111;
+border:none;
+padding:14px 25px;
+font-size:16px;
+font-weight:bold;
+border-radius:6px;
+cursor:pointer;
+}
+
+.shopNow:hover{
+transform:translateY(-2px);
+}
+
+.heroVisual{
+font-size:130px;
+opacity:.9;
+z-index:2;
+}
+
+.heroCircle{
+position:absolute;
+width:350px;
+height:350px;
+border-radius:50%;
+background:rgba(255,255,255,.1);
+right:-80px;
+bottom:-120px;
+}
+
+
+/* ============================= */
+/* CATEGORIES */
+/* ============================= */
+
+.categories{
+max-width:1400px;
+margin:0 auto 20px;
+padding:0 20px;
+}
+
+.categoryGrid{
+display:grid;
+grid-template-columns:repeat(8,1fr);
+gap:12px;
+}
+
+.category{
+background:white;
+border-radius:10px;
+padding:18px 10px;
+text-align:center;
+cursor:pointer;
+box-shadow:0 1px 4px rgba(0,0,0,.08);
+transition:.2s;
+}
+
+.category:hover{
+transform:translateY(-4px);
+box-shadow:0 5px 15px rgba(0,0,0,.12);
+}
+
+.categoryIcon{
+font-size:30px;
+margin-bottom:8px;
+}
+
+.categoryName{
+font-size:13px;
+font-weight:bold;
+}
+
+
+/* ============================= */
+/* MAIN */
+/* ============================= */
+
+main{
+max-width:1400px;
+margin:auto;
+padding:0 20px 40px;
+}
+
+.sectionHeader{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin:25px 0 15px;
+}
+
+.sectionHeader h2{
+margin:0;
+font-size:24px;
+}
+
+#count{
+color:#667085;
+font-size:14px;
+}
+
+
+/* ============================= */
+/* FILTER */
+/* ============================= */
+
+.filterBar{
+background:white;
+border-radius:10px;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+margin-bottom:18px;
+box-shadow:0 1px 4px rgba(0,0,0,.08);
+}
+
+.filterText{
+font-size:14px;
+color:#667085;
+}
+
+#sort{
+padding:9px 12px;
+border:1px solid #ddd;
+border-radius:5px;
+outline:none;
+background:white;
+}
+
+
+/* ============================= */
+/* PRODUCTS */
+/* ============================= */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+
+.card{
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 2px 7px rgba(0,0,0,.08);
+transition:.2s;
+display:flex;
+flex-direction:column;
+}
+
+.card:hover{
+transform:translateY(-4px);
+box-shadow:0 8px 22px rgba(0,0,0,.13);
+}
+
+.pic{
+height:230px;
+background:#f6f7f9;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+.pic img{
+width:100%;
+height:100%;
+object-fit:contain;
+padding:10px;
+}
+
+.noImage{
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#f3f4f6;
+color:#777;
+font-size:14px;
+}
+
+.info{
+padding:16px;
+display:flex;
+flex-direction:column;
+flex:1;
+}
+
+.tag{
+display:inline-block;
+color:#2874f0;
+font-size:12px;
+font-weight:bold;
+margin-bottom:8px;
+}
+
+.name{
+font-size:17px;
+font-weight:bold;
+line-height:1.4;
+min-height:48px;
+}
+
+.desc{
+font-size:13px;
+color:#667085;
+margin:8px 0;
+line-height:1.5;
+min-height:40px;
+}
+
+.price{
+font-size:21px;
+font-weight:800;
+color:#111;
+margin:8px 0;
+}
+
+.stock{
+font-size:13px;
+color:#16833c;
+margin-bottom:12px;
+}
+
+.details{
+width:100%;
+border:1px solid #2874f0;
+background:white;
+color:#2874f0;
+padding:10px;
+border-radius:5px;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:10px;
+}
+
+.details:hover{
+background:#eef4ff;
+}
+
+.actions{
+display:flex;
+gap:8px;
+margin-top:auto;
+}
+
+.add,
+.buy{
+flex:1;
+border:none;
+padding:11px 8px;
+border-radius:5px;
+font-weight:bold;
+cursor:pointer;
+font-size:13px;
+}
+
+.add{
+background:#ffdf00;
+color:#111;
+}
+
+.buy{
+background:#2874f0;
+color:white;
+}
+
+.add:hover,
+.buy:hover{
+opacity:.9;
+}
+
+.empty{
+grid-column:1/-1;
+background:white;
+padding:50px 20px;
+border-radius:10px;
+text-align:center;
+color:#667085;
+}
+
+
+/* ============================= */
+/* FOOTER */
+/* ============================= */
+
+footer{
+background:#172033;
+color:white;
+margin-top:30px;
+}
+
+.footerInner{
+max-width:1400px;
+margin:auto;
+padding:40px 20px;
+display:grid;
+grid-template-columns:2fr 1fr 1fr 1fr;
+gap:30px;
+}
+
+.footerLogo{
+font-size:24px;
+font-weight:bold;
+margin-bottom:12px;
+}
+
+.footerText{
+color:#b9c0cc;
+font-size:14px;
+line-height:1.6;
+}
+
+.footerTitle{
+font-weight:bold;
+margin-bottom:15px;
+}
+
+.footerLinks a{
+display:block;
+color:#b9c0cc;
+text-decoration:none;
+font-size:14px;
+margin-bottom:10px;
+}
+
+.footerLinks a:hover{
+color:white;
+}
+
+.copyright{
+border-top:1px solid #30394a;
+text-align:center;
+padding:15px;
+font-size:13px;
+color:#b9c0cc;
+}
+
+
+/* ============================= */
+/* DRAWER */
+/* ============================= */
+
+.drawer{
+position:fixed;
+left:-320px;
+top:0;
+width:300px;
+height:100%;
+background:white;
+z-index:3000;
+box-shadow:5px 0 20px rgba(0,0,0,.2);
+transition:.3s;
+padding:20px;
+}
+
+.drawer.open{
+left:0;
+}
+
+.drawerTop{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.drawerTop h2{
+margin:0;
+}
+
+.drawerClose{
+border:none;
+background:none;
+font-size:25px;
+cursor:pointer;
+}
+
+.drawer a{
+display:block;
+padding:14px 0;
+border-bottom:1px solid #eee;
+color:#172033;
+text-decoration:none;
+}
+
+
+/* ============================= */
+/* AUTH MODAL */
+/* ============================= */
+
+.modal{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.55);
+display:none;
+align-items:center;
+justify-content:center;
+padding:20px;
+z-index:5000;
+}
+
+.modal.open{
+display:flex;
+}
+
+.modalBox{
+background:white;
+width:100%;
+max-width:420px;
+border-radius:12px;
+padding:25px;
+position:relative;
+}
+
+.closeModal{
+position:absolute;
+right:15px;
+top:10px;
+border:none;
+background:none;
+font-size:28px;
+cursor:pointer;
+}
+
+.modalBox h2{
+margin-top:0;
+}
+
+.modalBox input{
+width:100%;
+padding:13px;
+border:1px solid #ddd;
+border-radius:6px;
+margin-bottom:12px;
+outline:none;
+}
+
+.modalBox input:focus{
+border-color:#2874f0;
+}
+
+.primary{
+width:100%;
+border:none;
+background:#2874f0;
+color:white;
+padding:13px;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.modeButton{
+width:100%;
+margin-top:12px;
+border:none;
+background:none;
+color:#2874f0;
+cursor:pointer;
+}
+
+#authMsg{
+color:#d32f2f;
+font-size:13px;
+margin-top:10px;
+}
+
+
+/* ============================= */
+/* CART MODAL */
+/* ============================= */
+
+.cartBox{
+max-width:650px;
+}
+
+#cartItems{
+max-height:55vh;
+overflow:auto;
+}
+
+.cartItem{
+display:grid;
+grid-template-columns:90px 1fr auto;
+gap:12px;
+padding:12px 0;
+border-bottom:1px solid #eee;
+align-items:center;
+}
+
+.cartItem img{
+width:80px;
+height:80px;
+object-fit:contain;
+}
+
+.cartItem .no-image{
+width:80px;
+height:80px;
+font-size:11px;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#f3f4f6;
+}
+
+.qty{
+margin-top:8px;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.qty button{
+border:1px solid #ddd;
+background:white;
+padding:5px 8px;
+border-radius:4px;
+cursor:pointer;
+}
+
+.total{
+display:flex;
+justify-content:space-between;
+font-size:20px;
+font-weight:bold;
+padding:18px 0;
+}
+
+
+/* ============================= */
+/* MOBILE */
+/* ============================= */
+
+.mobileMenu{
+display:none;
+background:transparent;
+border:none;
+color:white;
+font-size:24px;
+cursor:pointer;
+}
+
+@media(max-width:1000px){
+
+.grid{
+grid-template-columns:repeat(3,1fr);
+}
+
+.categoryGrid{
+grid-template-columns:repeat(4,1fr);
+}
+
+}
+
+@media(max-width:700px){
+
+.topbar{
+padding:10px 12px;
+gap:10px;
+}
+
+.mobileMenu{
+display:block;
+}
+
+.logo{
+font-size:18px;
+}
+
+.headerActions{
+gap:8px;
+}
+
+.headerBtn{
+padding:8px 10px;
+font-size:13px;
+}
+
+.searchWrap{
+order:2;
+width:100%;
+}
+
+.topbar{
+flex-wrap:wrap;
+}
+
+.hero{
+padding:0 12px;
+margin-top:12px;
+}
+
+.heroBox{
+padding:30px 25px;
+min-height:270px;
+}
+
+.heroContent h1{
+font-size:29px;
+}
+
+.heroContent p{
+font-size:14px;
+}
+
+.heroVisual{
+display:none;
+}
+
+.categories,
+main{
+padding-left:12px;
+padding-right:12px;
+}
+
+.categoryGrid{
+grid-template-columns:repeat(4,1fr);
+gap:8px;
+}
+
+.category{
+padding:12px 5px;
+}
+
+.categoryIcon{
+font-size:23px;
+}
+
+.categoryName{
+font-size:11px;
+}
+
+.grid{
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+}
+
+.pic{
+height:160px;
+}
+
+.info{
+padding:11px;
+}
+
+.name{
+font-size:14px;
+min-height:42px;
+}
+
+.desc{
+display:none;
+}
+
+.price{
+font-size:17px;
+}
+
+.actions{
+flex-direction:column;
+}
+
+.sectionHeader h2{
+font-size:20px;
+}
+
+.filterBar{
+flex-direction:column;
+align-items:stretch;
+}
+
+.footerInner{
+grid-template-columns:1fr 1fr;
+}
+
+.cartItem{
+grid-template-columns:70px 1fr;
+}
+
+.cartItem > b{
+grid-column:2;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- ============================= -->
+<!-- HEADER -->
+<!-- ============================= -->
+
+<header>
+
+<div class="topbar">
+
+<button
+class="mobileMenu"
+onclick="openMenu()">
+
+☰
+
+</button>
+
+
+<a
+href="index.html"
+class="logo">
+
+NEXORA <span>PICKS</span>
+
+</a>
+
+
+<div class="searchWrap">
+
+<input
+id="search"
+type="text"
+placeholder="Search for products..."
+oninput="render()">
+
+<span class="searchIcon">
+⌕
+</span>
+
+</div>
+
+
+<div class="headerActions">
+
+<button
+id="account"
+class="headerBtn">
+
+Login
+
+</button>
+
+
+<button
+class="cartButton"
+onclick="openCart()">
+
+🛒 Cart
+
+<span id="cartCount">
+0
+</span>
+
+</button>
+
+</div>
+
+</div>
+
+</header>
+
+
+<!-- ============================= -->
+<!-- NAVIGATION -->
+<!-- ============================= -->
+
+<nav class="nav">
+
+<div class="navInner">
+
+<a href="#products">
+All Products
+</a>
+
+<a href="#products">
+Electronics
+</a>
+
+<a href="#products">
+Fashion
+</a>
+
+<a href="#products">
+Home
+</a>
+
+<a href="#products">
+Beauty
+</a>
+
+<a href="#products">
+Mobiles
+</a>
+
+<a href="#products">
+Accessories
+</a>
+
+</div>
+
+</nav>
+
+
+<!-- ============================= -->
+<!-- HERO -->
+<!-- ============================= -->
+
+<section class="hero">
+
+<div class="heroBox">
+
+<div class="heroContent">
+
+<h1>
+
+Discover Amazing Products
+
+</h1>
+
+<p>
+
+Shop trending products and discover great deals
+from sellers on NEXORA PICKS.
+
+</p>
+
+<button
+class="shopNow"
+onclick="document.getElementById('products').scrollIntoView()">
+
+Shop Now →
+
+</button>
+
+</div>
+
+
+<div class="heroVisual">
+
+🛍️
+
+</div>
+
+
+<div class="heroCircle">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ============================= -->
+<!-- CATEGORIES -->
+<!-- ============================= -->
+
+<section class="categories">
+
+<div class="categoryGrid">
+
+<div
+class="category"
+onclick="searchCategory('Electronics')">
+
+<div class="categoryIcon">
+📱
+</div>
+
+<div class="categoryName">
+Electronics
+</div>
+
+</div>
+
+
+<div
+class="category"
+onclick="searchCategory('Fashion')">
+
+<div class="categoryIcon">
+👕
+</div>
+
+<div class="categoryName">
+Fashion
+</div>
+
+</div>
+
+
+<div
+class="category"
+onclick="searchCategory('Home')">
+
+<div class="categoryIcon">
+🏠
+</div>
+
+<div class="categoryName">
+Home
+</div>
+
+</div>
+
+
+<div
+class="category"
+onclick="searchCategory('Beauty')">
+
+<div class="categoryIcon">
+💄
+</div>
+
+<div class="categoryName">
+Beauty
+</div>
+
+</div>
+
+
+<div
+class="category"
+onclick="searchCategory('Mobiles')">
+
+<div class="categoryIcon">
+📱
+</div>
+
+<div class="categoryName">
+Mobiles
+</div>
+
+</div>
+
+
+<div
+class="category"
+onclick="searchCategory('Accessories')">
+
+<div class="categoryIcon">
+⌚
+</div>
+
+<div class="categoryName">
+Accessories
+</div>
+
+</div>
+
+
+<div
+class="category"
+onclick="searchCategory('Featured')">
+
+<div class="categoryIcon">
+⭐
+</div>
+
+<div class="categoryName">
+Featured
+</div>
+
+</div>
+
+
+<div
+class="category"
+onclick="showAllProducts()">
+
+<div class="categoryIcon">
+🛒
+</div>
+
+<div class="categoryName">
+View All
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ============================= -->
+<!-- PRODUCTS -->
+<!-- ============================= -->
+
+<main id="products">
+
+
+<div class="sectionHeader">
+
+<h2>
+
+Featured Products
+
+</h2>
+
+
+<div id="count">
+
+Loading products...
+
+</div>
+
+</div>
+
+
+<div class="filterBar">
+
+<div class="filterText">
+
+Discover products from our marketplace
+
+</div>
+
+
+<select
+id="sort"
+onchange="render()">
+
+<option value="default">
+
+Sort: Featured
+
+</option>
+
+<option value="az">
+
+Name: A to Z
+
+</option>
+
+<option value="za">
+
+Name: Z to A
+
+</option>
+
+<option value="low">
+
+Price: Low to High
+
+</option>
+
+<option value="high">
+
+Price: High to Low
+
+</option>
+
+</select>
+
+</div>
+
+
+<div
+id="grid"
+class="grid">
+
+<div class="empty">
+
+Loading products...
+
+</div>
+
+</div>
+
+
+</main>
+
+
+<!-- ============================= -->
+<!-- FOOTER -->
+<!-- ============================= -->
+
+<footer>
+
+<div class="footerInner">
+
+<div>
+
+<div class="footerLogo">
+
+NEXORA PICKS
+
+</div>
+
+<div class="footerText">
+
+Discover amazing products from independent sellers.
+Shop smarter and explore new products every day.
+
+</div>
+
+</div>
+
+
+<div>
+
+<div class="footerTitle">
+
+Customer
+
+</div>
+
+<div class="footerLinks">
+
+<a href="#">
+My Account
+</a>
+
+<a href="#">
+My Orders
+</a>
+
+<a href="#">
+Cart
+</a>
+
+</div>
+
+</div>
+
+
+<div>
+
+<div class="footerTitle">
+
+Company
+
+</div>
+
+<div class="footerLinks">
+
+<a href="#">
+About Us
+</a>
+
+<a href="#">
+Contact
+</a>
+
+<a href="#">
+Seller Registration
+</a>
+
+</div>
+
+</div>
+
+
+<div>
+
+<div class="footerTitle">
+
+Support
+
+</div>
+
+<div class="footerLinks">
+
+<a href="#">
+Help Center
+</a>
+
+<a href="#">
+Privacy Policy
+</a>
+
+<a href="#">
+Terms
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="copyright">
+
+© 2026 NEXORA PICKS. All rights reserved.
+
+</div>
+
+</footer>
+
+
+<!-- ============================= -->
+<!-- MENU -->
+<!-- ============================= -->
+
+<div
+id="drawer"
+class="drawer">
+
+<div class="drawerTop">
+
+<h2>
+
+NEXORA PICKS
+
+</h2>
+
+
+<button
+class="drawerClose"
+onclick="closeMenu()">
+
+×
+
+</button>
+
+</div>
+
+
+<a href="index.html">
+
+🏠 Home
+
+</a>
+
+
+<a href="#products">
+
+🛍️ Products
+
+</a>
+
+
+<a href="#">
+
+📦 My Orders
+
+</a>
+
+
+<a href="#">
+
+👤 My Account
+
+</a>
+
+
+<a href="#">
+
+🏪 Sell Products
+
+</a>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- AUTH MODAL -->
+<!-- ============================= -->
+
+<div
+id="authModal"
+class="modal">
+
+<div class="modalBox">
+
+<button
+class="closeModal"
+onclick="closeAuth()">
+
+×
+
+</button>
+
+
+<h2 id="authTitle">
+
+Customer Login
+
+</h2>
+
+
+<input
+id="fullName"
+type="text"
+placeholder="Full name"
+style="display:none">
+
+
+<input
+id="email"
+type="email"
+placeholder="Email address">
+
+
+<input
+id="password"
+type="password"
+placeholder="Password">
+
+
+<button
+id="authBtn"
+class="primary"
+onclick="authAction()">
+
+Login
+
+</button>
+
+
+<button
+id="modeBtn"
+class="modeButton"
+onclick="toggleMode()">
+
+Create customer account
+
+</button>
+
+
+<div id="authMsg">
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- CART -->
+<!-- ============================= -->
+
+<div
+id="cartModal"
+class="modal">
+
+<div class="modalBox cartBox">
+
+<button
+class="closeModal"
+onclick="closeCart()">
+
+×
+
+</button>
+
+
+<h2>
+
+🛒 Your Cart
+
+</h2>
+
+
+<div id="cartItems">
+
+Your cart is empty.
+
+</div>
+
+
+<div id="cartFoot">
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- FIREBASE + JAVASCRIPT -->
+<!-- ============================= -->
+
 <script type="module">
 
+
+/* ============================= */
+/* FIREBASE IMPORTS */
+/* ============================= */
+
+
 import {
-  initializeApp
+
+initializeApp
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
 import {
-  getAuth,
-  onAuthStateChanged,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  updateProfile
+
+getAuth,
+
+onAuthStateChanged,
+
+createUserWithEmailAndPassword,
+
+signInWithEmailAndPassword,
+
+signOut,
+
+updateProfile
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
 import {
-  getFirestore,
-  collection,
-  onSnapshot
+
+getFirestore,
+
+collection,
+
+onSnapshot
+
 }
+
 from
+
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
+/* ============================= */
 /* FIREBASE CONFIG */
+/* ============================= */
+
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
+apiKey:
+"AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
 
-  authDomain: "nexora-picks-be049.firebaseapp.com",
+authDomain:
+"nexora-picks-be049.firebaseapp.com",
 
-  projectId: "nexora-picks-be049",
+projectId:
+"nexora-picks-be049",
 
-  storageBucket: "nexora-picks-be049.firebasestorage.app",
+storageBucket:
+"nexora-picks-be049.firebasestorage.app",
 
-  messagingSenderId: "325932959084",
+messagingSenderId:
+"325932959084",
 
-  appId: "1:325932959084:web:4fd8252e1ba83f82ee1f49",
+appId:
+"1:325932959084:web:4fd8252e1ba83f82ee1f49",
 
-  measurementId: "G-KMQZXZZCHJ"
+measurementId:
+"G-KMQZXZZCHJ"
 
 };
 
 
+/* ============================= */
 /* START FIREBASE */
-
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth(app);
-
-const db = getFirestore(app);
+/* ============================= */
 
 
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+/* ============================= */
 /* VARIABLES */
+/* ============================= */
+
 
 let products = [];
 
+
 let cart =
+
 JSON.parse(
-  localStorage.getItem("nexora_cart")
-  || "[]"
+
+localStorage.getItem(
+"nexora_cart"
+)
+
+||
+
+"[]"
+
 );
 
-let signup = false;
+
+let signup =
+false;
 
 
+/* ============================= */
 /* SHORTCUT */
+/* ============================= */
+
 
 const $ = id =>
+
 document.getElementById(id);
 
 
+/* ============================= */
 /* ESCAPE HTML */
+/* ============================= */
 
-const esc = v =>
 
-String(v ?? "")
+const esc = value =>
+
+String(value ?? "")
 
 .replace(
+
 /[&<>"']/g,
 
-c => ({
-  "&":"&amp;",
-  "<":"&lt;",
-  ">":"&gt;",
-  '"':"&quot;",
-  "'":"&#39;"
-}[c])
+character => ({
+
+"&":"&amp;",
+
+"<":"&lt;",
+
+">":"&gt;",
+
+'"':"&quot;",
+
+"'":"&#39;"
+
+}[character])
 
 );
 
 
+/* ============================= */
 /* AUTH */
+/* ============================= */
+
 
 window.openAuth = () => {
 
-  $("authModal")
-  .classList
-  .add("open");
+$("authModal")
+.classList
+.add("open");
 
 };
 
 
 window.closeAuth = () => {
 
-  $("authModal")
-  .classList
-  .remove("open");
+$("authModal")
+.classList
+.remove("open");
 
 };
 
 
 window.toggleMode = () => {
 
-  signup = !signup;
+signup =
+!signup;
 
 
-  $("authTitle").textContent =
+$("authTitle")
+.textContent =
 
-  signup
-  ?
-  "Create customer account"
-  :
-  "Customer Login";
+signup
 
+?
 
-  $("authBtn").textContent =
+"Create Customer Account"
 
-  signup
-  ?
-  "Create account"
-  :
-  "Login";
+:
+
+"Customer Login";
 
 
-  $("modeBtn").textContent =
+$("authBtn")
+.textContent =
 
-  signup
-  ?
-  "Already have an account"
-  :
-  "Create customer account";
+signup
+
+?
+
+"Create Account"
+
+:
+
+"Login";
 
 
-  $("fullName")
-  .style
-  .display =
+$("modeBtn")
+.textContent =
 
-  signup
-  ?
-  "block"
-  :
-  "none";
+signup
+
+?
+
+"Already have an account? Login"
+
+:
+
+"Create customer account";
+
+
+$("fullName")
+.style
+.display =
+
+signup
+
+?
+
+"block"
+
+:
+
+"none";
 
 };
 
 
+/* ============================= */
 /* LOGIN / SIGNUP */
+/* ============================= */
 
 window.authAction = async () => {
 
-  const m = $("authMsg");
+  const message = $("authMsg");
 
-  m.textContent = "";
+  message.textContent = "";
 
+  const email =
+    $("email").value.trim();
+
+  const password =
+    $("password").value;
+
+  if (!email || !password) {
+
+    message.textContent =
+      "Please enter email and password.";
+
+    return;
+
+  }
 
   try {
 
-    if(signup){
+    if (signup) {
 
-      const c =
-      await createUserWithEmailAndPassword(
+      const fullName =
+        $("fullName").value.trim();
 
-        auth,
+      if (!fullName) {
 
-        $("email").value.trim(),
+        message.textContent =
+          "Please enter your full name.";
 
-        $("password").value
-
-      );
-
-
-      const n =
-      $("fullName")
-      .value
-      .trim();
-
-
-      if(n){
-
-        await updateProfile(
-
-          c.user,
-
-          {
-            displayName:n
-          }
-
-        );
+        return;
 
       }
 
+      const userCredential =
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
 
-    }else{
+      await updateProfile(
+        userCredential.user,
+        {
+          displayName: fullName
+        }
+      );
 
+      message.textContent =
+        "Account created successfully!";
+
+    } else {
 
       await signInWithEmailAndPassword(
-
         auth,
-
-        $("email").value.trim(),
-
-        $("password").value
-
+        email,
+        password
       );
 
     }
 
-
     closeAuth();
 
+  } catch (error) {
 
-  }catch(e){
+    console.error(error);
 
-    m.textContent =
-    e.message;
+    message.textContent =
+      error.message;
 
   }
 
 };
 
 
+/* ============================== */
 /* AUTH STATE */
+/* ============================== */
 
 onAuthStateChanged(
-
   auth,
+  user => {
 
-  u => {
+    const account =
+      $("account");
 
-    $("account").textContent =
+    if (!account) return;
 
-    u
-    ?
-    (u.displayName || "Account")
-    :
-    "Login";
+    if (user) {
 
+      account.textContent =
+        user.displayName ||
+        "Account";
 
-    $("account").onclick =
+      account.onclick = () => {
 
-    u
-    ?
-    () => signOut(auth)
-    :
-    openAuth;
+        if (
+          confirm(
+            "Do you want to logout?"
+          )
+        ) {
+
+          signOut(auth);
+
+        }
+
+      };
+
+    } else {
+
+      account.textContent =
+        "Login";
+
+      account.onclick =
+        openAuth;
+
+    }
 
   }
-
 );
 
 
+/* ============================== */
 /* SAVE CART */
+/* ============================== */
 
-function save(){
+function saveCart() {
 
   localStorage.setItem(
-
     "nexora_cart",
-
     JSON.stringify(cart)
-
   );
 
   updateCount();
@@ -286,87 +2019,87 @@ function save(){
 }
 
 
+/* ============================== */
 /* CART COUNT */
+/* ============================== */
 
-function updateCount(){
+function updateCount() {
 
-  const el = $("cartCount");
+  const cartCount =
+    $("cartCount");
 
-  if(!el) return;
+  if (!cartCount) return;
 
-
-  el.textContent =
-
-  cart.reduce(
-
-    (s,x) =>
-    s + Number(x.qty || 0),
-
-    0
-
-  );
+  cartCount.textContent =
+    cart.reduce(
+      (total, item) =>
+        total +
+        Number(item.qty || 0),
+      0
+    );
 
 }
 
 
+/* ============================== */
 /* ADD TO CART */
+/* ============================== */
 
-window.addToCart = p => {
+window.addToCart = product => {
 
-  if(
-
-    !Number(p.price)
-
-    ||
-
-    Number(p.stock) <= 0
-
-  ){
+  if (
+    !Number(product.price) ||
+    Number(product.stock) <= 0
+  ) {
 
     alert(
-      "This product is not available for purchase."
+      "This product is not available."
     );
 
     return;
 
   }
 
+  let existingItem =
+    cart.find(
+      item =>
+        item.id === product.id
+    );
 
-  let x =
+  if (existingItem) {
 
-  cart.find(
-    i => i.id === p.id
-  );
+    existingItem.qty++;
 
-
-  if(x){
-
-    x.qty++;
-
-  }else{
-
+  } else {
 
     cart.push({
 
-      id:p.id,
+      id:
+        product.id,
 
-      name:p.name,
+      name:
+        product.name ||
+        "Product",
 
-      price:Number(p.price),
+      price:
+        Number(product.price),
 
-      image:p.imageUrl || p.image || "",
+      image:
+        product.imageUrl ||
+        product.image ||
+        "",
 
-      sellerId:p.sellerId || "",
+      sellerId:
+        product.sellerId ||
+        "",
 
-      qty:1
+      qty: 1
 
     });
 
   }
 
-
-  save();
-
+  saveCart();
 
   alert(
     "Added to cart ✓"
@@ -375,113 +2108,158 @@ window.addToCart = p => {
 };
 
 
+/* ============================== */
 /* BUY NOW */
+/* ============================== */
 
-window.buyNow = p => {
+window.buyNow =
+product => {
 
-  addToCart(p);
+  addToCart(product);
 
   openCart();
 
 };
 
 
+/* ============================== */
 /* CHANGE QUANTITY */
+/* ============================== */
 
-window.changeQty = (id,d) => {
+window.changeQty =
+(id, change) => {
 
-  let x =
+  const item =
+    cart.find(
+      product =>
+        product.id === id
+    );
 
-  cart.find(
-    i => i.id === id
-  );
+  if (!item) return;
 
+  item.qty += change;
 
-  if(!x) return;
-
-
-  x.qty += d;
-
-
-  if(x.qty < 1){
+  if (
+    item.qty < 1
+  ) {
 
     cart =
+      cart.filter(
+        product =>
+          product.id !== id
+      );
 
+  }
+
+  saveCart();
+
+};
+
+
+/* ============================== */
+/* REMOVE ITEM */
+/* ============================== */
+
+window.removeItem =
+id => {
+
+  cart =
     cart.filter(
-      i => i.id !== id
+      product =>
+        product.id !== id
+    );
+
+  saveCart();
+
+};
+
+
+/* ============================== */
+/* MENU */
+/* ============================== */
+
+window.openMenu =
+() => {
+
+  const drawer =
+    $("drawer");
+
+  if (drawer) {
+
+    drawer.classList.add(
+      "open"
     );
 
   }
 
+};
 
-  save();
+
+window.closeMenu =
+() => {
+
+  const drawer =
+    $("drawer");
+
+  if (drawer) {
+
+    drawer.classList.remove(
+      "open"
+    );
+
+  }
 
 };
 
 
-/* REMOVE */
-
-window.removeItem = id => {
-
-  cart =
-
-  cart.filter(
-    i => i.id !== id
-  );
-
-
-  save();
-
-};
-
-
-/* MENU */
-
-window.openMenu = () => {
-
-  $("drawer")
-  .classList
-  .add("open");
-
-};
-
-
-window.closeMenu = () => {
-
-  $("drawer")
-  .classList
-  .remove("open");
-
-};
-
-
+/* ============================== */
 /* CART */
+/* ============================== */
 
-window.openCart = () => {
+window.openCart =
+() => {
 
   renderCart();
 
-  $("cartModal")
-  .classList
-  .add("open");
+  const cartModal =
+    $("cartModal");
+
+  if (cartModal) {
+
+    cartModal.classList.add(
+      "open"
+    );
+
+  }
 
 };
 
 
-window.closeCart = () => {
+window.closeCart =
+() => {
 
-  $("cartModal")
-  .classList
-  .remove("open");
+  const cartModal =
+    $("cartModal");
+
+  if (cartModal) {
+
+    cartModal.classList.remove(
+      "open"
+    );
+
+  }
 
 };
 
 
+/* ============================== */
 /* CHECKOUT */
+/* ============================== */
 
-window.goToCheckout = () => {
+window.goToCheckout =
+() => {
 
-  if(!cart.length){
+  if (!cart.length) {
 
     alert(
       "Your cart is empty."
@@ -491,37 +2269,43 @@ window.goToCheckout = () => {
 
   }
 
-
   closeCart();
 
-
   window.location.href =
-  "checkout.html";
+    "checkout.html";
 
 };
 
 
+/* ============================== */
 /* RENDER CART */
+/* ============================== */
 
-function renderCart(){
+function renderCart() {
 
   const box =
-  $("cartItems");
+    $("cartItems");
 
-  const foot =
-  $("cartFoot");
+  const footer =
+    $("cartFoot");
+
+  if (
+    !box ||
+    !footer
+  ) return;
 
 
-  if(!box || !foot) return;
-
-
-  if(!cart.length){
+  if (!cart.length) {
 
     box.innerHTML =
-    "<p>Your cart is empty.</p>";
+      `
+      <p class="emptyCart">
+        Your cart is empty.
+      </p>
+      `;
 
-    foot.innerHTML =
-    "";
+    footer.innerHTML =
+      "";
 
     return;
 
@@ -529,301 +2313,347 @@ function renderCart(){
 
 
   box.innerHTML =
+    cart.map(
+      item => `
 
-  cart.map(
-    x => `
+      <div class="cartItem">
 
-    <div class="cartItem">
+        <div class="cartImage">
 
-      <div>
+          ${
+            item.image
+              ?
+              `<img
+                src="${esc(item.image)}"
+                alt="${esc(item.name)}"
+              >`
+              :
+              `<div class="noImage">
+                No image
+              </div>`
+          }
 
-        ${
-          x.image
-          ?
-          `<img src="${esc(x.image)}" alt="${esc(x.name)}">`
-          :
-          `<div class="noImage">No image available</div>`
-        }
-
-      </div>
+        </div>
 
 
-      <div>
+        <div class="cartInfo">
 
-        <b>
-          ${esc(x.name)}
+          <b>
+            ${esc(item.name)}
+          </b>
+
+          <div>
+            ₹${Number(item.price)}
+          </div>
+
+
+          <div class="qty">
+
+            <button
+              onclick="
+                changeQty(
+                  '${esc(item.id)}',
+                  -1
+                )
+              "
+            >
+              −
+            </button>
+
+
+            <span>
+              ${Number(item.qty)}
+            </span>
+
+
+            <button
+              onclick="
+                changeQty(
+                  '${esc(item.id)}',
+                  1
+                )
+              "
+            >
+              +
+            </button>
+
+
+            <button
+              onclick="
+                removeItem(
+                  '${esc(item.id)}'
+                )
+              "
+            >
+              Remove
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <b class="cartPrice">
+
+          ₹${
+            Number(item.price) *
+            Number(item.qty)
+          }
+
         </b>
 
-
-        <div>
-          ₹${Number(x.price)}
-        </div>
-
-
-        <div class="qty">
-
-          <button
-          onclick="changeQty('${esc(x.id)}',-1)">
-          −
-          </button>
-
-
-          ${Number(x.qty)}
-
-
-          <button
-          onclick="changeQty('${esc(x.id)}',1)">
-          +
-          </button>
-
-
-          <button
-          onclick="removeItem('${esc(x.id)}')">
-          Remove
-          </button>
-
-        </div>
-
       </div>
 
+      `
+    )
+    .join("");
+
+
+  const total =
+    cart.reduce(
+      (sum, item) =>
+        sum +
+        Number(item.price) *
+        Number(item.qty),
+      0
+    );
+
+
+  footer.innerHTML =
+    `
+
+    <div class="total">
+
+      <span>
+        Total
+      </span>
 
       <b>
-        ₹${Number(x.price) * Number(x.qty)}
+        ₹${total}
       </b>
 
     </div>
 
-    `
-  )
 
-  .join("");
+    <button
+      class="primary"
+      onclick="goToCheckout()"
+    >
 
+      🛒 Continue to Checkout
 
-  let total =
+    </button>
 
-  cart.reduce(
-
-    (s,x) =>
-
-    s +
-    Number(x.price) *
-    Number(x.qty),
-
-    0
-
-  );
-
-
-  foot.innerHTML = `
-
-  <div class="total">
-
-    <span>
-      Total
-    </span>
-
-    <span>
-      ₹${total}
-    </span>
-
-  </div>
-
-
-  <button
-  class="primary"
-  onclick="goToCheckout()">
-
-  🛒 Continue to Checkout
-
-  </button>
-
-  `;
+    `;
 
 }
 
 
+/* ============================== */
 /* RENDER PRODUCTS */
+/* ============================== */
 
-window.render = () => {
+window.render =
+() => {
 
   const searchBox =
-  $("search");
-
+    $("search");
 
   const sortBox =
-  $("sort");
-
+    $("sort");
 
   const grid =
-  $("grid");
-
+    $("grid");
 
   const count =
-  $("count");
+    $("count");
+
+  if (
+    !grid ||
+    !count
+  ) return;
 
 
-  if(!grid || !count) return;
+  const query =
+    searchBox
+      ?
+      searchBox.value
+        .toLowerCase()
+        .trim()
+      :
+      "";
 
 
-  let q =
-
-  searchBox
-  ?
-  searchBox.value
-  .toLowerCase()
-  .trim()
-  :
-  "";
+  const sort =
+    sortBox
+      ?
+      sortBox.value
+      :
+      "";
 
 
-  let sort =
+  let filteredProducts =
+    products.filter(
+      product =>
 
-  sortBox
-  ?
-  sortBox.value
-  :
-  "";
+        [
+          product.name || "",
+          product.description || "",
+          product.category || ""
+        ]
 
+        .join(" ")
 
-  let a =
+        .toLowerCase()
 
-  products.filter(
+        .includes(query)
 
-    p =>
-
-    [
-
-      p.name || "",
-
-      p.description || "",
-
-      p.category || ""
-
-    ]
-
-    .join(" ")
-
-    .toLowerCase()
-
-    .includes(q)
-
-  );
+    );
 
 
-  a.sort(
+  if (sort === "low") {
 
-    (x,y) => {
+    filteredProducts.sort(
+      (a, b) =>
+        Number(a.price || 0) -
+        Number(b.price || 0)
+    );
+
+  }
 
 
-      if(sort === "az"){
+  if (sort === "high") {
 
-        return String(
-          x.name || ""
+    filteredProducts.sort(
+      (a, b) =>
+        Number(b.price || 0) -
+        Number(a.price || 0)
+    );
+
+  }
+
+
+  if (sort === "az") {
+
+    filteredProducts.sort(
+      (a, b) =>
+
+        String(
+          a.name || ""
         )
 
         .localeCompare(
 
           String(
-            y.name || ""
+            b.name || ""
           )
 
-        );
-
-      }
-
-
-      if(sort === "za"){
-
-        return String(
-          y.name || ""
         )
 
-        .localeCompare(
+    );
 
-          String(
-            x.name || ""
-          )
-
-        );
-
-      }
-
-
-      return 0;
-
-    }
-
-  );
+  }
 
 
   count.textContent =
-
-  a.length +
-
-  " product" +
-
-  (
-
-    a.length === 1
-
-    ?
-
-    ""
-
-    :
-
-    "s"
-
-  );
+    filteredProducts.length +
+    " product" +
+    (
+      filteredProducts.length === 1
+        ?
+        ""
+        :
+        "s"
+    );
 
 
   grid.innerHTML =
+    filteredProducts.length
 
-  a.length
+      ?
 
-  ?
+      filteredProducts
+        .map(card)
+        .join("")
 
-  a.map(card).join("")
+      :
 
-  :
+      `
+      <div class="empty">
 
-  '<div class="empty">No products found.</div>';
+        No products found.
+
+      </div>
+      `;
 
 };
 
 
+/* ============================== */
 /* PRODUCT CARD */
+/* ============================== */
 
-function card(p){
+function card(product) {
 
-  const img =
-  p.imageUrl || p.image || "";
+  const image =
+    product.imageUrl ||
+    product.image ||
+    "";
 
 
   const price =
-  Number(p.price) || 0;
+    Number(
+      product.price
+    ) || 0;
+
+
+  const stock =
+    Number(
+      product.stock
+    ) || 0;
 
 
   const safeProduct =
-  encodeURIComponent(
-    JSON.stringify(p)
-  );
+    encodeURIComponent(
+      JSON.stringify(
+        product
+      )
+    );
 
 
   return `
 
   <article class="card">
 
+
     <div class="pic">
 
       ${
-        img
-        ?
-        `<img src="${esc(img)}" alt="${esc(p.name || "Product")}">`
-        :
-        `<div class="noImage">
-        No image available
-        </div>`
+        image
+
+          ?
+
+          `
+          <img
+            src="${esc(image)}"
+            alt="${esc(
+              product.name ||
+              "Product"
+            )}"
+            loading="lazy"
+          >
+          `
+
+          :
+
+          `
+          <div class="noImage">
+
+            No image available
+
+          </div>
+          `
+
       }
 
     </div>
@@ -831,10 +2661,12 @@ function card(p){
 
     <div class="info">
 
+
       <div class="tag">
 
         ${esc(
-          p.category || "Featured"
+          product.category ||
+          "Featured"
         )}
 
       </div>
@@ -843,7 +2675,8 @@ function card(p){
       <div class="name">
 
         ${esc(
-          p.name || "Product"
+          product.name ||
+          "Product"
         )}
 
       </div>
@@ -852,7 +2685,8 @@ function card(p){
       <div class="desc">
 
         ${esc(
-          p.description || ""
+          product.description ||
+          ""
         )}
 
       </div>
@@ -867,18 +2701,28 @@ function card(p){
 
       <div class="stock">
 
-        ${Number(p.stock || 0)}
-
-        in stock
+        ${
+          stock > 0
+            ?
+            `${stock} in stock`
+            :
+            "Out of stock"
+        }
 
       </div>
 
 
       <button
-      class="details"
-      onclick="location.href='product.html?id=${encodeURIComponent(p.id)}'">
+        class="details"
+        onclick="
+          location.href=
+          'product.html?id=${encodeURIComponent(
+            product.id
+          )}'
+        "
+      >
 
-      View Product
+        View Product
 
       </button>
 
@@ -887,26 +2731,30 @@ function card(p){
 
 
         <button
-        class="add"
-        data-product="${safeProduct}">
+          class="add"
+          data-product="${safeProduct}"
+        >
 
-        🛒 Add
+          🛒 Add
 
         </button>
 
 
         <button
-        class="buy"
-        data-product="${safeProduct}">
+          class="buy"
+          data-product="${safeProduct}"
+        >
 
-        Buy Now
+          Buy Now
 
         </button>
 
 
       </div>
 
+
     </div>
+
 
   </article>
 
@@ -915,93 +2763,99 @@ function card(p){
 }
 
 
-/* PRODUCT BUTTONS */
+/* ============================== */
+/* PRODUCT BUTTON EVENTS */
+/* ============================== */
 
 document.addEventListener(
-
   "click",
-
-  e => {
-
+  event => {
 
     const addButton =
-    e.target.closest(".add");
+      event.target.closest(
+        ".add"
+      );
 
 
     const buyButton =
-    e.target.closest(".buy");
+      event.target.closest(
+        ".buy"
+      );
 
 
-    if(addButton){
+    if (addButton) {
 
-      try{
-
+      try {
 
         const product =
+          JSON.parse(
 
-        JSON.parse(
+            decodeURIComponent(
 
-          decodeURIComponent(
+              addButton.dataset.product
 
-            addButton.dataset.product
+            )
 
-          )
+          );
 
+
+        addToCart(
+          product
         );
 
+      } catch (error) {
 
-        addToCart(product);
-
-
-      }catch(error){
-
-        console.error(error);
+        console.error(
+          error
+        );
 
       }
 
     }
 
 
-    if(buyButton){
+    if (buyButton) {
 
-      try{
-
+      try {
 
         const product =
+          JSON.parse(
 
-        JSON.parse(
+            decodeURIComponent(
 
-          decodeURIComponent(
+              buyButton.dataset.product
 
-            buyButton.dataset.product
+            )
 
-          )
+          );
 
+
+        buyNow(
+          product
         );
 
+      } catch (error) {
 
-        buyNow(product);
-
-
-      }catch(error){
-
-        console.error(error);
+        console.error(
+          error
+        );
 
       }
 
     }
 
   }
-
 );
 
 
-/* LOAD PRODUCTS FROM FIRESTORE */
+/* ============================== */
+/* LOAD FIRESTORE PRODUCTS */
+/* ============================== */
 
-if($("count")){
+if ($("count")) {
 
   $("count").textContent =
-  "Loading products...";
+    "Loading products...";
 
 }
 
@@ -1013,46 +2867,58 @@ onSnapshot(
     "products"
   ),
 
-
   snapshot => {
 
-
     products =
+      snapshot.docs
 
-    snapshot.docs
+        .map(
+          doc => ({
 
-    .map(
+            id:
+              doc.id,
 
-      doc => ({
+            ...doc.data()
 
-        id:doc.id,
+          })
+        )
 
-        ...doc.data()
+        .filter(
+          product => {
 
-      })
+            const approved =
 
-    )
+              product.approvalStatus ===
+              "approved"
 
-    .filter(p => {
+              ||
 
-      const approved =
+              product.approvalStatus ===
+              undefined
 
-      p.approvalStatus === "approved" ||
+              ||
 
-      p.approvalStatus === undefined ||
+              product.approvalStatus ===
+              null
 
-      p.approvalStatus === null ||
+              ||
 
-      p.approvalStatus === "";
-
-
-      const active =
-      p.active !== false;
+              product.approvalStatus ===
+              "";
 
 
-      return approved && active;
+            const active =
+              product.active !==
+              false;
 
-    });
+
+            return (
+              approved &&
+              active
+            );
+
+          }
+        );
 
 
     render();
@@ -1062,41 +2928,38 @@ onSnapshot(
 
   error => {
 
-
     console.error(
       "Firestore error:",
       error
     );
 
 
-    if($("count")){
+    if ($("count")) {
 
-      $("count")
-      .textContent =
-
-      "Unable to load products.";
+      $("count").textContent =
+        "Unable to load products.";
 
     }
 
 
-    if($("grid")){
+    if ($("grid")) {
 
-      $("grid")
-      .innerHTML = `
+      $("grid").innerHTML =
+        `
 
-      <div class="empty">
+        <div class="empty">
 
-        <b>
-        Products could not be loaded.
-        </b>
+          <b>
+            Products could not be loaded.
+          </b>
 
-        <br><br>
+          <br><br>
 
-        Check Firebase Firestore Rules.
+          Check Firebase Firestore Rules.
 
-      </div>
+        </div>
 
-      `;
+        `;
 
     }
 
@@ -1105,8 +2968,17 @@ onSnapshot(
 );
 
 
+/* ============================== */
 /* START */
+/* ============================== */
 
 updateCount();
 
-    </script>
+render();
+
+</script>
+
+</body>
+
+</html>
+  

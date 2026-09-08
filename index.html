@@ -31,13 +31,21 @@ from
 /* FIREBASE CONFIG */
 
 const firebaseConfig = {
+
   apiKey: "AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
+
   authDomain: "nexora-picks-be049.firebaseapp.com",
+
   projectId: "nexora-picks-be049",
+
   storageBucket: "nexora-picks-be049.firebasestorage.app",
+
   messagingSenderId: "325932959084",
+
   appId: "1:325932959084:web:4fd8252e1ba83f82ee1f49",
+
   measurementId: "G-KMQZXZZCHJ"
+
 };
 
 
@@ -165,9 +173,7 @@ window.authAction = async () => {
 
   try {
 
-
     if(signup){
-
 
       const c =
       await createUserWithEmailAndPassword(
@@ -190,10 +196,13 @@ window.authAction = async () => {
       if(n){
 
         await updateProfile(
+
           c.user,
+
           {
             displayName:n
           }
+
         );
 
       }
@@ -236,8 +245,7 @@ onAuthStateChanged(
 
   u => {
 
-    $("account")
-    .textContent =
+    $("account").textContent =
 
     u
     ?
@@ -246,8 +254,7 @@ onAuthStateChanged(
     "Login";
 
 
-    $("account")
-    .onclick =
+    $("account").onclick =
 
     u
     ?
@@ -283,8 +290,12 @@ function save(){
 
 function updateCount(){
 
-  $("cartCount")
-  .textContent =
+  const el = $("cartCount");
+
+  if(!el) return;
+
+
+  el.textContent =
 
   cart.reduce(
 
@@ -301,7 +312,6 @@ function updateCount(){
 /* ADD TO CART */
 
 window.addToCart = p => {
-
 
   if(
 
@@ -357,6 +367,7 @@ window.addToCart = p => {
 
   save();
 
+
   alert(
     "Added to cart ✓"
   );
@@ -379,7 +390,6 @@ window.buyNow = p => {
 
 window.changeQty = (id,d) => {
 
-
   let x =
 
   cart.find(
@@ -396,6 +406,7 @@ window.changeQty = (id,d) => {
   if(x.qty < 1){
 
     cart =
+
     cart.filter(
       i => i.id !== id
     );
@@ -413,9 +424,11 @@ window.changeQty = (id,d) => {
 window.removeItem = id => {
 
   cart =
+
   cart.filter(
     i => i.id !== id
   );
+
 
   save();
 
@@ -468,7 +481,6 @@ window.closeCart = () => {
 
 window.goToCheckout = () => {
 
-
   if(!cart.length){
 
     alert(
@@ -481,6 +493,7 @@ window.goToCheckout = () => {
 
 
   closeCart();
+
 
   window.location.href =
   "checkout.html";
@@ -497,6 +510,9 @@ function renderCart(){
 
   const foot =
   $("cartFoot");
+
+
+  if(!box || !foot) return;
 
 
   if(!cart.length){
@@ -526,7 +542,7 @@ function renderCart(){
           ?
           `<img src="${esc(x.image)}" alt="${esc(x.name)}">`
           :
-          `<div class="no-image">No image available</div>`
+          `<div class="noImage">No image available</div>`
         }
 
       </div>
@@ -535,12 +551,12 @@ function renderCart(){
       <div>
 
         <b>
-        ${esc(x.name)}
+          ${esc(x.name)}
         </b>
 
 
         <div>
-        ₹${Number(x.price)}
+          ₹${Number(x.price)}
         </div>
 
 
@@ -572,13 +588,12 @@ function renderCart(){
 
 
       <b>
-      ₹${Number(x.price) * Number(x.qty)}
+        ₹${Number(x.price) * Number(x.qty)}
       </b>
 
     </div>
 
     `
-
   )
 
   .join("");
@@ -604,11 +619,11 @@ function renderCart(){
   <div class="total">
 
     <span>
-    Total
+      Total
     </span>
 
     <span>
-    ₹${total}
+      ₹${total}
     </span>
 
   </div>
@@ -631,7 +646,6 @@ function renderCart(){
 
 window.render = () => {
 
-
   const searchBox =
   $("search");
 
@@ -648,15 +662,27 @@ window.render = () => {
   $("count");
 
 
+  if(!grid || !count) return;
+
+
   let q =
 
+  searchBox
+  ?
   searchBox.value
   .toLowerCase()
-  .trim();
+  .trim()
+  :
+  "";
 
 
   let sort =
-  sortBox.value;
+
+  sortBox
+  ?
+  sortBox.value
+  :
+  "";
 
 
   let a =
@@ -908,7 +934,6 @@ document.addEventListener(
 
     if(addButton){
 
-
       try{
 
 
@@ -938,7 +963,6 @@ document.addEventListener(
 
 
     if(buyButton){
-
 
       try{
 
@@ -974,8 +998,12 @@ document.addEventListener(
 
 /* LOAD PRODUCTS FROM FIRESTORE */
 
-$("count").textContent =
-"Loading products...";
+if($("count")){
+
+  $("count").textContent =
+  "Loading products...";
+
+}
 
 
 onSnapshot(
@@ -984,6 +1012,7 @@ onSnapshot(
     db,
     "products"
   ),
+
 
   snapshot => {
 
@@ -1007,14 +1036,18 @@ onSnapshot(
     .filter(p => {
 
       const approved =
-        p.approvalStatus === "approved" ||
-        p.approvalStatus === undefined ||
-        p.approvalStatus === null ||
-        p.approvalStatus === "";
+
+      p.approvalStatus === "approved" ||
+
+      p.approvalStatus === undefined ||
+
+      p.approvalStatus === null ||
+
+      p.approvalStatus === "";
 
 
       const active =
-        p.active !== false;
+      p.active !== false;
 
 
       return approved && active;
@@ -1036,30 +1069,36 @@ onSnapshot(
     );
 
 
-    $("count")
-    .textContent =
+    if($("count")){
 
-    "Unable to load products.";
+      $("count")
+      .textContent =
+
+      "Unable to load products.";
+
+    }
 
 
-    $("grid")
-    .innerHTML = `
+    if($("grid")){
 
-    <div class="empty">
+      $("grid")
+      .innerHTML = `
 
-      <b>
-      Products could not be loaded.
-      </b>
+      <div class="empty">
 
-      <br><br>
+        <b>
+        Products could not be loaded.
+        </b>
 
-      Check your Firebase Firestore Rules
-      and make sure the "products"
-      collection exists.
+        <br><br>
 
-    </div>
+        Check Firebase Firestore Rules.
 
-    `;
+      </div>
+
+      `;
+
+    }
 
   }
 
@@ -1070,4 +1109,4 @@ onSnapshot(
 
 updateCount();
 
-  </script>
+    </script>

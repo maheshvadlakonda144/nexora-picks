@@ -89,6 +89,14 @@ header{
   padding:10px 14px;
   font-weight:700;
 }
+.sellerBtn{
+  background:var(--yellow);
+  color:#111;
+  border:0;
+  border-radius:6px;
+  padding:10px 14px;
+  font-weight:800;
+}
 .iconBtn,.cartButton{
   border:0;
   background:transparent;
@@ -350,7 +358,7 @@ footer{background:#172033;color:#fff;margin-top:35px}
   padding:13px;border-radius:6px;font-weight:800;
 }
 .modeButton{width:100%;border:0;background:none;color:var(--blue);margin-top:10px}
-#authMsg{color:var(--danger);font-size:13px;margin-top:8px}
+#authMsg,#sellerAuthMsg{color:var(--danger);font-size:13px;margin-top:8px}
 #cartItems,#wishItems{max-height:55vh;overflow:auto}
 .cartItem{
   display:grid;grid-template-columns:90px 1fr auto;
@@ -390,7 +398,7 @@ footer{background:#172033;color:#fff;margin-top:35px}
   .mobileMenu{display:block}
   .logo{font-size:18px}
   .headerActions{margin-left:auto}
-  .headerBtn{padding:8px 10px;font-size:12px}
+  .headerBtn,.sellerBtn{padding:8px 10px;font-size:12px}
   .iconBtn{font-size:0}
   .iconBtn::first-letter{font-size:20px}
   .searchWrap{order:3;width:100%;flex-basis:100%}
@@ -437,6 +445,7 @@ footer{background:#172033;color:#fff;margin-top:35px}
 
     <div class="headerActions">
       <button id="account" class="headerBtn">Login</button>
+      <button id="sellerAccess" class="sellerBtn" onclick="openSellerAuth()">Sell</button>
       <button class="iconBtn" onclick="openWishlist()">♡ <span id="wishCount">0</span></button>
       <button class="cartButton" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
     </div>
@@ -507,7 +516,7 @@ footer{background:#172033;color:#fff;margin-top:35px}
     </div>
     <div>
       <div class="footerTitle">Company</div>
-      <div class="footerLinks"><a href="#">About Us</a><a href="#">Contact</a><a href="#">Seller Registration</a></div>
+      <div class="footerLinks"><a href="#">About Us</a><a href="#">Contact</a><a href="#" onclick="openSellerAuth()">Seller Login / Registration</a></div>
     </div>
     <div>
       <div class="footerTitle">Support</div>
@@ -524,7 +533,7 @@ footer{background:#172033;color:#fff;margin-top:35px}
   <a href="#" onclick="openWishlist();closeMenu()">♡ Wishlist</a>
   <a href="#">📦 My Orders</a>
   <a href="#">👤 My Account</a>
-  <a href="#">🏪 Sell Products</a>
+  <a href="#" onclick="openSellerAuth();closeMenu()">🏪 Seller Login / Register</a>
 </div>
 
 <div id="authModal" class="modal">
@@ -537,6 +546,21 @@ footer{background:#172033;color:#fff;margin-top:35px}
     <button id="authBtn" class="primary" onclick="authAction()">Login</button>
     <button id="modeBtn" class="modeButton" onclick="toggleMode()">Create customer account</button>
     <div id="authMsg"></div>
+  </div>
+</div>
+
+<div id="sellerModal" class="modal">
+  <div class="modalBox">
+    <button class="closeModal" onclick="closeSellerAuth()">×</button>
+    <h2 id="sellerTitle">Seller Login</h2>
+    <p style="color:var(--muted);font-size:14px;margin-top:-6px">Login or create your seller account to start selling on NEXORA PICKS.</p>
+    <input id="sellerName" type="text" placeholder="Your full name" style="display:none">
+    <input id="storeName" type="text" placeholder="Store / business name" style="display:none">
+    <input id="sellerEmail" type="email" placeholder="Seller email address">
+    <input id="sellerPassword" type="password" placeholder="Password">
+    <button id="sellerAuthBtn" class="primary" onclick="sellerAuthAction()">Seller Login</button>
+    <button id="sellerModeBtn" class="modeButton" onclick="toggleSellerMode()">Create seller account</button>
+    <div id="sellerAuthMsg"></div>
   </div>
 </div>
 
@@ -571,7 +595,7 @@ import {
   getAuth,onAuthStateChanged,createUserWithEmailAndPassword,
   signInWithEmailAndPassword,signOut,updateProfile
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { getFirestore,collection,onSnapshot } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import { getFirestore,collection,onSnapshot,doc,setDoc,serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey:"AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
@@ -591,6 +615,7 @@ let products = [];
 let cart = JSON.parse(localStorage.getItem("nexora_cart") || "[]");
 let wishlist = JSON.parse(localStorage.getItem("nexora_wishlist") || "[]");
 let signup = false;
+let sellerSignup = false;
 
 const $ = id => document.getElementById(id);
 const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({
@@ -644,15 +669,60 @@ window.authAction=async()=>{
   }catch(error){message.textContent=error.message}
 };
 
+window.openSellerAuth=()=> $("sellerModal").classList.add("open");
+window.closeSellerAuth=()=> $("sellerModal").classList.remove("open");
+
+window.toggleSellerMode=()=>{
+  sellerSignup=!sellerSignup;
+  $("sellerTitle").textContent=sellerSignup?"Create Seller Account":"Seller Login";
+  $("sellerAuthBtn").textContent=sellerSignup?"Create Seller Account":"Seller Login";
+  $("sellerModeBtn").textContent=sellerSignup?"Already have a seller account? Login":"Create seller account";
+  $("sellerName").style.display=sellerSignup?"block":"none";
+  $("storeName").style.display=sellerSignup?"block":"none";
+  $("sellerAuthMsg").textContent="";
+};
+
+window.sellerAuthAction=async()=>{
+  const message=$("sellerAuthMsg");
+  message.textContent="";
+  const email=$("sellerEmail").value.trim();
+  const password=$("sellerPassword").value;
+  if(!email||!password){message.textContent="Please enter seller email and password.";return}
+  try{
+    if(sellerSignup){
+      const name=$("sellerName").value.trim();
+      const storeName=$("storeName").value.trim();
+      if(!name||!storeName){message.textContent="Please enter your name and store name.";return}
+      const userCredential=await createUserWithEmailAndPassword(auth,email,password);
+      await updateProfile(userCredential.user,{displayName:name});
+      await setDoc(doc(db,"users",userCredential.user.uid),{
+        name,storeName,email,role:"seller",status:"pending",createdAt:serverTimestamp()
+      },{merge:true});
+      message.style.color="var(--success)";
+      message.textContent="Seller account created successfully. Your account may require approval.";
+      setTimeout(()=>{closeSellerAuth();},1200);
+    }else{
+      await signInWithEmailAndPassword(auth,email,password);
+      closeSellerAuth();
+      alert("Seller login successful.");
+    }
+  }catch(error){
+    message.style.color="var(--danger)";
+    message.textContent=error.message;
+  }
+};
+
 onAuthStateChanged(auth,user=>{
   const account=$("account");
   if(!account)return;
   if(user){
     account.textContent=user.displayName||"Account";
     account.onclick=()=>{if(confirm("Do you want to logout?"))signOut(auth)};
+    if($("sellerAccess"))$("sellerAccess").textContent="Seller";
   }else{
     account.textContent="Login";
     account.onclick=openAuth;
+    if($("sellerAccess"))$("sellerAccess").textContent="Sell";
   }
 });
 
@@ -660,8 +730,9 @@ window.openCart=()=>{renderCart();$("cartModal").classList.add("open")};
 window.closeCart=()=> $("cartModal").classList.remove("open");
 
 window.openWishlist=()=>{renderWishlist();$("wishlistModal").classList.add("open")};
-("wishlistModal").classList.remove("open");
-  function addToCart(product){
+window.closeWishlist=()=> $("wishlistModal").classList.remove("open");
+
+function addToCart(product){
   const existing=cart.find(item=>item.id===product.id);
   if(existing)existing.qty=Number(existing.qty||0)+1;
   else cart.push({...product,qty:1});

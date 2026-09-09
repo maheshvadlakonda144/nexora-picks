@@ -1,160 +1,253 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
 <title>NEXORA PICKS | Seller Center</title>
 
+
 <style>
-*{box-sizing:border-box}
+
+*{
+box-sizing:border-box
+}
+
 body{
- margin:0;
- background:#f1f3f6;
- font-family:Arial,sans-serif;
- color:#17202a
+margin:0;
+background:#f1f3f6;
+font-family:Arial,sans-serif;
+color:#17202a
 }
+
 header{
- background:#2874f0;
- color:#fff;
- padding:16px;
- font-weight:900;
- font-size:22px
+background:#2874f0;
+color:#fff;
+padding:16px;
+font-weight:900;
+font-size:22px
 }
+
 main{
- max-width:900px;
- margin:auto;
- padding:18px
+max-width:900px;
+margin:auto;
+padding:18px
 }
+
 .box{
- background:#fff;
- border-radius:12px;
- padding:18px;
- margin-bottom:15px;
- box-shadow:0 1px 5px #0001
+background:#fff;
+border-radius:12px;
+padding:18px;
+margin-bottom:15px;
+box-shadow:0 1px 5px #0001
 }
-input,textarea,select{
- width:100%;
- padding:12px;
- margin:6px 0 12px;
- border:1px solid #ccd3dd;
- border-radius:6px
+
+input,
+textarea,
+select{
+width:100%;
+padding:12px;
+margin:6px 0 12px;
+border:1px solid #ccd3dd;
+border-radius:6px
 }
+
 button{
- border:0;
- background:#2874f0;
- color:#fff;
- padding:12px 16px;
- border-radius:6px;
- font-weight:800;
- cursor:pointer
+border:0;
+background:#2874f0;
+color:#fff;
+padding:12px 16px;
+border-radius:6px;
+font-weight:800;
+cursor:pointer
 }
+
+button:disabled{
+opacity:.6;
+cursor:not-allowed
+}
+
 .secondary{
- background:#eef4ff;
- color:#2874f0
+background:#eef4ff;
+color:#2874f0
 }
+
 .danger{
- background:#d33
+background:#d33
 }
+
 .grid{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:10px
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
 }
+
 .item{
- border:1px solid #ddd;
- border-radius:8px;
- padding:12px;
- margin:8px 0;
- display:flex;
- gap:10px;
- align-items:center
+border:1px solid #ddd;
+border-radius:8px;
+padding:12px;
+margin:8px 0;
+display:flex;
+gap:10px;
+align-items:center
 }
+
 .thumb{
- width:60px;
- height:60px;
- background:#f5f6f8;
- display:grid;
- place-items:center;
- overflow:hidden;
- border-radius:6px
+width:60px;
+height:60px;
+background:#f5f6f8;
+display:grid;
+place-items:center;
+overflow:hidden;
+border-radius:6px;
+font-size:25px
 }
+
 .thumb img{
- width:100%;
- height:100%;
- object-fit:cover
+width:100%;
+height:100%;
+object-fit:cover
 }
+
 .actions{
- margin-left:auto;
- display:flex;
- gap:6px
+margin-left:auto;
+display:flex;
+gap:6px
 }
-#app{display:none}
+
+#app{
+display:none
+}
+
 .ok{
- color:#16803c;
- font-weight:700
+color:#16803c;
+font-weight:700
 }
+
 .err{
- color:#d33;
- font-weight:700
+color:#d33;
+font-weight:700
 }
+
 .pending{
- color:#d97706;
- font-weight:700
+color:#d97706;
+font-weight:700
 }
+
+.rejectedBox{
+background:#fff1f1;
+border-left:4px solid #d33;
+padding:15px;
+border-radius:8px;
+color:#b91c1c
+}
+
+.pendingBox{
+background:#fff7ed;
+border-left:4px solid #f59e0b;
+padding:15px;
+border-radius:8px
+}
+
+.loginLinks{
+margin-top:15px
+}
+
+.loginLinks a{
+color:#2874f0;
+font-weight:bold;
+text-decoration:none
+}
+
 @media(max-width:600px){
- .grid{grid-template-columns:1fr}
- .item{flex-wrap:wrap}
- .actions{margin-left:0}
+
+.grid{
+grid-template-columns:1fr
 }
+
+.item{
+flex-wrap:wrap
+}
+
+.actions{
+margin-left:0
+}
+
+}
+
 </style>
+
 </head>
+
 
 <body>
 
-<header>NEXORA PICKS — SELLER CENTER</header>
+
+<header>
+NEXORA PICKS — SELLER CENTER
+</header>
+
 
 <main>
 
-<!-- LOGIN / REGISTRATION -->
+
+<!-- LOGIN -->
 
 <div id="login" class="box">
 
-<h2>Seller Registration / Login</h2>
+<h2>Seller Login</h2>
 
-<input id="email"
-       type="email"
-       placeholder="Email">
+<p>
+Login using the email and password you used during seller registration.
+</p>
 
-<input id="password"
-       type="password"
-       placeholder="Password">
 
-<input id="business"
-       placeholder="Business / Seller name">
+<input
+id="email"
+type="email"
+placeholder="Email Address">
 
-<button onclick="register()">
-Register as Seller
-</button>
 
-<button class="secondary" onclick="login()">
+<input
+id="password"
+type="password"
+placeholder="Password">
+
+
+<button onclick="login()">
 Login
 </button>
 
-<button id="completeBtn"
-        class="secondary"
-        style="display:none;margin-top:8px"
-        onclick="completeSellerSetup()">
-Complete Seller Setup
-</button>
 
 <p id="msg"></p>
 
+
+<div class="loginLinks">
+
+Don't have a seller account?
+
+<br><br>
+
+<a href="seller-register.html">
+Become a Seller →
+</a>
+
 </div>
+
+</div>
+
 
 
 <!-- SELLER APP -->
 
 <div id="app">
+
+
+<!-- DASHBOARD -->
 
 <div class="box">
 
@@ -162,835 +255,1522 @@ Complete Seller Setup
 Seller Dashboard
 </h2>
 
-<p id="approval"></p>
 
-<button class="secondary" onclick="logout()">
+<p id="sellerStatus">
+Checking seller approval...
+</p>
+
+
+<button
+class="secondary"
+onclick="logout()">
+
 Logout
+
 </button>
 
+
 </div>
+
+
+
+<!-- PENDING MESSAGE -->
+
+<div
+id="pendingBox"
+class="box"
+style="display:none">
+
+<div class="pendingBox">
+
+<h3>⏳ Seller Approval Pending</h3>
+
+<p>
+Your seller registration has been submitted successfully.
+Please wait for NEXORA PICKS Admin approval.
+</p>
+
+<p>
+You cannot add products until your seller account is approved.
+</p>
+
+</div>
+
+</div>
+
+
+
+<!-- REJECTED MESSAGE -->
+
+<div
+id="rejectedBox"
+class="box"
+style="display:none">
+
+<div class="rejectedBox">
+
+<h3>✕ Seller Registration Not Approved</h3>
+
+<p>
+Your seller account has not been approved.
+Please contact NEXORA PICKS support for more information.
+</p>
+
+</div>
+
+</div>
+
 
 
 <!-- PRODUCT FORM -->
 
-<div class="box" id="formBox">
+<div
+class="box"
+id="formBox"
+style="display:none">
+
 
 <h2 id="formTitle">
+
 Add Product
+
 </h2>
 
-<input type="hidden" id="pid">
 
-<label>Product name</label>
-<input id="name"
-       placeholder="Wireless Earphones">
+<input
+type="hidden"
+id="pid">
 
-<label>Description</label>
-<textarea id="description"
-          placeholder="Product details"></textarea>
+
+<label>
+Product Name
+</label>
+
+<input
+id="name"
+placeholder="Wireless Earphones">
+
+
+<label>
+Description
+</label>
+
+<textarea
+id="description"
+placeholder="Product details">
+</textarea>
+
+
 
 <div class="grid">
 
-<div>
-<label>Category</label>
-<input id="category"
-       placeholder="Electronics">
-</div>
 
 <div>
-<label>Price (₹)</label>
-<input id="price"
-       type="number"
-       min="1">
+
+<label>
+Category
+</label>
+
+<input
+id="category"
+placeholder="Electronics">
+
 </div>
+
+
 
 <div>
-<label>Stock</label>
-<input id="stock"
-       type="number"
-       min="0">
+
+<label>
+Price (₹)
+</label>
+
+<input
+id="price"
+type="number"
+min="1">
+
 </div>
+
+
 
 <div>
-<label>Old price (optional)</label>
-<input id="oldPrice"
-       type="number"
-       min="0">
-</div>
+
+<label>
+Stock
+</label>
+
+<input
+id="stock"
+type="number"
+min="0">
 
 </div>
 
-<label>Product image URL</label>
 
-<input id="imageUrl"
-       placeholder="https://...">
 
-<label>Emoji fallback</label>
+<div>
 
-<input id="emoji"
-       value="🛍️">
+<label>
+Old Price (Optional)
+</label>
 
-<!-- Seller cannot directly publish -->
+<input
+id="oldPrice"
+type="number"
+min="0">
 
-<label>Product visibility</label>
+</div>
+
+
+</div>
+
+
+
+<label>
+Product Image URL
+</label>
+
+<input
+id="imageUrl"
+placeholder="https://...">
+
+
+
+<label>
+Emoji Fallback
+</label>
+
+<input
+id="emoji"
+value="🛍️">
+
+
+
+<label>
+Product Visibility
+</label>
 
 <select id="active">
+
 <option value="false">
+
 Hidden until Admin approval
+
 </option>
+
 </select>
 
+
+
 <button onclick="saveProduct()">
+
 Submit Product for Approval
+
 </button>
 
-<button class="secondary"
-        onclick="resetForm()">
+
+<button
+class="secondary"
+onclick="resetForm()">
+
 Cancel
+
 </button>
+
 
 <p id="saveMsg"></p>
 
+
 </div>
+
 
 
 <!-- MY PRODUCTS -->
 
-<div class="box">
+<div
+class="box"
+id="productsBox"
+style="display:none">
 
-<h2>My Products</h2>
+
+<h2>
+My Products
+</h2>
+
 
 <div id="list">
+
 Loading...
-</div>
 
 </div>
 
+
 </div>
+
+
+</div>
+
 
 </main>
 
 
+
 <script type="module">
 
-import {
- initializeApp
+
+import{
+initializeApp
 }
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-import {
- getAuth,
- createUserWithEmailAndPassword,
- signInWithEmailAndPassword,
- onAuthStateChanged,
- signOut,
- updateProfile
+
+import{
+
+getAuth,
+
+signInWithEmailAndPassword,
+
+onAuthStateChanged,
+
+signOut
+
 }
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
-import {
- getFirestore,
- doc,
- setDoc,
- getDoc,
- collection,
- query,
- where,
- onSnapshot,
- addDoc,
- updateDoc,
- deleteDoc,
- serverTimestamp
+
+import{
+
+getFirestore,
+
+doc,
+
+getDoc,
+
+collection,
+
+query,
+
+where,
+
+onSnapshot,
+
+addDoc,
+
+updateDoc,
+
+deleteDoc,
+
+serverTimestamp
+
 }
-from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-const firebaseConfig = {
 
- apiKey:
- "AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+/* FIREBASE CONFIG */
 
- authDomain:
- "nexora-picks-e887f.firebaseapp.com",
+const firebaseConfig={
 
- projectId:
- "nexora-picks-e887f",
 
- storageBucket:
- "nexora-picks-e887f.firebasestorage.app",
+apiKey:
+"AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
 
- messagingSenderId:
- "621359003619",
 
- appId:
- "1:621359003619:web:483add8bfcd0241f4192d",
+authDomain:
+"nexora-picks-be049.firebaseapp.com",
 
- measurementId:
- "G-LSMJ6QLLPW"
+
+projectId:
+"nexora-picks-be049",
+
+
+storageBucket:
+"nexora-picks-be049.firebasestorage.app",
+
+
+messagingSenderId:
+"325932959084",
+
+
+appId:
+"1:325932959084:web:4fd8252e1ba83f82ee1f49",
+
+
+measurementId:
+"G-KMQZXZZCHJ"
+
 
 };
 
 
-const appfb = initializeApp(firebaseConfig);
 
-const auth = getAuth(appfb);
-
-const db = getFirestore(appfb);
-
-const $ = id => document.getElementById(id);
+const appfb=
+initializeApp(firebaseConfig);
 
 
-let approved = false;
-let registering = false;
-let checking = false;
+const auth=
+getAuth(appfb);
 
 
-/* SELLER REGISTRATION */
-
-window.register = async () => {
-
- if(registering) return;
-
- registering = true;
-
- $("msg").textContent =
- "Creating seller account...";
-
- try {
-
-  const email =
-   $("email").value.trim();
-
-  const password =
-   $("password").value;
-
-  const business =
-   $("business").value.trim();
-
-  if(!email || !password || password.length < 6){
-
-   $("msg").textContent =
-    "Enter email and a password of at least 6 characters.";
-
-   return;
-  }
+const db=
+getFirestore(appfb);
 
 
-  const c =
-   await createUserWithEmailAndPassword(
-    auth,
-    email,
-    password
-   );
+const $=
+id=>document.getElementById(id);
 
 
-  await updateProfile(
-   c.user,
-   {
-    displayName:
-     business || "Seller"
-   }
-  );
 
+let approved=false;
 
-  await setDoc(
-   doc(db,"users",c.user.uid),
-   {
-    uid:c.user.uid,
-    name:business || "Seller",
-    email:c.user.email,
-    role:"seller",
-    approved:false,
-    sellerStatus:"pending",
-    createdAt:serverTimestamp()
-   }
-  );
+let currentSeller=null;
 
+let unsubscribeProducts=null;
 
-  $("msg").textContent =
-   "Seller account created. Wait for Admin approval.";
-
-  $("completeBtn").style.display="none";
-
-  showSeller(c.user,{
-   approved:false
-  });
-
-
- }catch(e){
-
-  if(e.code === "auth/email-already-in-use"){
-
-   $("msg").textContent =
-    "This email is already registered. Login and complete seller setup if needed.";
-
-  }else{
-
-   $("msg").textContent =
-    e.message;
-
-  }
-
- }finally{
-
-  registering=false;
-
- }
-
-};
 
 
 /* LOGIN */
 
-window.login = async () => {
-
- try {
-
-  const email =
-   $("email").value.trim();
-
-  const password =
-   $("password").value;
-
-  if(!email || !password){
-
-   $("msg").textContent =
-    "Enter email and password.";
-
-   return;
-  }
-
-  await signInWithEmailAndPassword(
-   auth,
-   email,
-   password
-  );
-
-  $("msg").textContent="";
-
- }catch(e){
-
-  $("msg").textContent =
-   e.message;
-
- }
-
-};
+window.login=async()=>{
 
 
-/* COMPLETE SELLER PROFILE */
-
-window.completeSellerSetup = async () => {
-
- const u = auth.currentUser;
-
- if(!u){
-
-  $("msg").textContent =
-   "Please login first.";
-
-  return;
- }
-
- try {
-
-  const business =
-   $("business").value.trim()
-   || u.displayName
-   || "Seller";
+const email=
+$("email").value.trim();
 
 
-  await updateProfile(
-   u,
-   {
-    displayName:business
-   }
-  );
+const password=
+$("password").value;
 
 
-  await setDoc(
-   doc(db,"users",u.uid),
-   {
-    uid:u.uid,
-    name:business,
-    email:u.email,
-    role:"seller",
-    approved:false,
-    sellerStatus:"pending",
-    createdAt:serverTimestamp()
-   }
-  );
+if(!email||!password){
 
 
-  $("msg").textContent =
-   "Seller profile created. Wait for Admin approval.";
-
-  $("completeBtn").style.display="none";
-
-  showSeller(u,{
-   approved:false
-  });
-
- }catch(e){
-
-  $("msg").textContent =
-   e.message;
-
- }
-
-};
+$("msg").innerHTML=
+'<span class="err">Enter your email and password.</span>';
 
 
-/* SHOW SELLER DASHBOARD */
+return;
 
-function showSeller(u,data){
-
- approved =
-  data.approved === true;
-
-
- $("login").style.display="none";
-
- $("app").style.display="block";
-
-
- if(approved){
-
-  $("approval").innerHTML =
-   '<span class="ok">✓ Seller approved. You can submit products.</span>';
-
-  $("formBox").style.display="block";
-
- }else{
-
-  $("approval").innerHTML =
-   '<span class="pending">⏳ Waiting for Admin approval. Product publishing is locked.</span>';
-
-  $("formBox").style.display="none";
-
- }
-
-
- $("welcome").textContent =
-  (u.displayName || "Seller")
-  + " — Seller Dashboard";
-
-
- loadProducts(u.uid);
 
 }
+
+
+$("msg").textContent=
+"Logging in...";
+
+
+try{
+
+
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+$("msg").textContent="";
+
+
+}catch(e){
+
+
+$("msg").innerHTML=
+'<span class="err">'+
+escapeHtml(
+e.message.replace(
+"Firebase: ",
+""
+)
+)+
+'</span>';
+
+
+}
+
+
+};
+
 
 
 /* AUTH CHECK */
 
 onAuthStateChanged(
- auth,
- async u => {
-
-  if(!u){
-
-   $("login").style.display="block";
-
-   $("app").style.display="none";
-
-   $("completeBtn").style.display="none";
-
-   return;
-  }
+auth,
+async user=>{
 
 
-  if(registering || checking)
-   return;
+if(!user){
 
 
-  checking=true;
+currentSeller=null;
+
+approved=false;
 
 
-  try {
-
-   const snap =
-    await getDoc(
-     doc(db,"users",u.uid)
-    );
+$("login").style.display=
+"block";
 
 
-   if(
-    !snap.exists()
-    ||
-    snap.data().role !== "seller"
-   ){
-
-    $("login").style.display="block";
-
-    $("app").style.display="none";
-
-    $("completeBtn").style.display="inline-block";
-
-    $("msg").textContent =
-     "Seller profile is missing. Enter your business name and tap Complete Seller Setup.";
-
-    return;
-   }
+$("app").style.display=
+"none";
 
 
-   $("completeBtn").style.display="none";
-
-   showSeller(
-    u,
-    snap.data()
-   );
+$("formBox").style.display=
+"none";
 
 
-  }finally{
-
-   checking=false;
-
-  }
-
- });
+$("productsBox").style.display=
+"none";
 
 
-/* RESET FORM */
+$("pendingBox").style.display=
+"none";
 
-function resetForm(){
 
- $("pid").value="";
+$("rejectedBox").style.display=
+"none";
 
- $("name").value="";
 
- $("description").value="";
+if(unsubscribeProducts){
 
- $("category").value="";
 
- $("price").value="";
+unsubscribeProducts();
 
- $("stock").value="";
 
- $("oldPrice").value="";
+unsubscribeProducts=null;
 
- $("imageUrl").value="";
-
- $("emoji").value="🛍️";
-
- $("active").value="false";
-
- $("formTitle").textContent=
-  "Add Product";
 
 }
 
 
+return;
+
+
+}
+
+
+
+currentSeller=user;
+
+
+try{
+
+
+const sellerRef=
+doc(
+db,
+"sellers",
+user.uid
+);
+
+
+const sellerSnap=
+await getDoc(
+sellerRef
+);
+
+
+
+if(!sellerSnap.exists()){
+
+
+$("login").style.display=
+"none";
+
+
+$("app").style.display=
+"block";
+
+
+$("formBox").style.display=
+"none";
+
+
+$("productsBox").style.display=
+"none";
+
+
+$("pendingBox").style.display=
+"none";
+
+
+$("rejectedBox").style.display=
+"block";
+
+
+$("sellerStatus").innerHTML=
+'<span class="err">Seller registration not found.</span>';
+
+
+return;
+
+
+}
+
+
+
+showSeller(
+user,
+sellerSnap.data()
+);
+
+
+
+}catch(e){
+
+
+console.error(e);
+
+
+$("login").style.display=
+"none";
+
+
+$("app").style.display=
+"block";
+
+
+$("sellerStatus").innerHTML=
+'<span class="err">'+
+escapeHtml(e.message)+
+'</span>';
+
+
+}
+
+
+}
+);
+
+
+
+/* SHOW SELLER */
+
+function showSeller(
+user,
+data
+){
+
+
+const status=
+String(
+data.status||"pending"
+).toLowerCase();
+
+
+
+approved=
+data.active===true
+&&
+status==="approved";
+
+
+
+$("login").style.display=
+"none";
+
+
+$("app").style.display=
+"block";
+
+
+$("welcome").textContent=
+(
+data.storeName
+||
+data.fullName
+||
+user.displayName
+||
+"Seller"
+)
++
+" — Seller Dashboard";
+
+
+
+$("pendingBox").style.display=
+"none";
+
+
+$("rejectedBox").style.display=
+"none";
+
+
+$("formBox").style.display=
+"none";
+
+
+$("productsBox").style.display=
+"none";
+
+
+
+/* APPROVED SELLER */
+
+if(approved){
+
+
+$("sellerStatus").innerHTML=
+'<span class="ok">✓ Seller Approved. You can submit products for approval.</span>';
+
+
+$("formBox").style.display=
+"block";
+
+
+$("productsBox").style.display=
+"block";
+
+
+loadProducts(
+user.uid
+);
+
+
+return;
+
+
+}
+
+
+
+/* REJECTED SELLER */
+
+if(
+status==="rejected"
+||status==="reject"
+){
+
+
+$("sellerStatus").innerHTML=
+'<span class="err">✕ Seller registration rejected.</span>';
+
+
+$("rejectedBox").style.display=
+"block";
+
+
+return;
+
+
+}
+
+
+
+/* PENDING SELLER */
+
+$("sellerStatus").innerHTML=
+'<span class="pending">⏳ Waiting for Admin approval.</span>';
+
+
+$("pendingBox").style.display=
+"block";
+
+
+}
+
+
+
+/* RESET PRODUCT FORM */
+
+function resetForm(){
+
+
+$("pid").value="";
+
+
+$("name").value="";
+
+
+$("description").value="";
+
+
+$("category").value="";
+
+
+$("price").value="";
+
+
+$("stock").value="";
+
+
+$("oldPrice").value="";
+
+
+$("imageUrl").value="";
+
+
+$("emoji").value=
+"🛍️";
+
+
+$("active").value=
+"false";
+
+
+$("formTitle").textContent=
+"Add Product";
+
+
+$("saveMsg").textContent="";
+
+
+}
+
+
+
 /* SAVE PRODUCT */
 
-window.saveProduct = async () => {
-
- if(!approved){
-
-  $("saveMsg").textContent =
-   "Admin approval is required.";
-
-  return;
- }
+window.saveProduct=async()=>{
 
 
- const u = auth.currentUser;
-
- if(!u){
-
-  $("saveMsg").textContent =
-   "Please login.";
-
-  return;
- }
+if(!approved){
 
 
- const id =
-  $("pid").value;
+$("saveMsg").innerHTML=
+'<span class="err">Seller approval is required.</span>';
 
 
- const d = {
-
-  name:
-   $("name").value.trim(),
-
-  description:
-   $("description").value.trim(),
-
-  category:
-   $("category").value.trim(),
-
-  price:
-   Number($("price").value),
-
-  stock:
-   Number($("stock").value),
-
-  oldPrice:
-   Number($("oldPrice").value) || 0,
-
-  imageUrl:
-   $("imageUrl").value.trim(),
-
-  emoji:
-   $("emoji").value.trim() || "🛍️",
-
-  /*
-   * IMPORTANT:
-   * Seller products are ALWAYS
-   * submitted as pending.
-   */
-
-  active:false,
-
-  approvalStatus:"pending",
-
-  sellerId:u.uid,
-
-  sellerName:
-   u.displayName || "Seller",
-
-  submittedAt:
-   serverTimestamp()
-
- };
+return;
 
 
- if(
-  !d.name
-  ||
-  !d.price
-  ||
-  d.stock < 0
- ){
-
-  $("saveMsg").textContent =
-   "Enter product name, price and stock.";
-
-  return;
- }
+}
 
 
- try {
 
-  if(id){
-
-   await updateDoc(
-    doc(db,"products",id),
-    d
-   );
-
-  }else{
-
-   d.createdAt =
-    serverTimestamp();
-
-   await addDoc(
-    collection(db,"products"),
-    d
-   );
-
-  }
+const user=
+auth.currentUser;
 
 
-  $("saveMsg").innerHTML =
-   '<span class="ok">Product submitted for Admin approval ✓</span>';
-
-  resetForm();
+if(!user){
 
 
- }catch(e){
+$("saveMsg").innerHTML=
+'<span class="err">Please login again.</span>';
 
-  $("saveMsg").textContent =
-   e.message;
 
- }
+return;
+
+
+}
+
+
+
+const sellerSnap=
+await getDoc(
+doc(
+db,
+"sellers",
+user.uid
+)
+);
+
+
+
+if(!sellerSnap.exists()){
+
+
+$("saveMsg").innerHTML=
+'<span class="err">Seller profile not found.</span>';
+
+
+return;
+
+
+}
+
+
+
+const sellerData=
+sellerSnap.data();
+
+
+
+if(
+sellerData.active!==true
+||
+String(
+sellerData.status
+).toLowerCase()!=="approved"
+){
+
+
+approved=false;
+
+
+$("saveMsg").innerHTML=
+'<span class="err">Your seller account is not approved.</span>';
+
+
+showSeller(
+user,
+sellerData
+);
+
+
+return;
+
+
+}
+
+
+
+const id=
+$("pid").value;
+
+
+
+const product={
+
+
+name:
+$("name").value.trim(),
+
+
+description:
+$("description").value.trim(),
+
+
+category:
+$("category").value.trim(),
+
+
+price:
+Number(
+$("price").value
+),
+
+
+stock:
+Number(
+$("stock").value
+),
+
+
+oldPrice:
+Number(
+$("oldPrice").value
+)||0,
+
+
+imageUrl:
+$("imageUrl").value.trim(),
+
+
+emoji:
+$("emoji").value.trim()
+||"🛍️",
+
+
+
+/* PRODUCTS ALWAYS NEED ADMIN APPROVAL */
+
+active:false,
+
+
+approvalStatus:
+"pending",
+
+
+sellerId:
+user.uid,
+
+
+sellerName:
+sellerData.storeName
+||
+sellerData.fullName
+||
+user.displayName
+||
+"Seller",
+
+
+submittedAt:
+serverTimestamp()
+
 
 };
+
+
+
+if(
+
+
+!product.name
+
+
+||
+
+
+product.price<=0
+
+
+||
+
+
+product.stock<0
+
+
+){
+
+
+$("saveMsg").innerHTML=
+'<span class="err">Enter product name, valid price and stock.</span>';
+
+
+return;
+
+
+}
+
+
+
+try{
+
+
+if(id){
+
+
+product.updatedAt=
+serverTimestamp();
+
+
+await updateDoc(
+
+
+doc(
+db,
+"products",
+id
+),
+
+
+product
+
+
+);
+
+
+}else{
+
+
+product.createdAt=
+serverTimestamp();
+
+
+await addDoc(
+
+
+collection(
+db,
+"products"
+),
+
+
+product
+
+
+);
+
+
+}
+
+
+
+$("saveMsg").innerHTML=
+'<span class="ok">✓ Product submitted for Admin approval.</span>';
+
+
+resetForm();
+
+
+}catch(e){
+
+
+$("saveMsg").innerHTML=
+'<span class="err">'+
+escapeHtml(e.message)+
+'</span>';
+
+
+}
+
+
+};
+
 
 
 /* LOAD SELLER PRODUCTS */
 
 function loadProducts(uid){
 
- onSnapshot(
 
-  query(
-   collection(db,"products"),
-   where("sellerId","==",uid)
-  ),
-
-  s => {
-
-   $("list").innerHTML =
-    s.empty
-    ?
-    "<p>No products yet.</p>"
-    :
-    s.docs.map(d => {
-
-     const p=d.data();
+if(unsubscribeProducts){
 
 
-     let status="⏳ Pending";
+unsubscribeProducts();
 
-     if(p.approvalStatus==="approved")
-      status="✓ Approved";
-
-     if(p.approvalStatus==="rejected")
-      status="✕ Rejected";
-
-
-     return `
-
-      <div class="item">
-
-       <div class="thumb">
-
-        ${
-         p.imageUrl
-         ?
-         `<img src="${escapeHtml(p.imageUrl)}">`
-         :
-         escapeHtml(p.emoji || "🛍️")
-        }
-
-       </div>
-
-       <div>
-
-        <b>${escapeHtml(p.name)}</b>
-
-        <div>
-         ₹${Number(p.price || 0).toLocaleString("en-IN")}
-         • Stock: ${p.stock}
-        </div>
-
-        <div class="${
-         p.approvalStatus==="approved"
-         ?"ok"
-         :
-         p.approvalStatus==="rejected"
-         ?"err"
-         :"pending"
-        }">
-
-         ${status}
-
-        </div>
-
-       </div>
-
-       <div class="actions">
-
-        <button
-         class="secondary"
-         onclick='editProduct(${JSON.stringify({
-          id:d.id,
-          ...p
-         })})'>
-         Edit
-        </button>
-
-        <button
-         class="danger"
-         onclick="removeProduct('${d.id}')">
-         Delete
-        </button>
-
-       </div>
-
-      </div>
-
-     `;
-
-    }).join("");
-
-  }
-
- );
 
 }
 
 
-/* EDIT */
+unsubscribeProducts=
 
-window.editProduct = p => {
 
- $("pid").value =
-  p.id;
+onSnapshot(
 
- $("name").value =
-  p.name || "";
 
- $("description").value =
-  p.description || "";
+query(
 
- $("category").value =
-  p.category || "";
 
- $("price").value =
-  p.price || "";
+collection(
+db,
+"products"
+),
 
- $("stock").value =
-  p.stock ?? "";
 
- $("oldPrice").value =
-  p.oldPrice || "";
+where(
+"sellerId",
+"==",
+uid
+)
 
- $("imageUrl").value =
-  p.imageUrl || "";
 
- $("emoji").value =
-  p.emoji || "🛍️";
+),
 
- $("active").value="false";
 
- $("formTitle").textContent =
-  "Edit Product";
+snapshot=>{
 
- scrollTo(0,0);
+
+$("list").innerHTML=
+
+
+snapshot.empty
+
+
+?
+
+
+"<p>No products yet.</p>"
+
+
+:
+
+
+snapshot.docs.map(
+documentSnap=>{
+
+
+const product=
+documentSnap.data();
+
+
+let status=
+"⏳ Pending";
+
+
+if(
+product.approvalStatus==="approved"
+){
+
+
+status=
+"✓ Approved";
+
+
+}
+
+
+if(
+product.approvalStatus==="rejected"
+){
+
+
+status=
+"✕ Rejected";
+
+
+}
+
+
+
+const productData=
+JSON.stringify({
+
+
+id:
+documentSnap.id,
+
+
+...product
+
+
+})
+.replace(
+/'/g,
+"&#039;"
+);
+
+
+
+return `
+
+
+<div class="item">
+
+
+<div class="thumb">
+
+
+${
+product.imageUrl
+
+
+?
+
+
+`<img src="${escapeHtml(product.imageUrl)}"
+alt="${escapeHtml(product.name)}">`
+
+
+:
+
+
+escapeHtml(
+product.emoji
+||
+"🛍️"
+)
+}
+
+
+</div>
+
+
+
+<div>
+
+
+<b>
+${escapeHtml(product.name)}
+</b>
+
+
+<div>
+
+
+₹${Number(
+product.price||0
+).toLocaleString("en-IN")}
+
+
+•
+
+
+Stock:
+${Number(
+product.stock||0
+)}
+
+
+</div>
+
+
+
+<div class="${
+product.approvalStatus==="approved"
+
+
+?
+
+
+"ok"
+
+
+:
+
+
+product.approvalStatus==="rejected"
+
+
+?
+
+
+"err"
+
+
+:
+
+
+"pending"
+}">
+
+
+${status}
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="actions">
+
+
+<button
+class="secondary"
+onclick='editProduct(${productData})'>
+
+
+Edit
+
+
+</button>
+
+
+
+<button
+class="danger"
+onclick="removeProduct('${documentSnap.id}')">
+
+
+Delete
+
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+}
+).join("");
+
+
+}
+
+
+);
+
+
+}
+
+
+
+/* EDIT PRODUCT */
+
+window.editProduct=
+product=>{
+
+
+$("pid").value=
+product.id;
+
+
+$("name").value=
+product.name||"";
+
+
+$("description").value=
+product.description||"";
+
+
+$("category").value=
+product.category||"";
+
+
+$("price").value=
+product.price||"";
+
+
+$("stock").value=
+product.stock??"";
+
+
+$("oldPrice").value=
+product.oldPrice||"";
+
+
+$("imageUrl").value=
+product.imageUrl||"";
+
+
+$("emoji").value=
+product.emoji||"🛍️";
+
+
+$("active").value=
+"false";
+
+
+$("formTitle").textContent=
+"Edit Product";
+
+
+window.scrollTo({
+
+
+top:0,
+
+
+behavior:"smooth"
+
+
+});
+
 
 };
 
 
-/* DELETE */
 
-window.removeProduct = async id => {
+/* DELETE PRODUCT */
 
- if(confirm("Delete this product?")){
+window.removeProduct=
+async id=>{
 
-  await deleteDoc(
-   doc(db,"products",id)
-  );
 
- }
+if(
+
+
+!approved
+
+
+){
+
+
+alert(
+"Seller approval required."
+);
+
+
+return;
+
+
+}
+
+
+
+if(
+
+
+confirm(
+"Delete this product?"
+)
+
+
+){
+
+
+try{
+
+
+await deleteDoc(
+
+
+doc(
+db,
+"products",
+id
+)
+
+
+);
+
+
+}catch(e){
+
+
+alert(
+e.message
+);
+
+
+}
+
+
+}
+
 
 };
+
 
 
 /* LOGOUT */
 
-window.logout = async () => {
+window.logout=
+async()=>{
 
- await signOut(auth);
+
+await signOut(
+auth
+);
+
 
 };
+
 
 
 /* ESCAPE HTML */
 
 function escapeHtml(value){
 
- return String(value ?? "")
-  .replace(/&/g,"&amp;")
-  .replace(/</g,"&lt;")
-  .replace(/>/g,"&gt;")
-  .replace(/"/g,"&quot;")
-  .replace(/'/g,"&#039;");
+
+return String(
+value??""
+)
+
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+
+.replace(
+/</g,
+"&lt;"
+)
+
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+
+.replace(
+/'/g,
+"&#039;"
+);
+
 
 }
 
+
 </script>
 
+
 </body>
-  </html>
+
+</html>

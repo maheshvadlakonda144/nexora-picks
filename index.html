@@ -682,232 +682,101 @@ window.toggleSellerMode=()=>{
   $("sellerAuthMsg").textContent="";
 };
 
-window.sellerAuthAction=async()=>{
+ window.sellerAuthAction=async()=>{
   const message=$("sellerAuthMsg");
+
   message.textContent="";
+
   const email=$("sellerEmail").value.trim();
   const password=$("sellerPassword").value;
-  if(!email||!password){message.textContent="Please enter seller email and password.";return}
-  try{
-    if(sellerSignup){
-      const name=$("sellerName").value.trim();
-      const storeName=$("storeName").value.trim();
-      if(!name||!storeName){message.textContent="Please enter your name and store name.";return}
-      const userCredential=await createUserWithEmailAndPassword(auth,email,password);
-      await updateProfile(userCredential.user,{displayName:name});
-      await setDoc(doc(db,"users",userCredential.user.uid),{
-        name,storeName,email,role:"seller",status:"pending",createdAt:serverTimestamp()
-      },{merge:true});
-      message.style.color="var(--success)";
-      message.textContent="Seller account created successfully. Your account may require approval.";
-      setTimeout(()=>{closeSellerAuth();},1200);
-    }else{
-      await signInWithEmailAndPassword(auth,email,password);
-      closeSellerAuth();
-      alert("Seller login successful.");
-    }
-  }catch(error){
+
+  if(!email||!password){
     message.style.color="var(--danger)";
-    message.textContent=error.message;
-  }
-};
-
-onAuthStateChanged(auth,user=>{
-  const account=$("account");
-  if(!account)return;
-  if(user){
-    account.textContent=user.displayName||"Account";
-    account.onclick=()=>{if(confirm("Do you want to logout?"))signOut(auth)};
-    if($("sellerAccess"))$("sellerAccess").textContent="Seller";
-  }else{
-    account.textContent="Login";
-    account.onclick=openAuth;
-    if($("sellerAccess"))$("sellerAccess").textContent="Sell";
-  }
-});
-
-window.openCart=()=>{renderCart();$("cartModal").classList.add("open")};
-window.closeCart=()=> $("cartModal").classList.remove("open");
-
-window.openWishlist=()=>{renderWishlist();$("wishlistModal").classList.add("open")};
-window.closeWishlist=()=> $("wishlistModal").classList.remove("open");
-
-function addToCart(product){
-  const existing=cart.find(item=>item.id===product.id);
-  if(existing)existing.qty=Number(existing.qty||0)+1;
-  else cart.push({...product,qty:1});
-  saveCart();
-}
-function buyNow(product){
-  addToCart(product);
-  location.href="checkout.html";
-}
-window.changeQty=(id,change)=>{
-  const item=cart.find(x=>x.id===id);
-  if(!item)return;
-  item.qty=Number(item.qty||0)+change;
-  if(item.qty<=0)cart=cart.filter(x=>x.id!==id);
-  saveCart();
-};
-window.removeItem=id=>{cart=cart.filter(x=>x.id!==id);saveCart()};
-
-function renderCart(){
-  const box=$("cartItems"),foot=$("cartFoot");
-  if(!cart.length){
-    box.innerHTML='<p class="emptyCart">Your cart is empty.</p>';
-    foot.innerHTML="";
+    message.textContent="Please enter seller email and password.";
     return;
   }
-  box.innerHTML=cart.map(item=>{
-    const image=item.imageUrl||item.image||"";
-    return `<div class="cartItem">
-      <div>${image?`<img src="${esc(image)}" alt="${esc(item.name)}">`:'<div class="noImage">No image</div>'}</div>
-      <div>
-        <b>${esc(item.name||"Product")}</b>
-        <div>₹${Number(item.price||0)}</div>
-        <div class="qty">
-          <button onclick="changeQty('${esc(item.id)}',-1)">−</button>
-          <span>${Number(item.qty||0)}</span>
-          <button onclick="changeQty('${esc(item.id)}',1)">+</button>
-          <button onclick="removeItem('${esc(item.id)}')">Remove</button>
-        </div>
-      </div>
-      <b>₹${Number(item.price||0)*Number(item.qty||0)}</b>
-    </div>`;
-  }).join("");
-  const total=cart.reduce((sum,item)=>sum+Number(item.price||0)*Number(item.qty||0),0);
-  foot.innerHTML=`<div class="total"><span>Total</span><span>₹${total}</span></div>
-  <button class="primary" onclick="goToCheckout()">Proceed to Checkout</button>`;
-}
-window.goToCheckout=()=>{
-  if(!cart.length){alert("Your cart is empty.");return}
-  closeCart();
-  location.href="checkout.html";
-};
 
-function isWished(id){return wishlist.some(item=>item.id===id)}
-window.toggleWishlist=id=>{
-  const product=products.find(item=>item.id===id);
-  if(!product)return;
-  if(isWished(id))wishlist=wishlist.filter(item=>item.id!==id);
-  else wishlist.push(product);
-  saveWishlist();
-  render();
-};
-window.removeWish=id=>{
-  wishlist=wishlist.filter(item=>item.id!==id);
-  saveWishlist();
-  renderWishlist();
-  render();
-};
-function renderWishlist(){
-  const box=$("wishItems");
-  if(!wishlist.length){box.innerHTML='<p class="emptyCart">Your wishlist is empty.</p>';return}
-  box.innerHTML=wishlist.map(item=>{
-    const image=item.imageUrl||item.image||"";
-    return `<div class="cartItem">
-      <div>${image?`<img src="${esc(image)}" alt="${esc(item.name)}">`:'<div class="noImage">No image</div>'}</div>
-      <div>
-        <b>${esc(item.name||"Product")}</b>
-        <div>₹${Number(item.price||0)}</div>
-        <button class="primary" style="margin-top:8px" onclick="addWishlistProduct('${esc(item.id)}')">Add to Cart</button>
-      </div>
-      <button class="removeWish" onclick="removeWish('${esc(item.id)}')">Remove</button>
-    </div>`;
-  }).join("");
-}
-window.addWishlistProduct=id=>{
-  const product=wishlist.find(item=>item.id===id);
-  if(product)addToCart(product);
-};
-
-window.searchCategory=category=>{
-  $("search").value=category;
-  $("products").scrollIntoView({behavior:"smooth"});
-  render();
-};
-window.showAllProducts=()=>{
-  $("search").value="";
-  $("products").scrollIntoView({behavior:"smooth"});
-  render();
-};
-
-window.render=()=>{
-  const query=($("search").value||"").toLowerCase().trim();
-  const sort=$("sort").value;
-  let filtered=products.filter(product=>[
-    product.name||"",product.description||"",product.category||""
-  ].join(" ").toLowerCase().includes(query));
-
-  if(sort==="low")filtered.sort((a,b)=>Number(a.price||0)-Number(b.price||0));
-  if(sort==="high")filtered.sort((a,b)=>Number(b.price||0)-Number(a.price||0));
-  if(sort==="az")filtered.sort((a,b)=>String(a.name||"").localeCompare(String(b.name||"")));
-  if(sort==="za")filtered.sort((a,b)=>String(b.name||"").localeCompare(String(a.name||"")));
-
-  $("count").textContent=`${filtered.length} product${filtered.length===1?"":"s"}`;
-  $("grid").innerHTML=filtered.length?filtered.map(card).join(""):'<div class="empty">No products found.</div>';
-};
-
-function card(product){
-  const image=product.imageUrl||product.image||"";
-  const price=Number(product.price)||0;
-  const stock=Number(product.stock)||0;
-  const safeProduct=encodeURIComponent(JSON.stringify(product));
-  const wished=isWished(product.id);
-
-  return `<article class="card">
-    <div class="pic">
-      <button class="wishCardBtn ${wished?"active":""}" onclick="toggleWishlist('${esc(product.id)}')" aria-label="Wishlist">${wished?"♥":"♡"}</button>
-      ${image?`<img src="${esc(image)}" alt="${esc(product.name||"Product")}" loading="lazy">`:'<div class="noImage">No image available</div>'}
-    </div>
-    <div class="info">
-      <div class="tag">${esc(product.category||"Featured")}</div>
-      <div class="name">${esc(product.name||"Product")}</div>
-      <div class="desc">${esc(product.description||"")}</div>
-      <div class="price">₹${price}</div>
-      <div class="stock">${stock>0?`${stock} in stock`:"Out of stock"}</div>
-      <button class="details" onclick="location.href='product.html?id=${encodeURIComponent(product.id)}'">View Product</button>
-      <div class="actions">
-        <button class="add" data-product="${safeProduct}">🛒 Add</button>
-        <button class="buy" data-product="${safeProduct}">Buy Now</button>
-      </div>
-    </div>
-  </article>`;
-}
-
-document.addEventListener("click",event=>{
-  const addButton=event.target.closest(".add");
-  const buyButton=event.target.closest(".buy");
   try{
-    if(addButton)addToCart(JSON.parse(decodeURIComponent(addButton.dataset.product)));
-    if(buyButton)buyNow(JSON.parse(decodeURIComponent(buyButton.dataset.product)));
-  }catch(error){console.error(error)}
-});
 
-onSnapshot(
-  collection(db,"products"),
-  snapshot=>{
-    products=snapshot.docs
-      .map(doc=>({id:doc.id,...doc.data()}))
-      .filter(product=>{
-        const approved=
-          product.approvalStatus==="approved" ||
-          product.approvalStatus===undefined ||
-          product.approvalStatus===null ||
-          product.approvalStatus==="";
-        return approved && product.active!==false;
-      });
-    render();
-  },
-  error=>{
-    console.error("Firestore error:",error);
-    $("count").textContent="Unable to load products.";
-    $("grid").innerHTML='<div class="empty"><b>Products could not be loaded.</b><br><br>Check Firebase Firestore Rules.</div>';
+    if(sellerSignup){
+
+      const name=$("sellerName").value.trim();
+      const storeName=$("storeName").value.trim();
+
+      if(!name||!storeName){
+        message.style.color="var(--danger)";
+        message.textContent="Please enter your name and store name.";
+        return;
+      }
+
+      const userCredential=
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+
+      await updateProfile(
+        userCredential.user,
+        {
+          displayName:name
+        }
+      );
+
+      await setDoc(
+        doc(
+          db,
+          "users",
+          userCredential.user.uid
+        ),
+        {
+          name:name,
+          storeName:storeName,
+          email:email,
+          role:"seller",
+          status:"pending",
+          createdAt:serverTimestamp()
+        },
+        {
+          merge:true
+        }
+      );
+
+      message.style.color="var(--success)";
+
+      message.textContent=
+        "Seller account created successfully.";
+
+      setTimeout(()=>{
+
+        closeSellerAuth();
+
+        window.location.href=
+          "seller-register.html";
+
+      },1200);
+
+    }else{
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      closeSellerAuth();
+
+      window.location.href=
+        "seller-dashboard.html";
+
+    }
+
+  }catch(error){
+
+    message.style.color="var(--danger)";
+
+    message.textContent=error.message;
+
   }
-);
 
-updateCount();
-render();
-</script>
-</body>
-</html>
+};

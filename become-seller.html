@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Become a Seller | NEXORA PICKS</title>
+
+<style>
+
+:root{
+--blue:#2874f0;
+--dark:#172033;
+--yellow:#ffdf00;
+--bg:#f1f3f6;
+--muted:#667085;
+}
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);
+color:var(--dark);
+}
+
+
+/* HEADER */
+
+header{
+background:var(--blue);
+color:white;
+padding:16px 20px;
+position:sticky;
+top:0;
+z-index:100;
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.nav{
+max-width:1100px;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+font-size:24px;
+font-weight:800;
+text-decoration:none;
+color:white;
+}
+
+.logo span{
+color:var(--yellow);
+}
+
+.homeBtn{
+background:white;
+color:var(--blue);
+text-decoration:none;
+padding:10px 16px;
+border-radius:7px;
+font-weight:bold;
+}
+
+
+/* HERO */
+
+.hero{
+background:linear-gradient(
+135deg,
+#2874f0,
+#174da8
+);
+
+color:white;
+padding:70px 20px;
+text-align:center;
+}
+
+.heroContent{
+max-width:850px;
+margin:auto;
+}
+
+.hero h1{
+font-size:42px;
+margin:0 0 15px;
+}
+
+.hero p{
+font-size:20px;
+line-height:1.6;
+opacity:.95;
+}
+
+.heroBtn{
+display:inline-block;
+margin-top:20px;
+background:var(--yellow);
+color:#172033;
+padding:16px 30px;
+border-radius:8px;
+font-size:18px;
+font-weight:bold;
+text-decoration:none;
+}
+
+
+/* SECTIONS */
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:50px 20px;
+}
+
+.title{
+text-align:center;
+margin-bottom:35px;
+}
+
+.title h2{
+font-size:30px;
+margin-bottom:10px;
+}
+
+.title p{
+color:var(--muted);
+font-size:17px;
+}
+
+
+/* BENEFITS */
+
+.grid{
+display:grid;
+grid-template-columns:
+repeat(3,1fr);
+gap:20px;
+}
+
+.card{
+background:white;
+padding:25px;
+border-radius:14px;
+box-shadow:
+0 4px 14px
+rgba(0,0,0,.08);
+}
+
+.icon{
+font-size:38px;
+margin-bottom:12px;
+}
+
+.card h3{
+margin:5px 0 10px;
+font-size:20px;
+}
+
+.card p{
+color:var(--muted);
+line-height:1.5;
+}
+
+
+/* STEPS */
+
+.steps{
+display:grid;
+grid-template-columns:
+repeat(4,1fr);
+gap:18px;
+}
+
+.step{
+background:white;
+padding:25px;
+border-radius:14px;
+text-align:center;
+box-shadow:
+0 3px 12px
+rgba(0,0,0,.08);
+}
+
+.number{
+width:45px;
+height:45px;
+margin:auto auto 15px;
+background:var(--blue);
+color:white;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:20px;
+font-weight:bold;
+}
+
+
+/* OFFER */
+
+.offer{
+background:white;
+border-radius:16px;
+padding:40px;
+text-align:center;
+box-shadow:
+0 4px 18px
+rgba(0,0,0,.1);
+}
+
+.offer h2{
+font-size:30px;
+margin-top:0;
+}
+
+.offer ul{
+list-style:none;
+padding:0;
+font-size:18px;
+line-height:2;
+}
+
+.offerBtn{
+display:inline-block;
+background:var(--blue);
+color:white;
+padding:16px 30px;
+border-radius:8px;
+font-weight:bold;
+font-size:18px;
+text-decoration:none;
+margin-top:15px;
+}
+
+
+/* FAQ */
+
+.faq{
+background:white;
+padding:20px;
+margin-bottom:12px;
+border-radius:10px;
+}
+
+.faq h3{
+margin:0 0 8px;
+}
+
+.faq p{
+margin:0;
+color:var(--muted);
+line-height:1.5;
+}
+
+
+/* FOOTER */
+
+footer{
+background:#172033;
+color:white;
+text-align:center;
+padding:25px;
+margin-top:30px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+.hero h1{
+font-size:30px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+.grid{
+grid-template-columns:
+1fr;
+}
+
+.steps{
+grid-template-columns:
+1fr 1fr;
+}
+
+}
+
+@media(max-width:500px){
+
+.steps{
+grid-template-columns:
+1fr;
+}
+
+.hero{
+padding:50px 20px;
+}
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+<div class="nav">
+
+<a
+href="index.html"
+class="logo">
+
+NEXORA
+<span>
+PICKS
+</span>
+
+</a>
+
+
+<a
+href="index.html"
+class="homeBtn">
+
+← Home
+
+</a>
+
+</div>
+
+</header>
+
+
+
+<!-- HERO -->
+
+<section
+class="hero">
+
+<div
+class="heroContent">
+
+<h1>
+
+Start Selling on
+NEXORA PICKS 🛍️
+
+</h1>
+
+
+<p>
+
+Grow your business and reach more customers by selling your products online with NEXORA PICKS.
+
+</p>
+
+
+<a
+href="seller-register.html"
+class="heroBtn">
+
+🏪 Become a Seller
+
+</a>
+
+</div>
+
+</section>
+
+
+
+<!-- BENEFITS -->
+
+<section
+class="container">
+
+<div
+class="title">
+
+<h2>
+
+Why Sell With Us?
+
+</h2>
+
+<p>
+
+Everything you need to start selling online.
+
+</p>
+
+</div>
+
+
+<div
+class="grid">
+
+
+<div
+class="card">
+
+<div
+class="icon">
+
+🆓
+
+</div>
+
+<h3>
+
+Free Registration
+
+</h3>
+
+<p>
+
+Create your seller account and start setting up your online store.
+
+</p>
+
+</div>
+
+
+
+<div
+class="card">
+
+<div
+class="icon">
+
+📦
+
+</div>
+
+<h3>
+
+Add Your Products
+
+</h3>
+
+<p>
+
+Upload your products with images, prices and stock information.
+
+</p>
+
+</div>
+
+
+
+<div
+class="card">
+
+<div
+class="icon">
+
+📈
+
+</div>
+
+<h3>
+
+Grow Your Business
+
+</h3>
+
+<p>
+
+Reach more customers and grow your sales online.
+
+</p>
+
+</div>
+
+
+
+<div
+class="card">
+
+<div
+class="icon">
+
+📊
+
+</div>
+
+<h3>
+
+Seller Dashboard
+
+</h3>
+
+<p>
+
+Manage your products, orders and business from one place.
+
+</p>
+
+</div>
+
+
+
+<div
+class="card">
+
+<div
+class="icon">
+
+💰
+
+</div>
+
+<h3>
+
+Earn More
+
+</h3>
+
+<p>
+
+Sell your products and build your online business.
+
+</p>
+
+</div>
+
+
+
+<div
+class="card">
+
+<div
+class="icon">
+
+🤝
+
+</div>
+
+<h3>
+
+Seller Support
+
+</h3>
+
+<p>
+
+Get help while setting up and managing your products.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- HOW IT WORKS -->
+
+<section
+class="container">
+
+
+<div
+class="title">
+
+<h2>
+
+How It Works
+
+</h2>
+
+<p>
+
+Start selling in four simple steps.
+
+</p>
+
+</div>
+
+
+<div
+class="steps">
+
+
+<div
+class="step">
+
+<div
+class="number">
+
+1
+
+</div>
+
+<h3>
+
+Register
+
+</h3>
+
+<p>
+
+Create your seller account.
+
+</p>
+
+</div>
+
+
+
+<div
+class="step">
+
+<div
+class="number">
+
+2
+
+</div>
+
+<h3>
+
+Set Up Store
+
+</h3>
+
+<p>
+
+Add your seller details.
+
+</p>
+
+</div>
+
+
+
+<div
+class="step">
+
+<div
+class="number">
+
+3
+
+</div>
+
+<h3>
+
+Add Products
+
+</h3>
+
+<p>
+
+Upload your products.
+
+</p>
+
+</div>
+
+
+
+<div
+class="step">
+
+<div
+class="number">
+
+4
+
+</div>
+
+<h3>
+
+Start Selling
+
+</h3>
+
+<p>
+
+Receive and manage orders.
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- EARLY SELLER OFFER -->
+
+<section
+class="container">
+
+
+<div
+class="offer">
+
+<h2>
+
+🎉 Early Seller Offer
+
+</h2>
+
+
+<p>
+
+Join NEXORA PICKS as one of our early sellers.
+
+</p>
+
+
+<ul>
+
+<li>
+✅ Free seller registration
+</li>
+
+<li>
+✅ Free product listings
+</li>
+
+<li>
+✅ Seller dashboard
+</li>
+
+<li>
+✅ Manage your products
+</li>
+
+<li>
+🚀 Grow with NEXORA PICKS
+</li>
+
+</ul>
+
+
+<a
+href="seller-register.html"
+class="offerBtn">
+
+🏪 Register as Seller
+
+</a>
+
+</div>
+
+
+</section>
+
+
+
+<!-- FAQ -->
+
+<section
+class="container">
+
+
+<div
+class="title">
+
+<h2>
+
+Frequently Asked Questions
+
+</h2>
+
+</div>
+
+
+<div
+class="faq">
+
+<h3>
+
+Is seller registration free?
+
+</h3>
+
+<p>
+
+Yes. You can register and create your seller account on NEXORA PICKS.
+
+</p>
+
+</div>
+
+
+
+<div
+class="faq">
+
+<h3>
+
+How do I add products?
+
+</h3>
+
+<p>
+
+After registering as a seller, you can use the Seller Center to add and manage your products.
+
+</p>
+
+</div>
+
+
+
+<div
+class="faq">
+
+<h3>
+
+How will I receive orders?
+
+</h3>
+
+<p>
+
+Orders from customers will appear in your seller order management system.
+
+</p>
+
+</div>
+
+
+</section>
+
+
+
+<!-- FINAL CTA -->
+
+<section
+class="container">
+
+
+<div
+class="offer">
+
+<h2>
+
+Ready to Start Selling? 🚀
+
+</h2>
+
+
+<p>
+
+Join NEXORA PICKS and start growing your online business.
+
+</p>
+
+
+<a
+href="seller-register.html"
+class="offerBtn">
+
+Become a Seller →
+
+</a>
+
+</div>
+
+
+</section>
+
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<b>
+
+NEXORA PICKS
+
+</b>
+
+<br><br>
+
+Sell. Grow. Succeed.
+
+<br><br>
+
+© 2026 NEXORA PICKS
+
+</footer>
+
+
+</body>
+
+  </html>

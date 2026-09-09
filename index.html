@@ -780,3 +780,885 @@ window.toggleSellerMode=()=>{
   }
 
 };
+  /* ACCOUNT LOGIN BUTTON */
+$("account").onclick=()=>{
+  if(auth.currentUser){
+    if(confirm("Do you want to logout?")){
+      signOut(auth);
+    }
+  }else{
+    openAuth();
+  }
+};
+
+/* AUTH STATE */
+onAuthStateChanged(auth,user=>{
+  if(user){
+    $("account").textContent=user.displayName||"My Account";
+  }else{
+    $("account").textContent="Login";
+  }
+});
+
+
+/* CART */
+window.openCart=()=>{
+  $("cartModal").classList.add("open");
+  renderCart();
+};
+
+window.closeCart=()=>{
+  $("cartModal").classList.remove("open");
+};
+
+function addToCart(product){
+  const existing=cart.find(item=>item.id===product.id);
+
+  if(existing){
+    existing.qty=Number(existing.qty||0)+1;
+  }else{
+    cart.push({
+      ...product,
+      qty:1
+    });
+  }
+
+  saveCart();
+}
+
+function buyNow(product){
+  addToCart(product);
+  location.href="checkout.html";
+}
+
+window.changeQty=(id,change)=>{
+  const item=cart.find(item=>item.id===id);
+
+  if(!item)return;
+
+  item.qty=Number(item.qty||0)+change;
+
+  if(item.qty<=0){
+    cart=cart.filter(item=>item.id!==id);
+  }
+
+  saveCart();
+};
+
+window.removeItem=id=>{
+  cart=cart.filter(item=>item.id!==id);
+  saveCart();
+};
+
+function renderCart(){
+
+  const box=$("cartItems");
+  const foot=$("cartFoot");
+
+  if(!cart.length){
+
+    box.innerHTML=`
+      <div class="emptyCart">
+        Your cart is empty.
+      </div>
+    `;
+
+    foot.innerHTML="";
+
+    return;
+  }
+
+  box.innerHTML=cart.map(item=>{
+
+    const image=item.imageUrl||item.image||"";
+
+    return `
+
+      <div class="cartItem">
+
+        <div>
+
+          ${
+            image
+            ? `<img src="${esc(image)}"
+                 alt="${esc(item.name||"Product")}">`
+            : `<div class="noImage">No image</div>`
+          }
+
+        </div>
+
+        <div>
+
+          <b>${esc(item.name||"Product")}</b>
+
+          <div>
+            ₹${Number(item.price||0).toLocaleString("en-IN")}
+          </div>
+
+          <div class="qty">
+
+            <button
+              onclick="changeQty('${esc(item.id)}',-1)"
+            >
+              −
+            </button>
+
+            <span>
+              ${Number(item.qty||0)}
+            </span>
+
+            <button
+              onclick="changeQty('${esc(item.id)}',1)"
+            >
+              +
+            </button>
+
+            <button
+              onclick="removeItem('${esc(item.id)}')"
+            >
+              Remove
+            </button>
+
+          </div>
+
+        </div>
+
+        <b>
+
+          ₹${(
+            Number(item.price||0)*
+            Number(item.qty||0)
+          ).toLocaleString("en-IN")}
+
+        </b>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+
+  const total=cart.reduce(
+    (sum,item)=>
+      sum+
+      Number(item.price||0)*
+      Number(item.qty||0),
+    0
+  );
+
+
+  foot.innerHTML=`
+
+    <div class="total">
+
+      <span>Total</span>
+
+      <span>
+        ₹${total.toLocaleString("en-IN")}
+      </span>
+
+    </div>
+
+    <button
+      class="primary"
+      onclick="goToCheckout()"
+    >
+      Proceed to Checkout
+    </button>
+
+  `;
+
+}
+
+
+window.goToCheckout=()=>{
+
+  if(!cart.length){
+
+    alert("Your cart is empty.");
+
+    return;
+  }
+
+  closeCart();
+
+  location.href="checkout.html";
+
+};
+
+
+/* WISHLIST */
+
+window.openWishlist=()=>{
+
+  $("wishlistModal").classList.add("open");
+
+  renderWishlist();
+
+};
+
+
+window.closeWishlist=()=>{
+
+  $("wishlistModal").classList.remove("open");
+
+};
+
+
+function isWished(id){
+
+  return wishlist.some(
+    item=>item.id===id
+  );
+
+}
+
+
+window.toggleWishlist=id=>{
+
+  const product=products.find(
+    item=>item.id===id
+  );
+
+  if(!product)return;
+
+
+  if(isWished(id)){
+
+    wishlist=wishlist.filter(
+      item=>item.id!==id
+    );
+
+  }else{
+
+    wishlist.push(product);
+
+  }
+
+
+  saveWishlist();
+
+  render();
+
+};
+
+
+window.removeWish=id=>{
+
+  wishlist=wishlist.filter(
+    item=>item.id!==id
+  );
+
+  saveWishlist();
+
+  renderWishlist();
+
+  render();
+
+};
+
+
+function renderWishlist(){
+
+  const box=$("wishItems");
+
+
+  if(!wishlist.length){
+
+    box.innerHTML=`
+      <p class="emptyCart">
+        Your wishlist is empty.
+      </p>
+    `;
+
+    return;
+
+  }
+
+
+  box.innerHTML=wishlist.map(item=>{
+
+    const image=item.imageUrl||item.image||"";
+
+
+    return `
+
+      <div class="cartItem">
+
+        <div>
+
+          ${
+            image
+            ? `<img
+                src="${esc(image)}"
+                alt="${esc(item.name||"Product")}"
+              >`
+            : `<div class="noImage">
+                No image
+              </div>`
+          }
+
+        </div>
+
+
+        <div>
+
+          <b>
+            ${esc(item.name||"Product")}
+          </b>
+
+
+          <div>
+
+            ₹${Number(item.price||0)
+              .toLocaleString("en-IN")}
+
+          </div>
+
+
+          <button
+            class="primary"
+            style="margin-top:8px"
+            onclick="addWishlistProduct('${esc(item.id)}')"
+          >
+
+            Add to Cart
+
+          </button>
+
+        </div>
+
+
+        <button
+          class="removeWish"
+          onclick="removeWish('${esc(item.id)}')"
+        >
+
+          Remove
+
+        </button>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+}
+
+
+window.addWishlistProduct=id=>{
+
+  const product=wishlist.find(
+    item=>item.id===id
+  );
+
+  if(product){
+
+    addToCart(product);
+
+  }
+
+};
+
+
+/* CATEGORY SEARCH */
+
+window.searchCategory=category=>{
+
+  $("search").value=category;
+
+  $("products").scrollIntoView({
+    behavior:"smooth"
+  });
+
+  render();
+
+};
+
+
+window.showAllProducts=()=>{
+
+  $("search").value="";
+
+  $("products").scrollIntoView({
+    behavior:"smooth"
+  });
+
+  render();
+
+};
+
+
+/* RENDER PRODUCTS */
+
+window.render=()=>{
+
+  const query=
+    ($("search").value||"")
+      .toLowerCase()
+      .trim();
+
+
+  const sort=$("sort").value;
+
+
+  let filtered=products.filter(product=>{
+
+    return [
+
+      product.name||"",
+
+      product.description||"",
+
+      product.category||""
+
+    ]
+    .join(" ")
+    .toLowerCase()
+    .includes(query);
+
+  });
+
+
+  if(sort==="low"){
+
+    filtered.sort(
+      (a,b)=>
+        Number(a.price||0)-
+        Number(b.price||0)
+    );
+
+  }
+
+
+  if(sort==="high"){
+
+    filtered.sort(
+      (a,b)=>
+        Number(b.price||0)-
+        Number(a.price||0)
+    );
+
+  }
+
+
+  if(sort==="az"){
+
+    filtered.sort(
+      (a,b)=>
+        String(a.name||"")
+        .localeCompare(
+          String(b.name||"")
+        )
+    );
+
+  }
+
+
+  if(sort==="za"){
+
+    filtered.sort(
+      (a,b)=>
+        String(b.name||"")
+        .localeCompare(
+          String(a.name||"")
+        )
+    );
+
+  }
+
+
+  $("count").textContent=
+    `${filtered.length} product${
+      filtered.length===1
+      ? ""
+      : "s"
+    }`;
+
+
+  $("grid").innerHTML=
+
+    filtered.length
+
+    ? filtered.map(card).join("")
+
+    : `
+
+      <div class="empty">
+
+        No products found.
+
+      </div>
+
+    `;
+
+};
+
+
+/* PRODUCT CARD */
+
+function card(product){
+
+  const image=
+    product.imageUrl||
+    product.image||
+    "";
+
+
+  const price=
+    Number(product.price)||0;
+
+
+  const stock=
+    Number(product.stock)||0;
+
+
+  const safeProduct=
+    encodeURIComponent(
+      JSON.stringify(product)
+    );
+
+
+  const wished=
+    isWished(product.id);
+
+
+  return `
+
+    <article class="card">
+
+      <div class="pic">
+
+        <button
+          class="wishCardBtn ${
+            wished
+            ? "active"
+            : ""
+          }"
+
+          onclick="toggleWishlist(
+            '${esc(product.id)}'
+          )"
+
+          aria-label="Wishlist"
+        >
+
+          ${
+            wished
+            ? "♥"
+            : "♡"
+          }
+
+        </button>
+
+
+        ${
+          image
+
+          ? `<img
+              src="${esc(image)}"
+              alt="${esc(
+                product.name||
+                "Product"
+              )}"
+
+              loading="lazy"
+            >`
+
+          : `<div class="noImage">
+
+              No image available
+
+            </div>`
+        }
+
+      </div>
+
+
+      <div class="info">
+
+
+        <div class="tag">
+
+          ${esc(
+            product.category||
+            "Featured"
+          )}
+
+        </div>
+
+
+        <div class="name">
+
+          ${esc(
+            product.name||
+            "Product"
+          )}
+
+        </div>
+
+
+        <div class="desc">
+
+          ${esc(
+            product.description||
+            ""
+          )}
+
+        </div>
+
+
+        <div class="price">
+
+          ₹${price.toLocaleString("en-IN")}
+
+        </div>
+
+
+        <div class="stock">
+
+          ${
+            stock>0
+
+            ? `${stock} in stock`
+
+            : "Out of stock"
+          }
+
+        </div>
+
+
+        <button
+          class="details"
+
+          onclick="
+            location.href=
+            'product.html?id=${encodeURIComponent(
+              product.id
+            )}'
+          "
+        >
+
+          View Product
+
+        </button>
+
+
+        <div class="actions">
+
+
+          <button
+            class="add"
+
+            data-product="${safeProduct}"
+
+            ${
+              stock<=0
+              ? "disabled"
+              : ""
+            }
+          >
+
+            🛒 Add
+
+          </button>
+
+
+          <button
+            class="buy"
+
+            data-product="${safeProduct}"
+
+            ${
+              stock<=0
+              ? "disabled"
+              : ""
+            }
+          >
+
+            Buy Now
+
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+
+    </article>
+
+  `;
+
+}
+
+
+/* ADD / BUY BUTTONS */
+
+document.addEventListener(
+  "click",
+  event=>{
+
+    const addButton=
+      event.target.closest(".add");
+
+
+    const buyButton=
+      event.target.closest(".buy");
+
+
+    try{
+
+
+      if(addButton){
+
+        addToCart(
+
+          JSON.parse(
+
+            decodeURIComponent(
+              addButton.dataset.product
+            )
+
+          )
+
+        );
+
+      }
+
+
+      if(buyButton){
+
+        buyNow(
+
+          JSON.parse(
+
+            decodeURIComponent(
+              buyButton.dataset.product
+            )
+
+          )
+
+        );
+
+      }
+
+
+    }catch(error){
+
+      console.error(
+        "Product action error:",
+        error
+      );
+
+    }
+
+
+  }
+);
+
+
+/* FIRESTORE PRODUCTS */
+
+onSnapshot(
+
+  collection(db,"products"),
+
+  snapshot=>{
+
+
+    products=snapshot.docs
+
+      .map(document=>({
+
+        id:document.id,
+
+        ...document.data()
+
+      }))
+
+      .filter(product=>{
+
+
+        const approved=
+
+          product.approvalStatus==="approved" ||
+
+          product.approvalStatus===undefined ||
+
+          product.approvalStatus===null ||
+
+          product.approvalStatus==="";
+
+
+        return (
+
+          approved &&
+
+          product.active!==false
+
+        );
+
+      });
+
+
+    render();
+
+
+  },
+
+
+  error=>{
+
+
+    console.error(
+      "Firestore error:",
+      error
+    );
+
+
+    $("count").textContent=
+      "Unable to load products";
+
+
+    $("grid").innerHTML=`
+
+      <div class="empty">
+
+        <b>
+          Products could not be loaded.
+        </b>
+
+        <br><br>
+
+        Check Firebase Firestore Rules
+        and product approval status.
+
+      </div>
+
+    `;
+
+
+  }
+
+);
+
+
+/* START */
+
+updateCount();
+
+renderCart();
+
+renderWishlist();
+
+render();
+
+</script>
+
+</body>
+
+</html>

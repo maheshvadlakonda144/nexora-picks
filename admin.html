@@ -1,37 +1,49 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>NEXORA PICKS — Admin</title>
+
 <meta name="robots" content="noindex,nofollow">
 
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
+
 body{
   margin:0;
   background:#07090e;
   color:#f5f7fb;
-  font-family:Arial,sans-serif
+  font-family:Arial,sans-serif;
 }
+
 header{
   padding:18px 16px;
   border-bottom:1px solid #252d39;
   position:sticky;
   top:0;
   background:#07090e;
-  z-index:5
+  z-index:5;
 }
+
 .brand{
   font-weight:900;
-  letter-spacing:2px
+  letter-spacing:2px;
 }
-.brand span{color:#ff3150}
+
+.brand span{
+  color:#ff3150;
+}
 
 main{
   max-width:950px;
   margin:auto;
-  padding:18px 14px 50px
+  padding:18px 14px 50px;
 }
 
 .box{
@@ -39,22 +51,28 @@ main{
   border:1px solid #252d39;
   border-radius:16px;
   padding:18px;
-  margin-bottom:16px
+  margin-bottom:16px;
 }
 
-input,textarea,select{
+input,
+textarea,
+select{
   width:100%;
   padding:13px;
   margin:6px 0 12px;
   background:#0a0d13;
   color:#fff;
   border:1px solid #2a3340;
-  border-radius:9px
+  border-radius:9px;
+  font:inherit;
 }
 
-textarea{min-height:90px}
+textarea{
+  min-height:90px;
+}
 
-button,.btn{
+button,
+.btn{
   border:0;
   background:#ff3150;
   color:#fff;
@@ -63,52 +81,72 @@ button,.btn{
   font-weight:800;
   cursor:pointer;
   text-decoration:none;
-  display:inline-block
+  display:inline-block;
 }
 
-.secondary{background:#252d39}
-.approve{background:#16803c}
-.danger{background:#b52b3e}
+.secondary{
+  background:#252d39;
+}
+
+.approve{
+  background:#16803c;
+}
+
+.danger{
+  background:#b52b3e;
+}
 
 .row{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:12px
+  gap:12px;
 }
 
 .status{
   display:none;
   padding:10px;
   border-radius:9px;
-  margin:0 0 12px
+  margin:0 0 12px;
 }
 
 .ok{
   display:block;
   background:#17251d;
-  color:#a9e2b6
+  color:#a9e2b6;
 }
 
 .err{
   display:block;
   background:#30151b;
-  color:#ffb2bd
+  color:#ffb2bd;
 }
 
-.muted{color:#929cab}
+.muted{
+  color:#929cab;
+}
 
 .tabs{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
-  margin-bottom:16px
+  margin-bottom:16px;
 }
 
-.tab{background:#252d39}
-.tab.active{background:#ff3150}
+.tab{
+  background:#252d39;
+}
 
-.section{display:none}
-.section.active{display:block}
+.tab.active{
+  background:#ff3150;
+}
+
+.section{
+  display:none;
+}
+
+.section.active{
+  display:block;
+}
 
 .item{
   background:#0b0f16;
@@ -118,14 +156,14 @@ button,.btn{
   margin:10px 0;
   display:flex;
   gap:12px;
-  align-items:center
+  align-items:center;
 }
 
 .actions{
   margin-left:auto;
   display:flex;
   gap:7px;
-  flex-wrap:wrap
+  flex-wrap:wrap;
 }
 
 .badge{
@@ -133,1121 +171,2904 @@ button,.btn{
   padding:5px 8px;
   border-radius:999px;
   font-size:12px;
-  font-weight:800
+  font-weight:800;
+  margin-top:6px;
 }
 
 .pending{
   background:#332a12;
-  color:#ffd86b
+  color:#ffd86b;
 }
 
 .approved{
   background:#17351f;
-  color:#9ee7ae
+  color:#9ee7ae;
 }
 
 .rejected{
   background:#35171d;
-  color:#ffadb8
+  color:#ffadb8;
+}
+
+.product-image{
+  width:70px;
+  height:70px;
+  object-fit:cover;
+  border-radius:10px;
+  background:#252d39;
+}
+
+.product-emoji{
+  width:70px;
+  height:70px;
+  border-radius:10px;
+  background:#252d39;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:32px;
 }
 
 @media(max-width:650px){
-  .row{grid-template-columns:1fr}
+
+  .row{
+    grid-template-columns:1fr;
+  }
 
   .item{
     align-items:flex-start;
-    flex-wrap:wrap
+    flex-wrap:wrap;
   }
 
   .actions{
     margin-left:0;
-    width:100%
+    width:100%;
   }
 
   .actions button{
-    flex:1
+    flex:1;
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header>
-  <div class="brand">
-    NEXORA <span>PICKS</span> — ADMIN
-  </div>
+
+<div class="brand">
+
+NEXORA <span>PICKS</span> — ADMIN
+
+</div>
+
 </header>
+
 
 <main>
 
+
 <!-- ADMIN LOGIN -->
+
 <div id="loginBox" class="box">
-  <h1>Admin Login</h1>
-  <p class="muted">
-    Sign in with your authorized Firebase admin account.
-  </p>
 
-  <div id="loginStatus" class="status"></div>
+<h1>Admin Login</h1>
 
-  <form id="loginForm">
-    <input
-      id="email"
-      type="email"
-      placeholder="Admin email"
-      required
-    >
+<p class="muted">
 
-    <input
-      id="password"
-      type="password"
-      placeholder="Password"
-      required
-    >
+Login with the authorized NEXORA PICKS admin account.
 
-    <button type="submit">Login</button>
-  </form>
+</p>
+
+
+<div id="loginStatus" class="status"></div>
+
+
+<form id="loginForm">
+
+
+<input
+id="email"
+type="email"
+placeholder="Admin email"
+required
+>
+
+
+<input
+id="password"
+type="password"
+placeholder="Password"
+required
+>
+
+
+<button type="submit">
+
+Login
+
+</button>
+
+
+</form>
+
+
 </div>
+
 
 
 <!-- ADMIN PANEL -->
+
 <div id="panel" style="display:none">
 
-  <div class="box">
 
-    <div class="tabs">
+<div class="box">
 
-      <button
-        class="tab active"
-        onclick="showTab('sellers',this)">
-        👥 Sellers
-      </button>
 
-      <button
-        class="tab"
-        onclick="showTab('products',this)">
-        📦 Products
-      </button>
+<h2>
 
-    </div>
+NEXORA PICKS Admin Panel
 
-  </div>
+</h2>
 
 
-  <!-- SELLERS -->
-  <section id="sellers" class="section active">
+<p id="adminInfo" class="muted"></p>
 
-    <div class="box">
 
-      <h2>Seller Approvals</h2>
+<div class="tabs">
 
-      <p class="muted">
-        Review seller accounts. Only approved sellers can publish products.
-      </p>
 
-      <div id="sellerStatus" class="status"></div>
+<button
+class="tab active"
+onclick="showTab('sellers',this)">
 
-      <div id="sellerList">
-        Loading sellers…
-      </div>
+👥 Sellers
 
-    </div>
+</button>
 
-  </section>
 
+<button
+class="tab"
+onclick="showTab('products',this)">
 
-  <!-- PRODUCTS -->
-  <section id="products" class="section">
+📦 Products
 
-    <div class="box">
+</button>
 
-      <h2>Product Approvals</h2>
-
-      <p class="muted">
-        Approve seller products before they appear on the marketplace.
-      </p>
-
-      <div id="productApprovalList">
-        Loading products…
-      </div>
-
-    </div>
-
-
-    <!-- ADD PRODUCT -->
-    <div class="box">
-
-      <h1 id="formTitle">
-        Add Product
-      </h1>
-
-      <div id="status" class="status"></div>
-
-      <form id="productForm">
-
-        <input
-          type="hidden"
-          id="docId"
-        >
-
-        <label>Product name</label>
-
-        <input
-          id="name"
-          placeholder="Wireless Earphones"
-          required
-        >
-
-
-        <label>Description</label>
-
-        <textarea
-          id="description"
-          placeholder="Short description">
-        </textarea>
-
-
-        <div class="row">
-
-          <div>
-
-            <label>Category</label>
-
-            <input
-              id="category"
-              placeholder="Electronics"
-            >
-
-          </div>
-
-
-          <div>
-
-            <label>Button text</label>
-
-            <input
-              id="buttonText"
-              value="Check Price"
-            >
-
-          </div>
-
-        </div>
-
-
-        <label>Product image URL</label>
-
-        <input
-          id="imageUrl"
-          type="url"
-          placeholder="https://...jpg"
-        >
-
-
-        <label>Product URL</label>
-
-        <input
-          id="priceUrl"
-          type="url"
-          placeholder="https://..."
-        >
-
-
-        <div class="row">
-
-          <div>
-
-            <label>Emoji fallback</label>
-
-            <input
-              id="emoji"
-              value="🛍️"
-            >
-
-          </div>
-
-
-          <div>
-
-            <label>Active</label>
-
-            <select id="active">
-
-              <option value="true">
-                Yes — show
-              </option>
-
-              <option value="false">
-                No — hide
-              </option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-
-        <button type="submit">
-          Save Product
-        </button>
-
-        <button
-          type="button"
-          class="secondary"
-          id="cancel"
-          style="display:none">
-
-          Cancel Edit
-
-        </button>
-
-      </form>
-
-    </div>
-
-
-    <!-- PRODUCTS LIST -->
-    <div class="box">
-
-      <h2>Products</h2>
-
-      <p class="muted">
-        Add, edit or delete products.
-      </p>
-
-      <div id="list">
-        Loading…
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- LOGOUT -->
-  <div class="box">
-
-    <button
-      id="logout"
-      class="secondary">
-      Logout
-    </button>
-
-    <a
-      class="btn secondary"
-      href="./">
-      Open Website
-    </a>
-
-  </div>
 
 </div>
+
+
+</div>
+
+
+
+<!-- SELLERS -->
+
+<section
+id="sellers"
+class="section active">
+
+
+<div class="box">
+
+
+<h2>
+
+Seller Applications
+
+</h2>
+
+
+<p class="muted">
+
+Approve or reject seller registrations.
+
+</p>
+
+
+<div
+id="sellerStatus"
+class="status">
+
+</div>
+
+
+<div id="sellerList">
+
+Loading sellers...
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- PRODUCTS -->
+
+<section
+id="products"
+class="section">
+
+
+<!-- PRODUCT APPROVALS -->
+
+<div class="box">
+
+
+<h2>
+
+Product Approvals
+
+</h2>
+
+
+<p class="muted">
+
+Approve seller products before they appear on NEXORA PICKS.
+
+</p>
+
+
+<div
+id="productStatus"
+class="status">
+
+</div>
+
+
+<div
+id="productApprovalList">
+
+Loading products...
+
+</div>
+
+
+</div>
+
+
+
+<!-- ADD PRODUCT -->
+
+<div class="box">
+
+
+<h1 id="formTitle">
+
+Add Product
+
+</h1>
+
+
+<div
+id="status"
+class="status">
+
+</div>
+
+
+<form id="productForm">
+
+
+<input
+type="hidden"
+id="docId"
+>
+
+
+<label>
+
+Product name
+
+</label>
+
+
+<input
+id="name"
+placeholder="Wireless Earphones"
+required
+>
+
+
+
+<label>
+
+Description
+
+</label>
+
+
+<textarea
+id="description"
+placeholder="Product description">
+
+</textarea>
+
+
+
+<div class="row">
+
+
+<div>
+
+
+<label>
+
+Category
+
+</label>
+
+
+<input
+id="category"
+placeholder="Electronics"
+>
+
+
+</div>
+
+
+
+<div>
+
+
+<label>
+
+Price
+
+</label>
+
+
+<input
+id="price"
+type="number"
+min="1"
+placeholder="999"
+>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="row">
+
+
+<div>
+
+
+<label>
+
+Stock
+
+</label>
+
+
+<input
+id="stock"
+type="number"
+min="0"
+placeholder="10"
+>
+
+
+</div>
+
+
+
+<div>
+
+
+<label>
+
+Old Price
+
+</label>
+
+
+<input
+id="oldPrice"
+type="number"
+min="0"
+placeholder="1299"
+>
+
+
+</div>
+
+
+</div>
+
+
+
+<label>
+
+Product Image URL
+
+</label>
+
+
+<input
+id="imageUrl"
+type="url"
+placeholder="https://..."
+>
+
+
+
+<label>
+
+Product URL
+
+</label>
+
+
+<input
+id="priceUrl"
+type="url"
+placeholder="https://..."
+>
+
+
+
+<div class="row">
+
+
+<div>
+
+
+<label>
+
+Emoji Fallback
+
+</label>
+
+
+<input
+id="emoji"
+value="🛍️"
+>
+
+
+</div>
+
+
+
+<div>
+
+
+<label>
+
+Active
+
+</label>
+
+
+<select id="active">
+
+
+<option value="true">
+
+Yes — Show
+
+</option>
+
+
+<option value="false">
+
+No — Hide
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+</div>
+
+
+
+<button type="submit">
+
+Save Product
+
+</button>
+
+
+<button
+type="button"
+class="secondary"
+id="cancel"
+style="display:none">
+
+Cancel Edit
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+
+<!-- PRODUCT LIST -->
+
+<div class="box">
+
+
+<h2>
+
+All Products
+
+</h2>
+
+
+<div id="list">
+
+Loading...
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+<!-- LOGOUT -->
+
+<div class="box">
+
+
+<button
+id="logout"
+class="secondary">
+
+Logout
+
+</button>
+
+
+<a
+class="btn secondary"
+href="index.html">
+
+Open Website
+
+</a>
+
+
+</div>
+
+
+</div>
+
 
 </main>
 
 
-<!-- FIREBASE SCRIPT -->
+
 <script type="module">
 
-import {
-  initializeApp
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+/* FIREBASE IMPORTS */
 
 
 import {
-  getAuth,
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 
 
 import {
-  getFirestore,
-  collection,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-  onSnapshot,
-  serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+getAuth,
+
+signInWithEmailAndPassword,
+
+onAuthStateChanged,
+
+signOut
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+
+import {
+
+getFirestore,
+
+collection,
+
+addDoc,
+
+updateDoc,
+
+deleteDoc,
+
+doc,
+
+onSnapshot,
+
+serverTimestamp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+
+/* FIREBASE CONFIG */
 
 
 const firebaseConfig = {
 
-  apiKey:
-    "AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
 
-  authDomain:
-    "nexora-picks-e887f.firebaseapp.com",
+apiKey:
 
-  projectId:
-    "nexora-picks-e887f",
+"AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
 
-  storageBucket:
-    "nexora-picks-e887f.firebasestorage.app",
 
-  messagingSenderId:
-    "621359003619",
+authDomain:
 
-  appId:
-    "1:621359003619:web:483add8bfcd0241f4192d",
+"nexora-picks-be049.firebaseapp.com",
 
-  measurementId:
-    "G-LSMJ6QLLPW"
+
+projectId:
+
+"nexora-picks-be049",
+
+
+storageBucket:
+
+"nexora-picks-be049.firebasestorage.app",
+
+
+messagingSenderId:
+
+"325932959084",
+
+
+appId:
+
+"1:325932959084:web:4fd8252e1ba83f82ee1f49",
+
+
+measurementId:
+
+"G-KMQZXZZCHJ"
+
+
 };
 
 
-const app = initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+/* ADMIN EMAIL */
 
-const db = getFirestore(app);
+
+const ADMIN_EMAIL =
+
+"nexorapicks144@gmail.com";
+
+
+
+/* INITIALIZE FIREBASE */
+
+
+const app =
+
+initializeApp(firebaseConfig);
+
+
+const auth =
+
+getAuth(app);
+
+
+const db =
+
+getFirestore(app);
+
+
 
 const $ = id =>
-  document.getElementById(id);
+
+document.getElementById(id);
+
+
+
+/* STATUS MESSAGE */
 
 
 function stat(id,text,error=false){
 
-  $(id).textContent = text;
 
-  $(id).className =
-    "status " + (error ? "err" : "ok");
+$(id).textContent =
+
+text;
+
+
+$(id).className =
+
+"status " +
+
+(
+
+error
+
+?
+
+"err"
+
+:
+
+"ok"
+
+);
+
 
 }
 
 
-window.showTab = function(id,btn){
 
-  document
-    .querySelectorAll(".section")
-    .forEach(x =>
-      x.classList.remove("active")
-    );
+/* TABS */
 
-  document
-    .querySelectorAll(".tab")
-    .forEach(x =>
-      x.classList.remove("active")
-    );
 
-  $(id).classList.add("active");
+window.showTab =
 
-  btn.classList.add("active");
+function(id,btn){
+
+
+document
+.querySelectorAll(".section")
+.forEach(x =>
+
+x.classList.remove("active")
+
+);
+
+
+document
+.querySelectorAll(".tab")
+.forEach(x =>
+
+x.classList.remove("active")
+
+);
+
+
+$(id)
+.classList
+.add("active");
+
+
+btn
+.classList
+.add("active");
+
 
 };
+
+
+
+
+/* ADMIN LOGIN */
 
 
 $("loginForm").onsubmit =
+
 async e => {
 
-  e.preventDefault();
 
-  try{
+e.preventDefault();
 
-    await signInWithEmailAndPassword(
-      auth,
-      $("email").value.trim(),
-      $("password").value
-    );
 
-    stat(
-      "loginStatus",
-      "Login successful."
-    );
+const email =
 
-  }catch(x){
+$("email")
+.value
+.trim()
+.toLowerCase();
 
-    stat(
-      "loginStatus",
-      x.message,
-      true
-    );
 
-  }
+const password =
+
+$("password")
+.value;
+
+
+
+if(
+
+email !==
+ADMIN_EMAIL.toLowerCase()
+
+){
+
+
+stat(
+
+"loginStatus",
+
+"Access denied. This email is not the administrator.",
+
+true
+
+);
+
+
+return;
+
+
+}
+
+
+
+try{
+
+
+await
+
+signInWithEmailAndPassword(
+
+auth,
+
+email,
+
+password
+
+);
+
+
+stat(
+
+"loginStatus",
+
+"Login successful."
+
+);
+
+
+}
+
+catch(x){
+
+
+stat(
+
+"loginStatus",
+
+x.message,
+
+true
+
+);
+
+
+}
+
 
 };
 
 
-onAuthStateChanged(auth,u => {
 
-  $("loginBox").style.display =
-    u ? "none" : "block";
 
-  $("panel").style.display =
-    u ? "block" : "none";
+/* AUTH CHECK */
 
-  if(u){
 
-    loadSellers();
+onAuthStateChanged(
 
-    loadProducts();
+auth,
 
-  }
+u => {
 
-});
+
+if(!u){
+
+
+$("loginBox")
+.style
+.display =
+
+"block";
+
+
+$("panel")
+.style
+.display =
+
+"none";
+
+
+return;
+
+
+}
+
+
+
+/* ADMIN EMAIL PROTECTION */
+
+
+if(
+
+u.email
+.toLowerCase()
+
+!==
+
+ADMIN_EMAIL
+.toLowerCase()
+
+){
+
+
+stat(
+
+"loginStatus",
+
+"Access denied. You are not authorized as admin.",
+
+true
+
+);
+
+
+signOut(auth);
+
+
+return;
+
+
+}
+
+
+
+/* SHOW ADMIN PANEL */
+
+
+$("loginBox")
+.style
+.display =
+
+"none";
+
+
+$("panel")
+.style
+.display =
+
+"block";
+
+
+$("adminInfo")
+.textContent =
+
+"Logged in as: " +
+
+u.email;
+
+
+
+/* LOAD DATA */
+
+
+loadSellers();
+
+
+loadProducts();
+
+
+}
+
+);
+
+
+
+
+/* LOGOUT */
 
 
 $("logout").onclick =
-() => signOut(auth);
+
+async () => {
 
 
-/* SELLERS */
+await
+
+signOut(auth);
+
+
+};
+
+
+
+
+/* LOAD SELLERS */
+
 
 function loadSellers(){
 
-  onSnapshot(
-    collection(db,"users"),
 
-    s => {
-
-      const sellers =
-        s.docs
-        .map(d => ({
-          id:d.id,
-          ...d.data()
-        }))
-        .filter(x =>
-          x.role === "seller"
-        )
-        .sort((a,b) =>
-          String(a.name || "")
-          .localeCompare(
-            String(b.name || "")
-          )
-        );
+onSnapshot(
 
 
-      if(!sellers.length){
+collection(
 
-        $("sellerList").innerHTML =
-          '<p class="muted">No seller registrations yet.</p>';
+db,
 
-        return;
+"sellers"
 
-      }
-
-
-      $("sellerList").innerHTML =
-        sellers.map(s => {
-
-          const state =
-            s.approved === true
-              ? "approved"
-              : (
-                s.sellerStatus === "rejected"
-                  ? "rejected"
-                  : "pending"
-              );
+),
 
 
-          const label =
-            state === "approved"
-              ? "Approved"
-              : state === "rejected"
-                ? "Rejected"
-                : "Pending approval";
+snapshot => {
 
 
-          return `
+const sellers =
 
-          <div class="item">
+snapshot.docs
+.map(d => ({
 
-            <div>
+id:d.id,
 
-              <b>
-                ${esc(s.name || "Seller")}
-              </b>
+...d.data()
 
-              <div class="muted">
-                ${esc(s.email || "")}
-              </div>
-
-              <span class="badge ${state}">
-                ${label}
-              </span>
-
-            </div>
+}))
 
 
-            <div class="actions">
+.sort(
 
-              ${
-                state !== "approved"
-                ?
-                `<button
-                  class="approve"
-                  onclick="approveSeller('${escAttr(s.id)}')">
-                  ✓ Approve
-                </button>`
-                :
-                ""
-              }
+(a,b) =>
+
+String(
+
+a.storeName ||
+
+a.fullName ||
+
+""
+
+)
+
+.localeCompare(
+
+String(
+
+b.storeName ||
+
+b.fullName ||
+
+""
+
+)
+
+)
+
+);
 
 
-              <button
-                class="danger"
-                onclick="rejectSeller('${escAttr(s.id)}')">
 
-                ${
-                  state === "approved"
-                    ? "Block"
-                    : "Reject"
-                }
+if(
 
-              </button>
 
-            </div>
+sellers.length === 0
 
-          </div>
 
-          `;
+){
 
-        }).join("");
 
-    },
+$("sellerList")
+.innerHTML =
 
-    x =>
-      stat(
-        "sellerStatus",
-        x.message,
-        true
-      )
+'<p class="muted">No seller registrations yet.</p>';
 
-  );
+
+return;
+
 
 }
+
+
+
+/* DISPLAY SELLERS */
+
+
+$("sellerList")
+.innerHTML =
+
+
+sellers
+.map(s => {
+
+
+const state =
+
+s.status ||
+
+"pending";
+
+
+
+const label =
+
+state === "approved"
+
+?
+
+"Approved"
+
+:
+
+state === "rejected"
+
+?
+
+"Rejected"
+
+:
+
+"Pending Approval";
+
+
+
+return `
+
+
+<div class="item">
+
+
+<div>
+
+
+<b>
+
+${esc(
+
+s.storeName ||
+
+"Seller"
+
+)}
+
+</b>
+
+
+<div class="muted">
+
+Name:
+
+${esc(
+
+s.fullName ||
+
+""
+
+)}
+
+</div>
+
+
+<div class="muted">
+
+Email:
+
+${esc(
+
+s.email ||
+
+""
+
+)}
+
+</div>
+
+
+<div class="muted">
+
+Phone:
+
+${esc(
+
+s.phone ||
+
+""
+
+)}
+
+</div>
+
+
+<div class="muted">
+
+Location:
+
+${esc(
+
+s.city ||
+
+""
+
+)},
+
+${esc(
+
+s.state ||
+
+""
+
+)}
+
+</div>
+
+
+<span class="badge ${esc(state)}">
+
+${esc(label)}
+
+</span>
+
+
+</div>
+
+
+
+<div class="actions">
+
+
+${
+
+state !== "approved"
+
+?
+
+`<button
+
+class="approve"
+
+onclick="approveSeller('${escAttr(s.id)}')">
+
+✓ Approve
+
+</button>`
+
+:
+
+""
+
+}
+
+
+
+${
+
+state !== "pending"
+
+?
+
+`<button
+
+class="secondary"
+
+onclick="pendingSeller('${escAttr(s.id)}')">
+
+Set Pending
+
+</button>`
+
+:
+
+""
+
+}
+
+
+
+<button
+
+class="danger"
+
+onclick="rejectSeller('${escAttr(s.id)}')">
+
+
+${
+
+state === "approved"
+
+?
+
+"Block"
+
+:
+
+"Reject"
+
+}
+
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+})
+
+.join("");
+
+
+},
+
+
+error => {
+
+
+stat(
+
+"sellerStatus",
+
+error.message,
+
+true
+
+);
+
+
+}
+
+
+);
+
+
+}
+
+
 
 
 /* APPROVE SELLER */
 
+
 window.approveSeller =
+
 async id => {
 
-  try{
 
-    await updateDoc(
-      doc(db,"users",id),
-      {
-        approved:true,
-        sellerStatus:"approved",
-        approvedAt:serverTimestamp()
-      }
-    );
+try{
 
-    stat(
-      "sellerStatus",
-      "Seller approved ✓"
-    );
 
-  }catch(x){
+await
 
-    stat(
-      "sellerStatus",
-      x.message,
-      true
-    );
+updateDoc(
 
-  }
+
+doc(
+
+db,
+
+"sellers",
+
+id
+
+),
+
+
+{
+
+
+status:
+
+"approved",
+
+
+active:
+
+true,
+
+
+approvedAt:
+
+serverTimestamp()
+
+
+}
+
+
+);
+
+
+
+stat(
+
+"sellerStatus",
+
+"Seller approved successfully ✓"
+
+);
+
+
+}
+
+catch(x){
+
+
+stat(
+
+"sellerStatus",
+
+x.message,
+
+true
+
+);
+
+
+}
+
 
 };
+
+
+
+
+/* SET SELLER PENDING */
+
+
+window.pendingSeller =
+
+async id => {
+
+
+try{
+
+
+await
+
+updateDoc(
+
+
+doc(
+
+db,
+
+"sellers",
+
+id
+
+),
+
+
+{
+
+
+status:
+
+"pending",
+
+
+active:
+
+false
+
+
+}
+
+
+);
+
+
+
+stat(
+
+"sellerStatus",
+
+"Seller set to pending."
+
+
+);
+
+
+}
+
+catch(x){
+
+
+stat(
+
+"sellerStatus",
+
+x.message,
+
+true
+
+);
+
+
+}
+
+
+};
+
+
 
 
 /* REJECT SELLER */
 
+
 window.rejectSeller =
+
 async id => {
 
-  if(
-    !confirm(
-      "Block/reject this seller?"
-    )
-  ) return;
+
+if(
 
 
-  try{
+!confirm(
 
-    await updateDoc(
-      doc(db,"users",id),
-      {
-        approved:false,
-        sellerStatus:"rejected",
-        rejectedAt:serverTimestamp()
-      }
-    );
+"Reject this seller?"
 
-    stat(
-      "sellerStatus",
-      "Seller blocked/rejected."
-    );
+)
 
-  }catch(x){
 
-    stat(
-      "sellerStatus",
-      x.message,
-      true
-    );
+)
 
-  }
+
+return;
+
+
+
+try{
+
+
+await
+
+updateDoc(
+
+
+doc(
+
+db,
+
+"sellers",
+
+id
+
+),
+
+
+{
+
+
+status:
+
+"rejected",
+
+
+active:
+
+false,
+
+
+rejectedAt:
+
+serverTimestamp()
+
+
+}
+
+
+);
+
+
+
+stat(
+
+"sellerStatus",
+
+"Seller rejected."
+
+
+);
+
+
+}
+
+catch(x){
+
+
+stat(
+
+"sellerStatus",
+
+x.message,
+
+true
+
+);
+
+
+}
+
 
 };
+
+
 
 
 /* RESET PRODUCT FORM */
 
+
 function reset(){
 
-  $("productForm").reset();
 
-  $("docId").value = "";
+$("productForm")
+.reset();
 
-  $("buttonText").value =
-    "Check Price";
 
-  $("emoji").value =
-    "🛍️";
+$("docId")
+.value = "";
 
-  $("active").value =
-    "true";
 
-  $("formTitle").textContent =
-    "Add Product";
+$("emoji")
+.value =
 
-  $("cancel").style.display =
-    "none";
+"🛍️";
+
+
+$("active")
+.value =
+
+"true";
+
+
+$("formTitle")
+.textContent =
+
+"Add Product";
+
+
+$("cancel")
+.style
+.display =
+
+"none";
+
 
 }
 
 
-$("cancel").onclick = reset;
+
+
+$("cancel")
+.onclick =
+
+reset;
+
+
 
 
 /* SAVE ADMIN PRODUCT */
 
-$("productForm").onsubmit =
+
+$("productForm")
+.onsubmit =
+
 async e => {
 
-  e.preventDefault();
+
+e.preventDefault();
 
 
-  const id =
-    $("docId").value;
+
+const id =
+
+$("docId")
+.value;
 
 
-  let d = {
 
-    name:
-      $("name").value.trim(),
-
-    description:
-      $("description").value.trim(),
-
-    category:
-      $("category").value.trim(),
-
-    buttonText:
-      $("buttonText").value.trim()
-      || "Check Price",
-
-    imageUrl:
-      $("imageUrl").value.trim(),
-
-    priceUrl:
-      $("priceUrl").value.trim(),
-
-    emoji:
-      $("emoji").value.trim()
-      || "🛍️",
-
-    active:
-      $("active").value === "true"
-
-  };
+let d = {
 
 
-  try{
+name:
 
-    if(id){
-
-      await updateDoc(
-        doc(db,"products",id),
-        d
-      );
-
-    }else{
-
-      d.createdAt =
-        serverTimestamp();
-
-      d.approvalStatus =
-        "approved";
-
-      await addDoc(
-        collection(db,"products"),
-        d
-      );
-
-    }
+$("name")
+.value
+.trim(),
 
 
-    stat(
-      "status",
-      id
-        ? "Product updated."
-        : "Product added."
-    );
+description:
 
-    reset();
+$("description")
+.value
+.trim(),
 
 
-  }catch(x){
+category:
 
-    stat(
-      "status",
-      x.message,
-      true
-    );
+$("category")
+.value
+.trim(),
 
-  }
+
+price:
+
+Number(
+
+$("price")
+.value
+
+),
+
+
+stock:
+
+Number(
+
+$("stock")
+.value
+
+),
+
+
+oldPrice:
+
+Number(
+
+$("oldPrice")
+.value
+
+) || 0,
+
+
+imageUrl:
+
+$("imageUrl")
+.value
+.trim(),
+
+
+priceUrl:
+
+$("priceUrl")
+.value
+.trim(),
+
+
+emoji:
+
+$("emoji")
+.value
+.trim()
+
+||
+
+"🛍️",
+
+
+active:
+
+$("active")
+.value === "true",
+
+
+sellerId:
+
+"admin",
+
+
+sellerName:
+
+"NEXORA PICKS",
+
+
+approvalStatus:
+
+"approved"
+
 
 };
+
+
+
+if(
+
+
+!d.name
+
+
+){
+
+
+stat(
+
+"status",
+
+"Enter a product name.",
+
+true
+
+);
+
+
+return;
+
+
+}
+
+
+
+try{
+
+
+if(id){
+
+
+await
+
+updateDoc(
+
+
+doc(
+
+db,
+
+"products",
+
+id
+
+),
+
+
+d
+
+
+);
+
+
+}
+
+
+else{
+
+
+d.createdAt =
+
+serverTimestamp();
+
+
+d.approvedAt =
+
+serverTimestamp();
+
+
+
+await
+
+addDoc(
+
+
+collection(
+
+db,
+
+"products"
+
+),
+
+
+d
+
+
+);
+
+
+}
+
+
+
+stat(
+
+
+"status",
+
+
+id
+
+?
+
+"Product updated."
+
+:
+
+"Product added."
+
+
+);
+
+
+
+reset();
+
+
+}
+
+catch(x){
+
+
+stat(
+
+"status",
+
+x.message,
+
+true
+
+);
+
+
+}
+
+
+};
+
+
 
 
 /* LOAD PRODUCTS */
 
+
 function loadProducts(){
 
-  onSnapshot(
-    collection(db,"products"),
 
-    s => {
-
-      let a = [];
-
-      s.forEach(d => {
-
-        a.push({
-          id:d.id,
-          ...d.data()
-        });
-
-      });
+onSnapshot(
 
 
-      $("productApprovalList").innerHTML =
-        a.length
+collection(
 
-        ?
+db,
 
-        a.map(p => {
+"products"
 
-          const st =
-            p.approvalStatus === "approved"
-              ? "approved"
-              : p.approvalStatus === "rejected"
-                ? "rejected"
-                : "pending";
+),
 
 
-          const label =
-            st === "approved"
-              ? "Approved"
-              : st === "rejected"
-                ? "Rejected"
-                : "Pending approval";
+snapshot => {
 
 
-          return `
+const products =
 
-          <div class="item">
+snapshot.docs
+.map(d => ({
 
-            <div>
+id:d.id,
 
-              <b>
-                ${esc(p.name || "Unnamed")}
-              </b>
+...d.data()
 
-              <div class="muted">
-                ${esc(p.category || "")}
-                • Seller:
-                ${esc(p.sellerName || "Admin")}
-              </div>
-
-              <span class="badge ${st}">
-                ${label}
-              </span>
-
-            </div>
+}));
 
 
-            <div class="actions">
-
-              ${
-                st !== "approved"
-
-                ?
-
-                `<button
-                  class="approve"
-                  onclick="approveProduct('${p.id}')">
-
-                  ✓ Approve
-
-                </button>`
-
-                :
-
-                ""
-              }
 
 
-              ${
-                st !== "rejected"
-
-                ?
-
-                `<button
-                  class="danger"
-                  onclick="rejectProduct('${p.id}')">
-
-                  Reject
-
-                </button>`
-
-                :
-
-                ""
-              }
+/* PRODUCT APPROVAL LIST */
 
 
-              <button
-                class="secondary"
-                onclick='edit(${JSON.stringify(p)})'>
-
-                Edit
-
-              </button>
+$("productApprovalList")
+.innerHTML =
 
 
-              <button
-                class="danger"
-                onclick="removeP('${p.id}')">
+products.length
 
-                Delete
 
-              </button>
+?
 
-            </div>
 
-          </div>
+products
+.map(p => {
 
-          `;
 
-        }).join("")
+const state =
 
-        :
+p.approvalStatus ||
 
-        '<p class="muted">No products yet.</p>';
+"pending";
 
-    },
 
-    x =>
-      stat(
-        "status",
-        x.message,
-        true
-      )
+const label =
 
-  );
+state === "approved"
+
+?
+
+"Approved"
+
+:
+
+state === "rejected"
+
+?
+
+"Rejected"
+
+:
+
+"Pending Approval";
+
+
+
+return `
+
+
+<div class="item">
+
+
+<div>
+
+
+<b>
+
+${esc(
+
+p.name ||
+
+"Unnamed Product"
+
+)}
+
+</b>
+
+
+<div class="muted">
+
+Category:
+
+${esc(
+
+p.category ||
+
+""
+
+)}
+
+</div>
+
+
+<div class="muted">
+
+Seller:
+
+${esc(
+
+p.sellerName ||
+
+"Unknown"
+
+)}
+
+</div>
+
+
+<div class="muted">
+
+Price:
+
+₹${Number(
+
+p.price ||
+
+0
+
+).toLocaleString(
+
+"en-IN"
+
+)}
+
+</div>
+
+
+<span class="badge ${esc(state)}">
+
+${esc(label)}
+
+</span>
+
+
+</div>
+
+
+
+<div class="actions">
+
+
+${
+
+state !== "approved"
+
+?
+
+`<button
+
+class="approve"
+
+onclick="approveProduct('${escAttr(p.id)}')">
+
+✓ Approve
+
+</button>`
+
+:
+
+""
 
 }
+
+
+
+${
+
+state !== "rejected"
+
+?
+
+`<button
+
+class="danger"
+
+onclick="rejectProduct('${escAttr(p.id)}')">
+
+Reject
+
+</button>`
+
+:
+
+""
+
+}
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+})
+
+.join("")
+
+
+:
+
+
+'<p class="muted">No products yet.</p>';
+
+
+
+
+/* ALL PRODUCTS LIST */
+
+
+$("list")
+.innerHTML =
+
+
+products.length
+
+
+?
+
+
+products
+.map(p => {
+
+
+const image =
+
+p.imageUrl
+
+?
+
+`<img
+
+class="product-image"
+
+src="${escAttr(p.imageUrl)}"
+
+alt="Product image"
+
+onerror="this.style.display='none'"
+
+/>`
+
+:
+
+`<div class="product-emoji">
+
+${esc(
+
+p.emoji ||
+
+"🛍️"
+
+)}
+
+</div>`;
+
+
+
+return `
+
+
+<div class="item">
+
+
+${image}
+
+
+<div>
+
+
+<b>
+
+${esc(
+
+p.name ||
+
+"Unnamed Product"
+
+)}
+
+</b>
+
+
+<div class="muted">
+
+₹${Number(
+
+p.price ||
+
+0
+
+).toLocaleString(
+
+"en-IN"
+
+)}
+
+
+•
+
+
+Stock:
+
+${Number(
+
+p.stock ||
+
+0
+
+)}
+
+</div>
+
+
+<div class="muted">
+
+Seller:
+
+${esc(
+
+p.sellerName ||
+
+"Unknown"
+
+)}
+
+</div>
+
+
+</div>
+
+
+
+<div class="actions">
+
+
+<button
+
+class="secondary"
+
+onclick='editProduct(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
+
+Edit
+
+</button>
+
+
+<button
+
+class="danger"
+
+onclick="removeProduct('${escAttr(p.id)}')">
+
+Delete
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+})
+
+.join("")
+
+
+:
+
+
+'<p class="muted">No products yet.</p>';
+
+
+
+},
+
+
+error => {
+
+
+stat(
+
+"productStatus",
+
+error.message,
+
+true
+
+);
+
+
+}
+
+
+);
+
+
+}
+
+
 
 
 /* APPROVE PRODUCT */
 
+
 window.approveProduct =
+
 async id => {
 
-  try{
 
-    await updateDoc(
-      doc(db,"products",id),
-      {
-        approvalStatus:"approved",
-        active:true,
-        approvedAt:serverTimestamp()
-      }
-    );
+try{
 
-    stat(
-      "status",
-      "Product approved ✓"
-    );
 
-  }catch(x){
+await
 
-    stat(
-      "status",
-      x.message,
-      true
-    );
+updateDoc(
 
-  }
+
+doc(
+
+db,
+
+"products",
+
+id
+
+),
+
+
+{
+
+
+approvalStatus:
+
+"approved",
+
+
+active:
+
+true,
+
+
+approvedAt:
+
+serverTimestamp()
+
+
+}
+
+
+);
+
+
+
+stat(
+
+"productStatus",
+
+"Product approved successfully ✓"
+
+);
+
+
+}
+
+catch(x){
+
+
+stat(
+
+"productStatus",
+
+x.message,
+
+true
+
+);
+
+
+}
+
 
 };
+
+
 
 
 /* REJECT PRODUCT */
 
+
 window.rejectProduct =
+
 async id => {
 
-  try{
 
-    await updateDoc(
-      doc(db,"products",id),
-      {
-        approvalStatus:"rejected",
-        active:false,
-        rejectedAt:serverTimestamp()
-      }
-    );
+if(
 
-    stat(
-      "status",
-      "Product rejected."
-    );
 
-  }catch(x){
+!confirm(
 
-    stat(
-      "status",
-      x.message,
-      true
-    );
+"Reject this product?"
 
-  }
+)
+
+
+)
+
+
+return;
+
+
+
+try{
+
+
+await
+
+updateDoc(
+
+
+doc(
+
+db,
+
+"products",
+
+id
+
+),
+
+
+{
+
+
+approvalStatus:
+
+"rejected",
+
+
+active:
+
+false,
+
+
+rejectedAt:
+
+serverTimestamp()
+
+
+}
+
+
+);
+
+
+
+stat(
+
+"productStatus",
+
+"Product rejected."
+
+
+);
+
+
+}
+
+catch(x){
+
+
+stat(
+
+"productStatus",
+
+x.message,
+
+true
+
+);
+
+
+}
+
 
 };
+
+
 
 
 /* EDIT PRODUCT */
 
-window.edit = p => {
 
-  $("docId").value =
-    p.id;
+window.editProduct =
 
-  $("name").value =
-    p.name || "";
+p => {
 
-  $("description").value =
-    p.description || "";
 
-  $("category").value =
-    p.category || "";
+$("docId")
+.value =
 
-  $("buttonText").value =
-    p.buttonText || "Check Price";
+p.id;
 
-  $("imageUrl").value =
-    p.imageUrl || "";
 
-  $("priceUrl").value =
-    p.priceUrl || "";
+$("name")
+.value =
 
-  $("emoji").value =
-    p.emoji || "🛍️";
+p.name ||
 
-  $("active").value =
-    String(p.active !== false);
+"";
 
-  $("formTitle").textContent =
-    "Edit Product";
 
-  $("cancel").style.display =
-    "inline-block";
+$("description")
+.value =
 
-  showTab(
-    "products",
-    document.querySelectorAll(".tab")[1]
-  );
+p.description ||
 
-  scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+"";
+
+
+$("category")
+.value =
+
+p.category ||
+
+"";
+
+
+$("price")
+.value =
+
+p.price ||
+
+"";
+
+
+$("stock")
+.value =
+
+p.stock ??
+
+"";
+
+
+$("oldPrice")
+.value =
+
+p.oldPrice ||
+
+"";
+
+
+$("imageUrl")
+.value =
+
+p.imageUrl ||
+
+"";
+
+
+$("priceUrl")
+.value =
+
+p.priceUrl ||
+
+"";
+
+
+$("emoji")
+.value =
+
+p.emoji ||
+
+"🛍️";
+
+
+$("active")
+.value =
+
+String(
+
+p.active !== false
+
+);
+
+
+
+$("formTitle")
+.textContent =
+
+"Edit Product";
+
+
+$("cancel")
+.style
+.display =
+
+"inline-block";
+
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
+
 
 };
+
+
 
 
 /* DELETE PRODUCT */
 
-window.removeP =
+
+window.removeProduct =
+
 async id => {
 
-  if(
-    !confirm(
-      "Delete this product?"
-    )
-  ) return;
+
+if(
 
 
-  try{
+!confirm(
 
-    await deleteDoc(
-      doc(db,"products",id)
-    );
+"Delete this product permanently?"
 
-    stat(
-      "status",
-      "Product deleted."
-    );
+)
 
-  }catch(x){
 
-    stat(
-      "status",
-      x.message,
-      true
-    );
+)
 
-  }
+
+return;
+
+
+
+try{
+
+
+await
+
+deleteDoc(
+
+
+doc(
+
+db,
+
+"products",
+
+id
+
+)
+
+
+);
+
+
+
+stat(
+
+"status",
+
+"Product deleted."
+
+);
+
+
+}
+
+catch(x){
+
+
+stat(
+
+"status",
+
+x.message,
+
+true
+
+);
+
+
+}
+
 
 };
 
 
-/* SECURITY ESCAPE */
+
+
+/* HTML ESCAPE */
+
 
 function esc(v){
 
-  return String(v ?? "")
-    .replace(
-      /[&<>"']/g,
-      c => ({
-        "&":"&amp;",
-        "<":"&lt;",
-        ">":"&gt;",
-        '"':"&quot;",
-        "'":"&#39;"
-      }[c])
-    );
+
+return String(
+
+v ?? ""
+
+)
+
+
+.replace(
+
+/&/g,
+
+"&amp;"
+
+)
+
+
+.replace(
+
+/</g,
+
+"&lt;"
+
+)
+
+
+.replace(
+
+/>/g,
+
+"&gt;"
+
+)
+
+
+.replace(
+
+/"/g,
+
+"&quot;"
+
+)
+
+
+.replace(
+
+/'/g,
+
+"&#039;"
+
+);
+
 
 }
+
+
 
 
 function escAttr(v){
 
-  return String(v ?? "")
-    .replace(/['\\]/g,"");
+
+return String(
+
+v ?? ""
+
+)
+
+
+.replace(
+
+/['\\]/g,
+
+""
+
+
+);
+
 
 }
 
+
 </script>
 
+
 </body>
-          </html>
+
+  </html>

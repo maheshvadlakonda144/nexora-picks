@@ -1,0 +1,1613 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>NEXORA PICKS | Admin Panel</title>
+
+<style>
+
+*{
+ box-sizing:border-box
+}
+
+body{
+ margin:0;
+ background:#f1f3f6;
+ font-family:Arial,sans-serif;
+ color:#17202a
+}
+
+header{
+ background:#172033;
+ color:#fff;
+ padding:16px
+}
+
+.header-inner{
+ max-width:1100px;
+ margin:auto;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ gap:15px
+}
+
+.logo{
+ font-size:22px;
+ font-weight:900
+}
+
+main{
+ max-width:1100px;
+ margin:auto;
+ padding:18px
+}
+
+.box{
+ background:#fff;
+ border-radius:12px;
+ padding:18px;
+ margin-bottom:18px;
+ box-shadow:0 1px 6px #0001
+}
+
+input{
+ width:100%;
+ padding:12px;
+ margin:6px 0 12px;
+ border:1px solid #ccd3dd;
+ border-radius:7px;
+ font:inherit
+}
+
+button{
+ border:0;
+ background:#2874f0;
+ color:#fff;
+ padding:10px 14px;
+ border-radius:7px;
+ font-weight:bold;
+ cursor:pointer
+}
+
+.secondary{
+ background:#e8eef8;
+ color:#2874f0
+}
+
+.success{
+ background:#16803c
+}
+
+.danger{
+ background:#d33
+}
+
+.warning{
+ background:#d97706
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:14px
+}
+
+.stat{
+ background:#fff;
+ padding:18px;
+ border-radius:10px;
+ box-shadow:0 1px 6px #0001
+}
+
+.stat h3{
+ margin:0;
+ color:#64748b;
+ font-size:14px
+}
+
+.stat b{
+ display:block;
+ font-size:30px;
+ margin-top:8px
+}
+
+.item{
+ border:1px solid #ddd;
+ border-radius:10px;
+ padding:15px;
+ margin:12px 0
+}
+
+.item-top{
+ display:flex;
+ justify-content:space-between;
+ gap:15px;
+ align-items:flex-start
+}
+
+.info{
+ line-height:1.7
+}
+
+.actions{
+ display:flex;
+ gap:8px;
+ flex-wrap:wrap;
+ margin-top:12px
+}
+
+.thumb{
+ width:90px;
+ height:90px;
+ background:#f5f6f8;
+ border-radius:8px;
+ overflow:hidden;
+ display:grid;
+ place-items:center;
+ font-size:35px
+}
+
+.thumb img{
+ width:100%;
+ height:100%;
+ object-fit:cover
+}
+
+.product{
+ display:flex;
+ gap:14px
+}
+
+.hidden{
+ display:none
+}
+
+.ok{
+ color:#16803c;
+ font-weight:bold
+}
+
+.pending{
+ color:#d97706;
+ font-weight:bold
+}
+
+.err{
+ color:#d33;
+ font-weight:bold
+}
+
+#app{
+ display:none
+}
+
+@media(max-width:700px){
+
+ .grid{
+  grid-template-columns:1fr
+ }
+
+ .item-top{
+  flex-direction:column
+ }
+
+ .header-inner{
+  flex-direction:column;
+  align-items:flex-start
+ }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="header-inner">
+
+<div>
+
+<div class="logo">
+NEXORA PICKS ADMIN
+</div>
+
+<small>
+Seller & Product Management
+</small>
+
+</div>
+
+
+<button
+class="secondary"
+id="logoutBtn"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</div>
+
+</header>
+
+
+
+<main>
+
+
+<!-- ADMIN LOGIN -->
+
+<div id="loginBox" class="box">
+
+<h2>Admin Login</h2>
+
+<p>
+Login using the NEXORA PICKS administrator email.
+</p>
+
+
+<label>Email</label>
+
+<input
+id="email"
+type="email"
+placeholder="Admin Email">
+
+
+<label>Password</label>
+
+<input
+id="password"
+type="password"
+placeholder="Password">
+
+
+<button onclick="adminLogin()">
+
+Login as Admin
+
+</button>
+
+
+<p id="loginMsg"></p>
+
+</div>
+
+
+
+<!-- ADMIN APP -->
+
+<div id="app">
+
+
+<div class="box">
+
+<h2>
+Welcome, Admin 👋
+</h2>
+
+<p id="adminEmail"></p>
+
+</div>
+
+
+
+<!-- STATS -->
+
+<div class="grid">
+
+<div class="stat">
+
+<h3>
+Total Sellers
+</h3>
+
+<b id="totalSellers">
+0
+</b>
+
+</div>
+
+
+<div class="stat">
+
+<h3>
+Pending Sellers
+</h3>
+
+<b id="pendingSellers">
+0
+</b>
+
+</div>
+
+
+<div class="stat">
+
+<h3>
+Total Products
+</h3>
+
+<b id="totalProducts">
+0
+</b>
+
+</div>
+
+
+<div class="stat">
+
+<h3>
+Pending Products
+</h3>
+
+<b id="pendingProducts">
+0
+</b>
+
+</div>
+
+</div>
+
+
+
+<!-- SELLERS -->
+
+<div class="box">
+
+<h2>
+Seller Applications
+</h2>
+
+<p>
+Approve or reject seller registrations.
+</p>
+
+
+<div id="sellerList">
+
+Loading sellers...
+
+</div>
+
+</div>
+
+
+
+<!-- PRODUCTS -->
+
+<div class="box">
+
+<h2>
+Product Approvals
+</h2>
+
+<p>
+Approve or reject seller products.
+</p>
+
+
+<div id="productList">
+
+Loading products...
+
+</div>
+
+</div>
+
+
+</div>
+
+
+</main>
+
+
+
+<script type="module">
+
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+
+import {
+
+getAuth,
+
+signInWithEmailAndPassword,
+
+onAuthStateChanged,
+
+signOut
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+
+import {
+
+getFirestore,
+
+collection,
+
+onSnapshot,
+
+doc,
+
+updateDoc
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+
+/* FIREBASE CONFIG */
+
+
+const firebaseConfig = {
+
+
+apiKey:
+
+"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+
+
+authDomain:
+
+"nexora-picks-e887f.firebaseapp.com",
+
+
+projectId:
+
+"nexora-picks-e887f",
+
+
+storageBucket:
+
+"nexora-picks-e887f.firebasestorage.app",
+
+
+messagingSenderId:
+
+"621359003619",
+
+
+appId:
+
+"1:621359003619:web:483add8bfcd0241f4192d",
+
+
+measurementId:
+
+"G-LSMJ6QLLPW"
+
+
+};
+
+
+
+const appfb =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(appfb);
+
+
+const db =
+getFirestore(appfb);
+
+
+
+const ADMIN_EMAIL =
+
+"nexorapicks144@gmail.com";
+
+
+
+const $ = id =>
+document.getElementById(id);
+
+
+
+let sellers = [];
+
+let products = [];
+
+
+
+/* ADMIN LOGIN */
+
+
+window.adminLogin =
+async () => {
+
+
+const email =
+$("email").value.trim();
+
+
+const password =
+$("password").value;
+
+
+if(
+!email ||
+!password
+){
+
+$("loginMsg").textContent =
+"Enter email and password.";
+
+return;
+
+}
+
+
+if(
+email.toLowerCase() !==
+ADMIN_EMAIL.toLowerCase()
+){
+
+$("loginMsg").innerHTML =
+'<span class="err">This email is not authorized as admin.</span>';
+
+return;
+
+}
+
+
+try{
+
+
+$("loginMsg").textContent =
+"Logging in...";
+
+
+await
+signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+
+}
+catch(e){
+
+
+$("loginMsg").innerHTML =
+'<span class="err">' +
+escapeHtml(e.message) +
+'</span>';
+
+
+}
+
+
+};
+
+
+
+
+/* AUTH CHECK */
+
+
+onAuthStateChanged(
+
+auth,
+
+user => {
+
+
+if(
+!user
+){
+
+
+$("loginBox").style.display =
+"block";
+
+
+$("app").style.display =
+"none";
+
+
+return;
+
+
+}
+
+
+if(
+
+user.email.toLowerCase() !==
+ADMIN_EMAIL.toLowerCase()
+
+){
+
+
+$("loginBox").style.display =
+"block";
+
+
+$("app").style.display =
+"none";
+
+
+$("loginMsg").innerHTML =
+'<span class="err">Access denied. You are not an administrator.</span>';
+
+
+signOut(auth);
+
+
+return;
+
+
+}
+
+
+/* SHOW ADMIN PANEL */
+
+
+$("loginBox").style.display =
+"none";
+
+
+$("app").style.display =
+"block";
+
+
+$("adminEmail").textContent =
+"Logged in as: " +
+user.email;
+
+
+/* LOAD DATA */
+
+
+loadSellers();
+
+
+loadProducts();
+
+
+}
+
+);
+
+
+
+
+/* LOAD SELLERS */
+
+
+function loadSellers(){
+
+
+onSnapshot(
+
+collection(db,"sellers"),
+
+snapshot => {
+
+
+sellers =
+snapshot.docs.map(
+
+d => ({
+
+id:d.id,
+
+...d.data()
+
+})
+
+);
+
+
+updateSellerStats();
+
+
+renderSellers();
+
+
+},
+
+error => {
+
+
+$("sellerList").innerHTML =
+
+'<p class="err">' +
+
+escapeHtml(error.message) +
+
+'</p>';
+
+
+}
+
+);
+
+
+}
+
+
+
+
+/* SELLER STATS */
+
+
+function updateSellerStats(){
+
+
+$("totalSellers").textContent =
+sellers.length;
+
+
+const pending =
+sellers.filter(
+
+s =>
+
+s.status === "pending"
+
+).length;
+
+
+$("pendingSellers").textContent =
+pending;
+
+
+}
+
+
+
+
+/* RENDER SELLERS */
+
+
+function renderSellers(){
+
+
+if(
+sellers.length === 0
+){
+
+
+$("sellerList").innerHTML =
+"<p>No seller applications found.</p>";
+
+
+return;
+
+
+}
+
+
+$("sellerList").innerHTML =
+
+
+sellers.map(
+
+seller => {
+
+
+const status =
+seller.status || "pending";
+
+
+let statusClass =
+"pending";
+
+
+if(
+status === "approved"
+){
+
+statusClass =
+"ok";
+
+}
+
+
+if(
+status === "rejected"
+){
+
+statusClass =
+"err";
+
+}
+
+
+return `
+
+
+<div class="item">
+
+
+<div class="item-top">
+
+
+<div class="info">
+
+
+<h3>
+
+${escapeHtml(
+seller.storeName ||
+"Seller"
+)}
+
+</h3>
+
+
+<b>
+${escapeHtml(
+seller.fullName ||
+""
+)}
+</b>
+
+
+<br>
+
+
+📧
+${escapeHtml(
+seller.email ||
+""
+)}
+
+
+<br>
+
+
+📱
+${escapeHtml(
+seller.phone ||
+""
+)}
+
+
+<br>
+
+
+🏪 Seller Type:
+${escapeHtml(
+seller.sellerType ||
+""
+)}
+
+
+<br>
+
+
+📍
+${escapeHtml(
+seller.city ||
+""
+)},
+${escapeHtml(
+seller.state ||
+""
+)}
+
+
+<br>
+
+
+<span class="${statusClass}">
+
+Status:
+${escapeHtml(status)}
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="actions">
+
+
+<button
+class="success"
+onclick="approveSeller('${seller.id}')">
+
+Approve
+
+</button>
+
+
+<button
+class="warning"
+onclick="setSellerPending('${seller.id}')">
+
+Pending
+
+</button>
+
+
+<button
+class="danger"
+onclick="rejectSeller('${seller.id}')">
+
+Reject
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+}
+
+).join("");
+
+
+}
+
+
+
+
+/* APPROVE SELLER */
+
+
+window.approveSeller =
+async id => {
+
+
+try{
+
+
+await
+updateDoc(
+
+doc(
+db,
+"sellers",
+id
+),
+
+{
+
+status:
+"approved",
+
+active:
+true
+
+}
+
+);
+
+
+}
+catch(e){
+
+
+alert(
+e.message
+);
+
+
+}
+
+
+};
+
+
+
+
+/* SET PENDING */
+
+
+window.setSellerPending =
+async id => {
+
+
+try{
+
+
+await
+updateDoc(
+
+doc(
+db,
+"sellers",
+id
+),
+
+{
+
+status:
+"pending",
+
+active:
+false
+
+}
+
+);
+
+
+}
+catch(e){
+
+
+alert(
+e.message
+);
+
+
+}
+
+
+};
+
+
+
+
+/* REJECT SELLER */
+
+
+window.rejectSeller =
+async id => {
+
+
+if(
+!confirm(
+"Reject this seller?"
+)
+)
+return;
+
+
+try{
+
+
+await
+updateDoc(
+
+doc(
+db,
+"sellers",
+id
+),
+
+{
+
+status:
+"rejected",
+
+active:
+false
+
+}
+
+);
+
+
+}
+catch(e){
+
+
+alert(
+e.message
+);
+
+
+}
+
+
+};
+
+
+
+
+/* LOAD PRODUCTS */
+
+
+function loadProducts(){
+
+
+onSnapshot(
+
+collection(db,"products"),
+
+snapshot => {
+
+
+products =
+snapshot.docs.map(
+
+d => ({
+
+id:d.id,
+
+...d.data()
+
+})
+
+);
+
+
+updateProductStats();
+
+
+renderProducts();
+
+
+},
+
+error => {
+
+
+$("productList").innerHTML =
+
+'<p class="err">' +
+
+escapeHtml(error.message) +
+
+'</p>';
+
+
+}
+
+);
+
+
+}
+
+
+
+
+/* PRODUCT STATS */
+
+
+function updateProductStats(){
+
+
+$("totalProducts").textContent =
+products.length;
+
+
+const pending =
+products.filter(
+
+p =>
+
+p.approvalStatus === "pending"
+
+).length;
+
+
+$("pendingProducts").textContent =
+pending;
+
+
+}
+
+
+
+
+/* RENDER PRODUCTS */
+
+
+function renderProducts(){
+
+
+if(
+products.length === 0
+){
+
+
+$("productList").innerHTML =
+"<p>No products found.</p>";
+
+
+return;
+
+
+}
+
+
+$("productList").innerHTML =
+
+
+products.map(
+
+product => {
+
+
+const status =
+product.approvalStatus ||
+"pending";
+
+
+let statusClass =
+"pending";
+
+
+if(
+status === "approved"
+){
+
+statusClass =
+"ok";
+
+}
+
+
+if(
+status === "rejected"
+){
+
+statusClass =
+"err";
+
+}
+
+
+const image =
+
+
+product.imageUrl
+
+
+?
+
+
+`<img src="${escapeHtml(product.imageUrl)}">`
+
+
+:
+
+
+escapeHtml(
+product.emoji ||
+"🛍️"
+);
+
+
+return `
+
+
+<div class="item">
+
+
+<div class="product">
+
+
+<div class="thumb">
+
+${image}
+
+</div>
+
+
+<div class="info">
+
+
+<h3>
+
+${escapeHtml(
+product.name ||
+"Unnamed Product"
+)}
+
+</h3>
+
+
+<b>
+
+₹${Number(
+product.price ||
+0
+).toLocaleString(
+"en-IN"
+)}
+
+</b>
+
+
+<br>
+
+
+Category:
+${escapeHtml(
+product.category ||
+""
+)}
+
+
+<br>
+
+
+Stock:
+${escapeHtml(
+product.stock
+)}
+
+
+<br>
+
+
+Seller:
+${escapeHtml(
+product.sellerName ||
+"Unknown"
+)}
+
+
+<br>
+
+
+<span class="${statusClass}">
+
+Status:
+${escapeHtml(status)}
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+<div class="actions">
+
+
+<button
+class="success"
+onclick="approveProduct('${product.id}')">
+
+Approve Product
+
+</button>
+
+
+<button
+class="danger"
+onclick="rejectProduct('${product.id}')">
+
+Reject
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+`;
+
+
+}
+
+).join("");
+
+
+}
+
+
+
+
+/* APPROVE PRODUCT */
+
+
+window.approveProduct =
+async id => {
+
+
+try{
+
+
+await
+updateDoc(
+
+doc(
+db,
+"products",
+id
+),
+
+{
+
+approvalStatus:
+"approved",
+
+active:
+true
+
+}
+
+);
+
+
+}
+catch(e){
+
+
+alert(
+e.message
+);
+
+
+}
+
+
+};
+
+
+
+
+/* REJECT PRODUCT */
+
+
+window.rejectProduct =
+async id => {
+
+
+if(
+!confirm(
+"Reject this product?"
+)
+)
+return;
+
+
+try{
+
+
+await
+updateDoc(
+
+doc(
+db,
+"products",
+id
+),
+
+{
+
+approvalStatus:
+"rejected",
+
+active:
+false
+
+}
+
+);
+
+
+}
+catch(e){
+
+
+alert(
+e.message
+);
+
+
+}
+
+
+};
+
+
+
+
+/* LOGOUT */
+
+
+window.logout =
+async () => {
+
+
+await
+signOut(auth);
+
+
+};
+
+
+
+
+/* ESCAPE HTML */
+
+
+function escapeHtml(value){
+
+
+return String(
+value ?? ""
+)
+
+
+.replace(
+/&/g,
+"&amp;"
+)
+
+
+.replace(
+/</g,
+"&lt;"
+)
+
+
+.replace(
+/>/g,
+"&gt;"
+)
+
+
+.replace(
+/"/g,
+"&quot;"
+)
+
+
+.replace(
+/'/g,
+"&#039;"
+);
+
+
+}
+
+
+</script>
+
+
+</body>
+
+  </html>

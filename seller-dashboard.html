@@ -1,149 +1,2340 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>NEXORA PICKS | Seller Center</title>
+
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f1f3f6;color:#172033}
-header{height:68px;background:#2874f0;color:white;display:flex;align-items:center;justify-content:space-between;padding:0 25px;position:sticky;top:0;z-index:1000;box-shadow:0 2px 8px rgba(0,0,0,.15)}
-.logo{font-size:23px;font-weight:800}.logo small{display:block;font-size:12px;font-weight:normal;opacity:.85}
-.headerRight{display:flex;align-items:center;gap:15px}.sellerName{font-weight:bold}
-.logout{border:none;background:white;color:#2874f0;padding:9px 16px;border-radius:5px;font-weight:bold;cursor:pointer}
-.layout{display:flex;min-height:calc(100vh - 68px)}
-.sidebar{width:240px;background:white;border-right:1px solid #ddd;padding:15px 0;flex-shrink:0}
-.menuTitle{font-size:12px;font-weight:bold;color:#777;padding:15px 22px 8px;text-transform:uppercase}
-.menuItem{display:block;padding:14px 22px;text-decoration:none;color:#334155;font-size:15px;cursor:pointer;border-left:4px solid transparent}
-.menuItem:hover,.menuItem.active{background:#eef4ff;color:#2874f0;border-left-color:#2874f0;font-weight:bold}
-main{flex:1;padding:25px;max-width:1400px;margin:auto;width:100%}
-.welcome{background:linear-gradient(135deg,#2874f0,#1456bd);color:white;padding:25px;border-radius:12px;margin-bottom:25px}
-.welcome h1{margin:0 0 8px;font-size:26px}.welcome p{margin:0;opacity:.9}
-.status{margin-top:15px;display:inline-block;padding:7px 12px;background:white;color:#2874f0;border-radius:20px;font-weight:bold;font-size:13px}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:25px}
-.stat{background:white;padding:20px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.statIcon{font-size:27px;margin-bottom:10px}.statNumber{font-size:26px;font-weight:bold}.statLabel{color:#6b7280;font-size:14px;margin-top:5px}
-.section{background:white;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:25px;overflow:hidden}
-.sectionHead{padding:18px 20px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
-.sectionHead h2{margin:0;font-size:19px}.actionBtn{background:#2874f0;color:white;text-decoration:none;padding:10px 16px;border-radius:6px;font-weight:bold;font-size:14px}
-.product{display:flex;align-items:center;gap:15px;padding:15px 20px;border-bottom:1px solid #eee}.product:last-child{border-bottom:none}
-.product img{width:65px;height:65px;object-fit:cover;border-radius:6px;background:#eee}.productInfo{flex:1}
-.productName{font-weight:bold;margin-bottom:5px}.productMeta{font-size:13px;color:#6b7280}.productPrice{font-weight:bold;color:#172033}
-.order{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:15px;padding:16px 20px;border-bottom:1px solid #eee;align-items:center}.order:last-child{border-bottom:none}
-.orderStatus{font-size:12px;font-weight:bold;padding:6px 10px;background:#fff3cd;color:#856404;border-radius:20px;display:inline-block}
-.empty,.loading{padding:35px;text-align:center;color:#6b7280}
-@media(max-width:900px){.sidebar{width:70px}.menuItem{font-size:0;text-align:center;padding:15px 5px}.menuItem span{font-size:20px}.menuTitle{display:none}.stats{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){header{padding:0 12px}.logo{font-size:17px}.layout{display:block}.sidebar{width:100%;display:flex;overflow-x:auto;padding:0;border-bottom:1px solid #ddd}.menuItem{font-size:13px;white-space:nowrap;padding:14px 12px}.menuItem span{font-size:15px}main{padding:15px}.stats{grid-template-columns:1fr 1fr;gap:12px}.stat{padding:15px}.welcome h1{font-size:21px}.order{grid-template-columns:1fr;gap:7px}}
+
+/* =========================
+   GLOBAL
+========================= */
+
+*{
+box-sizing:border-box;
+}
+
+:root{
+--blue:#2874f0;
+--blue-dark:#1565d8;
+--yellow:#ffdf00;
+--bg:#f1f3f6;
+--white:#ffffff;
+--text:#172033;
+--muted:#6b7280;
+--border:#e5e7eb;
+--green:#16833c;
+--orange:#f59e0b;
+--red:#e53935;
+}
+
+body{
+margin:0;
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);
+color:var(--text);
+}
+
+button,
+input{
+font-family:inherit;
+}
+
+button{
+cursor:pointer;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+height:68px;
+background:var(--blue);
+color:white;
+
+display:flex;
+align-items:center;
+justify-content:space-between;
+
+padding:0 25px;
+
+position:sticky;
+top:0;
+z-index:1000;
+
+box-shadow:0 2px 10px rgba(0,0,0,.15);
+}
+
+.logo{
+font-size:23px;
+font-weight:800;
+letter-spacing:.5px;
+}
+
+.logo span{
+color:var(--yellow);
+}
+
+.logo small{
+display:block;
+font-size:11px;
+font-weight:normal;
+opacity:.9;
+margin-top:2px;
+}
+
+.headerRight{
+display:flex;
+align-items:center;
+gap:18px;
+}
+
+.sellerName{
+font-weight:bold;
+max-width:220px;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+.logout{
+border:0;
+background:white;
+color:var(--blue);
+
+padding:9px 16px;
+
+border-radius:6px;
+
+font-weight:bold;
+}
+
+
+/* =========================
+   LAYOUT
+========================= */
+
+.layout{
+display:flex;
+min-height:calc(100vh - 68px);
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+width:245px;
+
+background:white;
+
+border-right:1px solid var(--border);
+
+padding:15px 0;
+
+flex-shrink:0;
+}
+
+.menuTitle{
+font-size:11px;
+font-weight:800;
+
+color:#8a94a6;
+
+padding:18px 22px 8px;
+
+letter-spacing:.8px;
+}
+
+.menuItem{
+display:block;
+
+padding:14px 22px;
+
+text-decoration:none;
+
+color:#475569;
+
+font-size:15px;
+
+border-left:4px solid transparent;
+
+transition:.2s;
+}
+
+.menuItem:hover{
+background:#f4f7ff;
+color:var(--blue);
+}
+
+.menuItem.active{
+background:#eef4ff;
+
+color:var(--blue);
+
+font-weight:bold;
+
+border-left-color:var(--blue);
+}
+
+.menuItem span{
+display:inline-block;
+width:28px;
+font-size:18px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+flex:1;
+
+padding:28px;
+
+width:100%;
+
+max-width:1450px;
+
+margin:auto;
+}
+
+
+/* =========================
+   WELCOME
+========================= */
+
+.welcome{
+background:
+
+linear-gradient(
+135deg,
+#2874f0,
+#1456bd
+);
+
+color:white;
+
+padding:30px;
+
+border-radius:14px;
+
+margin-bottom:25px;
+
+position:relative;
+
+overflow:hidden;
+}
+
+.welcome:after{
+content:"";
+
+position:absolute;
+
+width:250px;
+height:250px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.08);
+
+right:-70px;
+top:-100px;
+}
+
+.welcomeContent{
+position:relative;
+z-index:2;
+}
+
+.welcome h1{
+margin:0 0 10px;
+
+font-size:28px;
+}
+
+.welcome p{
+margin:0;
+
+opacity:.9;
+
+line-height:1.5;
+}
+
+.status{
+margin-top:17px;
+
+display:inline-flex;
+
+align-items:center;
+
+gap:7px;
+
+padding:8px 14px;
+
+background:white;
+
+color:var(--blue);
+
+border-radius:25px;
+
+font-weight:bold;
+
+font-size:13px;
+}
+
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quickActions{
+display:flex;
+
+gap:12px;
+
+flex-wrap:wrap;
+
+margin-bottom:25px;
+}
+
+.quickBtn{
+background:white;
+
+border:1px solid var(--border);
+
+padding:12px 18px;
+
+border-radius:8px;
+
+font-weight:bold;
+
+color:var(--text);
+
+text-decoration:none;
+
+box-shadow:0 2px 6px rgba(0,0,0,.05);
+}
+
+.quickBtn.primary{
+background:var(--blue);
+
+color:white;
+
+border-color:var(--blue);
+}
+
+
+/* =========================
+   STATS
+========================= */
+
+.stats{
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:18px;
+
+margin-bottom:25px;
+}
+
+.stat{
+background:white;
+
+padding:20px;
+
+border-radius:12px;
+
+box-shadow:
+0 2px 10px rgba(0,0,0,.07);
+}
+
+.statTop{
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:12px;
+}
+
+.statIcon{
+font-size:28px;
+}
+
+.statNumber{
+font-size:27px;
+
+font-weight:800;
+}
+
+.statLabel{
+color:var(--muted);
+
+font-size:14px;
+
+margin-top:5px;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+background:white;
+
+border-radius:12px;
+
+box-shadow:
+0 2px 10px rgba(0,0,0,.07);
+
+margin-bottom:25px;
+
+overflow:hidden;
+}
+
+.sectionHead{
+padding:18px 20px;
+
+border-bottom:
+1px solid var(--border);
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:15px;
+}
+
+.sectionHead h2{
+margin:0;
+
+font-size:19px;
+}
+
+.actionBtn{
+background:var(--blue);
+
+color:white;
+
+text-decoration:none;
+
+padding:10px 16px;
+
+border-radius:6px;
+
+font-weight:bold;
+
+font-size:14px;
+}
+
+
+/* =========================
+   PRODUCTS
+========================= */
+
+.product{
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:15px 20px;
+
+border-bottom:
+1px solid #edf0f3;
+}
+
+.product:last-child{
+border-bottom:none;
+}
+
+.productImage{
+width:68px;
+height:68px;
+
+border-radius:8px;
+
+background:#f3f4f6;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+overflow:hidden;
+
+flex-shrink:0;
+}
+
+.productImage img{
+width:100%;
+height:100%;
+
+object-fit:cover;
+}
+
+.productInfo{
+flex:1;
+
+min-width:0;
+}
+
+.productName{
+font-weight:bold;
+
+margin-bottom:6px;
+
+white-space:nowrap;
+
+overflow:hidden;
+
+text-overflow:ellipsis;
+}
+
+.productMeta{
+font-size:13px;
+
+color:var(--muted);
+}
+
+.productPrice{
+font-weight:bold;
+
+font-size:16px;
+}
+
+.productStatus{
+font-size:12px;
+
+font-weight:bold;
+
+padding:6px 10px;
+
+border-radius:20px;
+
+background:#e9f8ef;
+
+color:var(--green);
+}
+
+
+/* =========================
+   ORDERS
+========================= */
+
+.order{
+display:grid;
+
+grid-template-columns:
+1.5fr
+1fr
+1fr
+1fr;
+
+gap:15px;
+
+padding:16px 20px;
+
+border-bottom:
+1px solid #edf0f3;
+
+align-items:center;
+}
+
+.order:last-child{
+border-bottom:none;
+}
+
+.orderId{
+font-weight:bold;
+}
+
+.orderMeta{
+font-size:13px;
+
+color:var(--muted);
+
+margin-top:4px;
+}
+
+.orderStatus{
+font-size:12px;
+
+font-weight:bold;
+
+padding:7px 11px;
+
+border-radius:20px;
+
+display:inline-block;
+}
+
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty,
+.loading{
+padding:40px 20px;
+
+text-align:center;
+
+color:var(--muted);
+}
+
+.emptyIcon{
+font-size:40px;
+
+margin-bottom:10px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1000px){
+
+.sidebar{
+width:75px;
+}
+
+.menuItem{
+font-size:0;
+
+text-align:center;
+
+padding:16px 5px;
+}
+
+.menuItem span{
+font-size:21px;
+
+width:auto;
+}
+
+.menuTitle{
+display:none;
+}
+
+.stats{
+grid-template-columns:
+repeat(2,1fr);
+}
+
+}
+
+
+@media(max-width:700px){
+
+header{
+padding:0 13px;
+}
+
+.logo{
+font-size:17px;
+}
+
+.sellerName{
+display:none;
+}
+
+.logout{
+padding:8px 12px;
+}
+
+.layout{
+display:block;
+}
+
+.sidebar{
+width:100%;
+
+display:flex;
+
+overflow-x:auto;
+
+padding:0;
+
+border-right:0;
+
+border-bottom:
+1px solid var(--border);
+}
+
+.menuItem{
+font-size:12px;
+
+white-space:nowrap;
+
+padding:13px 12px;
+
+border-left:0;
+
+border-bottom:
+3px solid transparent;
+
+text-align:center;
+}
+
+.menuItem.active{
+border-left:0;
+
+border-bottom-color:
+var(--blue);
+}
+
+.menuItem span{
+font-size:16px;
+
+margin-right:4px;
+}
+
+main{
+padding:15px;
+}
+
+.welcome{
+padding:24px 20px;
+}
+
+.welcome h1{
+font-size:22px;
+}
+
+.stats{
+grid-template-columns:
+1fr 1fr;
+
+gap:12px;
+}
+
+.stat{
+padding:16px;
+}
+
+.statNumber{
+font-size:22px;
+}
+
+.quickActions{
+display:grid;
+
+grid-template-columns:
+1fr 1fr;
+}
+
+.quickBtn{
+text-align:center;
+
+padding:12px 8px;
+
+font-size:13px;
+}
+
+.product{
+padding:13px;
+gap:10px;
+}
+
+.productImage{
+width:55px;
+height:55px;
+}
+
+.productStatus{
+display:none;
+}
+
+.order{
+grid-template-columns:
+1fr;
+
+gap:7px;
+
+padding:15px;
+}
+
+.sectionHead{
+padding:15px;
+}
+
+}
+
 </style>
+
 </head>
+
+
 <body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
 <header>
-<div class="logo">NEXORA PICKS<small>Seller Center</small></div>
-<div class="headerRight"><div class="sellerName" id="sellerName">Loading...</div><button class="logout" onclick="logoutSeller()">Logout</button></div>
+
+<div class="logo">
+
+NEXORA <span>PICKS</span>
+
+<small>Seller Center</small>
+
+</div>
+
+
+<div class="headerRight">
+
+<div
+class="sellerName"
+id="sellerName">
+
+Loading...
+
+</div>
+
+
+<button
+class="logout"
+onclick="logoutSeller()">
+
+Logout
+
+</button>
+
+</div>
+
 </header>
+
+
+
 <div class="layout">
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
 <aside class="sidebar">
-<div class="menuTitle">SELLER CENTER</div>
-<a class="menuItem active" href="seller-dashboard.html"><span>📊</span> Dashboard</a>
-<a class="menuItem" href="seller-orders.html"><span>📦</span> Orders</a>
-<a class="menuItem" href="seller-products.html"><span>🛍️</span> My Products</a>
-<a class="menuItem" href="add-product.html"><span>➕</span> Add Product</a>
-<div class="menuTitle">ACCOUNT</div>
-<a class="menuItem" href="seller-register.html"><span>🏪</span> Seller Profile</a>
-<a class="menuItem" href="#" onclick="logoutSeller()"><span>🚪</span> Logout</a>
+
+
+<div class="menuTitle">
+
+SELLER CENTER
+
+</div>
+
+
+<a
+class="menuItem active"
+href="seller-dashboard.html">
+
+<span>📊</span>
+
+Dashboard
+
+</a>
+
+
+<a
+class="menuItem"
+href="seller-orders.html">
+
+<span>📦</span>
+
+Orders
+
+</a>
+
+
+<a
+class="menuItem"
+href="seller-products.html">
+
+<span>🛍️</span>
+
+My Products
+
+</a>
+
+
+<a
+class="menuItem"
+href="add-product.html">
+
+<span>➕</span>
+
+Add Product
+
+</a>
+
+
+<div class="menuTitle">
+
+ACCOUNT
+
+</div>
+
+
+<a
+class="menuItem"
+href="seller-register.html">
+
+<span>🏪</span>
+
+Seller Profile
+
+</a>
+
+
+<a
+class="menuItem"
+href="#"
+onclick="logoutSeller();return false;">
+
+<span>🚪</span>
+
+Logout
+
+</a>
+
+
 </aside>
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
 <main>
-<div class="welcome"><h1>Welcome, <span id="welcomeName">Seller</span> 👋</h1><p>Manage your products, orders and business from your NEXORA PICKS Seller Center.</p><div class="status" id="sellerStatus">Checking account...</div></div>
+
+
+<!-- WELCOME -->
+
+<div class="welcome">
+
+<div class="welcomeContent">
+
+<h1>
+
+Welcome,
+<span id="welcomeName">
+
+Seller
+
+</span>
+
+👋
+
+</h1>
+
+
+<p>
+
+Manage your products, orders and business from your
+NEXORA PICKS Seller Center.
+
+</p>
+
+
+<div
+class="status"
+id="sellerStatus">
+
+● Checking seller account...
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- QUICK ACTIONS -->
+
+<div class="quickActions">
+
+
+<a
+class="quickBtn primary"
+href="add-product.html">
+
+➕ Add New Product
+
+</a>
+
+
+<a
+class="quickBtn"
+href="seller-products.html">
+
+🛍️ Manage Products
+
+</a>
+
+
+<a
+class="quickBtn"
+href="seller-orders.html">
+
+📦 View Orders
+
+</a>
+
+
+<a
+class="quickBtn"
+href="seller-register.html">
+
+🏪 Seller Profile
+
+</a>
+
+
+</div>
+
+
+
+<!-- STATS -->
+
 <div class="stats">
-<div class="stat"><div class="statIcon">🛍️</div><div class="statNumber" id="totalProducts">0</div><div class="statLabel">Total Products</div></div>
-<div class="stat"><div class="statIcon">🟢</div><div class="statNumber" id="activeProducts">0</div><div class="statLabel">Active Products</div></div>
-<div class="stat"><div class="statIcon">📦</div><div class="statNumber" id="totalOrders">0</div><div class="statLabel">Total Orders</div></div>
-<div class="stat"><div class="statIcon">💰</div><div class="statNumber" id="totalSales">₹0</div><div class="statLabel">Total Sales</div></div>
+
+
+<div class="stat">
+
+<div class="statTop">
+
+<div class="statIcon">
+
+🛍️
+
 </div>
-<div class="section"><div class="sectionHead"><h2>Recent Products</h2><a class="actionBtn" href="seller-products.html">View All</a></div><div id="productsBox" class="loading">Loading products...</div></div>
-<div class="section"><div class="sectionHead"><h2>Recent Orders</h2><a class="actionBtn" href="seller-orders.html">View All</a></div><div id="ordersBox" class="loading">Loading orders...</div></div>
+
+</div>
+
+
+<div
+class="statNumber"
+id="totalProducts">
+
+0
+
+</div>
+
+
+<div class="statLabel">
+
+Total Products
+
+</div>
+
+</div>
+
+
+
+<div class="stat">
+
+<div class="statTop">
+
+<div class="statIcon">
+
+🟢
+
+</div>
+
+</div>
+
+
+<div
+class="statNumber"
+id="activeProducts">
+
+0
+
+</div>
+
+
+<div class="statLabel">
+
+Active Products
+
+</div>
+
+</div>
+
+
+
+<div class="stat">
+
+<div class="statTop">
+
+<div class="statIcon">
+
+📦
+
+</div>
+
+</div>
+
+
+<div
+class="statNumber"
+id="totalOrders">
+
+0
+
+</div>
+
+
+<div class="statLabel">
+
+Total Orders
+
+</div>
+
+</div>
+
+
+
+<div class="stat">
+
+<div class="statTop">
+
+<div class="statIcon">
+
+💰
+
+</div>
+
+</div>
+
+
+<div
+class="statNumber"
+id="totalSales">
+
+₹0
+
+</div>
+
+
+<div class="statLabel">
+
+Total Sales
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<!-- RECENT PRODUCTS -->
+
+<div class="section">
+
+
+<div class="sectionHead">
+
+<h2>
+
+Recent Products
+
+</h2>
+
+
+<a
+class="actionBtn"
+href="seller-products.html">
+
+View All
+
+</a>
+
+
+</div>
+
+
+<div
+id="productsBox"
+class="loading">
+
+Loading products...
+
+</div>
+
+
+</div>
+
+
+
+<!-- RECENT ORDERS -->
+
+<div class="section">
+
+
+<div class="sectionHead">
+
+<h2>
+
+Recent Orders
+
+</h2>
+
+
+<a
+class="actionBtn"
+href="seller-orders.html">
+
+View All
+
+</a>
+
+
+</div>
+
+
+<div
+id="ordersBox"
+class="loading">
+
+Loading orders...
+
+</div>
+
+
+</div>
+
+
 </main>
+
+
 </div>
+
+
+
 <script type="module">
-import {initializeApp} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-import {getAuth,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import {getFirestore,doc,getDoc,collection,query,where,onSnapshot} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+/* =========================
+   FIREBASE IMPORTS
+========================= */
+
+import {
+
+initializeApp
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+
+getAuth,
+onAuthStateChanged,
+signOut
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+
+getFirestore,
+doc,
+getDoc,
+collection,
+query,
+where,
+onSnapshot
+
+}
+
+from
+
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
 
 const firebaseConfig={
-apiKey:"AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
-authDomain:"nexora-picks-be049.firebaseapp.com",
-projectId:"nexora-picks-be049",
-storageBucket:"nexora-picks-be049.firebasestorage.app",
-messagingSenderId:"325932959084",
-appId:"1:325932959084:web:4fd8252e1ba83f82ee1f49",
-measurementId:"G-KMQZXZZCHJ"
+
+apiKey:
+"AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
+
+authDomain:
+"nexora-picks-be049.firebaseapp.com",
+
+projectId:
+"nexora-picks-be049",
+
+storageBucket:
+"nexora-picks-be049.firebasestorage.app",
+
+messagingSenderId:
+"325932959084",
+
+appId:
+"1:325932959084:web:4fd8252e1ba83f82ee1f49",
+
+measurementId:
+"G-KMQZXZZCHJ"
+
 };
 
-const app=initializeApp(firebaseConfig);
-const auth=getAuth(app);
-const db=getFirestore(app);
-const $=id=>document.getElementById(id);
 
-onAuthStateChanged(auth,async user=>{
-if(!user){window.location.href="index.html";return;}
-$("sellerName").textContent=user.displayName||user.email;
-$("welcomeName").textContent=user.displayName||"Seller";
-try{
-const sellerSnap=await getDoc(doc(db,"sellers",user.uid));
-if(sellerSnap.exists()){
-const seller=sellerSnap.data();
-$("sellerStatus").textContent="Account Status: "+String(seller.status||"pending").toUpperCase();
-}else{
-$("sellerStatus").textContent="Seller Account";
+
+const app=
+
+initializeApp(
+firebaseConfig
+);
+
+
+const auth=
+
+getAuth(
+app
+);
+
+
+const db=
+
+getFirestore(
+app
+);
+
+
+const $=
+
+id=>
+document.getElementById(id);
+
+
+
+/* =========================
+   AUTH CHECK
+========================= */
+
+onAuthStateChanged(
+
+auth,
+
+async user=>{
+
+
+if(!user){
+
+window.location.href=
+"index.html";
+
+return;
+
 }
-}catch(error){console.error("Seller data error:",error);}
-loadProducts(user.uid);
-loadOrders(user.uid);
-});
+
+
+
+$("sellerName")
+.textContent=
+
+user.displayName||
+user.email||
+"Seller";
+
+
+$("welcomeName")
+.textContent=
+
+user.displayName||
+"Seller";
+
+
+
+/* =========================
+   LOAD SELLER DATA
+========================= */
+
+await loadSellerProfile(
+user
+);
+
+
+
+/* =========================
+   LOAD DASHBOARD DATA
+========================= */
+
+loadProducts(
+user.uid
+);
+
+
+loadOrders(
+user.uid
+);
+
+
+}
+
+);
+
+
+
+/* =========================
+   SELLER PROFILE
+========================= */
+
+async function loadSellerProfile(user){
+
+
+try{
+
+
+/*
+First check users collection.
+
+Your seller signup code
+previously saved sellers here.
+*/
+
+let sellerSnap=
+
+await getDoc(
+
+doc(
+db,
+"users",
+user.uid
+)
+
+);
+
+
+
+/*
+If not found,
+also check sellers collection.
+*/
+
+if(
+!sellerSnap.exists()
+){
+
+sellerSnap=
+
+await getDoc(
+
+doc(
+db,
+"sellers",
+user.uid
+)
+
+);
+
+}
+
+
+
+if(
+sellerSnap.exists()
+){
+
+
+const seller=
+
+sellerSnap.data();
+
+
+
+const sellerName=
+
+seller.name||
+seller.storeName||
+user.displayName||
+user.email||
+"Seller";
+
+
+
+$("sellerName")
+.textContent=
+
+sellerName;
+
+
+$("welcomeName")
+.textContent=
+
+seller.name||
+seller.storeName||
+user.displayName||
+"Seller";
+
+
+
+const status=
+
+String(
+seller.status||
+"pending"
+).toUpperCase();
+
+
+
+$("sellerStatus")
+.textContent=
+
+"● Account Status: "+
+status;
+
+
+}else{
+
+
+$("sellerStatus")
+.textContent=
+
+"● Seller Account";
+
+
+}
+
+
+}catch(error){
+
+
+console.error(
+"Seller profile error:",
+error
+);
+
+
+$("sellerStatus")
+.textContent=
+
+"● Seller Account";
+
+
+}
+
+
+}
+
+
+
+/* =========================
+   PRODUCTS
+========================= */
 
 function loadProducts(uid){
-const q=query(collection(db,"products"),where("sellerId","==",uid));
-onSnapshot(q,snapshot=>{
-const products=snapshot.docs.map(d=>({id:d.id,...d.data()}));
-$("totalProducts").textContent=products.length;
-$("activeProducts").textContent=products.filter(p=>p.active!==false).length;
-const box=$("productsBox");
-if(!products.length){
-box.innerHTML=`<div class="empty">No products added yet.<br><br><a class="actionBtn" href="add-product.html">➕ Add Your First Product</a></div>`;
+
+
+const productQuery=
+
+query(
+
+collection(
+db,
+"products"
+),
+
+where(
+"sellerId",
+"==",
+uid
+)
+
+);
+
+
+
+onSnapshot(
+
+productQuery,
+
+
+snapshot=>{
+
+
+const products=
+
+snapshot.docs.map(
+
+doc=>({
+
+id:doc.id,
+
+...doc.data()
+
+})
+
+);
+
+
+
+$("totalProducts")
+.textContent=
+
+products.length;
+
+
+
+$("activeProducts")
+.textContent=
+
+products.filter(
+
+product=>
+
+product.active!==false
+
+).length;
+
+
+
+const box=
+
+$("productsBox");
+
+
+
+if(
+!products.length
+){
+
+
+box.innerHTML=
+
+`
+
+<div class="empty">
+
+<div class="emptyIcon">
+
+📦
+
+</div>
+
+
+<b>
+
+No products added yet
+
+</b>
+
+
+<br><br>
+
+
+<a
+class="actionBtn"
+href="add-product.html">
+
+➕ Add Your First Product
+
+</a>
+
+
+</div>
+
+`;
+
+
 return;
+
+
 }
-box.innerHTML=products.slice(0,5).map(product=>{
-const image=product.imageUrl||product.image||"";
-return `<div class="product">${image?`<img src="${escapeHtml(image)}" alt="${escapeHtml(product.name||"Product")}">`:`<div style="width:65px;height:65px;background:#eee;border-radius:6px;display:flex;align-items:center;justify-content:center;">📦</div>`}<div class="productInfo"><div class="productName">${escapeHtml(product.name||"Product")}</div><div class="productMeta">Stock: ${Number(product.stock||0)}</div></div><div class="productPrice">₹${Number(product.price||0).toLocaleString("en-IN")}</div></div>`;
-}).join("");
-});
+
+
+
+box.innerHTML=
+
+products
+.slice(
+0,
+5
+)
+.map(
+
+product=>{
+
+
+const image=
+
+product.imageUrl||
+product.image||
+"";
+
+
+
+const productName=
+
+escapeHtml(
+
+product.name||
+"Product"
+
+);
+
+
+
+const stock=
+
+Number(
+product.stock||
+0
+);
+
+
+
+const price=
+
+Number(
+product.price||
+0
+);
+
+
+
+return
+
+`
+
+<div class="product">
+
+
+<div class="productImage">
+
+${
+image
+
+?
+
+`<img
+src="${escapeHtml(image)}"
+alt="${productName}"
+>`
+
+:
+
+"📦"
+
 }
+
+</div>
+
+
+
+<div class="productInfo">
+
+
+<div class="productName">
+
+${productName}
+
+</div>
+
+
+<div class="productMeta">
+
+Stock: ${stock}
+
+</div>
+
+
+</div>
+
+
+
+<div class="productPrice">
+
+₹${price.toLocaleString("en-IN")}
+
+</div>
+
+
+
+<div class="productStatus">
+
+${
+
+product.active===false
+
+?
+
+"INACTIVE"
+
+:
+
+"ACTIVE"
+
+}
+
+</div>
+
+
+</div>
+
+`;
+
+
+}
+
+)
+.join(
+""
+);
+
+
+},
+
+
+error=>{
+
+
+console.error(
+"Products error:",
+error
+);
+
+
+
+$("productsBox")
+.innerHTML=
+
+`
+
+<div class="empty">
+
+Unable to load products.
+
+</div>
+
+`;
+
+
+}
+
+);
+
+
+}
+
+
+
+/* =========================
+   ORDERS
+========================= */
 
 function loadOrders(uid){
-const q=query(collection(db,"orders"),where("sellerId","==",uid));
-onSnapshot(q,snapshot=>{
-const orders=snapshot.docs.map(d=>({id:d.id,...d.data()}));
-$("totalOrders").textContent=orders.length;
+
+
+const orderQuery=
+
+query(
+
+collection(
+db,
+"orders"
+),
+
+where(
+"sellerId",
+"==",
+uid
+)
+
+);
+
+
+
+onSnapshot(
+
+orderQuery,
+
+
+snapshot=>{
+
+
+const orders=
+
+snapshot.docs.map(
+
+doc=>({
+
+id:doc.id,
+
+...doc.data()
+
+})
+
+);
+
+
+
+$("totalOrders")
+.textContent=
+
+orders.length;
+
+
+
 let sales=0;
-orders.forEach(order=>{sales+=Number(order.total||order.amount||0);});
-$("totalSales").textContent="₹"+sales.toLocaleString("en-IN");
-const box=$("ordersBox");
-if(!orders.length){box.innerHTML=`<div class="empty">No orders yet.</div>`;return;}
-box.innerHTML=orders.slice(0,5).map(order=>{
-const total=Number(order.total||order.amount||0);
-return `<div class="order"><div><b>Order #${escapeHtml(order.id)}</b></div><div>₹${total.toLocaleString("en-IN")}</div><div>${escapeHtml(order.customerName||"Customer")}</div><div><span class="orderStatus">${escapeHtml(String(order.status||"pending").toUpperCase())}</span></div></div>`;
-}).join("");
-});
+
+
+
+orders.forEach(
+
+order=>{
+
+
+sales+=
+
+Number(
+
+order.total||
+order.amount||
+0
+
+);
+
+
 }
 
-window.logoutSeller=async function(){
-try{await signOut(auth);window.location.href="index.html";}
-catch(error){alert("Logout failed: "+error.message);}
+);
+
+
+
+$("totalSales")
+.textContent=
+
+"₹"+
+
+sales.toLocaleString(
+"en-IN"
+);
+
+
+
+const box=
+
+$("ordersBox");
+
+
+
+if(
+!orders.length
+){
+
+
+box.innerHTML=
+
+`
+
+<div class="empty">
+
+
+<div class="emptyIcon">
+
+📦
+
+</div>
+
+
+<b>
+
+No orders yet
+
+</b>
+
+
+<br>
+
+
+Orders received for your products
+will appear here.
+
+
+</div>
+
+`;
+
+
+return;
+
+
+}
+
+
+
+box.innerHTML=
+
+orders
+.slice(
+0,
+5
+)
+.map(
+
+order=>{
+
+
+const total=
+
+Number(
+
+order.total||
+order.amount||
+0
+
+);
+
+
+
+const status=
+
+String(
+
+order.status||
+"pending"
+
+)
+.toUpperCase();
+
+
+
+const customer=
+
+escapeHtml(
+
+order.customerName||
+order.customer||
+"Customer"
+
+);
+
+
+
+return
+
+`
+
+<div class="order">
+
+
+<div>
+
+
+<div class="orderId">
+
+Order #
+
+${escapeHtml(order.id)}
+
+
+</div>
+
+
+<div class="orderMeta">
+
+Customer:
+
+${customer}
+
+</div>
+
+
+</div>
+
+
+
+<div>
+
+₹${total.toLocaleString("en-IN")}
+
+</div>
+
+
+
+<div>
+
+${customer}
+
+</div>
+
+
+
+<div>
+
+<span
+class="orderStatus"
+style="
+
+${
+getStatusStyle(
+status
+)
+}
+
+">
+
+${escapeHtml(status)}
+
+</span>
+
+
+</div>
+
+
+</div>
+
+`;
+
+
+}
+
+)
+.join(
+""
+);
+
+
+},
+
+
+error=>{
+
+
+console.error(
+"Orders error:",
+error
+);
+
+
+
+$("ordersBox")
+.innerHTML=
+
+`
+
+<div class="empty">
+
+Unable to load orders.
+
+</div>
+
+`;
+
+
+}
+
+);
+
+
+}
+
+
+
+/* =========================
+   ORDER STATUS STYLE
+========================= */
+
+function getStatusStyle(status){
+
+
+if(
+status==="DELIVERED"
+){
+
+
+return
+
+"background:#e9f8ef;color:#16833c;";
+
+
+}
+
+
+
+if(
+status==="CANCELLED"
+){
+
+
+return
+
+"background:#ffe8e8;color:#e53935;";
+
+
+}
+
+
+
+if(
+status==="SHIPPED"||
+status==="PROCESSING"
+){
+
+
+return
+
+"background:#eaf2ff;color:#2874f0;";
+
+
+}
+
+
+
+return
+
+"background:#fff3cd;color:#856404;";
+
+
+}
+
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+window.logoutSeller=
+
+async function(){
+
+
+try{
+
+
+await signOut(
+auth
+);
+
+
+
+window.location.href=
+
+"index.html";
+
+
+}
+
+
+catch(error){
+
+
+alert(
+
+"Logout failed: "+
+
+error.message
+
+);
+
+
+}
+
+
 };
 
+
+
+/* =========================
+   SECURITY
+========================= */
+
 function escapeHtml(value){
-return String(value??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
+
+
+return String(
+
+value??
+
+""
+
+)
+
+.replaceAll(
+
+"&",
+
+"&amp;"
+
+)
+
+.replaceAll(
+
+"<",
+
+"&lt;"
+
+)
+
+.replaceAll(
+
+">",
+
+"&gt;"
+
+)
+
+.replaceAll(
+
+'"',
+
+"&quot;"
+
+)
+
+.replaceAll(
+
+"'",
+
+"&#039;"
+
+);
+
+
 }
+
+
 </script>
+
+
 </body>
-</html>
+
+
+  </html>

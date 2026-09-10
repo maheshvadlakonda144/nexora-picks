@@ -3832,6 +3832,7 @@ onSnapshot(
 
   },
 
+
   error => {
 
     console.error(
@@ -3855,64 +3856,11 @@ onSnapshot(
 
         <br><br>
 
-        Error:
-        ${esc(error.message)}
-
-        <br><br>
-
-        Please check Firebase Firestore Rules.
+        Error: ${esc(error.message)}
 
       </div>
 
     `;
-
-  }
-
-);
-
-
-    render();
-
-
-  },
-
-
-  error => {
-
-
-    console.error(
-
-      "Firestore error:",
-
-      error
-
-    );
-
-
-    $("count").textContent =
-
-    "Unable to load products";
-
-
-    $("grid").innerHTML = `
-
-    <div class="empty">
-
-      <b>
-
-      Products could not be loaded.
-
-      </b>
-
-      <br><br>
-
-      Check Firebase Firestore Rules
-      and product approval status.
-
-    </div>
-
-    `;
-
 
   }
 
@@ -3924,9 +3872,3 @@ onSnapshot(
 updateCount();
 
 renderCart();
-
-</script>
-
-</body>
-
-</html>

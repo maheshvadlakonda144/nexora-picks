@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+tml>
 <html lang="en">
 
 <head>
@@ -640,24 +640,20 @@ Cancel
 
 <script type="module">
 
-import {
+import{
 initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
-
-import {
+import{
 getAuth,
-onAuthStateChanged,
-setPersistence,
-browserLocalPersistence
+onAuthStateChanged
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
-
-import {
+import{
 getFirestore,
 collection,
 query,
@@ -692,16 +688,18 @@ measurementId:"G-LSMJ6QLLPW"
 
 const $=id=>document.getElementById(id);
 
-
 let app;
 let auth;
 let db;
+
 let selectedOrderId=null;
 
+let authFinished=false;
 
-/* START FIREBASE */
+let unsubscribeOrders=null;
 
-async function startApp(){
+
+/* FIREBASE START */
 
 try{
 
@@ -711,16 +709,74 @@ auth=getAuth(app);
 
 db=getFirestore(app);
 
+}
+catch(error){
 
-/* KEEP LOGIN */
+console.error("Firebase error:",error);
 
-await setPersistence(
-auth,
-browserLocalPersistence
-);
+$("userInfo").innerHTML=`
+<b style="color:red">
+❌ Firebase connection error
+</b>
+`;
+
+$("orders").innerHTML=`
+
+<div class="empty">
+
+❌ Unable to connect to Firebase.
+
+<br><br>
+
+${escapeHtml(error.message)}
+
+</div>
+
+`;
+
+}
 
 
-/* AUTH CHECK */
+/* AUTH TIMEOUT */
+
+setTimeout(()=>{
+
+if(!authFinished){
+
+$("userInfo").innerHTML=`
+
+<b style="color:#c62828">
+
+⚠️ Login is taking too long.
+
+</b>
+
+<br><br>
+
+Please refresh the page and check your internet connection.
+
+`;
+
+$("orders").innerHTML=`
+
+<div class="empty">
+
+⚠️ Unable to check login.
+
+<br><br>
+
+Please refresh the page.
+
+</div>
+
+`;
+
+}
+
+},10000);
+
+
+/* LOGIN CHECK */
 
 onAuthStateChanged(
 
@@ -728,81 +784,10 @@ auth,
 
 user=>{
 
+authFinished=true;
+
+
 if(!user){
-
-showLoggedOut();
-
-return;
-
-}
-
-
-$("userInfo").innerHTML=
-`Logged in as <b>${escapeHtml(user.email||"")}</b>`;
-
-
-loadOrders(user.uid);
-
-},
-
-error=>{
-
-console.error(error);
-
-showLoginError(error);
-
-}
-
-);
-
-
-}catch(error){
-
-console.error(error);
-
-showLoginError(error);
-
-}
-
-}
-
-
-startApp();
-
-
-/* LOGIN TIMEOUT */
-
-setTimeout(()=>{
-
-if(
-$("userInfo").innerText==="Checking login..."
-){
-
-$("userInfo").innerHTML=`
-
-⚠️ Unable to check login.
-
-<br><br>
-
-<button
-class="loginBtn"
-onclick="location.href='index.html'">
-
-Go to Home
-
-</button>
-
-`;
-
-}
-
-
-},10000);
-
-
-/* LOGGED OUT */
-
-function showLoggedOut(){
 
 $("userInfo").innerHTML=`
 
@@ -816,52 +801,19 @@ Login to view your orders
 
 `;
 
-
 $("orders").innerHTML=`
 
 <div class="empty">
 
-<h2>🔐 Login Required</h2>
+🔐 Please login to see your orders.
 
-<p>Please login to see your orders.</p>
-
-</div>
-
-`;
-
-}
-
-
-/* LOGIN ERROR */
-
-function showLoginError(error){
-
-$("userInfo").innerHTML=`
-
-⚠️ Unable to connect to login.
-
-`;
-
-$("orders").innerHTML=`
-
-<div class="empty">
-
-<h2>⚠️ Something went wrong</h2>
-
-<p>
-
-${escapeHtml(
-error?.message||
-"Unable to connect to Firebase."
-)}
-
-</p>
+<br><br>
 
 <button
 class="loginBtn"
-onclick="location.reload()">
+onclick="goLogin()">
 
-Try Again
+Login
 
 </button>
 
@@ -869,27 +821,73 @@ Try Again
 
 `;
 
+return;
+
 }
+
+
+$("userInfo").innerHTML=
+
+`Logged in as
+<b>
+${escapeHtml(user.email||"User")}
+</b>`;
+
+
+loadOrders(user.uid);
+
+},
+
+error=>{
+
+console.error("Auth error:",error);
+
+authFinished=true;
+
+$("userInfo").innerHTML=`
+
+<b style="color:red">
+
+❌ Login error
+
+</b>
+
+`;
+
+$("orders").innerHTML=`
+
+<div class="empty">
+
+❌ Unable to check login.
+
+<br><br>
+
+${escapeHtml(error.message)}
+
+</div>
+
+`;
+
+}
+
+);
 
 
 /* LOAD ORDERS */
 
 function loadOrders(uid){
 
-$("orders").innerHTML=`
 
-<div class="loading">
+if(unsubscribeOrders){
 
-Loading your orders...
+unsubscribeOrders();
 
-</div>
-
-`;
+}
 
 
-try{
+const q=
 
-const q=query(
+query(
 
 collection(db,"orders"),
 
@@ -902,6 +900,8 @@ uid
 );
 
 
+unsubscribeOrders=
+
 onSnapshot(
 
 q,
@@ -909,7 +909,9 @@ q,
 snap=>{
 
 
-let orders=snap.docs.map(
+let orders=
+
+snap.docs.map(
 
 docSnap=>({
 
@@ -945,9 +947,13 @@ $("orders").innerHTML=`
 
 <div class="empty">
 
-<h2>📦 No orders yet</h2>
+<h2>
+📦 No orders yet
+</h2>
 
-<p>Your placed orders will appear here.</p>
+<p>
+Your placed orders will appear here.
+</p>
 
 <button
 class="loginBtn"
@@ -976,29 +982,17 @@ orders
 
 error=>{
 
-console.error("Firestore Error:",error);
-
+console.error("Firestore error:",error);
 
 $("orders").innerHTML=`
 
 <div class="empty">
 
-<h2>❌ Unable to load orders</h2>
+❌ Unable to load orders.
 
-<p>
-${escapeHtml(
-error.message||
-"Please try again."
-)}
-</p>
+<br><br>
 
-<button
-class="loginBtn"
-onclick="location.reload()">
-
-Try Again
-
-</button>
+${escapeHtml(error.message)}
 
 </div>
 
@@ -1008,24 +1002,6 @@ Try Again
 
 );
 
-
-}catch(error){
-
-console.error(error);
-
-
-$("orders").innerHTML=`
-
-<div class="empty">
-
-❌ Unable to load orders.
-
-</div>
-
-`;
-
-}
-
 }
 
 
@@ -1033,7 +1009,8 @@ $("orders").innerHTML=`
 
 function showOrder(order){
 
-const date=formatDate(order.createdAt);
+const date=
+formatDate(order.createdAt);
 
 
 const status=
@@ -1090,9 +1067,13 @@ ${Number(item.qty)||1}
 ₹${
 
 (
+
 Number(item.price||0)
+
 *
+
 Number(item.qty||1)
+
 )
 
 .toLocaleString("en-IN")
@@ -1120,7 +1101,10 @@ return `
 
 <div>
 
-<b>Order ID</b>
+<b>
+Order ID
+</b>
+
 
 <div class="orderId">
 
@@ -1128,7 +1112,9 @@ ${escapeHtml(order.id)}
 
 </div>
 
-<div style="margin-top:6px">
+
+<div
+style="margin-top:6px">
 
 ${date}
 
@@ -1137,7 +1123,8 @@ ${date}
 </div>
 
 
-<div class="status">
+<div
+class="status">
 
 ${escapeHtml(
 
@@ -1152,7 +1139,9 @@ status
 </div>
 
 
-<h3>📦 Products</h3>
+<h3>
+📦 Products
+</h3>
 
 
 ${itemHTML}
@@ -1184,13 +1173,17 @@ ${showRequestStatus(order)}
 
 <div class="total">
 
-<span>Total</span>
+<span>
+Total
+</span>
+
 
 <span>
 
 ₹${
 
 Number(order.total||0)
+
 .toLocaleString("en-IN")
 
 }
@@ -1214,7 +1207,9 @@ order.paymentMethod||
 
 <div class="info">
 
-<b>📍 Delivery Details</b>
+<b>
+📍 Delivery Details
+</b>
 
 <br>
 
@@ -1254,11 +1249,16 @@ order.deliveryAddress||
 
 /* CANCEL BUTTON */
 
-function createCancelButton(status,orderId){
+function createCancelButton(
+status,
+orderId
+){
 
 const cancellableStatuses=[
+
 "pending",
 "confirmed"
+
 ];
 
 
@@ -1288,16 +1288,23 @@ onclick="openCancelModal('${orderId}')">
 
 /* RETURN BUTTON */
 
-function createReturnButton(status,order){
+function createReturnButton(
+status,
+order
+){
 
-if(status!=="delivered"){
+if(
+status!=="delivered"
+){
 
 return "";
 
 }
 
 
-if(order.returnStatus){
+if(
+order.returnStatus
+){
 
 return "";
 
@@ -1321,9 +1328,14 @@ onclick="openReturnModal('${order.id}')">
 
 /* REFUND BUTTON */
 
-function createRefundButton(status,order){
+function createRefundButton(
+status,
+order
+){
 
-if(order.refundStatus){
+if(
+order.refundStatus
+){
 
 return "";
 
@@ -1331,8 +1343,10 @@ return "";
 
 
 const refundableStatuses=[
+
 "cancelled",
 "delivered"
+
 ];
 
 
@@ -1436,7 +1450,9 @@ return html;
 
 /* CANCEL MODAL */
 
-window.openCancelModal=function(orderId){
+window.openCancelModal=
+
+function(orderId){
 
 selectedOrderId=orderId;
 
@@ -1445,23 +1461,21 @@ $("cancelModal").style.display="flex";
 };
 
 
-window.closeCancelModal=function(){
+window.closeCancelModal=
+
+function(){
 
 $("cancelModal").style.display="none";
 
 selectedOrderId=null;
 
-
 document
 .querySelectorAll(
 'input[name="cancelReason"]'
 )
-.forEach(input=>{
-
-input.checked=false;
-
-});
-
+.forEach(
+input=>input.checked=false
+);
 
 $("otherCancelReason").value="";
 
@@ -1470,7 +1484,9 @@ $("otherCancelReason").style.display="none";
 };
 
 
-window.showOtherCancelReason=function(){
+window.showOtherCancelReason=
+
+function(){
 
 $("otherCancelReason").style.display="block";
 
@@ -1478,9 +1494,12 @@ $("otherCancelReason").style.display="block";
 
 
 window.confirmCancelOrder=
+
 async function(){
 
-const selected=document.querySelector(
+const selected=
+
+document.querySelector(
 'input[name="cancelReason"]:checked'
 );
 
@@ -1552,7 +1571,8 @@ alert(
 closeCancelModal();
 
 
-}catch(error){
+}
+catch(error){
 
 console.error(error);
 
@@ -1567,7 +1587,9 @@ alert(
 
 /* RETURN MODAL */
 
-window.openReturnModal=function(orderId){
+window.openReturnModal=
+
+function(orderId){
 
 selectedOrderId=orderId;
 
@@ -1576,23 +1598,21 @@ $("returnModal").style.display="flex";
 };
 
 
-window.closeReturnModal=function(){
+window.closeReturnModal=
+
+function(){
 
 $("returnModal").style.display="none";
 
 selectedOrderId=null;
 
-
 document
 .querySelectorAll(
 'input[name="returnReason"]'
 )
-.forEach(input=>{
-
-input.checked=false;
-
-});
-
+.forEach(
+input=>input.checked=false
+);
 
 $("otherReturnReason").value="";
 
@@ -1601,7 +1621,9 @@ $("otherReturnReason").style.display="none";
 };
 
 
-window.showOtherReturnReason=function(){
+window.showOtherReturnReason=
+
+function(){
 
 $("otherReturnReason").style.display="block";
 
@@ -1609,9 +1631,12 @@ $("otherReturnReason").style.display="block";
 
 
 window.confirmReturnRequest=
+
 async function(){
 
-const selected=document.querySelector(
+const selected=
+
+document.querySelector(
 'input[name="returnReason"]:checked'
 );
 
@@ -1683,7 +1708,8 @@ alert(
 closeReturnModal();
 
 
-}catch(error){
+}
+catch(error){
 
 console.error(error);
 
@@ -1698,7 +1724,9 @@ alert(
 
 /* REFUND MODAL */
 
-window.openRefundModal=function(orderId){
+window.openRefundModal=
+
+function(orderId){
 
 selectedOrderId=orderId;
 
@@ -1707,23 +1735,21 @@ $("refundModal").style.display="flex";
 };
 
 
-window.closeRefundModal=function(){
+window.closeRefundModal=
+
+function(){
 
 $("refundModal").style.display="none";
 
 selectedOrderId=null;
 
-
 document
 .querySelectorAll(
 'input[name="refundReason"]'
 )
-.forEach(input=>{
-
-input.checked=false;
-
-});
-
+.forEach(
+input=>input.checked=false
+);
 
 $("otherRefundReason").value="";
 
@@ -1732,7 +1758,9 @@ $("otherRefundReason").style.display="none";
 };
 
 
-window.showOtherRefundReason=function(){
+window.showOtherRefundReason=
+
+function(){
 
 $("otherRefundReason").style.display="block";
 
@@ -1740,9 +1768,12 @@ $("otherRefundReason").style.display="block";
 
 
 window.confirmRefundRequest=
+
 async function(){
 
-const selected=document.querySelector(
+const selected=
+
+document.querySelector(
 'input[name="refundReason"]:checked'
 );
 
@@ -1814,7 +1845,8 @@ alert(
 closeRefundModal();
 
 
-}catch(error){
+}
+catch(error){
 
 console.error(error);
 
@@ -1831,7 +1863,9 @@ alert(
 
 function createTracking(status){
 
-if(status==="cancelled"){
+if(
+status==="cancelled"
+){
 
 return `
 
@@ -1969,7 +2003,7 @@ ${step.text}
 }
 
 
-/* DATE */
+/* FORMAT DATE */
 
 function formatDate(timestamp){
 
@@ -1995,7 +2029,6 @@ timestamp.toDate()
 new Date(timestamp);
 
 
-
 return date.toLocaleString(
 
 "en-IN",
@@ -2016,8 +2049,8 @@ minute:"2-digit"
 
 );
 
-
-}catch(error){
+}
+catch(e){
 
 return "Date unavailable";
 
@@ -2043,14 +2076,12 @@ return String(value??"")
 
 /* LOGIN */
 
-window.goLogin=function(){
+window.goLogin=
+
+function(){
 
 location.href="index.html";
 
 };
 
-</script>
-
-</body>
-
-</html
+  </script>

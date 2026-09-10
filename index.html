@@ -3792,81 +3792,83 @@ document.addEventListener(
 
 /* FIRESTORE PRODUCTS */
 
+console.log("Connecting to Firestore products...");
+
 onSnapshot(
 
-  collection(
-    db,
-    "products"
-  ),
+  collection(db, "products"),
 
   snapshot => {
 
+    console.log(
+      "Products loaded:",
+      snapshot.size
+    );
 
-    products =
+    products = snapshot.docs
+      .map(document => ({
 
-    snapshot.docs
-
-    .map(
-
-      document => ({
-
-        id:
-        document.id,
+        id: document.id,
 
         ...document.data()
 
-      })
+      }))
+      .filter(product => {
 
-    )
+        return product.active !== false;
 
-    .filter(
-
-      product => {
-
-
-        const approved =
+      });
 
 
-        product.approvalStatus ===
-        "approved"
+    $("count").textContent =
+      `${products.length} product${
+        products.length === 1
+          ? ""
+          : "s"
+      }`;
 
 
-        ||
+    render();
 
+  },
 
-        product.approvalStatus ===
-        undefined
+  error => {
 
-
-        ||
-
-
-        product.approvalStatus ===
-        null
-
-
-        ||
-
-
-        product.approvalStatus ===
-        "";
-
-
-        return (
-
-          approved
-
-          &&
-
-          product.active !==
-          false
-
-        );
-
-
-      }
-
+    console.error(
+      "Firestore error:",
+      error.code,
+      error.message
     );
+
+
+    $("count").textContent =
+      "Unable to load products";
+
+
+    $("grid").innerHTML = `
+
+      <div class="empty">
+
+        <b>
+          Products could not be loaded.
+        </b>
+
+        <br><br>
+
+        Error:
+        ${esc(error.message)}
+
+        <br><br>
+
+        Please check Firebase Firestore Rules.
+
+      </div>
+
+    `;
+
+  }
+
+);
 
 
     render();

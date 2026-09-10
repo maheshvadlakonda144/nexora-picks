@@ -5,13 +5,9 @@
 
 <meta charset="UTF-8">
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>
-My Orders | NEXORA PICKS
-</title>
+<title>My Orders | NEXORA PICKS</title>
 
 <style>
 
@@ -156,7 +152,8 @@ color:#667085
 
 .loading{
 text-align:center;
-padding:30px
+padding:30px;
+font-size:17px
 }
 
 .cod{
@@ -236,8 +233,6 @@ background:#d9dee7
 background:#16803c
 }
 
-/* CANCELLED */
-
 .cancelledBox{
 margin-top:18px;
 padding:15px;
@@ -247,8 +242,6 @@ color:#c62828;
 font-weight:bold;
 text-align:center
 }
-
-/* BUTTONS */
 
 .cancelBtn{
 width:100%;
@@ -276,8 +269,6 @@ color:white;
 font-size:18px;
 padding:15px
 }
-
-/* REQUEST STATUS */
 
 .requestBox{
 margin-top:18px;
@@ -309,7 +300,7 @@ font-weight:bold;
 line-height:1.6
 }
 
-/* MODAL */
+/* MODALS */
 
 .modal{
 display:none;
@@ -425,13 +416,9 @@ font-size:15px
 
 <header>
 
-<a href="index.html">
-‹
-</a>
+<a href="index.html">‹</a>
 
-<h1>
-📦 My Orders
-</h1>
+<h1>📦 My Orders</h1>
 
 </header>
 
@@ -440,9 +427,7 @@ font-size:15px
 
 <div class="top">
 
-<h2>
-My Orders
-</h2>
+<h2>My Orders</h2>
 
 <div id="userInfo">
 Checking login...
@@ -468,97 +453,54 @@ Loading your orders...
 
 <div class="modalContent">
 
-<h2>
-Cancel Order
-</h2>
+<h2>Cancel Order</h2>
 
-<p>
-Please select a reason for cancellation:
-</p>
-
+<p>Please select a reason for cancellation:</p>
 
 <label class="reasonOption">
-
-<input
-type="radio"
-name="cancelReason"
-value="Changed my mind">
-
+<input type="radio" name="cancelReason" value="Changed my mind">
 Changed my mind
-
 </label>
 
-
 <label class="reasonOption">
-
-<input
-type="radio"
-name="cancelReason"
-value="Ordered by mistake">
-
+<input type="radio" name="cancelReason" value="Ordered by mistake">
 Ordered by mistake
-
 </label>
 
-
 <label class="reasonOption">
-
-<input
-type="radio"
-name="cancelReason"
-value="Found a better price">
-
+<input type="radio" name="cancelReason" value="Found a better price">
 Found a better price
-
 </label>
 
-
 <label class="reasonOption">
-
-<input
-type="radio"
-name="cancelReason"
-value="Delivery taking too long">
-
+<input type="radio" name="cancelReason" value="Delivery taking too long">
 Delivery taking too long
-
 </label>
 
-
 <label class="reasonOption">
-
 <input
 type="radio"
 name="cancelReason"
 value="Other"
 onchange="showOtherCancelReason()">
-
 Other
-
 </label>
-
 
 <textarea
 id="otherCancelReason"
 class="otherReason"
 placeholder="Please type your cancellation reason..."></textarea>
 
-
 <button
 class="confirmCancel"
 onclick="confirmCancelOrder()">
-
 ❌ Confirm Cancellation
-
 </button>
-
 
 <button
 class="closeCancel"
 onclick="closeCancelModal()">
-
 Keep Order
-
 </button>
 
 </div>
@@ -572,85 +514,58 @@ Keep Order
 
 <div class="modalContent">
 
-<h2>
-🔄 Return Product
-</h2>
+<h2>🔄 Return Product</h2>
 
-<p>
-Please select a reason for return:
-</p>
-
+<p>Please select a reason for return:</p>
 
 <label class="reasonOption">
-
 <input
 type="radio"
 name="returnReason"
 value="Received damaged product">
-
 Received damaged product
-
 </label>
 
-
 <label class="reasonOption">
-
 <input
 type="radio"
 name="returnReason"
 value="Wrong product received">
-
 Wrong product received
-
 </label>
 
-
 <label class="reasonOption">
-
 <input
 type="radio"
 name="returnReason"
 value="Product not as expected">
-
 Product not as expected
-
 </label>
 
-
 <label class="reasonOption">
-
 <input
 type="radio"
 name="returnReason"
 value="Other"
 onchange="showOtherReturnReason()">
-
 Other
-
 </label>
-
 
 <textarea
 id="otherReturnReason"
 class="otherReason"
 placeholder="Please type your return reason..."></textarea>
 
-
 <button
 class="confirmReturn"
 onclick="confirmReturnRequest()">
-
 🔄 Submit Return Request
-
 </button>
-
 
 <button
 class="closeCancel"
 onclick="closeReturnModal()">
-
 Cancel
-
 </button>
 
 </div>
@@ -664,85 +579,58 @@ Cancel
 
 <div class="modalContent">
 
-<h2>
-💰 Refund Request
-</h2>
+<h2>💰 Refund Request</h2>
 
-<p>
-Please select a reason for your refund request:
-</p>
-
+<p>Please select a reason for your refund request:</p>
 
 <label class="reasonOption">
-
 <input
 type="radio"
 name="refundReason"
 value="Order cancelled">
-
 Order cancelled
-
 </label>
 
-
 <label class="reasonOption">
-
 <input
 type="radio"
 name="refundReason"
 value="Product returned">
-
 Product returned
-
 </label>
 
-
 <label class="reasonOption">
-
 <input
 type="radio"
 name="refundReason"
 value="Payment issue">
-
 Payment issue
-
 </label>
 
-
 <label class="reasonOption">
-
 <input
 type="radio"
 name="refundReason"
 value="Other"
 onchange="showOtherRefundReason()">
-
 Other
-
 </label>
-
 
 <textarea
 id="otherRefundReason"
 class="otherReason"
 placeholder="Please type your refund reason..."></textarea>
 
-
 <button
 class="confirmRefund"
 onclick="confirmRefundRequest()">
-
 💰 Submit Refund Request
-
 </button>
-
 
 <button
 class="closeCancel"
 onclick="closeRefundModal()">
-
 Cancel
-
 </button>
 
 </div>
@@ -752,22 +640,24 @@ Cancel
 
 <script type="module">
 
-import{
+import {
 initializeApp
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
-import{
+import {
 getAuth,
-onAuthStateChanged
+onAuthStateChanged,
+setPersistence,
+browserLocalPersistence
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-import{
+import {
 getFirestore,
 collection,
 query,
@@ -800,23 +690,37 @@ measurementId:"G-LSMJ6QLLPW"
 };
 
 
-const app=
-initializeApp(firebaseConfig);
+const $=id=>document.getElementById(id);
 
 
-const auth=
-getAuth(app);
+let app;
+let auth;
+let db;
+let selectedOrderId=null;
 
 
-const db=
-getFirestore(app);
+/* START FIREBASE */
+
+async function startApp(){
+
+try{
+
+app=initializeApp(firebaseConfig);
+
+auth=getAuth(app);
+
+db=getFirestore(app);
 
 
-const $=
-id=>document.getElementById(id);
+/* KEEP LOGIN */
+
+await setPersistence(
+auth,
+browserLocalPersistence
+);
 
 
-/* LOGIN */
+/* AUTH CHECK */
 
 onAuthStateChanged(
 
@@ -825,6 +729,80 @@ auth,
 user=>{
 
 if(!user){
+
+showLoggedOut();
+
+return;
+
+}
+
+
+$("userInfo").innerHTML=
+`Logged in as <b>${escapeHtml(user.email||"")}</b>`;
+
+
+loadOrders(user.uid);
+
+},
+
+error=>{
+
+console.error(error);
+
+showLoginError(error);
+
+}
+
+);
+
+
+}catch(error){
+
+console.error(error);
+
+showLoginError(error);
+
+}
+
+}
+
+
+startApp();
+
+
+/* LOGIN TIMEOUT */
+
+setTimeout(()=>{
+
+if(
+$("userInfo").innerText==="Checking login..."
+){
+
+$("userInfo").innerHTML=`
+
+⚠️ Unable to check login.
+
+<br><br>
+
+<button
+class="loginBtn"
+onclick="location.href='index.html'">
+
+Go to Home
+
+</button>
+
+`;
+
+}
+
+
+},10000);
+
+
+/* LOGGED OUT */
+
+function showLoggedOut(){
 
 $("userInfo").innerHTML=`
 
@@ -838,43 +816,80 @@ Login to view your orders
 
 `;
 
+
 $("orders").innerHTML=`
 
 <div class="empty">
 
-🔐 Please login to see your orders.
+<h2>🔐 Login Required</h2>
+
+<p>Please login to see your orders.</p>
 
 </div>
 
 `;
 
-return;
-
 }
 
 
-$("userInfo").innerHTML=
+/* LOGIN ERROR */
 
-`Logged in as
-<b>
-${escapeHtml(user.email||"")}
-</b>`;
+function showLoginError(error){
 
+$("userInfo").innerHTML=`
 
-loadOrders(user.uid);
+⚠️ Unable to connect to login.
+
+`;
+
+$("orders").innerHTML=`
+
+<div class="empty">
+
+<h2>⚠️ Something went wrong</h2>
+
+<p>
+
+${escapeHtml(
+error?.message||
+"Unable to connect to Firebase."
+)}
+
+</p>
+
+<button
+class="loginBtn"
+onclick="location.reload()">
+
+Try Again
+
+</button>
+
+</div>
+
+`;
 
 }
-
-);
 
 
 /* LOAD ORDERS */
 
 function loadOrders(uid){
 
-const q=
+$("orders").innerHTML=`
 
-query(
+<div class="loading">
+
+Loading your orders...
+
+</div>
+
+`;
+
+
+try{
+
+const q=query(
 
 collection(db,"orders"),
 
@@ -894,9 +909,7 @@ q,
 snap=>{
 
 
-let orders=
-
-snap.docs.map(
+let orders=snap.docs.map(
 
 docSnap=>({
 
@@ -932,13 +945,9 @@ $("orders").innerHTML=`
 
 <div class="empty">
 
-<h2>
-📦 No orders yet
-</h2>
+<h2>📦 No orders yet</h2>
 
-<p>
-Your placed orders will appear here.
-</p>
+<p>Your placed orders will appear here.</p>
 
 <button
 class="loginBtn"
@@ -967,17 +976,29 @@ orders
 
 error=>{
 
-console.error(error);
+console.error("Firestore Error:",error);
+
 
 $("orders").innerHTML=`
 
 <div class="empty">
 
-❌ Unable to load orders.
+<h2>❌ Unable to load orders</h2>
 
-<br><br>
+<p>
+${escapeHtml(
+error.message||
+"Please try again."
+)}
+</p>
 
-${escapeHtml(error.message)}
+<button
+class="loginBtn"
+onclick="location.reload()">
+
+Try Again
+
+</button>
 
 </div>
 
@@ -987,6 +1008,24 @@ ${escapeHtml(error.message)}
 
 );
 
+
+}catch(error){
+
+console.error(error);
+
+
+$("orders").innerHTML=`
+
+<div class="empty">
+
+❌ Unable to load orders.
+
+</div>
+
+`;
+
+}
+
 }
 
 
@@ -994,8 +1033,7 @@ ${escapeHtml(error.message)}
 
 function showOrder(order){
 
-const date=
-formatDate(order.createdAt);
+const date=formatDate(order.createdAt);
 
 
 const status=
@@ -1052,13 +1090,9 @@ ${Number(item.qty)||1}
 ₹${
 
 (
-
 Number(item.price||0)
-
 *
-
 Number(item.qty||1)
-
 )
 
 .toLocaleString("en-IN")
@@ -1086,10 +1120,7 @@ return `
 
 <div>
 
-<b>
-Order ID
-</b>
-
+<b>Order ID</b>
 
 <div class="orderId">
 
@@ -1097,9 +1128,7 @@ ${escapeHtml(order.id)}
 
 </div>
 
-
-<div
-style="margin-top:6px">
+<div style="margin-top:6px">
 
 ${date}
 
@@ -1108,8 +1137,7 @@ ${date}
 </div>
 
 
-<div
-class="status">
+<div class="status">
 
 ${escapeHtml(
 
@@ -1124,9 +1152,7 @@ status
 </div>
 
 
-<h3>
-📦 Products
-</h3>
+<h3>📦 Products</h3>
 
 
 ${itemHTML}
@@ -1158,17 +1184,13 @@ ${showRequestStatus(order)}
 
 <div class="total">
 
-<span>
-Total
-</span>
-
+<span>Total</span>
 
 <span>
 
 ₹${
 
 Number(order.total||0)
-
 .toLocaleString("en-IN")
 
 }
@@ -1192,12 +1214,9 @@ order.paymentMethod||
 
 <div class="info">
 
-<b>
-📍 Delivery Details
-</b>
+<b>📍 Delivery Details</b>
 
 <br>
-
 
 Name:
 
@@ -1208,7 +1227,6 @@ order.customerName||
 
 <br>
 
-
 Mobile:
 
 ${escapeHtml(
@@ -1217,7 +1235,6 @@ order.customerPhone||
 )}
 
 <br>
-
 
 Address:
 
@@ -1237,23 +1254,16 @@ order.deliveryAddress||
 
 /* CANCEL BUTTON */
 
-function createCancelButton(
-status,
-orderId
-){
+function createCancelButton(status,orderId){
 
 const cancellableStatuses=[
-
 "pending",
 "confirmed"
-
 ];
 
 
 if(
-
 !cancellableStatuses.includes(status)
-
 ){
 
 return "";
@@ -1278,23 +1288,16 @@ onclick="openCancelModal('${orderId}')">
 
 /* RETURN BUTTON */
 
-function createReturnButton(
-status,
-order
-){
+function createReturnButton(status,order){
 
-if(
-status!=="delivered"
-){
+if(status!=="delivered"){
 
 return "";
 
 }
 
 
-if(
-order.returnStatus
-){
+if(order.returnStatus){
 
 return "";
 
@@ -1318,14 +1321,9 @@ onclick="openReturnModal('${order.id}')">
 
 /* REFUND BUTTON */
 
-function createRefundButton(
-status,
-order
-){
+function createRefundButton(status,order){
 
-if(
-order.refundStatus
-){
+if(order.refundStatus){
 
 return "";
 
@@ -1333,17 +1331,13 @@ return "";
 
 
 const refundableStatuses=[
-
 "cancelled",
 "delivered"
-
 ];
 
 
 if(
-
 !refundableStatuses.includes(status)
-
 ){
 
 return "";
@@ -1366,7 +1360,7 @@ onclick="openRefundModal('${order.id}')">
 }
 
 
-/* SHOW REQUEST STATUS */
+/* REQUEST STATUS */
 
 function showRequestStatus(order){
 
@@ -1440,16 +1434,9 @@ return html;
 }
 
 
-/* ORDER ID VARIABLES */
-
-let selectedOrderId=null;
-
-
 /* CANCEL MODAL */
 
-window.openCancelModal=
-
-function(orderId){
+window.openCancelModal=function(orderId){
 
 selectedOrderId=orderId;
 
@@ -1458,27 +1445,23 @@ $("cancelModal").style.display="flex";
 };
 
 
-window.closeCancelModal=
-
-function(){
+window.closeCancelModal=function(){
 
 $("cancelModal").style.display="none";
 
 selectedOrderId=null;
 
+
 document
 .querySelectorAll(
 'input[name="cancelReason"]'
 )
-.forEach(
-
-input=>{
+.forEach(input=>{
 
 input.checked=false;
 
-}
+});
 
-);
 
 $("otherCancelReason").value="";
 
@@ -1487,29 +1470,18 @@ $("otherCancelReason").style.display="none";
 };
 
 
-/* SHOW OTHER CANCEL */
-
-window.showOtherCancelReason=
-
-function(){
+window.showOtherCancelReason=function(){
 
 $("otherCancelReason").style.display="block";
 
 };
 
 
-/* CONFIRM CANCEL */
-
 window.confirmCancelOrder=
-
 async function(){
 
-const selected=
-
-document.querySelector(
-
+const selected=document.querySelector(
 'input[name="cancelReason"]:checked'
-
 );
 
 
@@ -1524,8 +1496,7 @@ return;
 }
 
 
-let reason=
-selected.value;
+let reason=selected.value;
 
 
 if(reason==="Other"){
@@ -1550,7 +1521,6 @@ return;
 
 
 try{
-
 
 await updateDoc(
 
@@ -1597,9 +1567,7 @@ alert(
 
 /* RETURN MODAL */
 
-window.openReturnModal=
-
-function(orderId){
+window.openReturnModal=function(orderId){
 
 selectedOrderId=orderId;
 
@@ -1608,27 +1576,23 @@ $("returnModal").style.display="flex";
 };
 
 
-window.closeReturnModal=
-
-function(){
+window.closeReturnModal=function(){
 
 $("returnModal").style.display="none";
 
 selectedOrderId=null;
 
+
 document
 .querySelectorAll(
 'input[name="returnReason"]'
 )
-.forEach(
-
-input=>{
+.forEach(input=>{
 
 input.checked=false;
 
-}
+});
 
-);
 
 $("otherReturnReason").value="";
 
@@ -1637,27 +1601,18 @@ $("otherReturnReason").style.display="none";
 };
 
 
-window.showOtherReturnReason=
-
-function(){
+window.showOtherReturnReason=function(){
 
 $("otherReturnReason").style.display="block";
 
 };
 
 
-/* CONFIRM RETURN */
-
 window.confirmReturnRequest=
-
 async function(){
 
-const selected=
-
-document.querySelector(
-
+const selected=document.querySelector(
 'input[name="returnReason"]:checked'
-
 );
 
 
@@ -1672,8 +1627,7 @@ return;
 }
 
 
-let reason=
-selected.value;
+let reason=selected.value;
 
 
 if(reason==="Other"){
@@ -1699,7 +1653,6 @@ return;
 
 try{
 
-
 await updateDoc(
 
 doc(
@@ -1710,11 +1663,9 @@ selectedOrderId
 
 {
 
-returnStatus:
-"pending",
+returnStatus:"pending",
 
-returnReason:
-reason,
+returnReason:reason,
 
 returnRequestedAt:
 serverTimestamp()
@@ -1747,9 +1698,7 @@ alert(
 
 /* REFUND MODAL */
 
-window.openRefundModal=
-
-function(orderId){
+window.openRefundModal=function(orderId){
 
 selectedOrderId=orderId;
 
@@ -1758,27 +1707,23 @@ $("refundModal").style.display="flex";
 };
 
 
-window.closeRefundModal=
-
-function(){
+window.closeRefundModal=function(){
 
 $("refundModal").style.display="none";
 
 selectedOrderId=null;
 
+
 document
 .querySelectorAll(
 'input[name="refundReason"]'
 )
-.forEach(
-
-input=>{
+.forEach(input=>{
 
 input.checked=false;
 
-}
+});
 
-);
 
 $("otherRefundReason").value="";
 
@@ -1787,27 +1732,18 @@ $("otherRefundReason").style.display="none";
 };
 
 
-window.showOtherRefundReason=
-
-function(){
+window.showOtherRefundReason=function(){
 
 $("otherRefundReason").style.display="block";
 
 };
 
 
-/* CONFIRM REFUND */
-
 window.confirmRefundRequest=
-
 async function(){
 
-const selected=
-
-document.querySelector(
-
+const selected=document.querySelector(
 'input[name="refundReason"]:checked'
-
 );
 
 
@@ -1822,8 +1758,7 @@ return;
 }
 
 
-let reason=
-selected.value;
+let reason=selected.value;
 
 
 if(reason==="Other"){
@@ -1849,7 +1784,6 @@ return;
 
 try{
 
-
 await updateDoc(
 
 doc(
@@ -1860,11 +1794,9 @@ selectedOrderId
 
 {
 
-refundStatus:
-"pending",
+refundStatus:"pending",
 
-refundReason:
-reason,
+refundReason:reason,
 
 refundRequestedAt:
 serverTimestamp()
@@ -1899,9 +1831,7 @@ alert(
 
 function createTracking(status){
 
-if(
-status==="cancelled"
-){
+if(status==="cancelled"){
 
 return `
 
@@ -1960,10 +1890,7 @@ text:"Delivered"
 let current=
 
 steps.findIndex(
-
-step=>
-step.key===status
-
+step=>step.key===status
 );
 
 
@@ -2011,18 +1938,15 @@ state="active";
 
 return `
 
-<div
-class="step ${state}">
+<div class="step ${state}">
 
-<div
-class="stepIcon">
+<div class="stepIcon">
 
 ${step.icon}
 
 </div>
 
-<div
-class="stepText">
+<div class="stepText">
 
 ${step.text}
 
@@ -2045,7 +1969,7 @@ ${step.text}
 }
 
 
-/* FORMAT DATE */
+/* DATE */
 
 function formatDate(timestamp){
 
@@ -2071,6 +1995,7 @@ timestamp.toDate()
 new Date(timestamp);
 
 
+
 return date.toLocaleString(
 
 "en-IN",
@@ -2092,7 +2017,7 @@ minute:"2-digit"
 );
 
 
-}catch(e){
+}catch(error){
 
 return "Date unavailable";
 
@@ -2107,39 +2032,18 @@ function escapeHtml(value){
 
 return String(value??"")
 
-.replaceAll(
-"&",
-"&amp;"
-)
-
-.replaceAll(
-"<",
-"&lt;"
-)
-
-.replaceAll(
-">",
-"&gt;"
-)
-
-.replaceAll(
-'"',
-"&quot;"
-)
-
-.replaceAll(
-"'",
-"&#039;"
-);
+.replaceAll("&","&amp;")
+.replaceAll("<","&lt;")
+.replaceAll(">","&gt;")
+.replaceAll('"',"&quot;")
+.replaceAll("'","&#039;");
 
 }
 
 
 /* LOGIN */
 
-window.goLogin=
-
-function(){
+window.goLogin=function(){
 
 location.href="index.html";
 
@@ -2149,4 +2053,4 @@ location.href="index.html";
 
 </body>
 
-  </html>
+</html

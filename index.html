@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>NEXORA PICKS | Online Shopping</title>
-<meta name="description" content="NEXORA PICKS - Discover amazing products from independent sellers.">
+
+<meta name="description"
+content="NEXORA PICKS - Discover amazing products from independent sellers.">
 
 <style>
+
 :root{
   --blue:#2874f0;
   --blue-dark:#1565d8;
@@ -19,8 +23,15 @@
   --success:#16833c;
   --danger:#e53935;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
+*{
+  box-sizing:border-box
+}
+
+html{
+  scroll-behavior:smooth
+}
+
 body{
   margin:0;
   font-family:Arial,Helvetica,sans-serif;
@@ -28,10 +39,17 @@ body{
   color:var(--text);
   padding-bottom:78px;
 }
-button,input,select{font:inherit}
-button{cursor:pointer}
+
+button,input,select{
+  font:inherit
+}
+
+button{
+  cursor:pointer
+}
 
 /* HEADER */
+
 header{
   background:var(--blue);
   position:sticky;
@@ -39,6 +57,7 @@ header{
   z-index:1000;
   box-shadow:0 2px 10px rgba(0,0,0,.16);
 }
+
 .topbar{
   max-width:1400px;
   margin:auto;
@@ -47,6 +66,7 @@ header{
   align-items:center;
   gap:16px;
 }
+
 .mobileMenu{
   display:none;
   background:transparent;
@@ -54,6 +74,7 @@ header{
   color:#fff;
   font-size:28px;
 }
+
 .logo{
   color:#fff;
   font-size:25px;
@@ -62,8 +83,16 @@ header{
   white-space:nowrap;
   letter-spacing:.5px;
 }
-.logo span{color:var(--yellow)}
-.searchWrap{flex:1;position:relative}
+
+.logo span{
+  color:var(--yellow)
+}
+
+.searchWrap{
+  flex:1;
+  position:relative
+}
+
 .searchWrap input{
   width:100%;
   border:0;
@@ -72,6 +101,7 @@ header{
   padding:13px 46px 13px 16px;
   font-size:15px;
 }
+
 .searchIcon{
   position:absolute;
   right:15px;
@@ -80,7 +110,13 @@ header{
   color:var(--blue);
   font-size:22px;
 }
-.headerActions{display:flex;align-items:center;gap:10px}
+
+.headerActions{
+  display:flex;
+  align-items:center;
+  gap:10px
+}
+
 .headerBtn{
   background:#fff;
   color:var(--blue);
@@ -89,6 +125,7 @@ header{
   padding:10px 14px;
   font-weight:700;
 }
+
 .sellerBtn{
   background:var(--yellow);
   color:#111;
@@ -97,7 +134,9 @@ header{
   padding:10px 14px;
   font-weight:800;
 }
-.iconBtn,.cartButton{
+
+.iconBtn,
+.cartButton{
   border:0;
   background:transparent;
   color:#fff;
@@ -105,7 +144,9 @@ header{
   font-size:15px;
   white-space:nowrap;
 }
-#cartCount,#wishCount{
+
+#cartCount,
+#wishCount{
   background:var(--yellow);
   color:#111;
   min-width:21px;
@@ -118,12 +159,14 @@ header{
   margin-left:3px;
 }
 
-/* CATEGORY BAR */
+/* CATEGORY */
+
 .categoryBar{
   background:#fff;
   border-bottom:1px solid var(--border);
   overflow:auto;
 }
+
 .categoryRow{
   max-width:1400px;
   margin:auto;
@@ -133,6 +176,7 @@ header{
   gap:18px;
   min-width:max-content;
 }
+
 .categoryItem{
   border:0;
   background:#fff;
@@ -141,20 +185,35 @@ header{
   text-align:center;
   min-width:90px;
 }
-.categoryEmoji{font-size:30px;display:block;margin-bottom:5px}
-.categoryItem:hover{color:var(--blue)}
+
+.categoryEmoji{
+  font-size:30px;
+  display:block;
+  margin-bottom:5px
+}
+
+.categoryItem:hover{
+  color:var(--blue)
+}
 
 /* HERO */
+
 .hero{
   max-width:1400px;
   margin:18px auto;
   padding:0 20px;
 }
+
 .heroBox{
   min-height:290px;
   border-radius:14px;
   overflow:hidden;
-  background:linear-gradient(120deg,#1356d8,#2874f0 55%,#5f52ff);
+  background:linear-gradient(
+    120deg,
+    #1356d8,
+    #2874f0 55%,
+    #5f52ff
+  );
   color:#fff;
   display:flex;
   align-items:center;
@@ -162,9 +221,23 @@ header{
   padding:35px 55px;
   position:relative;
 }
-.heroContent{max-width:600px;z-index:2}
-.heroContent h1{font-size:42px;margin:0 0 12px}
-.heroContent p{font-size:17px;line-height:1.6;margin:0 0 22px}
+
+.heroContent{
+  max-width:600px;
+  z-index:2
+}
+
+.heroContent h1{
+  font-size:42px;
+  margin:0 0 12px
+}
+
+.heroContent p{
+  font-size:17px;
+  line-height:1.6;
+  margin:0 0 22px
+}
+
 .shopNow{
   background:var(--yellow);
   color:#111;
@@ -173,15 +246,24 @@ header{
   padding:13px 24px;
   font-weight:800;
 }
-.heroVisual{font-size:120px;z-index:2}
-.heroCircle{
-  position:absolute;
-  width:360px;height:360px;border-radius:50%;
-  background:rgba(255,255,255,.10);
-  right:-100px;bottom:-150px;
+
+.heroVisual{
+  font-size:120px;
+  z-index:2
 }
 
-/* DEAL STRIP */
+.heroCircle{
+  position:absolute;
+  width:360px;
+  height:360px;
+  border-radius:50%;
+  background:rgba(255,255,255,.10);
+  right:-100px;
+  bottom:-150px;
+}
+
+/* DEALS */
+
 .dealStrip{
   max-width:1400px;
   margin:0 auto 18px;
@@ -190,25 +272,48 @@ header{
   grid-template-columns:repeat(4,1fr);
   gap:12px;
 }
+
 .deal{
   background:#fff;
   border-radius:10px;
   padding:16px;
   box-shadow:0 1px 4px rgba(0,0,0,.08);
 }
-.deal b{display:block;font-size:16px}
-.deal span{color:var(--muted);font-size:13px}
+
+.deal b{
+  display:block;
+  font-size:16px
+}
+
+.deal span{
+  color:var(--muted);
+  font-size:13px
+}
 
 /* PRODUCTS */
-main{max-width:1400px;margin:auto;padding:0 20px 40px}
+
+main{
+  max-width:1400px;
+  margin:auto;
+  padding:0 20px 40px
+}
+
 .sectionHeader{
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin:22px 0 14px;
 }
-.sectionHeader h2{margin:0;font-size:25px}
-#count{color:var(--muted)}
+
+.sectionHeader h2{
+  margin:0;
+  font-size:25px
+}
+
+#count{
+  color:var(--muted)
+}
+
 .filterBar{
   background:#fff;
   border-radius:10px;
@@ -220,18 +325,24 @@ main{max-width:1400px;margin:auto;padding:0 20px 40px}
   margin-bottom:18px;
   box-shadow:0 1px 4px rgba(0,0,0,.08);
 }
-.filterText{color:var(--muted)}
+
+.filterText{
+  color:var(--muted)
+}
+
 #sort{
   border:1px solid #ddd;
   border-radius:6px;
   padding:10px 12px;
   background:#fff;
 }
+
 .grid{
   display:grid;
   grid-template-columns:repeat(4,1fr);
   gap:18px;
 }
+
 .card{
   background:#fff;
   border-radius:10px;
@@ -241,7 +352,12 @@ main{max-width:1400px;margin:auto;padding:0 20px 40px}
   display:flex;
   flex-direction:column;
 }
-.card:hover{transform:translateY(-4px);box-shadow:0 9px 24px rgba(0,0,0,.13)}
+
+.card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 9px 24px rgba(0,0,0,.13)
+}
+
 .pic{
   height:230px;
   background:#f7f8fa;
@@ -250,35 +366,81 @@ main{max-width:1400px;margin:auto;padding:0 20px 40px}
   justify-content:center;
   position:relative;
 }
+
 .pic img{
-  width:100%;height:100%;
+  width:100%;
+  height:100%;
   object-fit:contain;
   padding:10px;
 }
+
 .noImage{
-  width:100%;height:100%;
+  width:100%;
+  height:100%;
   display:flex;
   align-items:center;
   justify-content:center;
   color:#777;
 }
+
 .wishCardBtn{
   position:absolute;
-  top:10px;right:10px;
-  width:40px;height:40px;
+  top:10px;
+  right:10px;
+  width:40px;
+  height:40px;
   border-radius:50%;
   border:0;
   background:#fff;
   box-shadow:0 2px 8px rgba(0,0,0,.18);
   font-size:20px;
 }
-.wishCardBtn.active{color:var(--danger)}
-.info{padding:15px;display:flex;flex-direction:column;flex:1}
-.tag{color:var(--blue);font-size:12px;font-weight:800;margin-bottom:8px}
-.name{font-size:17px;font-weight:800;line-height:1.4;min-height:48px}
-.desc{font-size:13px;color:var(--muted);line-height:1.45;margin:8px 0;min-height:38px}
-.price{font-size:21px;font-weight:800;margin:8px 0}
-.stock{font-size:13px;color:var(--success);margin-bottom:12px}
+
+.wishCardBtn.active{
+  color:var(--danger)
+}
+
+.info{
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  flex:1;
+}
+
+.tag{
+  color:var(--blue);
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.name{
+  font-size:17px;
+  font-weight:800;
+  line-height:1.4;
+  min-height:48px;
+}
+
+.desc{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.45;
+  margin:8px 0;
+  min-height:38px;
+}
+
+.price{
+  font-size:21px;
+  font-weight:800;
+  margin:8px 0;
+}
+
+.stock{
+  font-size:13px;
+  color:var(--success);
+  margin-bottom:12px;
+}
+
 .details{
   width:100%;
   border:1px solid var(--blue);
@@ -289,12 +451,32 @@ main{max-width:1400px;margin:auto;padding:0 20px 40px}
   font-weight:800;
   margin-bottom:10px;
 }
-.actions{display:flex;gap:8px;margin-top:auto}
-.add,.buy{
-  flex:1;border:0;border-radius:6px;padding:11px 8px;font-weight:800;
+
+.actions{
+  display:flex;
+  gap:8px;
+  margin-top:auto;
 }
-.add{background:var(--yellow);color:#111}
-.buy{background:var(--blue);color:#fff}
+
+.add,
+.buy{
+  flex:1;
+  border:0;
+  border-radius:6px;
+  padding:11px 8px;
+  font-weight:800;
+}
+
+.add{
+  background:var(--yellow);
+  color:#111;
+}
+
+.buy{
+  background:var(--blue);
+  color:#fff;
+}
+
 .empty{
   grid-column:1/-1;
   background:#fff;
@@ -305,7 +487,13 @@ main{max-width:1400px;margin:auto;padding:0 20px 40px}
 }
 
 /* FOOTER */
-footer{background:#172033;color:#fff;margin-top:35px}
+
+footer{
+  background:#172033;
+  color:#fff;
+  margin-top:35px;
+}
+
 .footerInner{
   max-width:1400px;
   margin:auto;
@@ -314,9 +502,25 @@ footer{background:#172033;color:#fff;margin-top:35px}
   grid-template-columns:2fr 1fr 1fr 1fr;
   gap:28px;
 }
-.footerText,.footerLinks a{color:#b9c0cc;font-size:14px;line-height:1.6}
-.footerLinks a{display:block;text-decoration:none;margin-bottom:9px}
-.footerTitle{font-weight:800;margin-bottom:12px}
+
+.footerText,
+.footerLinks a{
+  color:#b9c0cc;
+  font-size:14px;
+  line-height:1.6;
+}
+
+.footerLinks a{
+  display:block;
+  text-decoration:none;
+  margin-bottom:9px;
+}
+
+.footerTitle{
+  font-weight:800;
+  margin-bottom:12px;
+}
+
 .copyright{
   border-top:1px solid #30394a;
   text-align:center;
@@ -325,438 +529,1438 @@ footer{background:#172033;color:#fff;margin-top:35px}
   font-size:13px;
 }
 
-/* DRAWER + MODALS */
+/* DRAWER */
+
 .drawer{
-  position:fixed;left:-320px;top:0;width:300px;height:100%;
-  background:#fff;z-index:3000;box-shadow:5px 0 20px rgba(0,0,0,.2);
-  transition:.3s;padding:20px;
-}
-.drawer.open{left:0}
-.drawerTop{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.drawerClose{border:0;background:none;font-size:28px}
-.drawer a{
-  display:block;padding:14px 0;border-bottom:1px solid #eee;
-  text-decoration:none;color:var(--text);
-}
-.modal{
-  position:fixed;inset:0;background:rgba(0,0,0,.55);
-  display:none;align-items:center;justify-content:center;padding:18px;z-index:5000;
-}
-.modal.open{display:flex}
-.modalBox{
-  width:100%;max-width:430px;background:#fff;border-radius:12px;padding:24px;position:relative;
-}
-.cartBox{max-width:680px}
-.closeModal{
-  position:absolute;right:12px;top:8px;border:0;background:none;font-size:28px;
-}
-.modalBox input{
-  width:100%;padding:13px;border:1px solid #ddd;border-radius:6px;margin-bottom:11px;
-}
-.primary{
-  width:100%;border:0;background:var(--blue);color:#fff;
-  padding:13px;border-radius:6px;font-weight:800;
-}
-.modeButton{width:100%;border:0;background:none;color:var(--blue);margin-top:10px}
-#authMsg,#sellerAuthMsg{color:var(--danger);font-size:13px;margin-top:8px}
-#cartItems,#wishItems{max-height:55vh;overflow:auto}
-.cartItem{
-  display:grid;grid-template-columns:90px 1fr auto;
-  gap:12px;padding:12px 0;border-bottom:1px solid #eee;align-items:center;
-}
-.cartItem img{width:80px;height:80px;object-fit:contain}
-.qty{display:flex;align-items:center;gap:8px;margin-top:8px}
-.qty button{border:1px solid #ddd;background:#fff;padding:5px 8px;border-radius:4px}
-.total{display:flex;justify-content:space-between;font-size:20px;font-weight:800;padding:18px 0}
-.removeWish{
-  border:0;background:#fff;color:var(--danger);font-weight:700;
+  position:fixed;
+  left:-320px;
+  top:0;
+  width:300px;
+  height:100%;
+  background:#fff;
+  z-index:3000;
+  box-shadow:5px 0 20px rgba(0,0,0,.2);
+  transition:.3s;
+  padding:20px;
 }
 
-/* MOBILE BOTTOM NAV */
+.drawer.open{
+  left:0
+}
+
+.drawerTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.drawerClose{
+  border:0;
+  background:none;
+  font-size:28px;
+}
+
+.drawer a{
+  display:block;
+  padding:14px 0;
+  border-bottom:1px solid #eee;
+  text-decoration:none;
+  color:var(--text);
+}
+
+/* MODALS */
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.55);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:5000;
+}
+
+.modal.open{
+  display:flex
+}
+
+.modalBox{
+  width:100%;
+  max-width:430px;
+  background:#fff;
+  border-radius:12px;
+  padding:24px;
+  position:relative;
+}
+
+.cartBox{
+  max-width:680px
+}
+
+.closeModal{
+  position:absolute;
+  right:12px;
+  top:8px;
+  border:0;
+  background:none;
+  font-size:28px;
+}
+
+.modalBox input{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:6px;
+  margin-bottom:11px;
+}
+
+.primary{
+  width:100%;
+  border:0;
+  background:var(--blue);
+  color:#fff;
+  padding:13px;
+  border-radius:6px;
+  font-weight:800;
+}
+
+.modeButton{
+  width:100%;
+  border:0;
+  background:none;
+  color:var(--blue);
+  margin-top:10px;
+}
+
+#authMsg,
+#sellerAuthMsg{
+  color:var(--danger);
+  font-size:13px;
+  margin-top:8px;
+}
+
+#cartItems,
+#wishItems{
+  max-height:55vh;
+  overflow:auto;
+}
+
+.cartItem{
+  display:grid;
+  grid-template-columns:90px 1fr auto;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+  align-items:center;
+}
+
+.cartItem img{
+  width:80px;
+  height:80px;
+  object-fit:contain;
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  margin-top:8px;
+}
+
+.qty button{
+  border:1px solid #ddd;
+  background:#fff;
+  padding:5px 8px;
+  border-radius:4px;
+}
+
+.total{
+  display:flex;
+  justify-content:space-between;
+  font-size:20px;
+  font-weight:800;
+  padding:18px 0;
+}
+
+.removeWish{
+  border:0;
+  background:#fff;
+  color:var(--danger);
+  font-weight:700;
+}
+
+/* MOBILE */
+
 .bottomNav{
   display:none;
-  position:fixed;bottom:0;left:0;right:0;height:68px;
-  background:#fff;border-top:1px solid var(--border);
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:68px;
+  background:#fff;
+  border-top:1px solid var(--border);
   z-index:4000;
   justify-content:space-around;
   align-items:center;
 }
+
 .bottomNav button{
-  border:0;background:transparent;color:#4b5563;
-  font-size:11px;font-weight:700;display:flex;flex-direction:column;gap:3px;align-items:center;
+  border:0;
+  background:transparent;
+  color:#4b5563;
+  font-size:11px;
+  font-weight:700;
+  display:flex;
+  flex-direction:column;
+  gap:3px;
+  align-items:center;
 }
-.bottomNav .navIcon{font-size:23px}
-.bottomNav .active{color:var(--blue)}
+
+.bottomNav .navIcon{
+  font-size:23px
+}
+
+.bottomNav .active{
+  color:var(--blue)
+}
 
 @media(max-width:1000px){
-  .grid{grid-template-columns:repeat(3,1fr)}
-  .dealStrip{grid-template-columns:repeat(2,1fr)}
+
+  .grid{
+    grid-template-columns:repeat(3,1fr)
+  }
+
+  .dealStrip{
+    grid-template-columns:repeat(2,1fr)
+  }
+
 }
+
 @media(max-width:700px){
-  body{padding-bottom:74px}
-  .topbar{padding:10px 12px;gap:10px;flex-wrap:wrap}
-  .mobileMenu{display:block}
-  .logo{font-size:18px}
-  .headerActions{margin-left:auto}
-  .headerBtn,.sellerBtn{padding:8px 10px;font-size:12px}
-  .iconBtn{font-size:0}
-  .iconBtn::first-letter{font-size:20px}
-  .searchWrap{order:3;width:100%;flex-basis:100%}
-  .searchWrap input{padding:12px 42px 12px 14px}
-  .categoryRow{padding:10px;gap:8px}
-  .categoryItem{min-width:72px;font-size:11px}
-  .categoryEmoji{font-size:24px}
-  .hero{padding:0 10px;margin:10px auto}
-  .heroBox{padding:28px 24px;min-height:245px}
-  .heroContent h1{font-size:28px}
-  .heroContent p{font-size:14px}
-  .heroVisual{display:none}
-  .dealStrip{padding:0 10px}
-  main{padding:0 10px 30px}
-  .sectionHeader h2{font-size:21px}
-  .filterBar{flex-direction:column;align-items:stretch}
-  .grid{grid-template-columns:repeat(2,1fr);gap:10px}
-  .pic{height:170px}
-  .info{padding:11px}
-  .name{font-size:14px;min-height:42px}
-  .desc{display:none}
-  .price{font-size:18px}
-  .actions{flex-direction:column}
-  .footerInner{grid-template-columns:1fr 1fr}
-  .bottomNav{display:flex}
-  .cartItem{grid-template-columns:70px 1fr}
-  .cartPrice{grid-column:2}
+
+  body{
+    padding-bottom:74px
+  }
+
+  .topbar{
+    padding:10px 12px;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .mobileMenu{
+    display:block
+  }
+
+  .logo{
+    font-size:18px
+  }
+
+  .headerActions{
+    margin-left:auto
+  }
+
+  .headerBtn,
+  .sellerBtn{
+    padding:8px 10px;
+    font-size:12px;
+  }
+
+  .iconBtn{
+    font-size:0
+  }
+
+  .iconBtn::first-letter{
+    font-size:20px
+  }
+
+  .searchWrap{
+    order:3;
+    width:100%;
+    flex-basis:100%;
+  }
+
+  .searchWrap input{
+    padding:12px 42px 12px 14px
+  }
+
+  .categoryRow{
+    padding:10px;
+    gap:8px;
+  }
+
+  .categoryItem{
+    min-width:72px;
+    font-size:11px;
+  }
+
+  .categoryEmoji{
+    font-size:24px
+  }
+
+  .hero{
+    padding:0 10px;
+    margin:10px auto;
+  }
+
+  .heroBox{
+    padding:28px 24px;
+    min-height:245px;
+  }
+
+  .heroContent h1{
+    font-size:28px
+  }
+
+  .heroContent p{
+    font-size:14px
+  }
+
+  .heroVisual{
+    display:none
+  }
+
+  .dealStrip{
+    padding:0 10px
+  }
+
+  main{
+    padding:0 10px 30px
+  }
+
+  .sectionHeader h2{
+    font-size:21px
+  }
+
+  .filterBar{
+    flex-direction:column;
+    align-items:stretch;
+  }
+
+  .grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .pic{
+    height:170px
+  }
+
+  .info{
+    padding:11px
+  }
+
+  .name{
+    font-size:14px;
+    min-height:42px;
+  }
+
+  .desc{
+    display:none
+  }
+
+  .price{
+    font-size:18px
+  }
+
+  .actions{
+    flex-direction:column
+  }
+
+  .footerInner{
+    grid-template-columns:1fr 1fr
+  }
+
+  .bottomNav{
+    display:flex
+  }
+
+  .cartItem{
+    grid-template-columns:70px 1fr
+  }
+
+  .cartPrice{
+    grid-column:2
+  }
+
 }
+
 </style>
 </head>
 
 <body>
 
 <header>
-  <div class="topbar">
-    <button class="mobileMenu" onclick="openMenu()">☰</button>
 
-    <a href="index.html" class="logo">NEXORA <span>PICKS</span></a>
+<div class="topbar">
 
-    <div class="searchWrap">
-      <input id="search" type="text" placeholder="Search for products, brands and more..." oninput="render()">
-      <span class="searchIcon">⌕</span>
-    </div>
+<button
+class="mobileMenu"
+onclick="openMenu()"
+>
+☰
+</button>
 
-    <div class="headerActions">
-      <button id="account" class="headerBtn">Login</button>
-      <button id="sellerAccess" class="sellerBtn" onclick="openSellerAuth()">Sell</button>
-      <button class="iconBtn" onclick="openWishlist()">♡ <span id="wishCount">0</span></button>
-      <button class="cartButton" onclick="openCart()">🛒 Cart <span id="cartCount">0</span></button>
-    </div>
-  </div>
+<a
+href="index.html"
+class="logo"
+>
+NEXORA
+<span>PICKS</span>
+</a>
+
+<div class="searchWrap">
+
+<input
+id="search"
+type="text"
+placeholder="Search for products, brands and more..."
+oninput="render()"
+>
+
+<span class="searchIcon">
+⌕
+</span>
+
+</div>
+
+<div class="headerActions">
+
+<button
+id="account"
+class="headerBtn"
+>
+Login
+</button>
+
+<button
+id="sellerAccess"
+class="sellerBtn"
+onclick="openSellerAuth()"
+>
+Sell
+</button>
+
+<button
+class="iconBtn"
+onclick="openWishlist()"
+>
+♡
+<span id="wishCount">
+0
+</span>
+</button>
+
+<button
+class="cartButton"
+onclick="openCart()"
+>
+🛒 Cart
+<span id="cartCount">
+0
+</span>
+</button>
+
+</div>
+
+</div>
+
 </header>
 
+
 <section class="categoryBar">
-  <div class="categoryRow">
-    <button class="categoryItem" onclick="showAllProducts()"><span class="categoryEmoji">🏠</span>Home</button>
-    <button class="categoryItem" onclick="searchCategory('Mobiles')"><span class="categoryEmoji">📱</span>Mobiles</button>
-    <button class="categoryItem" onclick="searchCategory('Electronics')"><span class="categoryEmoji">💻</span>Electronics</button>
-    <button class="categoryItem" onclick="searchCategory('Fashion')"><span class="categoryEmoji">👕</span>Fashion</button>
-    <button class="categoryItem" onclick="searchCategory('Beauty')"><span class="categoryEmoji">💄</span>Beauty</button>
-    <button class="categoryItem" onclick="searchCategory('Home')"><span class="categoryEmoji">🏠</span>Home</button>
-    <button class="categoryItem" onclick="searchCategory('Accessories')"><span class="categoryEmoji">⌚</span>Accessories</button>
-    <button class="categoryItem" onclick="searchCategory('Featured')"><span class="categoryEmoji">⭐</span>Featured</button>
-  </div>
+
+<div class="categoryRow">
+
+<button
+class="categoryItem"
+onclick="showAllProducts()"
+>
+<span class="categoryEmoji">
+🏠
+</span>
+Home
+</button>
+
+<button
+class="categoryItem"
+onclick="searchCategory('Mobiles')"
+>
+<span class="categoryEmoji">
+📱
+</span>
+Mobiles
+</button>
+
+<button
+class="categoryItem"
+onclick="searchCategory('Electronics')"
+>
+<span class="categoryEmoji">
+💻
+</span>
+Electronics
+</button>
+
+<button
+class="categoryItem"
+onclick="searchCategory('Fashion')"
+>
+<span class="categoryEmoji">
+👕
+</span>
+Fashion
+</button>
+
+<button
+class="categoryItem"
+onclick="searchCategory('Beauty')"
+>
+<span class="categoryEmoji">
+💄
+</span>
+Beauty
+</button>
+
+<button
+class="categoryItem"
+onclick="searchCategory('Home')"
+>
+<span class="categoryEmoji">
+🏠
+</span>
+Home
+</button>
+
+<button
+class="categoryItem"
+onclick="searchCategory('Accessories')"
+>
+<span class="categoryEmoji">
+⌚
+</span>
+Accessories
+</button>
+
+<button
+class="categoryItem"
+onclick="searchCategory('Featured')"
+>
+<span class="categoryEmoji">
+⭐
+</span>
+Featured
+</button>
+
+</div>
+
 </section>
+
 
 <section class="hero">
-  <div class="heroBox">
-    <div class="heroContent">
-      <h1>Big Deals. Better Shopping.</h1>
-      <p>Discover trending products and great prices from sellers on NEXORA PICKS.</p>
-      <button class="shopNow" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now →</button>
-    </div>
-    <div class="heroVisual">🛍️</div>
-    <div class="heroCircle"></div>
-  </div>
+
+<div class="heroBox">
+
+<div class="heroContent">
+
+<h1>
+Big Deals. Better Shopping.
+</h1>
+
+<p>
+Discover trending products and great prices from sellers on NEXORA PICKS.
+</p>
+
+<button
+class="shopNow"
+onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})"
+>
+Shop Now →
+</button>
+
+</div>
+
+<div class="heroVisual">
+🛍️
+</div>
+
+<div class="heroCircle">
+</div>
+
+</div>
+
 </section>
+
 
 <section class="dealStrip">
-  <div class="deal"><b>⚡ Top Deals</b><span>Great products at better prices</span></div>
-  <div class="deal"><b>🚚 Fast Shopping</b><span>Easy checkout experience</span></div>
-  <div class="deal"><b>❤️ Wishlist</b><span>Save products for later</span></div>
-  <div class="deal"><b>🛒 Easy Cart</b><span>Add products in one tap</span></div>
+
+<div class="deal">
+<b>
+⚡ Top Deals
+</b>
+<span>
+Great products at better prices
+</span>
+</div>
+
+<div class="deal">
+<b>
+🚚 Fast Shopping
+</b>
+<span>
+Easy checkout experience
+</span>
+</div>
+
+<div class="deal">
+<b>
+❤️ Wishlist
+</b>
+<span>
+Save products for later
+</span>
+</div>
+
+<div class="deal">
+<b>
+🛒 Easy Cart
+</b>
+<span>
+Add products in one tap
+</span>
+</div>
+
 </section>
 
+
 <main id="products">
-  <div class="sectionHeader">
-    <h2>Featured Products</h2>
-    <div id="count">Loading products...</div>
-  </div>
 
-  <div class="filterBar">
-    <div class="filterText">Discover products from our marketplace</div>
-    <select id="sort" onchange="render()">
-      <option value="default">Sort: Featured</option>
-      <option value="az">Name: A to Z</option>
-      <option value="za">Name: Z to A</option>
-      <option value="low">Price: Low to High</option>
-      <option value="high">Price: High to Low</option>
-    </select>
-  </div>
+<div class="sectionHeader">
 
-  <div id="grid" class="grid"><div class="empty">Loading products...</div></div>
+<h2>
+Featured Products
+</h2>
+
+<div id="count">
+Loading products...
+</div>
+
+</div>
+
+
+<div class="filterBar">
+
+<div class="filterText">
+Discover products from our marketplace
+</div>
+
+<select
+id="sort"
+onchange="render()"
+>
+
+<option value="default">
+Sort: Featured
+</option>
+
+<option value="az">
+Name: A to Z
+</option>
+
+<option value="za">
+Name: Z to A
+</option>
+
+<option value="low">
+Price: Low to High
+</option>
+
+<option value="high">
+Price: High to Low
+</option>
+
+</select>
+
+</div>
+
+
+<div
+id="grid"
+class="grid"
+>
+
+<div class="empty">
+Loading products...
+</div>
+
+</div>
+
 </main>
 
+
 <footer>
-  <div class="footerInner">
-    <div>
-      <div class="footerTitle" style="font-size:24px">NEXORA PICKS</div>
-      <div class="footerText">Discover amazing products from independent sellers. Shop smarter and explore new products every day.</div>
-    </div>
-    <div>
-      <div class="footerTitle">Customer</div>
-      <div class="footerLinks"><a href="#">My Account</a><a href="#">My Orders</a><a href="#" onclick="openWishlist()">Wishlist</a></div>
-    </div>
-    <div>
-      <div class="footerTitle">Company</div>
-      <div class="footerLinks"><a href="#">About Us</a><a href="#">Contact</a><a href="#" onclick="openSellerAuth()">Seller Login / Registration</a></div>
-    </div>
-    <div>
-      <div class="footerTitle">Support</div>
-      <div class="footerLinks"><a href="#">Help Center</a><a href="#">Privacy Policy</a><a href="#">Terms</a></div>
-    </div>
-  </div>
-  <div class="copyright">© 2026 NEXORA PICKS. All rights reserved.</div>
+
+<div class="footerInner">
+
+<div>
+
+<div
+class="footerTitle"
+style="font-size:24px"
+>
+NEXORA PICKS
+</div>
+
+<div class="footerText">
+
+Discover amazing products from independent sellers.
+Shop smarter and explore new products every day.
+
+</div>
+
+</div>
+
+
+<div>
+
+<div class="footerTitle">
+Customer
+</div>
+
+<div class="footerLinks">
+
+<a href="#">
+My Account
+</a>
+
+<a href="#">
+My Orders
+</a>
+
+<a
+href="#"
+onclick="openWishlist()"
+>
+Wishlist
+</a>
+
+</div>
+
+</div>
+
+
+<div>
+
+<div class="footerTitle">
+Company
+</div>
+
+<div class="footerLinks">
+
+<a href="#">
+About Us
+</a>
+
+<a href="#">
+Contact
+</a>
+
+<a
+href="#"
+onclick="openSellerAuth()"
+>
+Seller Login / Registration
+</a>
+
+</div>
+
+</div>
+
+
+<div>
+
+<div class="footerTitle">
+Support
+</div>
+
+<div class="footerLinks">
+
+<a href="#">
+Help Center
+</a>
+
+<a href="#">
+Privacy Policy
+</a>
+
+<a href="#">
+Terms
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="copyright">
+© 2026 NEXORA PICKS. All rights reserved.
+</div>
+
 </footer>
 
-<div id="drawer" class="drawer">
-  <div class="drawerTop"><h2>NEXORA PICKS</h2><button class="drawerClose" onclick="closeMenu()">×</button></div>
-  <a href="index.html">🏠 Home</a>
-  <a href="#products" onclick="closeMenu()">🛍️ Products</a>
-  <a href="#" onclick="openWishlist();closeMenu()">♡ Wishlist</a>
-  <a href="#">📦 My Orders</a>
-  <a href="#">👤 My Account</a>
-  <a href="#" onclick="openSellerAuth();closeMenu()">🏪 Seller Login / Register</a>
+
+<!-- MOBILE DRAWER -->
+
+<div
+id="drawer"
+class="drawer"
+>
+
+<div class="drawerTop">
+
+<h2>
+NEXORA PICKS
+</h2>
+
+<button
+class="drawerClose"
+onclick="closeMenu()"
+>
+×
+</button>
+
 </div>
 
-<div id="authModal" class="modal">
-  <div class="modalBox">
-    <button class="closeModal" onclick="closeAuth()">×</button>
-    <h2 id="authTitle">Customer Login</h2>
-    <input id="fullName" type="text" placeholder="Full name" style="display:none">
-    <input id="email" type="email" placeholder="Email address">
-    <input id="password" type="password" placeholder="Password">
-    <button id="authBtn" class="primary" onclick="authAction()">Login</button>
-    <button id="modeBtn" class="modeButton" onclick="toggleMode()">Create customer account</button>
-    <div id="authMsg"></div>
-  </div>
+<a href="index.html">
+🏠 Home
+</a>
+
+<a
+href="#products"
+onclick="closeMenu()"
+>
+🛍️ Products
+</a>
+
+<a
+href="#"
+onclick="openWishlist();closeMenu()"
+>
+♡ Wishlist
+</a>
+
+<a href="#">
+📦 My Orders
+</a>
+
+<a href="#">
+👤 My Account
+</a>
+
+<a
+href="#"
+onclick="openSellerAuth();closeMenu()"
+>
+🏪 Seller Login / Register
+</a>
+
 </div>
 
-<div id="sellerModal" class="modal">
-  <div class="modalBox">
-    <button class="closeModal" onclick="closeSellerAuth()">×</button>
-    <h2 id="sellerTitle">Seller Login</h2>
-    <p style="color:var(--muted);font-size:14px;margin-top:-6px">Login or create your seller account to start selling on NEXORA PICKS.</p>
-    <input id="sellerName" type="text" placeholder="Your full name" style="display:none">
-    <input id="storeName" type="text" placeholder="Store / business name" style="display:none">
-    <input id="sellerEmail" type="email" placeholder="Seller email address">
-    <input id="sellerPassword" type="password" placeholder="Password">
-    <button id="sellerAuthBtn" class="primary" onclick="sellerAuthAction()">Seller Login</button>
-    <button id="sellerModeBtn" class="modeButton" onclick="toggleSellerMode()">Create seller account</button>
-    <div id="sellerAuthMsg"></div>
-  </div>
+
+<!-- CUSTOMER AUTH -->
+
+<div
+id="authModal"
+class="modal"
+>
+
+<div class="modalBox">
+
+<button
+class="closeModal"
+onclick="closeAuth()"
+>
+×
+</button>
+
+<h2 id="authTitle">
+Customer Login
+</h2>
+
+<input
+id="fullName"
+type="text"
+placeholder="Full name"
+style="display:none"
+>
+
+<input
+id="email"
+type="email"
+placeholder="Email address"
+>
+
+<input
+id="password"
+type="password"
+placeholder="Password"
+>
+
+<button
+id="authBtn"
+class="primary"
+onclick="authAction()"
+>
+Login
+</button>
+
+<button
+id="modeBtn"
+class="modeButton"
+onclick="toggleMode()"
+>
+Create customer account
+</button>
+
+<div id="authMsg">
 </div>
 
-<div id="cartModal" class="modal">
-  <div class="modalBox cartBox">
-    <button class="closeModal" onclick="closeCart()">×</button>
-    <h2>🛒 Your Cart</h2>
-    <div id="cartItems">Your cart is empty.</div>
-    <div id="cartFoot"></div>
-  </div>
 </div>
 
-<div id="wishlistModal" class="modal">
-  <div class="modalBox cartBox">
-    <button class="closeModal" onclick="closeWishlist()">×</button>
-    <h2>♡ My Wishlist</h2>
-    <div id="wishItems">Your wishlist is empty.</div>
-  </div>
 </div>
+
+
+<!-- SELLER AUTH -->
+
+<div
+id="sellerModal"
+class="modal"
+>
+
+<div class="modalBox">
+
+<button
+class="closeModal"
+onclick="closeSellerAuth()"
+>
+×
+</button>
+
+<h2 id="sellerTitle">
+Seller Login
+</h2>
+
+<p
+style="
+color:var(--muted);
+font-size:14px;
+margin-top:-6px
+"
+>
+
+Login or create your seller account
+to start selling on NEXORA PICKS.
+
+</p>
+
+<input
+id="sellerName"
+type="text"
+placeholder="Your full name"
+style="display:none"
+>
+
+<input
+id="storeName"
+type="text"
+placeholder="Store / business name"
+style="display:none"
+>
+
+<input
+id="sellerEmail"
+type="email"
+placeholder="Seller email address"
+>
+
+<input
+id="sellerPassword"
+type="password"
+placeholder="Password"
+>
+
+<button
+id="sellerAuthBtn"
+class="primary"
+onclick="sellerAuthAction()"
+>
+Seller Login
+</button>
+
+<button
+id="sellerModeBtn"
+class="modeButton"
+onclick="toggleSellerMode()"
+>
+Create seller account
+</button>
+
+<div id="sellerAuthMsg">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CART -->
+
+<div
+id="cartModal"
+class="modal"
+>
+
+<div class="modalBox cartBox">
+
+<button
+class="closeModal"
+onclick="closeCart()"
+>
+×
+</button>
+
+<h2>
+🛒 Your Cart
+</h2>
+
+<div id="cartItems">
+Your cart is empty.
+</div>
+
+<div id="cartFoot">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- WISHLIST -->
+
+<div
+id="wishlistModal"
+class="modal"
+>
+
+<div class="modalBox cartBox">
+
+<button
+class="closeModal"
+onclick="closeWishlist()"
+>
+×
+</button>
+
+<h2>
+♡ My Wishlist
+</h2>
+
+<div id="wishItems">
+Your wishlist is empty.
+</div>
+
+</div>
+
+</div>
+
+
+<!-- MOBILE NAV -->
 
 <nav class="bottomNav">
-  <button class="active" onclick="window.scrollTo({top:0,behavior:'smooth'})"><span class="navIcon">⌂</span>Home</button>
-  <button onclick="document.getElementById('search').focus()"><span class="navIcon">⌕</span>Search</button>
-  <button onclick="searchCategory('Featured')"><span class="navIcon">▦</span>Categories</button>
-  <button onclick="openWishlist()"><span class="navIcon">♡</span>Wishlist</button>
-  <button onclick="openCart()"><span class="navIcon">🛒</span>Cart</button>
+
+<button
+class="active"
+onclick="window.scrollTo({top:0,behavior:'smooth'})"
+>
+
+<span class="navIcon">
+⌂
+</span>
+
+Home
+
+</button>
+
+
+<button
+onclick="document.getElementById('search').focus()"
+>
+
+<span class="navIcon">
+⌕
+</span>
+
+Search
+
+</button>
+
+
+<button
+onclick="searchCategory('Featured')"
+>
+
+<span class="navIcon">
+▦
+</span>
+
+Categories
+
+</button>
+
+
+<button
+onclick="openWishlist()"
+>
+
+<span class="navIcon">
+♡
+</span>
+
+Wishlist
+
+</button>
+
+
+<button
+onclick="openCart()"
+>
+
+<span class="navIcon">
+🛒
+</span>
+
+Cart
+
+</button>
+
 </nav>
 
+
 <script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 import {
-  getAuth,onAuthStateChanged,createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,signOut,updateProfile
-} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-import { getFirestore,collection,onSnapshot,doc,setDoc,serverTimestamp } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+  initializeApp
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+import {
+
+  getAuth,
+
+  onAuthStateChanged,
+
+  createUserWithEmailAndPassword,
+
+  signInWithEmailAndPassword,
+
+  signOut,
+
+  updateProfile
+
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+import {
+
+  getFirestore,
+
+  collection,
+
+  onSnapshot,
+
+  doc,
+
+  setDoc,
+
+  getDoc,
+
+  serverTimestamp
+
+}
+from
+"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+
 
 const firebaseConfig = {
-  apiKey:"AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
-  authDomain:"nexora-picks-be049.firebaseapp.com",
-  projectId:"nexora-picks-be049",
-  storageBucket:"nexora-picks-be049.firebasestorage.app",
-  messagingSenderId:"325932959084",
-  appId:"1:325932959084:web:4fd8252e1ba83f82ee1f49",
-  measurementId:"G-KMQZXZZCHJ"
+
+  apiKey:
+  "AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
+
+  authDomain:
+  "nexora-picks-be049.firebaseapp.com",
+
+  projectId:
+  "nexora-picks-be049",
+
+  storageBucket:
+  "nexora-picks-be049.firebasestorage.app",
+
+  messagingSenderId:
+  "325932959084",
+
+  appId:
+  "1:325932959084:web:4fd8252e1ba83f82ee1f49",
+
+  measurementId:
+  "G-KMQZXZZCHJ"
+
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+
+const app =
+initializeApp(firebaseConfig);
+
+
+const auth =
+getAuth(app);
+
+
+const db =
+getFirestore(app);
+
+
+/* VARIABLES */
 
 let products = [];
-let cart = JSON.parse(localStorage.getItem("nexora_cart") || "[]");
-let wishlist = JSON.parse(localStorage.getItem("nexora_wishlist") || "[]");
+
+
+let cart =
+JSON.parse(
+  localStorage.getItem(
+    "nexora_cart"
+  )
+  || "[]"
+);
+
+
+let wishlist =
+JSON.parse(
+  localStorage.getItem(
+    "nexora_wishlist"
+  )
+  || "[]"
+);
+
+
 let signup = false;
+
+
 let sellerSignup = false;
 
-const $ = id => document.getElementById(id);
-const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[c]));
+
+/* HELPERS */
+
+const $ =
+id =>
+document.getElementById(id);
+
+
+const esc =
+value =>
+String(value ?? "")
+.replace(
+  /[&<>"']/g,
+  c => ({
+
+    "&":"&amp;",
+
+    "<":"&lt;",
+
+    ">":"&gt;",
+
+    '"':"&quot;",
+
+    "'":"&#39;"
+
+  }[c])
+);
+
+
+/* CART SAVE */
 
 function saveCart(){
-  localStorage.setItem("nexora_cart",JSON.stringify(cart));
+
+  localStorage.setItem(
+    "nexora_cart",
+    JSON.stringify(cart)
+  );
+
   updateCount();
+
   renderCart();
+
 }
+
+
+/* WISHLIST SAVE */
+
 function saveWishlist(){
-  localStorage.setItem("nexora_wishlist",JSON.stringify(wishlist));
+
+  localStorage.setItem(
+    "nexora_wishlist",
+    JSON.stringify(wishlist)
+  );
+
   updateCount();
+
 }
+
+
+/* COUNTS */
+
 function updateCount(){
-  $("cartCount").textContent = cart.reduce((n,item)=>n+Number(item.qty||0),0);
-  $("wishCount").textContent = wishlist.length;
+
+  $("cartCount").textContent =
+  cart.reduce(
+    (n,item) =>
+    n + Number(item.qty || 0),
+    0
+  );
+
+
+  $("wishCount").textContent =
+  wishlist.length;
+
 }
 
-window.openMenu=()=> $("drawer").classList.add("open");
-window.closeMenu=()=> $("drawer").classList.remove("open");
 
-window.openAuth=()=> $("authModal").classList.add("open");
-window.closeAuth=()=> $("authModal").classList.remove("open");
+/* MENU */
 
-window.toggleMode=()=>{
-  signup=!signup;
-  $("authTitle").textContent=signup?"Create Customer Account":"Customer Login";
-  $("authBtn").textContent=signup?"Create Account":"Login";
-  $("modeBtn").textContent=signup?"Already have an account? Login":"Create customer account";
-  $("fullName").style.display=signup?"block":"none";
+window.openMenu = () =>
+$("drawer").classList.add("open");
+
+
+window.closeMenu = () =>
+$("drawer").classList.remove("open");
+
+
+/* CUSTOMER AUTH */
+
+window.openAuth = () =>
+$("authModal").classList.add("open");
+
+
+window.closeAuth = () =>
+$("authModal").classList.remove("open");
+
+
+window.toggleMode = () => {
+
+  signup = !signup;
+
+
+  $("authTitle").textContent =
+  signup
+  ? "Create Customer Account"
+  : "Customer Login";
+
+
+  $("authBtn").textContent =
+  signup
+  ? "Create Account"
+  : "Login";
+
+
+  $("modeBtn").textContent =
+  signup
+  ? "Already have an account? Login"
+  : "Create customer account";
+
+
+  $("fullName").style.display =
+  signup
+  ? "block"
+  : "none";
+
 };
 
-window.authAction=async()=>{
-  const message=$("authMsg");
-  message.textContent="";
-  const email=$("email").value.trim();
-  const password=$("password").value;
-  if(!email||!password){message.textContent="Please enter email and password.";return}
-  try{
-    if(signup){
-      const fullName=$("fullName").value.trim();
-      if(!fullName){message.textContent="Please enter your full name.";return}
-      const userCredential=await createUserWithEmailAndPassword(auth,email,password);
-      await updateProfile(userCredential.user,{displayName:fullName});
-    }else{
-      await signInWithEmailAndPassword(auth,email,password);
-    }
-    closeAuth();
-  }catch(error){message.textContent=error.message}
-};
 
-window.openSellerAuth=()=> $("sellerModal").classList.add("open");
-window.closeSellerAuth=()=> $("sellerModal").classList.remove("open");
+window.authAction =
+async () => {
 
-window.toggleSellerMode=()=>{
-  sellerSignup=!sellerSignup;
-  $("sellerTitle").textContent=sellerSignup?"Create Seller Account":"Seller Login";
-  $("sellerAuthBtn").textContent=sellerSignup?"Create Seller Account":"Seller Login";
-  $("sellerModeBtn").textContent=sellerSignup?"Already have a seller account? Login":"Create seller account";
-  $("sellerName").style.display=sellerSignup?"block":"none";
-  $("storeName").style.display=sellerSignup?"block":"none";
-  $("sellerAuthMsg").textContent="";
-};
+  const message =
+  $("authMsg");
 
- window.sellerAuthAction=async()=>{
-  const message=$("sellerAuthMsg");
 
-  message.textContent="";
+  message.textContent =
+  "";
 
-  const email=$("sellerEmail").value.trim();
-  const password=$("sellerPassword").value;
 
-  if(!email||!password){
-    message.style.color="var(--danger)";
-    message.textContent="Please enter seller email and password.";
+  const email =
+  $("email").value.trim();
+
+
+  const password =
+  $("password").value;
+
+
+  if(!email || !password){
+
+    message.textContent =
+    "Please enter email and password.";
+
     return;
+
   }
 
+
   try{
 
-    if(sellerSignup){
 
-      const name=$("sellerName").value.trim();
-      const storeName=$("storeName").value.trim();
+    if(signup){
 
-      if(!name||!storeName){
-        message.style.color="var(--danger)";
-        message.textContent="Please enter your name and store name.";
+      const fullName =
+      $("fullName").value.trim();
+
+
+      if(!fullName){
+
+        message.textContent =
+        "Please enter your full name.";
+
         return;
+
       }
 
-      const userCredential=
-        await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
+
+      const userCredential =
+      await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
 
       await updateProfile(
         userCredential.user,
         {
-          displayName:name
+          displayName:fullName
         }
       );
 
-      await setDoc(
-        doc(
-          db,
-          "users",
-          userCredential.user.uid
-        ),
-        {
-          name:name,
-          storeName:storeName,
-          email:email,
-          role:"seller",
-          status:"pending",
-          createdAt:serverTimestamp()
-        },
-        {
-          merge:true
-        }
-      );
+    }
 
-      message.style.color="var(--success)";
 
-      message.textContent=
-        "Seller account created successfully.";
-
-      setTimeout(()=>{
-
-        closeSellerAuth();
-
-        window.location.href=
-          "seller-register.html";
-
-      },1200);
-
-    }else{
+    else{
 
       await signInWithEmailAndPassword(
         auth,
@@ -764,115 +1968,735 @@ window.toggleSellerMode=()=>{
         password
       );
 
-      closeSellerAuth();
-
-      window.location.href=
-        "seller-dashboard.html";
-
     }
 
-  }catch(error){
 
-    message.style.color="var(--danger)";
+    closeAuth();
 
-    message.textContent=error.message;
+
+  }
+
+
+  catch(error){
+
+    message.textContent =
+    error.message;
 
   }
 
 };
-  /* ACCOUNT LOGIN BUTTON */
-$("account").onclick=()=>{
+
+
+/* SELLER MODAL */
+
+window.openSellerAuth =
+() =>
+$("sellerModal")
+.classList.add("open");
+
+
+window.closeSellerAuth =
+() =>
+$("sellerModal")
+.classList.remove("open");
+
+
+window.toggleSellerMode =
+() => {
+
+  sellerSignup =
+  !sellerSignup;
+
+
+  $("sellerTitle").textContent =
+  sellerSignup
+  ? "Create Seller Account"
+  : "Seller Login";
+
+
+  $("sellerAuthBtn").textContent =
+  sellerSignup
+  ? "Create Seller Account"
+  : "Seller Login";
+
+
+  $("sellerModeBtn").textContent =
+  sellerSignup
+  ? "Already have a seller account? Login"
+  : "Create seller account";
+
+
+  $("sellerName").style.display =
+  sellerSignup
+  ? "block"
+  : "none";
+
+
+  $("storeName").style.display =
+  sellerSignup
+  ? "block"
+  : "none";
+
+
+  $("sellerAuthMsg").textContent =
+  "";
+
+};
+
+
+/* SELLER LOGIN + APPROVAL CHECK */
+
+window.sellerAuthAction =
+async () => {
+
+
+  const message =
+  $("sellerAuthMsg");
+
+
+  message.textContent =
+  "";
+
+
+  const email =
+  $("sellerEmail").value.trim();
+
+
+  const password =
+  $("sellerPassword").value;
+
+
+  if(!email || !password){
+
+    message.style.color =
+    "var(--danger)";
+
+
+    message.textContent =
+    "Please enter seller email and password.";
+
+
+    return;
+
+  }
+
+
+  try{
+
+
+    /* SELLER REGISTRATION */
+
+    if(sellerSignup){
+
+
+      const name =
+      $("sellerName").value.trim();
+
+
+      const storeName =
+      $("storeName").value.trim();
+
+
+      if(!name || !storeName){
+
+        message.style.color =
+        "var(--danger)";
+
+
+        message.textContent =
+        "Please enter your name and store name.";
+
+
+        return;
+
+      }
+
+
+      const userCredential =
+
+      await createUserWithEmailAndPassword(
+
+        auth,
+
+        email,
+
+        password
+
+      );
+
+
+      await updateProfile(
+
+        userCredential.user,
+
+        {
+
+          displayName:name
+
+        }
+
+      );
+
+
+      await updateProfile(
+
+        userCredential.user,
+
+        {
+
+          displayName:name
+
+        }
+
+      );
+
+
+      await setDoc(
+
+        doc(
+
+          db,
+
+          "users",
+
+          userCredential.user.uid
+
+        ),
+
+        {
+
+          name:name,
+
+          storeName:storeName,
+
+          email:email,
+
+          role:"seller",
+
+          status:"pending",
+
+          createdAt:
+          serverTimestamp()
+
+        },
+
+        {
+
+          merge:true
+
+        }
+
+      );
+
+
+      message.style.color =
+      "var(--success)";
+
+
+      message.textContent =
+      "Seller account created successfully! Waiting for admin approval.";
+
+
+      setTimeout(
+        () => {
+
+          closeSellerAuth();
+
+
+          window.location.href =
+          "seller-register.html";
+
+        },
+        1500
+      );
+
+
+    }
+
+
+    /* SELLER LOGIN */
+
+    else{
+
+
+      const userCredential =
+
+      await signInWithEmailAndPassword(
+
+        auth,
+
+        email,
+
+        password
+
+      );
+
+
+      const user =
+      userCredential.user;
+
+
+      const sellerDoc =
+
+      await getDoc(
+
+        doc(
+
+          db,
+
+          "users",
+
+          user.uid
+
+        )
+
+      );
+
+
+      /* SELLER DATA NOT FOUND */
+
+      if(!sellerDoc.exists()){
+
+
+        await signOut(auth);
+
+
+        message.style.color =
+        "var(--danger)";
+
+
+        message.textContent =
+        "Seller account information not found.";
+
+
+        return;
+
+      }
+
+
+      const sellerData =
+      sellerDoc.data();
+
+
+      /* NOT SELLER */
+
+      if(
+        sellerData.role !==
+        "seller"
+      ){
+
+
+        await signOut(auth);
+
+
+        message.style.color =
+        "var(--danger)";
+
+
+        message.textContent =
+        "This is not a seller account.";
+
+
+        return;
+
+      }
+
+
+      /* PENDING */
+
+      if(
+        sellerData.status ===
+        "pending"
+      ){
+
+
+        await signOut(auth);
+
+
+        message.style.color =
+        "var(--danger)";
+
+
+        message.textContent =
+        "Your seller account is waiting for admin approval.";
+
+
+        return;
+
+      }
+
+
+      /* BLOCKED */
+
+      if(
+        sellerData.status ===
+        "blocked"
+      ){
+
+
+        await signOut(auth);
+
+
+        message.style.color =
+        "var(--danger)";
+
+
+        message.textContent =
+        "Your seller account has been blocked.";
+
+
+        return;
+
+      }
+
+
+      /* NOT APPROVED */
+
+      if(
+        sellerData.status !==
+        "approved"
+      ){
+
+
+        await signOut(auth);
+
+
+        message.style.color =
+        "var(--danger)";
+
+
+        message.textContent =
+        "Your seller account is not approved.";
+
+
+        return;
+
+      }
+
+
+      /* APPROVED */
+
+      message.style.color =
+      "var(--success)";
+
+
+      message.textContent =
+      "Login successful! Opening seller dashboard...";
+
+
+      setTimeout(
+        () => {
+
+          closeSellerAuth();
+
+
+          window.location.href =
+          "seller-dashboard.html";
+
+        },
+        700
+      );
+
+
+    }
+
+
+  }
+
+
+  catch(error){
+
+
+    message.style.color =
+    "var(--danger)";
+
+
+    if(
+      error.code ===
+      "auth/invalid-credential"
+    ){
+
+
+      message.textContent =
+      "Incorrect email or password.";
+
+
+    }
+
+
+    else{
+
+
+      message.textContent =
+      error.message;
+
+
+    }
+
+
+  }
+
+
+};
+
+
+/* ACCOUNT BUTTON */
+
+$("account").onclick =
+() => {
+
+
   if(auth.currentUser){
-    if(confirm("Do you want to logout?")){
+
+
+    if(
+      confirm(
+        "Do you want to logout?"
+      )
+    ){
+
+
       signOut(auth);
+
+
     }
-  }else{
-    openAuth();
+
+
   }
+
+
+  else{
+
+
+    openAuth();
+
+
+  }
+
+
 };
+
 
 /* AUTH STATE */
-onAuthStateChanged(auth,user=>{
-  if(user){
-    $("account").textContent=user.displayName||"My Account";
-  }else{
-    $("account").textContent="Login";
+
+onAuthStateChanged(
+  auth,
+
+  user => {
+
+
+    if(user){
+
+
+      $("account").textContent =
+
+      user.displayName ||
+
+      "My Account";
+
+
+    }
+
+
+    else{
+
+
+      $("account").textContent =
+      "Login";
+
+
+    }
+
+
   }
-});
+
+);
 
 
 /* CART */
-window.openCart=()=>{
-  $("cartModal").classList.add("open");
+
+window.openCart =
+() => {
+
+  $("cartModal")
+  .classList
+  .add("open");
+
+
   renderCart();
+
 };
 
-window.closeCart=()=>{
-  $("cartModal").classList.remove("open");
+
+window.closeCart =
+() => {
+
+  $("cartModal")
+  .classList
+  .remove("open");
+
 };
+
 
 function addToCart(product){
-  const existing=cart.find(item=>item.id===product.id);
+
+
+  const existing =
+
+  cart.find(
+    item =>
+    item.id === product.id
+  );
+
 
   if(existing){
-    existing.qty=Number(existing.qty||0)+1;
-  }else{
-    cart.push({
-      ...product,
-      qty:1
-    });
+
+
+    existing.qty =
+
+    Number(
+      existing.qty || 0
+    ) + 1;
+
+
   }
 
+
+  else{
+
+
+    cart.push({
+
+      ...product,
+
+      qty:1
+
+    });
+
+
+  }
+
+
   saveCart();
+
 }
+
 
 function buyNow(product){
+
   addToCart(product);
-  location.href="checkout.html";
+
+  location.href =
+  "checkout.html";
+
 }
 
-window.changeQty=(id,change)=>{
-  const item=cart.find(item=>item.id===id);
 
-  if(!item)return;
+window.changeQty =
+(id,change) => {
 
-  item.qty=Number(item.qty||0)+change;
 
-  if(item.qty<=0){
-    cart=cart.filter(item=>item.id!==id);
+  const item =
+
+  cart.find(
+    item =>
+    item.id === id
+  );
+
+
+  if(!item)
+  return;
+
+
+  item.qty =
+
+  Number(
+    item.qty || 0
+  ) + change;
+
+
+  if(item.qty <= 0){
+
+
+    cart =
+    cart.filter(
+      item =>
+      item.id !== id
+    );
+
+
   }
 
+
   saveCart();
+
 };
 
-window.removeItem=id=>{
-  cart=cart.filter(item=>item.id!==id);
+
+window.removeItem =
+id => {
+
+
+  cart =
+  cart.filter(
+    item =>
+    item.id !== id
+  );
+
+
   saveCart();
+
 };
+
 
 function renderCart(){
 
-  const box=$("cartItems");
-  const foot=$("cartFoot");
+
+  const box =
+  $("cartItems");
+
+
+  const foot =
+  $("cartFoot");
+
 
   if(!cart.length){
 
-    box.innerHTML=`
-      <div class="emptyCart">
-        Your cart is empty.
-      </div>
-    `;
 
-    foot.innerHTML="";
+    box.innerHTML =
+
+    `<div class="emptyCart">
+
+      Your cart is empty.
+
+    </div>`;
+
+
+    foot.innerHTML =
+    "";
+
 
     return;
+
   }
 
-  box.innerHTML=cart.map(item=>{
 
-    const image=item.imageUrl||item.image||"";
+  box.innerHTML =
 
-    return `
+  cart.map(
+    item => {
+
+
+      const image =
+
+      item.imageUrl ||
+
+      item.image ||
+
+      "";
+
+
+      return `
 
       <div class="cartItem">
 
@@ -880,222 +2704,17 @@ function renderCart(){
 
           ${
             image
-            ? `<img src="${esc(image)}"
-                 alt="${esc(item.name||"Product")}">`
-            : `<div class="noImage">No image</div>`
-          }
 
-        </div>
-
-        <div>
-
-          <b>${esc(item.name||"Product")}</b>
-
-          <div>
-            ₹${Number(item.price||0).toLocaleString("en-IN")}
-          </div>
-
-          <div class="qty">
-
-            <button
-              onclick="changeQty('${esc(item.id)}',-1)"
-            >
-              −
-            </button>
-
-            <span>
-              ${Number(item.qty||0)}
-            </span>
-
-            <button
-              onclick="changeQty('${esc(item.id)}',1)"
-            >
-              +
-            </button>
-
-            <button
-              onclick="removeItem('${esc(item.id)}')"
-            >
-              Remove
-            </button>
-
-          </div>
-
-        </div>
-
-        <b>
-
-          ₹${(
-            Number(item.price||0)*
-            Number(item.qty||0)
-          ).toLocaleString("en-IN")}
-
-        </b>
-
-      </div>
-
-    `;
-
-  }).join("");
-
-
-  const total=cart.reduce(
-    (sum,item)=>
-      sum+
-      Number(item.price||0)*
-      Number(item.qty||0),
-    0
-  );
-
-
-  foot.innerHTML=`
-
-    <div class="total">
-
-      <span>Total</span>
-
-      <span>
-        ₹${total.toLocaleString("en-IN")}
-      </span>
-
-    </div>
-
-    <button
-      class="primary"
-      onclick="goToCheckout()"
-    >
-      Proceed to Checkout
-    </button>
-
-  `;
-
-}
-
-
-window.goToCheckout=()=>{
-
-  if(!cart.length){
-
-    alert("Your cart is empty.");
-
-    return;
-  }
-
-  closeCart();
-
-  location.href="checkout.html";
-
-};
-
-
-/* WISHLIST */
-
-window.openWishlist=()=>{
-
-  $("wishlistModal").classList.add("open");
-
-  renderWishlist();
-
-};
-
-
-window.closeWishlist=()=>{
-
-  $("wishlistModal").classList.remove("open");
-
-};
-
-
-function isWished(id){
-
-  return wishlist.some(
-    item=>item.id===id
-  );
-
-}
-
-
-window.toggleWishlist=id=>{
-
-  const product=products.find(
-    item=>item.id===id
-  );
-
-  if(!product)return;
-
-
-  if(isWished(id)){
-
-    wishlist=wishlist.filter(
-      item=>item.id!==id
-    );
-
-  }else{
-
-    wishlist.push(product);
-
-  }
-
-
-  saveWishlist();
-
-  render();
-
-};
-
-
-window.removeWish=id=>{
-
-  wishlist=wishlist.filter(
-    item=>item.id!==id
-  );
-
-  saveWishlist();
-
-  renderWishlist();
-
-  render();
-
-};
-
-
-function renderWishlist(){
-
-  const box=$("wishItems");
-
-
-  if(!wishlist.length){
-
-    box.innerHTML=`
-      <p class="emptyCart">
-        Your wishlist is empty.
-      </p>
-    `;
-
-    return;
-
-  }
-
-
-  box.innerHTML=wishlist.map(item=>{
-
-    const image=item.imageUrl||item.image||"";
-
-
-    return `
-
-      <div class="cartItem">
-
-        <div>
-
-          ${
-            image
             ? `<img
-                src="${esc(image)}"
-                alt="${esc(item.name||"Product")}"
+               src="${esc(image)}"
+               alt="${esc(
+                 item.name ||
+                 "Product"
+               )}"
               >`
+
             : `<div class="noImage">
-                No image
+               No image
               </div>`
           }
 
@@ -1105,86 +2724,522 @@ function renderWishlist(){
         <div>
 
           <b>
-            ${esc(item.name||"Product")}
+
+            ${esc(
+              item.name ||
+              "Product"
+            )}
+
           </b>
 
 
           <div>
 
-            ₹${Number(item.price||0)
-              .toLocaleString("en-IN")}
+            ₹${Number(
+              item.price || 0
+            ).toLocaleString(
+              "en-IN"
+            )}
 
           </div>
 
 
-          <button
-            class="primary"
-            style="margin-top:8px"
-            onclick="addWishlistProduct('${esc(item.id)}')"
-          >
+          <div class="qty">
 
-            Add to Cart
 
-          </button>
+            <button
+            onclick="
+            changeQty(
+            '${esc(item.id)}',
+            -1
+            )"
+            >
+
+            −
+
+            </button>
+
+
+            <span>
+
+            ${Number(
+              item.qty || 0
+            )}
+
+            </span>
+
+
+            <button
+            onclick="
+            changeQty(
+            '${esc(item.id)}',
+            1
+            )"
+            >
+
+            +
+
+            </button>
+
+
+            <button
+            onclick="
+            removeItem(
+            '${esc(item.id)}'
+            )"
+            >
+
+            Remove
+
+            </button>
+
+
+          </div>
+
 
         </div>
 
 
-        <button
-          class="removeWish"
-          onclick="removeWish('${esc(item.id)}')"
-        >
+        <b>
 
-          Remove
+          ₹${(
 
-        </button>
+            Number(
+              item.price || 0
+            )
+
+            *
+
+            Number(
+              item.qty || 0
+            )
+
+          ).toLocaleString(
+            "en-IN"
+          )}
+
+        </b>
+
 
       </div>
 
-    `;
+      `;
 
-  }).join("");
+
+    }
+
+  ).join("");
+
+
+  const total =
+
+  cart.reduce(
+
+    (sum,item) =>
+
+    sum +
+
+    Number(
+      item.price || 0
+    )
+
+    *
+
+    Number(
+      item.qty || 0
+    ),
+
+    0
+
+  );
+
+
+  foot.innerHTML = `
+
+  <div class="total">
+
+    <span>
+    Total
+    </span>
+
+    <span>
+
+    ₹${total.toLocaleString(
+      "en-IN"
+    )}
+
+    </span>
+
+  </div>
+
+
+  <button
+
+  class="primary"
+
+  onclick="goToCheckout()"
+
+  >
+
+  Proceed to Checkout
+
+  </button>
+
+  `;
 
 }
 
 
-window.addWishlistProduct=id=>{
+window.goToCheckout =
+() => {
 
-  const product=wishlist.find(
-    item=>item.id===id
-  );
 
-  if(product){
+  if(!cart.length){
 
-    addToCart(product);
+
+    alert(
+      "Your cart is empty."
+    );
+
+
+    return;
 
   }
+
+
+  closeCart();
+
+
+  location.href =
+  "checkout.html";
 
 };
 
 
-/* CATEGORY SEARCH */
+/* WISHLIST */
 
-window.searchCategory=category=>{
+window.openWishlist =
+() => {
 
-  $("search").value=category;
 
-  $("products").scrollIntoView({
-    behavior:"smooth"
-  });
+  $("wishlistModal")
+  .classList
+  .add("open");
+
+
+  renderWishlist();
+
+};
+
+
+window.closeWishlist =
+() => {
+
+
+  $("wishlistModal")
+  .classList
+  .remove("open");
+
+};
+
+
+function isWished(id){
+
+
+  return wishlist.some(
+
+    item =>
+    item.id === id
+
+  );
+
+}
+
+
+window.toggleWishlist =
+id => {
+
+
+  const product =
+
+  products.find(
+
+    item =>
+    item.id === id
+
+  );
+
+
+  if(!product)
+  return;
+
+
+  if(isWished(id)){
+
+
+    wishlist =
+
+    wishlist.filter(
+
+      item =>
+      item.id !== id
+
+    );
+
+
+  }
+
+
+  else{
+
+
+    wishlist.push(
+      product
+    );
+
+
+  }
+
+
+  saveWishlist();
+
 
   render();
 
 };
 
 
-window.showAllProducts=()=>{
+window.removeWish =
+id => {
 
-  $("search").value="";
 
-  $("products").scrollIntoView({
+  wishlist =
+
+  wishlist.filter(
+
+    item =>
+    item.id !== id
+
+  );
+
+
+  saveWishlist();
+
+
+  renderWishlist();
+
+
+  render();
+
+};
+
+
+function renderWishlist(){
+
+
+  const box =
+  $("wishItems");
+
+
+  if(!wishlist.length){
+
+
+    box.innerHTML =
+
+    `<p class="emptyCart">
+
+    Your wishlist is empty.
+
+    </p>`;
+
+
+    return;
+
+  }
+
+
+  box.innerHTML =
+
+  wishlist.map(
+
+    item => {
+
+
+      const image =
+
+      item.imageUrl ||
+
+      item.image ||
+
+      "";
+
+
+      return `
+
+      <div class="cartItem">
+
+
+        <div>
+
+          ${
+            image
+
+            ? `<img
+               src="${esc(image)}"
+               alt="${esc(
+                 item.name ||
+                 "Product"
+               )}"
+              >`
+
+            : `<div class="noImage">
+
+               No image
+
+              </div>`
+          }
+
+        </div>
+
+
+        <div>
+
+
+          <b>
+
+          ${esc(
+            item.name ||
+            "Product"
+          )}
+
+          </b>
+
+
+          <div>
+
+          ₹${Number(
+            item.price || 0
+          ).toLocaleString(
+            "en-IN"
+          )}
+
+          </div>
+
+
+          <button
+
+          class="primary"
+
+          style="margin-top:8px"
+
+          onclick="
+          addWishlistProduct(
+          '${esc(item.id)}'
+          )"
+
+          >
+
+          Add to Cart
+
+          </button>
+
+
+        </div>
+
+
+        <button
+
+        class="removeWish"
+
+        onclick="
+        removeWish(
+        '${esc(item.id)}'
+        )"
+
+        >
+
+        Remove
+
+        </button>
+
+
+      </div>
+
+      `;
+
+
+    }
+
+  ).join("");
+
+}
+
+
+window.addWishlistProduct =
+id => {
+
+
+  const product =
+
+  wishlist.find(
+
+    item =>
+    item.id === id
+
+  );
+
+
+  if(product){
+
+
+    addToCart(
+      product
+    );
+
+
+  }
+
+};
+
+
+/* CATEGORY */
+
+window.searchCategory =
+category => {
+
+
+  $("search").value =
+  category;
+
+
+  $("products")
+  .scrollIntoView({
+
     behavior:"smooth"
+
   });
+
+
+  render();
+
+};
+
+
+window.showAllProducts =
+() => {
+
+
+  $("search").value =
+  "";
+
+
+  $("products")
+  .scrollIntoView({
+
+    behavior:"smooth"
+
+  });
+
 
   render();
 
@@ -1193,106 +3248,179 @@ window.showAllProducts=()=>{
 
 /* RENDER PRODUCTS */
 
-window.render=()=>{
+window.render =
+() => {
 
-  const query=
-    ($("search").value||"")
+
+  const query =
+
+  (
+    $("search").value ||
+    ""
+  )
+
+  .toLowerCase()
+
+  .trim();
+
+
+  const sort =
+  $("sort").value;
+
+
+  let filtered =
+
+  products.filter(
+    product => {
+
+
+      return [
+
+        product.name || "",
+
+        product.description || "",
+
+        product.category || ""
+
+      ]
+
+      .join(" ")
+
       .toLowerCase()
-      .trim();
+
+      .includes(query);
 
 
-  const sort=$("sort").value;
+    }
+
+  );
 
 
-  let filtered=products.filter(product=>{
+  if(sort === "low"){
 
-    return [
-
-      product.name||"",
-
-      product.description||"",
-
-      product.category||""
-
-    ]
-    .join(" ")
-    .toLowerCase()
-    .includes(query);
-
-  });
-
-
-  if(sort==="low"){
 
     filtered.sort(
-      (a,b)=>
-        Number(a.price||0)-
-        Number(b.price||0)
+
+      (a,b) =>
+
+      Number(
+        a.price || 0
+      )
+
+      -
+
+      Number(
+        b.price || 0
+      )
+
     );
+
 
   }
 
 
-  if(sort==="high"){
+  if(sort === "high"){
+
 
     filtered.sort(
-      (a,b)=>
-        Number(b.price||0)-
-        Number(a.price||0)
+
+      (a,b) =>
+
+      Number(
+        b.price || 0
+      )
+
+      -
+
+      Number(
+        a.price || 0
+      )
+
     );
+
 
   }
 
 
-  if(sort==="az"){
+  if(sort === "az"){
+
 
     filtered.sort(
-      (a,b)=>
-        String(a.name||"")
-        .localeCompare(
-          String(b.name||"")
+
+      (a,b) =>
+
+      String(
+        a.name || ""
+      )
+
+      .localeCompare(
+
+        String(
+          b.name || ""
         )
+
+      )
+
     );
+
 
   }
 
 
-  if(sort==="za"){
+  if(sort === "za"){
+
 
     filtered.sort(
-      (a,b)=>
-        String(b.name||"")
-        .localeCompare(
-          String(a.name||"")
+
+      (a,b) =>
+
+      String(
+        b.name || ""
+      )
+
+      .localeCompare(
+
+        String(
+          a.name || ""
         )
+
+      )
+
     );
+
 
   }
 
 
-  $("count").textContent=
-    `${filtered.length} product${
-      filtered.length===1
-      ? ""
-      : "s"
-    }`;
+  $("count").textContent =
+
+  `${filtered.length} product${
+    filtered.length === 1
+    ? ""
+    : "s"
+  }`;
 
 
-  $("grid").innerHTML=
+  $("grid").innerHTML =
 
-    filtered.length
 
-    ? filtered.map(card).join("")
+  filtered.length
 
-    : `
 
-      <div class="empty">
+  ? filtered.map(
+      card
+    ).join("")
 
-        No products found.
 
-      </div>
+  : `
 
-    `;
+    <div class="empty">
+
+    No products found.
+
+    </div>
+
+  `;
 
 };
 
@@ -1301,213 +3429,293 @@ window.render=()=>{
 
 function card(product){
 
-  const image=
-    product.imageUrl||
-    product.image||
-    "";
+
+  const image =
+
+  product.imageUrl ||
+
+  product.image ||
+
+  "";
 
 
-  const price=
-    Number(product.price)||0;
+  const price =
+
+  Number(
+    product.price
+  ) || 0;
 
 
-  const stock=
-    Number(product.stock)||0;
+  const stock =
+
+  Number(
+    product.stock
+  ) || 0;
 
 
-  const safeProduct=
-    encodeURIComponent(
-      JSON.stringify(product)
-    );
+  const safeProduct =
+
+  encodeURIComponent(
+
+    JSON.stringify(
+      product
+    )
+
+  );
 
 
-  const wished=
-    isWished(product.id);
+  const wished =
+
+  isWished(
+    product.id
+  );
 
 
   return `
 
-    <article class="card">
+  <article class="card">
 
-      <div class="pic">
+
+    <div class="pic">
+
+
+      <button
+
+      class="
+      wishCardBtn
+      ${
+
+        wished
+
+        ? "active"
+
+        : ""
+
+      }
+      "
+
+      onclick="
+      toggleWishlist(
+      '${esc(product.id)}'
+      )
+      "
+
+      aria-label="Wishlist"
+
+      >
+
+      ${
+
+        wished
+
+        ? "♥"
+
+        : "♡"
+
+      }
+
+      </button>
+
+
+      ${
+
+        image
+
+        ? `<img
+
+           src="${esc(image)}"
+
+           alt="${esc(
+
+             product.name ||
+
+             "Product"
+
+           )}"
+
+           loading="lazy"
+
+          >`
+
+        : `<div class="noImage">
+
+           No image available
+
+          </div>`
+
+      }
+
+
+    </div>
+
+
+    <div class="info">
+
+
+      <div class="tag">
+
+      ${esc(
+
+        product.category ||
+
+        "Featured"
+
+      )}
+
+      </div>
+
+
+      <div class="name">
+
+      ${esc(
+
+        product.name ||
+
+        "Product"
+
+      )}
+
+      </div>
+
+
+      <div class="desc">
+
+      ${esc(
+
+        product.description ||
+
+        ""
+
+      )}
+
+      </div>
+
+
+      <div class="price">
+
+      ₹${price.toLocaleString(
+        "en-IN"
+      )}
+
+      </div>
+
+
+      <div class="stock">
+
+      ${
+
+        stock > 0
+
+        ? `${stock} in stock`
+
+        : "Out of stock"
+
+      }
+
+      </div>
+
+
+      <button
+
+      class="details"
+
+      onclick="
+      location.href=
+      'product.html?id=${encodeURIComponent(
+        product.id
+      )}'
+      "
+
+      >
+
+      View Product
+
+      </button>
+
+
+      <div class="actions">
+
 
         <button
-          class="wishCardBtn ${
-            wished
-            ? "active"
-            : ""
-          }"
 
-          onclick="toggleWishlist(
-            '${esc(product.id)}'
-          )"
+        class="add"
 
-          aria-label="Wishlist"
-        >
-
-          ${
-            wished
-            ? "♥"
-            : "♡"
-          }
-
-        </button>
-
+        data-product="${safeProduct}"
 
         ${
-          image
 
-          ? `<img
-              src="${esc(image)}"
-              alt="${esc(
-                product.name||
-                "Product"
-              )}"
+          stock <= 0
 
-              loading="lazy"
-            >`
+          ? "disabled"
 
-          : `<div class="noImage">
+          : ""
 
-              No image available
-
-            </div>`
         }
 
-      </div>
-
-
-      <div class="info">
-
-
-        <div class="tag">
-
-          ${esc(
-            product.category||
-            "Featured"
-          )}
-
-        </div>
-
-
-        <div class="name">
-
-          ${esc(
-            product.name||
-            "Product"
-          )}
-
-        </div>
-
-
-        <div class="desc">
-
-          ${esc(
-            product.description||
-            ""
-          )}
-
-        </div>
-
-
-        <div class="price">
-
-          ₹${price.toLocaleString("en-IN")}
-
-        </div>
-
-
-        <div class="stock">
-
-          ${
-            stock>0
-
-            ? `${stock} in stock`
-
-            : "Out of stock"
-          }
-
-        </div>
-
-
-        <button
-          class="details"
-
-          onclick="
-            location.href=
-            'product.html?id=${encodeURIComponent(
-              product.id
-            )}'
-          "
         >
 
-          View Product
+        🛒 Add
 
         </button>
 
 
-        <div class="actions">
+        <button
 
+        class="buy"
 
-          <button
-            class="add"
+        data-product="${safeProduct}"
 
-            data-product="${safeProduct}"
+        ${
 
-            ${
-              stock<=0
-              ? "disabled"
-              : ""
-            }
-          >
+          stock <= 0
 
-            🛒 Add
+          ? "disabled"
 
-          </button>
+          : ""
 
+        }
 
-          <button
-            class="buy"
+        >
 
-            data-product="${safeProduct}"
+        Buy Now
 
-            ${
-              stock<=0
-              ? "disabled"
-              : ""
-            }
-          >
-
-            Buy Now
-
-          </button>
-
-
-        </div>
+        </button>
 
 
       </div>
 
 
-    </article>
+    </div>
+
+
+  </article>
 
   `;
 
 }
 
 
-/* ADD / BUY BUTTONS */
+/* ADD / BUY */
 
 document.addEventListener(
+
   "click",
-  event=>{
 
-    const addButton=
-      event.target.closest(".add");
+  event => {
 
 
-    const buyButton=
-      event.target.closest(".buy");
+    const addButton =
+
+    event.target.closest(
+      ".add"
+    );
+
+
+    const buyButton =
+
+    event.target.closest(
+      ".buy"
+    );
 
 
     try{
@@ -1515,49 +3723,70 @@ document.addEventListener(
 
       if(addButton){
 
+
         addToCart(
 
           JSON.parse(
 
             decodeURIComponent(
-              addButton.dataset.product
+
+              addButton
+              .dataset
+              .product
+
             )
 
           )
 
         );
+
 
       }
 
 
       if(buyButton){
 
+
         buyNow(
 
           JSON.parse(
 
             decodeURIComponent(
-              buyButton.dataset.product
+
+              buyButton
+              .dataset
+              .product
+
             )
 
           )
 
         );
 
+
       }
 
 
-    }catch(error){
+    }
+
+
+    catch(error){
+
 
       console.error(
+
         "Product action error:",
+
         error
+
       );
+
 
     }
 
 
   }
+
 );
 
 
@@ -1565,44 +3794,79 @@ document.addEventListener(
 
 onSnapshot(
 
-  collection(db,"products"),
+  collection(
+    db,
+    "products"
+  ),
 
-  snapshot=>{
+  snapshot => {
 
 
-    products=snapshot.docs
+    products =
 
-      .map(document=>({
+    snapshot.docs
 
-        id:document.id,
+    .map(
+
+      document => ({
+
+        id:
+        document.id,
 
         ...document.data()
 
-      }))
+      })
 
-      .filter(product=>{
+    )
+
+    .filter(
+
+      product => {
 
 
-        const approved=
+        const approved =
 
-          product.approvalStatus==="approved" ||
 
-          product.approvalStatus===undefined ||
+        product.approvalStatus ===
+        "approved"
 
-          product.approvalStatus===null ||
 
-          product.approvalStatus==="";
+        ||
+
+
+        product.approvalStatus ===
+        undefined
+
+
+        ||
+
+
+        product.approvalStatus ===
+        null
+
+
+        ||
+
+
+        product.approvalStatus ===
+        "";
 
 
         return (
 
-          approved &&
+          approved
 
-          product.active!==false
+          &&
+
+          product.active !==
+          false
 
         );
 
-      });
+
+      }
+
+    );
 
 
     render();
@@ -1611,33 +3875,39 @@ onSnapshot(
   },
 
 
-  error=>{
+  error => {
 
 
     console.error(
+
       "Firestore error:",
+
       error
+
     );
 
 
-    $("count").textContent=
-      "Unable to load products";
+    $("count").textContent =
+
+    "Unable to load products";
 
 
-    $("grid").innerHTML=`
+    $("grid").innerHTML = `
 
-      <div class="empty">
+    <div class="empty">
 
-        <b>
-          Products could not be loaded.
-        </b>
+      <b>
 
-        <br><br>
+      Products could not be loaded.
 
-        Check Firebase Firestore Rules
-        and product approval status.
+      </b>
 
-      </div>
+      <br><br>
+
+      Check Firebase Firestore Rules
+      and product approval status.
+
+    </div>
 
     `;
 
@@ -1651,14 +3921,5 @@ onSnapshot(
 
 updateCount();
 
+
 renderCart();
-
-renderWishlist();
-
-render();
-
-</script>
-
-</body>
-
-</html>

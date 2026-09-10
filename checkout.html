@@ -1,117 +1,435 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="UTF-8">
 
-<meta
-name="viewport"
+<meta name="viewport"
 content="width=device-width,initial-scale=1">
 
-<title>Checkout | NEXORA PICKS</title>
+<title>
+My Orders | NEXORA PICKS
+</title>
 
 <style>
 
 *{
-box-sizing:border-box;
+box-sizing:border-box
 }
 
 body{
 margin:0;
 font-family:Arial,sans-serif;
 background:#f4f6f9;
-color:#172033;
+color:#172033
 }
 
 header{
 background:#2874f0;
 color:white;
-padding:18px;
-font-size:22px;
-font-weight:bold;
+padding:18px 20px;
+display:flex;
+align-items:center;
+gap:15px;
+position:sticky;
+top:0;
+z-index:10
 }
 
 header a{
 color:white;
 text-decoration:none;
-margin-right:15px;
+font-size:28px
+}
+
+header h1{
+margin:0;
+font-size:24px
 }
 
 .wrap{
-max-width:700px;
+max-width:850px;
 margin:auto;
-padding:20px;
+padding:20px
 }
 
-.box{
+.top{
 background:white;
+border-radius:14px;
 padding:20px;
+margin-bottom:18px;
+box-shadow:0 2px 10px #00000010
+}
+
+.top h2{
+margin:0 0 8px
+}
+
+button{
+border:0;
+border-radius:8px;
+padding:12px 18px;
+font-size:16px;
+font-weight:bold;
+cursor:pointer
+}
+
+.loginBtn{
+background:#2874f0;
+color:white
+}
+
+.order{
+background:white;
 border-radius:14px;
 margin-bottom:18px;
-box-shadow:0 2px 10px #00000012;
+padding:20px;
+box-shadow:0 2px 10px #00000010
 }
 
-h2{
-margin-top:0;
+.orderHead{
+display:flex;
+justify-content:space-between;
+gap:10px;
+border-bottom:1px solid #eee;
+padding-bottom:14px;
+margin-bottom:15px
+}
+
+.orderId{
+font-size:14px;
+color:#687386;
+word-break:break-all
+}
+
+.status{
+background:#fff3cd;
+color:#856404;
+padding:7px 12px;
+border-radius:20px;
+font-weight:bold;
+white-space:nowrap;
+text-transform:uppercase
 }
 
 .item{
 display:flex;
 justify-content:space-between;
-padding:12px 0;
-border-bottom:1px solid #eee;
+gap:15px;
+padding:10px 0;
+border-bottom:1px solid #f0f0f0
+}
+
+.itemName{
+font-weight:bold
+}
+
+.itemPrice{
+white-space:nowrap
 }
 
 .total{
-font-size:22px;
-font-weight:bold;
 display:flex;
 justify-content:space-between;
-padding-top:15px;
-}
-
-input,
-textarea{
-width:100%;
-padding:13px;
-margin:7px 0;
-border:1px solid #ccd3dd;
-border-radius:7px;
-font-size:16px;
-}
-
-button{
-width:100%;
-border:0;
-background:#2874f0;
-color:white;
-padding:14px;
-border-radius:8px;
-font-size:17px;
+font-size:21px;
 font-weight:bold;
-cursor:pointer;
-margin-top:10px;
+margin-top:16px
 }
 
-button:disabled{
-opacity:.6;
-cursor:not-allowed;
-}
-
-.error{
-color:#d32f2f;
-font-weight:bold;
-}
-
-.success{
-color:#16803c;
-font-weight:bold;
+.info{
+margin-top:18px;
+background:#f7f9fc;
+padding:15px;
+border-radius:10px;
+line-height:1.7
 }
 
 .empty{
+background:white;
+padding:40px 20px;
 text-align:center;
-padding:30px;
+border-radius:14px;
+color:#667085
+}
+
+.loading{
+text-align:center;
+padding:30px
+}
+
+.cod{
+color:#16803c;
+font-weight:bold
+}
+
+
+/* ORDER TRACKING */
+
+.tracking{
+margin-top:22px;
+padding:18px;
+background:#f7f9fc;
+border-radius:12px
+}
+
+.trackingTitle{
+font-size:18px;
+font-weight:bold;
+margin-bottom:18px
+}
+
+.step{
+display:flex;
+align-items:flex-start;
+gap:12px;
+margin-bottom:16px;
+position:relative
+}
+
+.stepIcon{
+width:34px;
+height:34px;
+border-radius:50%;
+background:#d9dee7;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:16px;
+flex-shrink:0;
+position:relative;
+z-index:2
+}
+
+.step.done .stepIcon{
+background:#16803c;
+color:white
+}
+
+.step.active .stepIcon{
+background:#2874f0;
+color:white
+}
+
+.stepText{
+padding-top:3px;
+font-weight:bold;
+color:#172033
+}
+
+.stepMessage{
+font-size:14px;
+font-weight:normal;
+color:#667085;
+margin-top:5px;
+line-height:1.5
+}
+
+.stepTime{
+font-size:13px;
+font-weight:normal;
+color:#8a94a6;
+margin-top:5px
+}
+
+.step:not(:last-child)::after{
+content:"";
+position:absolute;
+left:16px;
+top:34px;
+height:calc(100% - 18px);
+width:2px;
+background:#d9dee7
+}
+
+.step.done:not(:last-child)::after{
+background:#16803c
+}
+
+
+/* CANCELLED */
+
+.cancelledBox{
+margin-top:18px;
+padding:15px;
+border-radius:10px;
+background:#fff0f0;
+color:#c62828;
+font-weight:bold;
+text-align:center
+}
+
+
+/* BUTTONS */
+
+.cancelBtn{
+width:100%;
+margin-top:18px;
+background:#d93025;
+color:white;
+font-size:18px;
+padding:15px
+}
+
+.returnBtn{
+width:100%;
+margin-top:18px;
+background:#f57c00;
+color:white;
+font-size:18px;
+padding:15px
+}
+
+.refundBtn{
+width:100%;
+margin-top:12px;
+background:#6a1b9a;
+color:white;
+font-size:18px;
+padding:15px
+}
+
+
+/* REQUEST STATUS */
+
+.requestBox{
+margin-top:18px;
+padding:15px;
+border-radius:10px;
+background:#fff8e1;
+color:#8a5a00;
+font-weight:bold;
+line-height:1.6
+}
+
+.approvedBox{
+margin-top:18px;
+padding:15px;
+border-radius:10px;
+background:#e8f5e9;
+color:#16803c;
+font-weight:bold;
+line-height:1.6
+}
+
+.rejectedBox{
+margin-top:18px;
+padding:15px;
+border-radius:10px;
+background:#ffebee;
+color:#c62828;
+font-weight:bold;
+line-height:1.6
+}
+
+
+/* MODAL */
+
+.modal{
+display:none;
+position:fixed;
+z-index:100;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.55);
+padding:20px;
+align-items:center;
+justify-content:center;
+overflow-y:auto
+}
+
+.modalContent{
+background:white;
+width:100%;
+max-width:430px;
+border-radius:18px;
+padding:24px;
+margin:auto
+}
+
+.modalContent h2{
+margin-top:0
+}
+
+.reasonOption{
+display:block;
+padding:14px;
+border:1px solid #ddd;
+border-radius:10px;
+margin:10px 0;
+cursor:pointer
+}
+
+.reasonOption input{
+margin-right:10px
+}
+
+.otherReason{
+display:none;
+width:100%;
+min-height:100px;
+padding:14px;
+margin-top:10px;
+border:1px solid #2874f0;
+border-radius:10px;
+font-size:16px;
+font-family:Arial,sans-serif;
+resize:vertical
+}
+
+.confirmCancel{
+width:100%;
+background:#d93025;
+color:white;
+margin-top:15px;
+padding:15px
+}
+
+.confirmReturn{
+width:100%;
+background:#f57c00;
+color:white;
+margin-top:15px;
+padding:15px
+}
+
+.confirmRefund{
+width:100%;
+background:#6a1b9a;
+color:white;
+margin-top:15px;
+padding:15px
+}
+
+.closeCancel{
+width:100%;
+background:#e9ecef;
+color:#333;
+margin-top:10px;
+padding:15px
+}
+
+
+@media(max-width:600px){
+
+.wrap{
+padding:12px
+}
+
+.order{
+padding:15px
+}
+
+.orderHead{
+align-items:flex-start
+}
+
+.item{
+font-size:15px
+}
+
 }
 
 </style>
@@ -120,13 +438,16 @@ padding:30px;
 
 <body>
 
+
 <header>
 
 <a href="index.html">
 ‹
 </a>
 
-🛒 Checkout
+<h1>
+📦 My Orders
+</h1>
 
 </header>
 
@@ -134,79 +455,319 @@ padding:30px;
 <div class="wrap">
 
 
-<div class="box">
+<div class="top">
 
 <h2>
-🛍️ Your Order
+My Orders
 </h2>
 
-<div id="items">
+<div id="userInfo">
 
-Loading...
-
-</div>
-
-
-<div
-class="total"
-id="total">
+Checking login...
 
 </div>
 
 </div>
 
 
-<div class="box">
+<div id="orders">
+
+<div class="loading">
+
+Loading your orders...
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<!-- CANCEL MODAL -->
+
+<div id="cancelModal" class="modal">
+
+<div class="modalContent">
 
 <h2>
-📍 Delivery Details
+Cancel Order
 </h2>
-
-
-<input
-id="cname"
-placeholder="Full Name"
-required>
-
-
-<input
-id="phone"
-type="tel"
-placeholder="Mobile Number"
-required>
-
-
-<textarea
-id="address"
-rows="5"
-placeholder="House / Street / Area / City / State / PIN"
-required>
-</textarea>
-
-
-<h3>
-💵 Payment Method
-</h3>
-
 
 <p>
-Cash on Delivery (COD)
+Please select a reason for cancellation:
 </p>
 
 
-<button
-id="placeOrderBtn"
-onclick="placeOrder()">
+<label class="reasonOption">
 
-📦 Place Order
+<input
+type="radio"
+name="cancelReason"
+value="Changed my mind">
+
+Changed my mind
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="cancelReason"
+value="Ordered by mistake">
+
+Ordered by mistake
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="cancelReason"
+value="Found a better price">
+
+Found a better price
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="cancelReason"
+value="Delivery taking too long">
+
+Delivery taking too long
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="cancelReason"
+value="Other"
+onchange="showOtherCancelReason()">
+
+Other
+
+</label>
+
+
+<textarea
+id="otherCancelReason"
+class="otherReason"
+placeholder="Please type your cancellation reason..."></textarea>
+
+
+<button
+class="confirmCancel"
+onclick="confirmCancelOrder()">
+
+❌ Confirm Cancellation
 
 </button>
 
 
-<p id="msg"></p>
+<button
+class="closeCancel"
+onclick="closeCancelModal()">
+
+Keep Order
+
+</button>
 
 </div>
 
+</div>
+
+
+<!-- RETURN MODAL -->
+
+<div id="returnModal" class="modal">
+
+<div class="modalContent">
+
+<h2>
+🔄 Return Product
+</h2>
+
+<p>
+Please select a reason for return:
+</p>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="returnReason"
+value="Received damaged product">
+
+Received damaged product
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="returnReason"
+value="Wrong product received">
+
+Wrong product received
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="returnReason"
+value="Product not as expected">
+
+Product not as expected
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="returnReason"
+value="Other"
+onchange="showOtherReturnReason()">
+
+Other
+
+</label>
+
+
+<textarea
+id="otherReturnReason"
+class="otherReason"
+placeholder="Please type your return reason..."></textarea>
+
+
+<button
+class="confirmReturn"
+onclick="confirmReturnRequest()">
+
+🔄 Submit Return Request
+
+</button>
+
+
+<button
+class="closeCancel"
+onclick="closeReturnModal()">
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- REFUND MODAL -->
+
+<div id="refundModal" class="modal">
+
+<div class="modalContent">
+
+<h2>
+💰 Refund Request
+</h2>
+
+<p>
+Please select a reason for your refund request:
+</p>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="refundReason"
+value="Order cancelled">
+
+Order cancelled
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="refundReason"
+value="Product returned">
+
+Product returned
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="refundReason"
+value="Payment issue">
+
+Payment issue
+
+</label>
+
+
+<label class="reasonOption">
+
+<input
+type="radio"
+name="refundReason"
+value="Other"
+onchange="showOtherRefundReason()">
+
+Other
+
+</label>
+
+
+<textarea
+id="otherRefundReason"
+class="otherReason"
+placeholder="Please type your refund reason..."></textarea>
+
+
+<button
+class="confirmRefund"
+onclick="confirmRefundRequest()">
+
+💰 Submit Refund Request
+
+</button>
+
+
+<button
+class="closeCancel"
+onclick="closeRefundModal()">
+
+Cancel
+
+</button>
+
+</div>
 
 </div>
 
@@ -232,21 +793,33 @@ from
 import{
 getFirestore,
 collection,
-addDoc,
+query,
+where,
+onSnapshot,
+doc,
+updateDoc,
 serverTimestamp
 }
 from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-const firebaseConfig = {
-  apiKey: "AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
-  authDomain: "nexora-picks-be049.firebaseapp.com",
-  projectId: "nexora-picks-be049",
-  storageBucket: "nexora-picks-be049.firebasestorage.app",
-  messagingSenderId: "325932959084",
-  appId: "1:325932959084:web:4fd8252e1ba83f82ee1f49",
-  measurementId: "G-KMQZXZZCHJ"
+const firebaseConfig={
+
+apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+
+authDomain:"nexora-picks-e887f.firebaseapp.com",
+
+projectId:"nexora-picks-e887f",
+
+storageBucket:"nexora-picks-e887f.firebasestorage.app",
+
+messagingSenderId:"621359003619",
+
+appId:"1:621359003619:web:483add8bfcd0241f4192d",
+
+measurementId:"G-LSMJ6QLLPW"
+
 };
 
 
@@ -263,175 +836,11 @@ getFirestore(app);
 
 
 const $=
-id=>
-document.getElementById(id);
+id=>document.getElementById(id);
 
 
-let cart=
 
-JSON.parse(
-
-localStorage.getItem(
-"nexora_cart"
-)
-
-||
-
-"[]"
-
-);
-
-
-/* RENDER ORDER */
-
-function renderOrder(){
-
-
-if(!cart.length){
-
-
-$("items").innerHTML=
-
-`
-
-<div class="empty">
-
-<h3>
-🛒 Your cart is empty
-</h3>
-
-<p>
-Please add products first.
-</p>
-
-</div>
-
-`;
-
-
-$("total").innerHTML=
-"";
-
-
-return;
-
-}
-
-
-$("items").innerHTML=
-
-cart.map(
-
-item=>`
-
-<div class="item">
-
-<div>
-
-<b>
-
-${escapeHtml(
-item.name
-)}
-
-</b>
-
-<br>
-
-₹${
-
-Number(
-item.price
-)
-
-}
-
-×
-
-
-${
-
-Number(
-item.qty
-)
-
-}
-
-</div>
-
-
-<b>
-
-₹${
-
-Number(
-item.price
-)
-
-*
-
-Number(
-item.qty
-)
-
-}
-
-</b>
-
-</div>
-
-`
-
-)
-
-.join("");
-
-
-const total=
-
-cart.reduce(
-
-(sum,item)=>
-
-sum+
-
-(
-
-Number(
-item.price
-)
-
-*
-
-Number(
-item.qty
-)
-
-),
-
-0
-
-);
-
-
-$("total").innerHTML=
-
-`
-
-<span>
-Total
-</span>
-
-<span>
-₹${total}
-</span>
-
-`;
-
-}
-
-
-/* CHECK LOGIN */
+/* LOGIN */
 
 onAuthStateChanged(
 
@@ -439,140 +848,771 @@ auth,
 
 user=>{
 
-
 if(!user){
 
+$("userInfo").innerHTML=`
 
-$("msg").innerHTML=
+<button
+class="loginBtn"
+onclick="goLogin()">
 
-`
+Login to view your orders
 
-<span class="error">
-
-Please login before placing an order.
-
-</span>
+</button>
 
 `;
 
 
-setTimeout(
+$("orders").innerHTML=`
 
-()=>{
+<div class="empty">
 
-window.location.href=
-"index.html";
+🔐 Please login to see your orders.
+
+</div>
+
+`;
+
+
+return;
+
+}
+
+
+$("userInfo").innerHTML=
+
+`Logged in as
+<b>
+${escapeHtml(user.email||"")}
+</b>`;
+
+
+loadOrders(user.uid);
+
+}
+
+);
+
+
+
+/* LOAD ORDERS */
+
+function loadOrders(uid){
+
+
+const q=
+
+query(
+
+collection(db,"orders"),
+
+where(
+"customerId",
+"==",
+uid
+)
+
+);
+
+
+onSnapshot(
+
+q,
+
+snap=>{
+
+
+let orders=
+
+snap.docs.map(
+
+docSnap=>({
+
+id:docSnap.id,
+
+...docSnap.data()
+
+})
+
+);
+
+
+orders.sort(
+
+(a,b)=>{
+
+
+const aTime=
+a.createdAt?.seconds||0;
+
+
+const bTime=
+b.createdAt?.seconds||0;
+
+
+return bTime-aTime;
+
+
+}
+
+);
+
+
+if(!orders.length){
+
+
+$("orders").innerHTML=`
+
+<div class="empty">
+
+<h2>
+📦 No orders yet
+</h2>
+
+<p>
+Your placed orders will appear here.
+</p>
+
+<button
+class="loginBtn"
+onclick="location.href='index.html'">
+
+Start Shopping
+
+</button>
+
+</div>
+
+`;
+
+
+return;
+
+}
+
+
+$("orders").innerHTML=
+
+orders
+.map(showOrder)
+.join("");
+
 
 },
 
-1500
+error=>{
+
+
+console.error(error);
+
+
+$("orders").innerHTML=`
+
+<div class="empty">
+
+❌ Unable to load orders.
+
+<br><br>
+
+${escapeHtml(error.message)}
+
+</div>
+
+`;
+
+
+}
 
 );
 
 
 }
 
+
+
+/* SHOW ORDER */
+
+function showOrder(order){
+
+
+const date=
+formatDate(order.createdAt);
+
+
+const status=
+
+String(
+order.status||
+"pending"
+)
+.toLowerCase();
+
+
+const items=
+
+Array.isArray(order.items)
+
+?
+order.items
+:
+[];
+
+
+const itemHTML=
+
+items.length
+
+?
+
+items.map(
+
+item=>`
+
+<div class="item">
+
+<div>
+
+<div class="itemName">
+
+${escapeHtml(item.name||"Product")}
+
+</div>
+
+<div>
+
+Quantity:
+${Number(item.qty)||1}
+
+</div>
+
+</div>
+
+
+<div class="itemPrice">
+
+₹${
+
+(
+
+Number(item.price||0)
+
+*
+
+Number(item.qty||1)
+
+)
+
+.toLocaleString("en-IN")
+
 }
 
-);
+</div>
+
+</div>
+
+`
+
+).join("")
+
+:
+
+`<p>No product details available.</p>`;
 
 
-/* PLACE ORDER */
+return `
 
-window.placeOrder=
-
-async()=>{
+<div class="order">
 
 
-const user=
-auth.currentUser;
+<div class="orderHead">
 
 
-if(!user){
+<div>
 
 
-alert(
-"Please login first."
-);
+<b>
+Order ID
+</b>
 
 
-window.location.href=
-"index.html";
+<div class="orderId">
+
+${escapeHtml(order.id)}
+
+</div>
 
 
-return;
+<div style="margin-top:6px">
+
+${date}
+
+</div>
+
+
+</div>
+
+
+<div class="status">
+
+${escapeHtml(
+
+status
+.replaceAll("-"," ")
+.toUpperCase()
+
+)}
+
+</div>
+
+
+</div>
+
+
+<h3>
+📦 Products
+</h3>
+
+
+${itemHTML}
+
+
+${createTracking(
+status,
+order
+)}
+
+
+${createCancelButton(
+status,
+order.id
+)}
+
+
+${createReturnButton(
+status,
+order
+)}
+
+
+${createRefundButton(
+status,
+order
+)}
+
+
+${showRequestStatus(
+order
+)}
+
+
+<div class="total">
+
+<span>
+Total
+</span>
+
+
+<span>
+
+₹${
+
+Number(order.total||0)
+
+.toLocaleString("en-IN")
+
+}
+
+</span>
+
+</div>
+
+
+<div
+style="margin-top:12px"
+class="cod">
+
+💵 ${escapeHtml(
+
+order.paymentMethod||
+"Cash on Delivery"
+
+)}
+
+</div>
+
+
+<div class="info">
+
+
+<b>
+📍 Delivery Details
+</b>
+
+
+<br>
+
+
+Name:
+
+${escapeHtml(
+order.customerName||
+""
+)}
+
+
+<br>
+
+
+Mobile:
+
+${escapeHtml(
+order.customerPhone||
+""
+)}
+
+
+<br>
+
+
+Address:
+
+${escapeHtml(
+order.deliveryAddress||
+""
+)}
+
+
+</div>
+
+
+</div>
+
+`;
 
 }
 
 
-if(!cart.length){
+
+/* CANCEL BUTTON */
+
+function createCancelButton(
+status,
+orderId
+){
 
 
-alert(
-"Your cart is empty."
-);
+const cancellableStatuses=[
 
+"pending",
 
-return;
+"confirmed"
 
-}
-
-
-const name=
-
-$("cname")
-.value
-.trim();
-
-
-const phone=
-
-$("phone")
-.value
-.trim();
-
-
-const address=
-
-$("address")
-.value
-.trim();
-
-
-const msg=
-$("msg");
-
-
-const placeOrderBtn=
-$("placeOrderBtn");
+];
 
 
 if(
 
-!name
-
-||
-
-!phone
-
-||
-
-!address
+!cancellableStatuses.includes(status)
 
 ){
 
+return "";
 
-msg.innerHTML=
+}
 
-`
 
-<span class="error">
+return `
 
-Please fill all delivery details.
+<button
+class="cancelBtn"
+onclick="openCancelModal('${orderId}')">
 
-</span>
+❌ Cancel Order
+
+</button>
 
 `;
+
+}
+
+
+
+/* RETURN BUTTON */
+
+function createReturnButton(
+status,
+order
+){
+
+
+if(
+status!=="delivered"
+){
+
+return "";
+
+}
+
+
+if(
+order.returnStatus
+){
+
+return "";
+
+}
+
+
+return `
+
+<button
+class="returnBtn"
+onclick="openReturnModal('${order.id}')">
+
+🔄 Request Return
+
+</button>
+
+`;
+
+}
+
+
+
+/* REFUND BUTTON */
+
+function createRefundButton(
+status,
+order
+){
+
+
+if(
+order.refundStatus
+){
+
+return "";
+
+}
+
+
+const refundableStatuses=[
+
+"cancelled",
+
+"delivered"
+
+];
+
+
+if(
+
+!refundableStatuses.includes(status)
+
+){
+
+return "";
+
+}
+
+
+return `
+
+<button
+class="refundBtn"
+onclick="openRefundModal('${order.id}')">
+
+💰 Request Refund
+
+</button>
+
+`;
+
+}
+
+
+
+/* SHOW REQUEST STATUS */
+
+function showRequestStatus(order){
+
+
+let html="";
+
+
+if(order.returnStatus){
+
+
+html+=`
+
+<div class="${
+order.returnStatus==="approved"
+?
+"approvedBox"
+:
+order.returnStatus==="rejected"
+?
+"rejectedBox"
+:
+"requestBox"
+}">
+
+
+🔄 Return Request:
+${escapeHtml(order.returnStatus)}
+
+
+<br>
+
+
+Reason:
+${escapeHtml(order.returnReason||"")}
+
+
+</div>
+
+`;
+
+
+}
+
+
+if(order.refundStatus){
+
+
+html+=`
+
+<div class="${
+order.refundStatus==="approved"
+?
+"approvedBox"
+:
+order.refundStatus==="rejected"
+?
+"rejectedBox"
+:
+"requestBox"
+}">
+
+
+💰 Refund Request:
+${escapeHtml(order.refundStatus)}
+
+
+<br>
+
+
+Reason:
+${escapeHtml(order.refundReason||"")}
+
+
+</div>
+
+`;
+
+
+}
+
+
+return html;
+
+}
+
+
+
+/* ORDER ID */
+
+let selectedOrderId=null;
+
+
+
+/* CANCEL MODAL */
+
+window.openCancelModal=
+
+function(orderId){
+
+
+selectedOrderId=orderId;
+
+
+$("cancelModal").style.display="flex";
+
+
+};
+
+
+
+window.closeCancelModal=
+
+function(){
+
+
+$("cancelModal").style.display="none";
+
+
+selectedOrderId=null;
+
+
+document
+.querySelectorAll(
+'input[name="cancelReason"]'
+)
+.forEach(
+
+input=>{
+
+input.checked=false;
+
+}
+
+);
+
+
+$("otherCancelReason").value="";
+
+
+$("otherCancelReason").style.display="none";
+
+
+};
+
+
+
+window.showOtherCancelReason=
+
+function(){
+
+
+$("otherCancelReason").style.display="block";
+
+
+};
+
+
+
+/* CONFIRM CANCEL */
+
+window.confirmCancelOrder=
+
+async function(){
+
+
+const selected=
+
+document.querySelector(
+
+'input[name="cancelReason"]:checked'
+
+);
+
+
+if(!selected){
+
+
+alert(
+"Please select a cancellation reason."
+);
 
 
 return;
@@ -580,33 +1620,25 @@ return;
 }
 
 
-/* CHECK SELLER IDs */
+let reason=
+selected.value;
 
-const invalidProduct=
 
-cart.find(
+if(reason==="Other"){
 
-item=>
 
-!item.sellerId
+reason=
+$("otherCancelReason")
+.value
+.trim();
 
+
+if(!reason){
+
+
+alert(
+"Please type your cancellation reason."
 );
-
-
-if(invalidProduct){
-
-
-msg.innerHTML=
-
-`
-
-<span class="error">
-
-❌ This product is not connected to a seller. Please remove it and try again.
-
-</span>
-
-`;
 
 
 return;
@@ -614,165 +1646,27 @@ return;
 }
 
 
-const total=
-
-cart.reduce(
-
-(sum,item)=>
-
-sum+
-
-(
-
-Number(
-item.price
-)
-
-*
-
-Number(
-item.qty
-)
-
-),
-
-0
-
-);
-
-
-/* PREVENT DOUBLE CLICK */
-
-placeOrderBtn.disabled=
-true;
-
-
-placeOrderBtn.textContent=
-"Placing Order...";
+}
 
 
 try{
 
 
-msg.innerHTML=
+await updateDoc(
 
-"Placing your order...";
-
-
-/* CREATE CUSTOMER ORDER */
-
-const customerOrderRef=
-
-await addDoc(
-
-collection(
+doc(
 db,
-"orders"
+"orders",
+selectedOrderId
 ),
 
 {
 
+status:"cancelled",
 
-/* CUSTOMER */
+cancellationReason:reason,
 
-customerId:
-user.uid,
-
-
-customerName:
-name,
-
-
-customerPhone:
-phone,
-
-
-deliveryAddress:
-address,
-
-
-/* PRODUCTS */
-
-items:
-
-cart.map(
-
-item=>
-({
-
-productId:
-item.id,
-
-
-name:
-item.name,
-
-
-price:
-Number(
-item.price
-),
-
-
-qty:
-Number(
-item.qty
-),
-
-
-sellerId:
-item.sellerId
-
-})
-
-),
-
-
-/* SELLERS */
-
-sellerIds:
-
-[
-
-...new Set(
-
-cart.map(
-
-item=>
-item.sellerId
-
-)
-
-)
-
-],
-
-
-/* TOTAL */
-
-total:
-total,
-
-
-/* PAYMENT */
-
-paymentMethod:
-"COD",
-
-
-paymentStatus:
-"pending",
-
-
-/* STATUS */
-
-status:
-"pending",
-
-
-/* DATE */
-
-createdAt:
+cancelledAt:
 serverTimestamp()
 
 }
@@ -780,289 +1674,851 @@ serverTimestamp()
 );
 
 
-/* GROUP PRODUCTS BY SELLER */
-
-const sellerGroups=
-{};
-
-
-cart.forEach(
-
-item=>{
-
-
-const sellerId=
-item.sellerId;
-
-
-if(
-
-!sellerGroups[
-sellerId
-]
-
-){
-
-
-sellerGroups[
-sellerId
-]=
-[];
-
-}
-
-
-sellerGroups[
-sellerId
-].push(
-
-{
-
-productId:
-item.id,
-
-
-name:
-item.name,
-
-
-price:
-Number(
-item.price
-),
-
-
-qty:
-Number(
-item.qty
-)
-
-}
-
+alert(
+"Your order has been cancelled successfully."
 );
 
 
-}
-
-);
-
-
-/* CREATE SEPARATE SELLER ORDERS */
-
-for(
-
-const sellerId
-
-in
-
-sellerGroups
-
-){
-
-
-const sellerItems=
-
-sellerGroups[
-sellerId
-];
-
-
-const sellerTotal=
-
-sellerItems.reduce(
-
-(sum,item)=>
-
-sum+
-
-(
-
-Number(
-item.price
-)
-
-*
-
-Number(
-item.qty
-)
-
-),
-
-0
-
-);
-
-
-await addDoc(
-
-collection(
-db,
-"sellerOrders"
-),
-
-{
-
-
-/* LINK TO CUSTOMER ORDER */
-
-customerOrderId:
-customerOrderRef.id,
-
-
-/* SELLER */
-
-sellerId:
-sellerId,
-
-
-/* CUSTOMER */
-
-customerId:
-user.uid,
-
-
-customerName:
-name,
-
-
-customerPhone:
-phone,
-
-
-deliveryAddress:
-address,
-
-
-/* PRODUCTS FOR THIS SELLER ONLY */
-
-items:
-sellerItems,
-
-
-/* SELLER ORDER TOTAL */
-
-total:
-sellerTotal,
-
-
-/* PAYMENT */
-
-paymentMethod:
-"COD",
-
-
-paymentStatus:
-"pending",
-
-
-/* DELIVERY STATUS */
-
-status:
-"pending",
-
-
-/* DATE */
-
-createdAt:
-serverTimestamp()
-
-}
-
-);
-
-
-}
-
-
-/* CLEAR CART */
-
-cart=
-[];
-
-
-localStorage.setItem(
-
-"nexora_cart",
-
-JSON.stringify(
-cart
-)
-
-);
-
-
-/* SUCCESS */
-
-msg.innerHTML=
-
-`
-
-<span class="success">
-
-✅ Order placed successfully!
-
-</span>
-
-`;
-
-
-setTimeout(
-
-()=>{
-
-
-window.location.href=
-"my-orders.html";
-
-
-},
-
-1500
-
-);
+closeCancelModal();
 
 
 }catch(error){
 
 
-console.error(
-error
+console.error(error);
+
+
+alert(
+"Unable to cancel order. Please try again."
 );
 
 
-msg.innerHTML=
-
-`
-
-<span class="error">
-
-❌ ${escapeHtml(
-error.message
-)}
-
-</span>
-
-`;
-
-
-placeOrderBtn.disabled=
-false;
-
-
-placeOrderBtn.textContent=
-"📦 Place Order";
-
 }
+
 
 };
 
 
+
+/* RETURN MODAL */
+
+window.openReturnModal=
+
+function(orderId){
+
+
+selectedOrderId=orderId;
+
+
+$("returnModal").style.display="flex";
+
+
+};
+
+
+
+window.closeReturnModal=
+
+function(){
+
+
+$("returnModal").style.display="none";
+
+
+selectedOrderId=null;
+
+
+document
+.querySelectorAll(
+'input[name="returnReason"]'
+)
+.forEach(
+
+input=>{
+
+input.checked=false;
+
+}
+
+);
+
+
+$("otherReturnReason").value="";
+
+
+$("otherReturnReason").style.display="none";
+
+
+};
+
+
+
+window.showOtherReturnReason=
+
+function(){
+
+
+$("otherReturnReason").style.display="block";
+
+
+};
+
+
+
+/* CONFIRM RETURN */
+
+window.confirmReturnRequest=
+
+async function(){
+
+
+const selected=
+
+document.querySelector(
+
+'input[name="returnReason"]:checked'
+
+);
+
+
+if(!selected){
+
+
+alert(
+"Please select a return reason."
+);
+
+
+return;
+
+}
+
+
+let reason=
+selected.value;
+
+
+if(reason==="Other"){
+
+
+reason=
+$("otherReturnReason")
+.value
+.trim();
+
+
+if(!reason){
+
+
+alert(
+"Please type your return reason."
+);
+
+
+return;
+
+}
+
+
+}
+
+
+try{
+
+
+await updateDoc(
+
+doc(
+db,
+"orders",
+selectedOrderId
+),
+
+{
+
+returnStatus:
+"pending",
+
+returnReason:
+reason,
+
+returnRequestedAt:
+serverTimestamp()
+
+}
+
+);
+
+
+alert(
+"Your return request has been sent to the admin."
+);
+
+
+closeReturnModal();
+
+
+}catch(error){
+
+
+console.error(error);
+
+
+alert(
+"Unable to submit return request."
+);
+
+
+}
+
+
+};
+
+
+
+/* REFUND MODAL */
+
+window.openRefundModal=
+
+function(orderId){
+
+
+selectedOrderId=orderId;
+
+
+$("refundModal").style.display="flex";
+
+
+};
+
+
+
+window.closeRefundModal=
+
+function(){
+
+
+$("refundModal").style.display="none";
+
+
+selectedOrderId=null;
+
+
+document
+.querySelectorAll(
+'input[name="refundReason"]'
+)
+.forEach(
+
+input=>{
+
+input.checked=false;
+
+}
+
+);
+
+
+$("otherRefundReason").value="";
+
+
+$("otherRefundReason").style.display="none";
+
+
+};
+
+
+
+window.showOtherRefundReason=
+
+function(){
+
+
+$("otherRefundReason").style.display="block";
+
+
+};
+
+
+
+/* CONFIRM REFUND */
+
+window.confirmRefundRequest=
+
+async function(){
+
+
+const selected=
+
+document.querySelector(
+
+'input[name="refundReason"]:checked'
+
+);
+
+
+if(!selected){
+
+
+alert(
+"Please select a refund reason."
+);
+
+
+return;
+
+}
+
+
+let reason=
+selected.value;
+
+
+if(reason==="Other"){
+
+
+reason=
+$("otherRefundReason")
+.value
+.trim();
+
+
+if(!reason){
+
+
+alert(
+"Please type your refund reason."
+);
+
+
+return;
+
+}
+
+
+}
+
+
+try{
+
+
+await updateDoc(
+
+doc(
+db,
+"orders",
+selectedOrderId
+),
+
+{
+
+refundStatus:
+"pending",
+
+refundReason:
+reason,
+
+refundRequestedAt:
+serverTimestamp()
+
+}
+
+);
+
+
+alert(
+"Your refund request has been sent to the admin."
+);
+
+
+closeRefundModal();
+
+
+}catch(error){
+
+
+console.error(error);
+
+
+alert(
+"Unable to submit refund request."
+);
+
+
+}
+
+
+};
+
+
+
+/* MULTIPLE ORDER TRACKING */
+
+function createTracking(
+status,
+order
+){
+
+
+if(
+status==="cancelled"
+){
+
+
+return `
+
+<div class="cancelledBox">
+
+❌ This order has been cancelled.
+
+</div>
+
+`;
+
+
+}
+
+
+/* ADMIN MULTIPLE TRACKING UPDATES */
+
+let updates=
+
+Array.isArray(
+order.trackingUpdates
+)
+
+?
+[...order.trackingUpdates]
+
+:
+[];
+
+
+/* DEFAULT TRACKING IF NO UPDATES */
+
+if(!updates.length){
+
+
+updates=[
+
+{
+
+status:"pending",
+
+message:"Your order has been placed successfully.",
+
+location:"",
+
+time:order.createdAt
+
+}
+
+];
+
+
+}
+
+
+updates.sort(
+
+(a,b)=>{
+
+
+const aTime=
+getTrackingTime(a.time);
+
+
+const bTime=
+getTrackingTime(b.time);
+
+
+return aTime-bTime;
+
+
+}
+
+);
+
+
+return `
+
+<div class="tracking">
+
+
+<div class="trackingTitle">
+
+📍 Order Tracking History
+
+</div>
+
+
+${
+
+updates.map(
+
+(update,index)=>{
+
+
+const updateStatus=
+
+String(
+update.status||
+"update"
+)
+.toLowerCase();
+
+
+const icon=
+
+getTrackingIcon(
+updateStatus
+);
+
+
+const isLast=
+
+index===
+updates.length-1;
+
+
+const state=
+
+isLast
+?
+"active"
+:
+"done";
+
+
+const message=
+
+update.message
+
+?
+escapeHtml(
+update.message
+)
+
+:
+getDefaultTrackingMessage(
+updateStatus
+);
+
+
+const location=
+
+update.location
+
+?
+`📍 ${escapeHtml(update.location)}`
+
+:
+"";
+
+
+const time=
+
+formatDate(
+update.time
+);
+
+
+return `
+
+<div class="step ${state}">
+
+
+<div class="stepIcon">
+
+${icon}
+
+</div>
+
+
+<div class="stepText">
+
+
+${escapeHtml(
+
+updateStatus
+.replaceAll("-"," ")
+.replace(/\b\w/g,
+char=>char.toUpperCase())
+
+)}
+
+
+<div class="stepMessage">
+
+${message}
+
+</div>
+
+
+${
+
+location
+
+?
+
+`
+
+<div class="stepMessage">
+
+${location}
+
+</div>
+
+`
+
+:
+
+""
+
+}
+
+
+<div class="stepTime">
+
+${time}
+
+</div>
+
+
+</div>
+
+
+</div>
+
+`;
+
+
+}
+
+).join("")
+
+}
+
+
+</div>
+
+`;
+
+}
+
+
+
+/* TRACKING ICON */
+
+function getTrackingIcon(status){
+
+
+const icons={
+
+pending:"🟡",
+
+confirmed:"✅",
+
+packed:"📦",
+
+shipped:"🚚",
+
+out-for-delivery:"🚚",
+
+delivered:"🎉",
+
+cancelled:"❌",
+
+returned:"🔄"
+
+};
+
+
+return icons[status]||"📍";
+
+}
+
+
+
+/* DEFAULT TRACKING MESSAGE */
+
+function getDefaultTrackingMessage(status){
+
+
+const messages={
+
+pending:
+"Your order has been placed successfully.",
+
+confirmed:
+"Your order has been confirmed.",
+
+packed:
+"Your order has been packed and is ready.",
+
+shipped:
+"Your order has been shipped.",
+
+"out-for-delivery":
+"Your order is out for delivery.",
+
+delivered:
+"Your order has been delivered successfully."
+
+};
+
+
+return messages[status]||
+"Order tracking updated.";
+
+}
+
+
+
+/* GET TRACKING TIME */
+
+function getTrackingTime(value){
+
+
+if(!value){
+
+return 0;
+
+}
+
+
+try{
+
+
+if(value.seconds){
+
+return value.seconds*1000;
+
+}
+
+
+if(value.toDate){
+
+return value.toDate().getTime();
+
+}
+
+
+const date=
+
+new Date(value);
+
+
+return isNaN(
+date.getTime()
+)
+
+?
+0
+:
+date.getTime();
+
+
+}catch(error){
+
+return 0;
+
+}
+
+
+}
+
+
+
+/* FORMAT DATE */
+
+function formatDate(timestamp){
+
+
+if(!timestamp){
+
+return "Date unavailable";
+
+}
+
+
+try{
+
+
+const date=
+
+timestamp.toDate
+
+?
+
+timestamp.toDate()
+
+:
+
+timestamp.seconds
+
+?
+
+new Date(
+timestamp.seconds*1000
+)
+
+:
+
+new Date(timestamp);
+
+
+if(
+
+isNaN(
+date.getTime()
+)
+
+){
+
+return "Date unavailable";
+
+}
+
+
+return date.toLocaleString(
+
+"en-IN",
+
+{
+
+day:"2-digit",
+
+month:"short",
+
+year:"numeric",
+
+hour:"2-digit",
+
+minute:"2-digit"
+
+}
+
+);
+
+
+}catch(e){
+
+
+return "Date unavailable";
+
+
+}
+
+
+}
+
+
+
 /* ESCAPE HTML */
 
-function escapeHtml(
-value
-){
+function escapeHtml(value){
+
 
 return String(
 value??""
@@ -1096,13 +2552,22 @@ value??""
 }
 
 
-/* START */
 
-renderOrder();
+/* LOGIN */
+
+window.goLogin=
+
+function(){
+
+
+location.href="index.html";
+
+
+};
 
 
 </script>
 
 </body>
 
-</html>
+</html

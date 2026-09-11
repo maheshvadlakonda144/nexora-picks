@@ -10,7 +10,6 @@ content="width=device-width,initial-scale=1">
 
 <title>NEXORA PICKS | Seller Center</title>
 
-
 <style>
 
 *{
@@ -53,7 +52,8 @@ width:100%;
 padding:12px;
 margin:6px 0 12px;
 border:1px solid #ccd3dd;
-border-radius:6px
+border-radius:6px;
+font-size:16px
 }
 
 button{
@@ -63,7 +63,8 @@ color:#fff;
 padding:12px 16px;
 border-radius:6px;
 font-weight:800;
-cursor:pointer
+cursor:pointer;
+font-size:15px
 }
 
 button:disabled{
@@ -153,8 +154,15 @@ padding:15px;
 border-radius:8px
 }
 
+.infoBox{
+background:#eef4ff;
+border-left:4px solid #2874f0;
+padding:15px;
+border-radius:8px
+}
+
 .loginLinks{
-margin-top:15px
+margin-top:20px
 }
 
 .loginLinks a{
@@ -183,43 +191,48 @@ margin-left:0
 
 </head>
 
-
 <body>
-
 
 <header>
 NEXORA PICKS — SELLER CENTER
 </header>
 
-
 <main>
 
 
-<!-- LOGIN -->
+<!-- SELLER LOGIN -->
 
 <div id="login" class="box">
 
-<h2>Seller Login</h2>
+<h2>
+Seller Login
+</h2>
 
 <p>
-Login using the email and password you used during seller registration.
+Login using your NEXORA PICKS account email and password.
 </p>
 
 
 <input
 id="email"
 type="email"
-placeholder="Email Address">
+placeholder="Email Address"
+autocomplete="email">
 
 
 <input
 id="password"
 type="password"
-placeholder="Password">
+placeholder="Password"
+autocomplete="current-password">
 
 
-<button onclick="login()">
-Login
+<button
+id="loginBtn"
+onclick="login()">
+
+Seller Login
+
 </button>
 
 
@@ -237,6 +250,61 @@ Become a Seller →
 </a>
 
 </div>
+
+</div>
+
+
+
+<!-- SELLER APPLICATION -->
+
+<div
+id="notSellerBox"
+class="box"
+style="display:none">
+
+<div class="infoBox">
+
+<h3>
+Seller Account Not Found
+</h3>
+
+<p>
+Your email account exists, but a seller profile was not found.
+</p>
+
+<p>
+Please complete seller registration before accessing the Seller Dashboard.
+</p>
+
+<br>
+
+<a
+href="seller-register.html"
+style="
+display:inline-block;
+background:#2874f0;
+color:white;
+padding:12px 16px;
+border-radius:6px;
+font-weight:bold;
+text-decoration:none
+">
+
+Become a Seller
+
+</a>
+
+</div>
+
+<br>
+
+<button
+class="secondary"
+onclick="logout()">
+
+Logout
+
+</button>
 
 </div>
 
@@ -269,7 +337,6 @@ Logout
 
 </button>
 
-
 </div>
 
 
@@ -283,7 +350,9 @@ style="display:none">
 
 <div class="pendingBox">
 
-<h3>⏳ Seller Approval Pending</h3>
+<h3>
+⏳ Seller Approval Pending
+</h3>
 
 <p>
 Your seller registration has been submitted successfully.
@@ -309,7 +378,9 @@ style="display:none">
 
 <div class="rejectedBox">
 
-<h3>✕ Seller Registration Not Approved</h3>
+<h3>
+✕ Seller Registration Not Approved
+</h3>
 
 <p>
 Your seller account has not been approved.
@@ -436,7 +507,6 @@ id="imageUrl"
 placeholder="https://...">
 
 
-
 <label>
 Emoji Fallback
 </label>
@@ -444,7 +514,6 @@ Emoji Fallback
 <input
 id="emoji"
 value="🛍️">
-
 
 
 <label>
@@ -460,7 +529,6 @@ Hidden until Admin approval
 </option>
 
 </select>
-
 
 
 <button onclick="saveProduct()">
@@ -493,18 +561,15 @@ class="box"
 id="productsBox"
 style="display:none">
 
-
 <h2>
 My Products
 </h2>
-
 
 <div id="list">
 
 Loading...
 
 </div>
-
 
 </div>
 
@@ -575,34 +640,26 @@ from
 
 const firebaseConfig={
 
-
 apiKey:
 "AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
-
 
 authDomain:
 "nexora-picks-be049.firebaseapp.com",
 
-
 projectId:
 "nexora-picks-be049",
-
 
 storageBucket:
 "nexora-picks-be049.firebasestorage.app",
 
-
 messagingSenderId:
 "325932959084",
-
 
 appId:
 "1:325932959084:web:4fd8252e1ba83f82ee1f49",
 
-
 measurementId:
 "G-KMQZXZZCHJ"
-
 
 };
 
@@ -624,18 +681,23 @@ const $=
 id=>document.getElementById(id);
 
 
+let approved=
+false;
 
-let approved=false;
 
-let currentSeller=null;
+let currentSeller=
+null;
 
-let unsubscribeProducts=null;
+
+let unsubscribeProducts=
+null;
 
 
 
 /* LOGIN */
 
-window.login=async()=>{
+window.login=
+async()=>{
 
 
 const email=
@@ -659,6 +721,10 @@ return;
 }
 
 
+$("loginBtn").disabled=
+true;
+
+
 $("msg").textContent=
 "Logging in...";
 
@@ -667,27 +733,27 @@ try{
 
 
 await signInWithEmailAndPassword(
+
 auth,
 email,
 password
+
 );
 
 
-$("msg").textContent="";
+$("msg").textContent=
+"";
 
 
 }catch(e){
 
 
+$("loginBtn").disabled=
+false;
+
+
 $("msg").innerHTML=
-'<span class="err">'+
-escapeHtml(
-e.message.replace(
-"Firebase: ",
-""
-)
-)+
-'</span>';
+'<span class="err">Incorrect email or password.</span>';
 
 
 }
@@ -700,16 +766,25 @@ e.message.replace(
 /* AUTH CHECK */
 
 onAuthStateChanged(
+
 auth,
+
 async user=>{
+
+
+$("loginBtn").disabled=
+false;
 
 
 if(!user){
 
 
-currentSeller=null;
+currentSeller=
+null;
 
-approved=false;
+
+approved=
+false;
 
 
 $("login").style.display=
@@ -717,6 +792,10 @@ $("login").style.display=
 
 
 $("app").style.display=
+"none";
+
+
+$("notSellerBox").style.display=
 "none";
 
 
@@ -742,7 +821,8 @@ if(unsubscribeProducts){
 unsubscribeProducts();
 
 
-unsubscribeProducts=null;
+unsubscribeProducts=
+null;
 
 
 }
@@ -755,7 +835,8 @@ return;
 
 
 
-currentSeller=user;
+currentSeller=
+user;
 
 
 try{
@@ -763,20 +844,30 @@ try{
 
 const sellerRef=
 doc(
+
 db,
 "sellers",
 user.uid
+
 );
 
 
 const sellerSnap=
 await getDoc(
+
 sellerRef
+
 );
 
 
 
+/* SELLER PROFILE NOT FOUND */
+
 if(!sellerSnap.exists()){
+
+
+approved=
+false;
 
 
 $("login").style.display=
@@ -784,27 +875,11 @@ $("login").style.display=
 
 
 $("app").style.display=
+"none";
+
+
+$("notSellerBox").style.display=
 "block";
-
-
-$("formBox").style.display=
-"none";
-
-
-$("productsBox").style.display=
-"none";
-
-
-$("pendingBox").style.display=
-"none";
-
-
-$("rejectedBox").style.display=
-"block";
-
-
-$("sellerStatus").innerHTML=
-'<span class="err">Seller registration not found.</span>';
 
 
 return;
@@ -814,11 +889,18 @@ return;
 
 
 
+/* SELLER PROFILE FOUND */
+
+$("notSellerBox").style.display=
+"none";
+
+
 showSeller(
+
 user,
 sellerSnap.data()
-);
 
+);
 
 
 }catch(e){
@@ -828,6 +910,10 @@ console.error(e);
 
 
 $("login").style.display=
+"none";
+
+
+$("notSellerBox").style.display=
 "none";
 
 
@@ -845,6 +931,7 @@ escapeHtml(e.message)+
 
 
 }
+
 );
 
 
@@ -852,21 +939,29 @@ escapeHtml(e.message)+
 /* SHOW SELLER */
 
 function showSeller(
+
 user,
 data
+
 ){
 
 
 const status=
 String(
-data.status||"pending"
+
+data.status||
+"pending"
+
 ).toLowerCase();
 
 
 
 approved=
+
 data.active===true
+
 &&
+
 status==="approved";
 
 
@@ -875,21 +970,36 @@ $("login").style.display=
 "none";
 
 
+$("notSellerBox").style.display=
+"none";
+
+
 $("app").style.display=
 "block";
 
 
 $("welcome").textContent=
+
 (
+
 data.storeName
+
 ||
+
 data.fullName
+
 ||
+
 user.displayName
+
 ||
+
 "Seller"
+
 )
+
 +
+
 " — Seller Dashboard";
 
 
@@ -917,7 +1027,9 @@ if(approved){
 
 
 $("sellerStatus").innerHTML=
+
 '<span class="ok">✓ Seller Approved. You can submit products for approval.</span>';
+
 
 
 $("formBox").style.display=
@@ -929,7 +1041,9 @@ $("productsBox").style.display=
 
 
 loadProducts(
+
 user.uid
+
 );
 
 
@@ -943,13 +1057,20 @@ return;
 /* REJECTED SELLER */
 
 if(
+
 status==="rejected"
-||status==="reject"
+
+||
+
+status==="reject"
+
 ){
 
 
 $("sellerStatus").innerHTML=
+
 '<span class="err">✕ Seller registration rejected.</span>';
+
 
 
 $("rejectedBox").style.display=
@@ -966,7 +1087,9 @@ return;
 /* PENDING SELLER */
 
 $("sellerStatus").innerHTML=
+
 '<span class="pending">⏳ Waiting for Admin approval.</span>';
+
 
 
 $("pendingBox").style.display=
@@ -979,31 +1102,40 @@ $("pendingBox").style.display=
 
 /* RESET PRODUCT FORM */
 
-function resetForm(){
+window.resetForm=
+()=>{
 
 
-$("pid").value="";
+$("pid").value=
+"";
 
 
-$("name").value="";
+$("name").value=
+"";
 
 
-$("description").value="";
+$("description").value=
+"";
 
 
-$("category").value="";
+$("category").value=
+"";
 
 
-$("price").value="";
+$("price").value=
+"";
 
 
-$("stock").value="";
+$("stock").value=
+"";
 
 
-$("oldPrice").value="";
+$("oldPrice").value=
+"";
 
 
-$("imageUrl").value="";
+$("imageUrl").value=
+"";
 
 
 $("emoji").value=
@@ -1018,22 +1150,25 @@ $("formTitle").textContent=
 "Add Product";
 
 
-$("saveMsg").textContent="";
+$("saveMsg").textContent=
+"";
 
 
-}
+};
 
 
 
 /* SAVE PRODUCT */
 
-window.saveProduct=async()=>{
+window.saveProduct=
+async()=>{
 
 
 if(!approved){
 
 
 $("saveMsg").innerHTML=
+
 '<span class="err">Seller approval is required.</span>';
 
 
@@ -1052,6 +1187,7 @@ if(!user){
 
 
 $("saveMsg").innerHTML=
+
 '<span class="err">Please login again.</span>';
 
 
@@ -1064,11 +1200,15 @@ return;
 
 const sellerSnap=
 await getDoc(
+
 doc(
+
 db,
 "sellers",
 user.uid
+
 )
+
 );
 
 
@@ -1077,6 +1217,7 @@ if(!sellerSnap.exists()){
 
 
 $("saveMsg").innerHTML=
+
 '<span class="err">Seller profile not found.</span>';
 
 
@@ -1093,24 +1234,33 @@ sellerSnap.data();
 
 
 if(
+
 sellerData.active!==true
+
 ||
+
 String(
 sellerData.status
 ).toLowerCase()!=="approved"
+
 ){
 
 
-approved=false;
+approved=
+false;
 
 
 $("saveMsg").innerHTML=
+
 '<span class="err">Your seller account is not approved.</span>';
 
 
+
 showSeller(
+
 user,
 sellerData
+
 );
 
 
@@ -1165,13 +1315,12 @@ $("imageUrl").value.trim(),
 
 emoji:
 $("emoji").value.trim()
-||"🛍️",
+||
+"🛍️",
 
 
-
-/* PRODUCTS ALWAYS NEED ADMIN APPROVAL */
-
-active:false,
+active:
+false,
 
 
 approvalStatus:
@@ -1183,12 +1332,19 @@ user.uid,
 
 
 sellerName:
+
 sellerData.storeName
+
 ||
+
 sellerData.fullName
+
 ||
+
 user.displayName
+
 ||
+
 "Seller",
 
 
@@ -1202,26 +1358,21 @@ serverTimestamp()
 
 if(
 
-
 !product.name
 
-
 ||
-
 
 product.price<=0
 
-
 ||
 
-
 product.stock<0
-
 
 ){
 
 
 $("saveMsg").innerHTML=
+
 '<span class="err">Enter product name, valid price and stock.</span>';
 
 
@@ -1244,16 +1395,15 @@ serverTimestamp();
 
 await updateDoc(
 
-
 doc(
+
 db,
 "products",
 id
+
 ),
 
-
 product
-
 
 );
 
@@ -1267,15 +1417,14 @@ serverTimestamp();
 
 await addDoc(
 
-
 collection(
+
 db,
 "products"
+
 ),
 
-
 product
-
 
 );
 
@@ -1284,17 +1433,19 @@ product
 
 
 
-$("saveMsg").innerHTML=
-'<span class="ok">✓ Product submitted for Admin approval.</span>';
-
-
 resetForm();
+
+
+$("saveMsg").innerHTML=
+
+'<span class="ok">✓ Product submitted for Admin approval.</span>';
 
 
 }catch(e){
 
 
 $("saveMsg").innerHTML=
+
 '<span class="err">'+
 escapeHtml(e.message)+
 '</span>';
@@ -1307,7 +1458,7 @@ escapeHtml(e.message)+
 
 
 
-/* LOAD SELLER PRODUCTS */
+/* LOAD PRODUCTS */
 
 function loadProducts(uid){
 
@@ -1321,6 +1472,7 @@ unsubscribeProducts();
 }
 
 
+
 unsubscribeProducts=
 
 
@@ -1331,15 +1483,19 @@ query(
 
 
 collection(
+
 db,
 "products"
+
 ),
 
 
 where(
+
 "sellerId",
 "==",
 uid
+
 )
 
 
@@ -1365,6 +1521,7 @@ snapshot.empty
 
 
 snapshot.docs.map(
+
 documentSnap=>{
 
 
@@ -1377,7 +1534,9 @@ let status=
 
 
 if(
+
 product.approvalStatus==="approved"
+
 ){
 
 
@@ -1389,7 +1548,9 @@ status=
 
 
 if(
+
 product.approvalStatus==="rejected"
+
 ){
 
 
@@ -1404,70 +1565,67 @@ status=
 const productData=
 JSON.stringify({
 
-
 id:
 documentSnap.id,
 
-
 ...product
 
-
 })
+
 .replace(
+
 /'/g,
 "&#039;"
+
 );
 
 
 
 return `
 
-
 <div class="item">
-
 
 <div class="thumb">
 
-
 ${
+
 product.imageUrl
 
-
 ?
-
 
 `<img src="${escapeHtml(product.imageUrl)}"
 alt="${escapeHtml(product.name)}">`
 
-
 :
 
-
 escapeHtml(
+
 product.emoji
 ||
 "🛍️"
-)
-}
 
+)
+
+}
 
 </div>
 
 
-
 <div>
 
-
 <b>
+
 ${escapeHtml(product.name)}
+
 </b>
 
 
 <div>
 
-
 ₹${Number(
+
 product.price||0
+
 ).toLocaleString("en-IN")}
 
 
@@ -1475,76 +1633,66 @@ product.price||0
 
 
 Stock:
+
 ${Number(
+
 product.stock||0
+
 )}
 
-
 </div>
-
 
 
 <div class="${
+
 product.approvalStatus==="approved"
 
-
 ?
-
 
 "ok"
 
-
 :
-
 
 product.approvalStatus==="rejected"
 
-
 ?
-
 
 "err"
 
-
 :
 
-
 "pending"
-}">
 
+}">
 
 ${status}
 
-
 </div>
 
-
 </div>
-
 
 
 <div class="actions">
 
 
 <button
-class="secondary"
-onclick='editProduct(${productData})'>
 
+class="secondary"
+
+onclick='editProduct(${productData})'>
 
 Edit
 
-
 </button>
-
 
 
 <button
+
 class="danger"
+
 onclick="removeProduct('${documentSnap.id}')">
 
-
 Delete
-
 
 </button>
 
@@ -1553,12 +1701,12 @@ Delete
 
 
 </div>
-
 
 `;
 
 
 }
+
 ).join("");
 
 
@@ -1583,35 +1731,43 @@ product.id;
 
 
 $("name").value=
-product.name||"";
+product.name||
+"";
 
 
 $("description").value=
-product.description||"";
+product.description||
+"";
 
 
 $("category").value=
-product.category||"";
+product.category||
+"";
 
 
 $("price").value=
-product.price||"";
+product.price||
+"";
 
 
 $("stock").value=
-product.stock??"";
+product.stock??
+"";
 
 
 $("oldPrice").value=
-product.oldPrice||"";
+product.oldPrice||
+"";
 
 
 $("imageUrl").value=
-product.imageUrl||"";
+product.imageUrl||
+"";
 
 
 $("emoji").value=
-product.emoji||"🛍️";
+product.emoji||
+"🛍️";
 
 
 $("active").value=
@@ -1624,12 +1780,9 @@ $("formTitle").textContent=
 
 window.scrollTo({
 
-
 top:0,
 
-
 behavior:"smooth"
-
 
 });
 
@@ -1644,13 +1797,7 @@ window.removeProduct=
 async id=>{
 
 
-if(
-
-
-!approved
-
-
-){
+if(!approved){
 
 
 alert(
@@ -1667,11 +1814,9 @@ return;
 
 if(
 
-
 confirm(
 "Delete this product?"
 )
-
 
 ){
 
@@ -1681,13 +1826,13 @@ try{
 
 await deleteDoc(
 
-
 doc(
+
 db,
 "products",
 id
-)
 
+)
 
 );
 
@@ -1731,7 +1876,10 @@ function escapeHtml(value){
 
 
 return String(
-value??""
+
+value??
+""
+
 )
 
 
@@ -1770,7 +1918,6 @@ value??""
 
 </script>
 
-
 </body>
 
-</html>
+  </html>

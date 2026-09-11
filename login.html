@@ -235,12 +235,6 @@ font-size:22px;
 font-weight:bold
 }
 
-.small{
-font-size:14px;
-color:#667085;
-line-height:1.6
-}
-
 .backHome{
 display:block;
 text-align:center;
@@ -267,27 +261,21 @@ border-radius:16px
 
 </head>
 
-
 <body>
 
-
 <div class="loginBox">
-
 
 <div class="logo">
 NEXORA PICKS
 </div>
 
-
 <h1>
 Welcome
 </h1>
 
-
 <div class="sub">
 Login or create an account to continue shopping.
 </div>
-
 
 <div class="tabs">
 
@@ -299,7 +287,6 @@ id="phoneTab">
 
 </button>
 
-
 <button
 class="tab"
 id="emailTab">
@@ -310,14 +297,11 @@ id="emailTab">
 
 </div>
 
-
-
 <div
 id="message"
 class="message">
 
 </div>
-
 
 
 <!-- PHONE LOGIN -->
@@ -326,22 +310,18 @@ class="message">
 id="phoneLogin"
 class="section active">
 
-
 <div
 id="phoneSection">
-
 
 <label>
 Mobile Number
 </label>
-
 
 <div class="phoneBox">
 
 <div class="country">
 +91
 </div>
-
 
 <input
 type="tel"
@@ -352,12 +332,10 @@ inputmode="numeric">
 
 </div>
 
-
 <div
 id="recaptcha-container">
 
 </div>
-
 
 <button
 id="sendOtpBtn"
@@ -367,13 +345,11 @@ Send OTP
 
 </button>
 
-
 <div class="divider">
 
 OR
 
 </div>
-
 
 <div class="center">
 
@@ -387,15 +363,14 @@ Login with Email
 
 </div>
 
-
 </div>
 
 
+<!-- OTP -->
 
 <div
 id="otpSection"
 style="display:none">
-
 
 <div class="otpInfo">
 
@@ -403,17 +378,13 @@ OTP sent to
 
 <br>
 
-<b id="otpPhone">
-
-</b>
+<b id="otpPhone"></b>
 
 </div>
-
 
 <label>
 Enter OTP
 </label>
-
 
 <input
 type="text"
@@ -423,7 +394,6 @@ maxlength="6"
 inputmode="numeric"
 autocomplete="one-time-code">
 
-
 <button
 id="verifyOtpBtn"
 class="primary">
@@ -432,8 +402,8 @@ Verify OTP & Login
 
 </button>
 
-
-<div class="center"
+<div
+class="center"
 style="margin-top:15px">
 
 <button
@@ -446,12 +416,9 @@ Change Mobile Number
 
 </div>
 
-
 </div>
 
-
 </div>
-
 
 
 <!-- EMAIL LOGIN -->
@@ -460,15 +427,12 @@ Change Mobile Number
 id="emailLogin"
 class="section">
 
-
 <div
 id="emailLoginSection">
-
 
 <label>
 Email Address
 </label>
-
 
 <input
 type="email"
@@ -476,11 +440,9 @@ id="email"
 placeholder="Enter your email address"
 autocomplete="email">
 
-
 <label>
 Password
 </label>
-
 
 <input
 type="password"
@@ -488,11 +450,9 @@ id="password"
 placeholder="Enter your password"
 autocomplete="current-password">
 
-
 <div
 class="center"
 style="margin-bottom:12px">
-
 
 <button
 class="linkButton"
@@ -502,9 +462,7 @@ Forgot Password?
 
 </button>
 
-
 </div>
-
 
 <button
 id="emailLoginBtn"
@@ -514,13 +472,11 @@ Login
 
 </button>
 
-
 <div class="divider">
 
 OR
 
 </div>
-
 
 <button
 id="createAccountBtn"
@@ -530,10 +486,9 @@ Create New Account
 
 </button>
 
-
-<div class="center"
+<div
+class="center"
 style="margin-top:15px">
-
 
 <button
 class="linkButton"
@@ -543,12 +498,9 @@ Login with Mobile OTP
 
 </button>
 
-
 </div>
 
-
 </div>
-
 
 
 <!-- CREATE ACCOUNT -->
@@ -557,7 +509,6 @@ Login with Mobile OTP
 id="createAccountSection"
 style="display:none">
 
-
 <h2
 style="text-align:center">
 
@@ -565,11 +516,9 @@ Create Account
 
 </h2>
 
-
 <label>
 Full Name
 </label>
-
 
 <input
 type="text"
@@ -579,9 +528,29 @@ autocomplete="name">
 
 
 <label>
-Email Address
+Mobile Number
 </label>
 
+<div class="phoneBox">
+
+<div class="country">
++91
+</div>
+
+<input
+type="tel"
+id="registerPhone"
+placeholder="Enter 10 digit mobile number"
+maxlength="10"
+inputmode="numeric"
+autocomplete="tel">
+
+</div>
+
+
+<label>
+Email Address
+</label>
 
 <input
 type="email"
@@ -593,7 +562,6 @@ autocomplete="email">
 <label>
 Password
 </label>
-
 
 <input
 type="password"
@@ -615,7 +583,6 @@ Create Account
 class="center"
 style="margin-top:15px">
 
-
 <button
 class="linkButton"
 id="backToLoginBtn">
@@ -624,15 +591,11 @@ Already have an account? Login
 
 </button>
 
+</div>
 
 </div>
 
-
 </div>
-
-
-</div>
-
 
 
 <div
@@ -652,26 +615,18 @@ class="backHome">
 
 </a>
 
-
 </div>
 
 
-
-<!-- FIREBASE -->
-
 <script type="module">
 
-
 import {
-
 initializeApp
-
 }
 
 from
 
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-
 
 
 import {
@@ -697,17 +652,6 @@ from
 "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
-
-/* =========================================
-   IMPORTANT
-
-   PASTE YOUR FIREBASE CONFIG BELOW
-
-   Use the SAME Firebase project
-   you already use for NEXORA PICKS.
-========================================= */
-
-
 const firebaseConfig = {
   apiKey: "AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
   authDomain: "nexora-picks-be049.firebaseapp.com",
@@ -718,550 +662,229 @@ const firebaseConfig = {
   measurementId: "G-KMQZXZZCHJ"
 };
 
+
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
 
-
-/* =========================================
-   ELEMENTS
-========================================= */
-
+/* ELEMENTS */
 
 const phoneTab =
-
-document.getElementById(
-
-"phoneTab"
-
-);
-
-
+document.getElementById("phoneTab");
 
 const emailTab =
-
-document.getElementById(
-
-"emailTab"
-
-);
-
-
+document.getElementById("emailTab");
 
 const phoneLogin =
-
-document.getElementById(
-
-"phoneLogin"
-
-);
-
-
+document.getElementById("phoneLogin");
 
 const emailLogin =
-
-document.getElementById(
-
-"emailLogin"
-
-);
-
-
+document.getElementById("emailLogin");
 
 const phoneSection =
-
-document.getElementById(
-
-"phoneSection"
-
-);
-
-
+document.getElementById("phoneSection");
 
 const otpSection =
-
-document.getElementById(
-
-"otpSection"
-
-);
-
-
+document.getElementById("otpSection");
 
 const phoneNumber =
-
-document.getElementById(
-
-"phoneNumber"
-
-);
-
-
+document.getElementById("phoneNumber");
 
 const sendOtpBtn =
-
-document.getElementById(
-
-"sendOtpBtn"
-
-);
-
-
+document.getElementById("sendOtpBtn");
 
 const verifyOtpBtn =
-
-document.getElementById(
-
-"verifyOtpBtn"
-
-);
-
-
+document.getElementById("verifyOtpBtn");
 
 const otpInput =
-
-document.getElementById(
-
-"otpInput"
-
-);
-
-
+document.getElementById("otpInput");
 
 const otpPhone =
-
-document.getElementById(
-
-"otpPhone"
-
-);
-
-
+document.getElementById("otpPhone");
 
 const changeNumberBtn =
-
-document.getElementById(
-
-"changeNumberBtn"
-
-);
-
-
+document.getElementById("changeNumberBtn");
 
 const message =
-
-document.getElementById(
-
-"message"
-
-);
-
-
+document.getElementById("message");
 
 const loading =
-
-document.getElementById(
-
-"loading"
-
-);
-
-
+document.getElementById("loading");
 
 const email =
-
-document.getElementById(
-
-"email"
-
-);
-
-
+document.getElementById("email");
 
 const password =
-
-document.getElementById(
-
-"password"
-
-);
-
-
+document.getElementById("password");
 
 const emailLoginBtn =
-
-document.getElementById(
-
-"emailLoginBtn"
-
-);
-
-
+document.getElementById("emailLoginBtn");
 
 const forgotPasswordBtn =
-
-document.getElementById(
-
-"forgotPasswordBtn"
-
-);
-
-
+document.getElementById("forgotPasswordBtn");
 
 const createAccountBtn =
-
-document.getElementById(
-
-"createAccountBtn"
-
-);
-
-
+document.getElementById("createAccountBtn");
 
 const emailLoginSection =
-
-document.getElementById(
-
-"emailLoginSection"
-
-);
-
-
+document.getElementById("emailLoginSection");
 
 const createAccountSection =
-
-document.getElementById(
-
-"createAccountSection"
-
-);
-
-
+document.getElementById("createAccountSection");
 
 const registerName =
+document.getElementById("registerName");
 
-document.getElementById(
-
-"registerName"
-
-);
-
-
+const registerPhone =
+document.getElementById("registerPhone");
 
 const registerEmail =
-
-document.getElementById(
-
-"registerEmail"
-
-);
-
-
+document.getElementById("registerEmail");
 
 const registerPassword =
-
-document.getElementById(
-
-"registerPassword"
-
-);
-
-
+document.getElementById("registerPassword");
 
 const registerBtn =
-
-document.getElementById(
-
-"registerBtn"
-
-);
-
-
+document.getElementById("registerBtn");
 
 const backToLoginBtn =
-
-document.getElementById(
-
-"backToLoginBtn"
-
-);
-
-
+document.getElementById("backToLoginBtn");
 
 const switchEmail1 =
-
-document.getElementById(
-
-"switchEmail1"
-
-);
-
-
+document.getElementById("switchEmail1");
 
 const switchPhone1 =
-
-document.getElementById(
-
-"switchPhone1"
-
-);
+document.getElementById("switchPhone1");
 
 
+let confirmationResult = null;
 
-let confirmationResult =
-
-null;
-
+let recaptchaVerifier = null;
 
 
-let recaptchaVerifier =
+/* MESSAGE */
 
-null;
+function showMessage(text,type){
 
-
-
-/* =========================================
-   MESSAGE
-========================================= */
-
-
-function showMessage(
-
-text,
-
-type
-
-){
-
-
-message.textContent =
-
-text;
-
+message.textContent = text;
 
 message.className =
-
 "message " + type;
 
-
 }
-
 
 
 function hideMessage(){
 
-
 message.className =
-
 "message";
 
-
-message.textContent =
-
-"";
-
+message.textContent = "";
 
 }
-
 
 
 function showLoading(){
 
-
 loading.style.display =
-
 "block";
 
-
 }
-
 
 
 function hideLoading(){
 
-
 loading.style.display =
-
 "none";
-
 
 }
 
 
-
-/* =========================================
-   TAB FUNCTIONS
-========================================= */
-
+/* TABS */
 
 function openPhoneLogin(){
 
-
 hideMessage();
 
+phoneTab.classList.add("active");
 
-phoneTab.classList.add(
+emailTab.classList.remove("active");
 
-"active"
+phoneLogin.classList.add("active");
 
-);
-
-
-emailTab.classList.remove(
-
-"active"
-
-);
-
-
-phoneLogin.classList.add(
-
-"active"
-
-);
-
-
-emailLogin.classList.remove(
-
-"active"
-
-);
-
+emailLogin.classList.remove("active");
 
 }
-
 
 
 function openEmailLogin(){
 
-
 hideMessage();
 
+emailTab.classList.add("active");
 
-emailTab.classList.add(
+phoneTab.classList.remove("active");
 
-"active"
+emailLogin.classList.add("active");
 
-);
-
-
-phoneTab.classList.remove(
-
-"active"
-
-);
-
-
-emailLogin.classList.add(
-
-"active"
-
-);
-
-
-phoneLogin.classList.remove(
-
-"active"
-
-);
-
+phoneLogin.classList.remove("active");
 
 emailLoginSection.style.display =
-
 "block";
 
-
 createAccountSection.style.display =
-
 "none";
-
 
 }
 
 
-
 phoneTab.addEventListener(
-
 "click",
-
 openPhoneLogin
-
 );
-
 
 
 emailTab.addEventListener(
-
 "click",
-
 openEmailLogin
-
 );
-
 
 
 switchEmail1.addEventListener(
-
 "click",
-
 openEmailLogin
-
 );
-
 
 
 switchPhone1.addEventListener(
-
 "click",
-
 openPhoneLogin
-
 );
 
 
-
-/* =========================================
-   FIREBASE RECAPTCHA
-========================================= */
-
+/* RECAPTCHA */
 
 function setupRecaptcha(){
 
-
-if(
-
-recaptchaVerifier
-
-){
-
+if(recaptchaVerifier){
 
 try{
 
-
 recaptchaVerifier.clear();
-
 
 }
 
 catch(error){
 
-
-console.log(
-
-error
-
-);
-
+console.log(error);
 
 }
-
 
 }
 
 
 recaptchaVerifier =
-
 new RecaptchaVerifier(
 
 auth,
@@ -1270,25 +893,16 @@ auth,
 
 {
 
-
-size:
-
-"invisible"
-
+size:"invisible"
 
 }
 
 );
 
-
 }
 
 
-
-/* =========================================
-   SEND OTP
-========================================= */
-
+/* SEND OTP */
 
 sendOtpBtn.addEventListener(
 
@@ -1296,70 +910,39 @@ sendOtpBtn.addEventListener(
 
 async()=>{
 
-
 hideMessage();
 
-
 const number =
-
-phoneNumber.value
-
-.replace(
-
-/\D/g,
-
-""
-
-);
+phoneNumber.value.replace(/\D/g,"");
 
 
-
-if(
-
-number.length !== 10
-
-){
-
+if(number.length !== 10){
 
 showMessage(
-
 "Please enter a valid 10 digit mobile number.",
-
 "error"
-
 );
 
-
 return;
-
 
 }
 
 
-
 const fullPhoneNumber =
-
 "+91" + number;
-
 
 
 try{
 
-
 sendOtpBtn.disabled =
-
 true;
 
-
 showLoading();
-
 
 setupRecaptcha();
 
 
-
 confirmationResult =
-
 await signInWithPhoneNumber(
 
 auth,
@@ -1371,20 +954,15 @@ recaptchaVerifier
 );
 
 
-
 otpPhone.textContent =
-
 fullPhoneNumber;
 
 
-
 phoneSection.style.display =
-
 "none";
 
 
 otpSection.style.display =
-
 "block";
 
 
@@ -1392,34 +970,25 @@ hideLoading();
 
 
 sendOtpBtn.disabled =
-
 false;
 
 
 showMessage(
-
 "OTP sent successfully.",
-
 "success"
-
 );
 
 
 otpInput.focus();
-
 
 }
 
 
 catch(error){
 
-
 console.error(
-
 "OTP Error:",
-
 error
-
 );
 
 
@@ -1427,32 +996,22 @@ hideLoading();
 
 
 sendOtpBtn.disabled =
-
 false;
 
 
 showMessage(
-
 error.message,
-
 "error"
-
 );
 
-
 }
-
 
 }
 
 );
 
 
-
-/* =========================================
-   VERIFY OTP
-========================================= */
-
+/* VERIFY OTP */
 
 verifyOtpBtn.addEventListener(
 
@@ -1460,108 +1019,61 @@ verifyOtpBtn.addEventListener(
 
 async()=>{
 
-
 hideMessage();
 
-
 const otp =
-
-otpInput.value
-
-.trim();
+otpInput.value.trim();
 
 
-
-if(
-
-otp.length !== 6
-
-){
-
+if(otp.length !== 6){
 
 showMessage(
-
 "Please enter the 6 digit OTP.",
-
 "error"
-
 );
 
-
 return;
-
 
 }
 
 
-
-if(
-
-!confirmationResult
-
-){
-
+if(!confirmationResult){
 
 showMessage(
-
 "Please request a new OTP.",
-
 "error"
-
 );
-
 
 return;
 
-
 }
-
 
 
 try{
 
-
 verifyOtpBtn.disabled =
-
 true;
-
 
 showLoading();
 
 
 await confirmationResult.confirm(
-
 otp
-
 );
-
 
 
 showMessage(
-
 "Login successful! Redirecting...",
-
 "success"
-
 );
 
 
-
-setTimeout(
-
-()=>{
-
+setTimeout(()=>{
 
 location.href =
-
 "index.html";
 
-
-},
-
-1000
-
-);
+},1000);
 
 
 }
@@ -1569,13 +1081,9 @@ location.href =
 
 catch(error){
 
-
 console.error(
-
 "OTP verification error:",
-
 error
-
 );
 
 
@@ -1583,32 +1091,22 @@ hideLoading();
 
 
 verifyOtpBtn.disabled =
-
 false;
 
 
 showMessage(
-
 "Invalid OTP. Please check and try again.",
-
 "error"
-
 );
 
-
 }
-
 
 }
 
 );
 
 
-
-/* =========================================
-   CHANGE NUMBER
-========================================= */
-
+/* CHANGE NUMBER */
 
 changeNumberBtn.addEventListener(
 
@@ -1616,24 +1114,19 @@ changeNumberBtn.addEventListener(
 
 ()=>{
 
-
 otpSection.style.display =
-
 "none";
 
 
 phoneSection.style.display =
-
 "block";
 
 
 otpInput.value =
-
 "";
 
 
 confirmationResult =
-
 null;
 
 
@@ -1642,17 +1135,12 @@ hideMessage();
 
 phoneNumber.focus();
 
-
 }
 
 );
 
 
-
-/* =========================================
-   EMAIL LOGIN
-========================================= */
-
+/* EMAIL LOGIN */
 
 emailLoginBtn.addEventListener(
 
@@ -1660,56 +1148,33 @@ emailLoginBtn.addEventListener(
 
 async()=>{
 
-
 hideMessage();
 
 
 const userEmail =
-
-email.value
-
-.trim();
-
+email.value.trim();
 
 
 const userPassword =
-
 password.value;
 
 
-
-if(
-
-!userEmail ||
-
-!userPassword
-
-){
-
+if(!userEmail || !userPassword){
 
 showMessage(
-
 "Please enter your email and password.",
-
 "error"
-
 );
 
-
 return;
-
 
 }
 
 
-
 try{
 
-
 emailLoginBtn.disabled =
-
 true;
-
 
 showLoading();
 
@@ -1725,32 +1190,18 @@ userPassword
 );
 
 
-
 showMessage(
-
 "Login successful! Redirecting...",
-
 "success"
-
 );
 
 
-
-setTimeout(
-
-()=>{
-
+setTimeout(()=>{
 
 location.href =
-
 "index.html";
 
-
-},
-
-1000
-
-);
+},1000);
 
 
 }
@@ -1758,37 +1209,26 @@ location.href =
 
 catch(error){
 
-
 hideLoading();
 
 
 emailLoginBtn.disabled =
-
 false;
 
 
 showMessage(
-
 "Incorrect email or password.",
-
 "error"
-
 );
 
-
 }
-
 
 }
 
 );
 
 
-
-/* =========================================
-   FORGOT PASSWORD
-========================================= */
-
+/* FORGOT PASSWORD */
 
 forgotPasswordBtn.addEventListener(
 
@@ -1796,31 +1236,18 @@ forgotPasswordBtn.addEventListener(
 
 async()=>{
 
-
 hideMessage();
 
 
 const userEmail =
-
-email.value
-
-.trim();
+email.value.trim();
 
 
-
-if(
-
-!userEmail
-
-){
-
+if(!userEmail){
 
 showMessage(
-
 "Enter your email address first, then click Forgot Password.",
-
 "error"
-
 );
 
 
@@ -1829,13 +1256,10 @@ email.focus();
 
 return;
 
-
 }
 
 
-
 try{
-
 
 showLoading();
 
@@ -1849,16 +1273,12 @@ userEmail
 );
 
 
-
 hideLoading();
 
 
 showMessage(
-
 "Password reset link sent to your email.",
-
 "success"
-
 );
 
 
@@ -1867,32 +1287,22 @@ showMessage(
 
 catch(error){
 
-
 hideLoading();
 
 
 showMessage(
-
 error.message,
-
 "error"
-
 );
 
-
 }
-
 
 }
 
 );
 
 
-
-/* =========================================
-   CREATE ACCOUNT
-========================================= */
-
+/* CREATE ACCOUNT SCREEN */
 
 createAccountBtn.addEventListener(
 
@@ -1900,30 +1310,22 @@ createAccountBtn.addEventListener(
 
 ()=>{
 
-
 hideMessage();
 
 
 emailLoginSection.style.display =
-
 "none";
 
 
 createAccountSection.style.display =
-
 "block";
-
 
 }
 
 );
 
 
-
-/* =========================================
-   BACK TO LOGIN
-========================================= */
-
+/* BACK TO LOGIN */
 
 backToLoginBtn.addEventListener(
 
@@ -1931,30 +1333,22 @@ backToLoginBtn.addEventListener(
 
 ()=>{
 
-
 hideMessage();
 
 
 createAccountSection.style.display =
-
 "none";
 
 
 emailLoginSection.style.display =
-
 "block";
-
 
 }
 
 );
 
 
-
-/* =========================================
-   REGISTER CUSTOMER
-========================================= */
-
+/* REGISTER CUSTOMER */
 
 registerBtn.addEventListener(
 
@@ -1962,96 +1356,75 @@ registerBtn.addEventListener(
 
 async()=>{
 
-
 hideMessage();
 
 
 const name =
+registerName.value.trim();
 
-registerName.value
 
-.trim();
-
+const phone =
+registerPhone.value.replace(/\D/g,"");
 
 
 const userEmail =
-
-registerEmail.value
-
-.trim();
-
+registerEmail.value.trim();
 
 
 const userPassword =
-
 registerPassword.value;
 
 
-
 if(
-
 !name ||
-
+!phone ||
 !userEmail ||
-
 !userPassword
-
 ){
 
-
 showMessage(
-
 "Please fill all fields.",
-
 "error"
-
 );
 
-
 return;
-
 
 }
 
 
-
-if(
-
-userPassword.length < 6
-
-){
-
+if(phone.length !== 10){
 
 showMessage(
-
-"Password must contain at least 6 characters.",
-
+"Please enter a valid 10 digit mobile number.",
 "error"
-
 );
-
 
 return;
 
-
 }
 
+
+if(userPassword.length < 6){
+
+showMessage(
+"Password must contain at least 6 characters.",
+"error"
+);
+
+return;
+
+}
 
 
 try{
 
-
 registerBtn.disabled =
-
 true;
-
 
 showLoading();
 
 
-
 const result =
-
 await createUserWithEmailAndPassword(
 
 auth,
@@ -2063,50 +1436,52 @@ userPassword
 );
 
 
-
 await updateProfile(
 
 result.user,
 
 {
 
-
 displayName:
-
 name
-
 
 }
 
 );
 
 
+/* SAVE PHONE LOCALLY */
+
+localStorage.setItem(
+
+"nexoraCustomerPhone",
+
+"+91" + phone
+
+);
+
+
+localStorage.setItem(
+
+"nexoraCustomerName",
+
+name
+
+);
+
 
 showMessage(
-
 "Account created successfully! Redirecting...",
-
 "success"
-
 );
 
 
-
-setTimeout(
-
-()=>{
-
+setTimeout(()=>{
 
 location.href =
-
 "index.html";
 
-
-},
-
-1000
-
-);
+},1000);
 
 
 }
@@ -2114,36 +1489,26 @@ location.href =
 
 catch(error){
 
-
 hideLoading();
 
 
 registerBtn.disabled =
-
 false;
 
 
 showMessage(
-
 error.message,
-
 "error"
-
 );
 
-
 }
-
 
 }
 
 );
-
 
 </script>
 
-
 </body>
 
-
-  </html>
+   </html>

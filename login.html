@@ -709,7 +709,7 @@ from
 
 
 const firebaseConfig = {
-  apiKey: AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY
+  apiKey: "AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
   authDomain: "nexora-picks-be049.firebaseapp.com",
   projectId: "nexora-picks-be049",
   storageBucket: "nexora-picks-be049.firebasestorage.app",
@@ -717,6 +717,10 @@ const firebaseConfig = {
   appId: "1:325932959084:web:4fd8252e1ba83f82ee1f49",
   measurementId: "G-KMQZXZZCHJ"
 };
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
 
 
 const app =

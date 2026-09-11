@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -30,7 +30,7 @@ padding:20px
 
 .loginBox{
 width:100%;
-max-width:420px;
+max-width:430px;
 background:white;
 border-radius:20px;
 padding:30px 24px;
@@ -39,7 +39,7 @@ box-shadow:0 5px 25px #00000018
 
 .logo{
 text-align:center;
-font-size:30px;
+font-size:28px;
 font-weight:bold;
 color:#2874f0;
 margin-bottom:10px
@@ -58,10 +58,56 @@ line-height:1.6;
 margin-bottom:25px
 }
 
+.tabs{
+display:flex;
+background:#f1f3f6;
+padding:5px;
+border-radius:12px;
+margin-bottom:25px
+}
+
+.tab{
+width:50%;
+border:0;
+padding:12px;
+background:transparent;
+border-radius:9px;
+font-weight:bold;
+color:#667085;
+cursor:pointer
+}
+
+.tab.active{
+background:#2874f0;
+color:white
+}
+
+.section{
+display:none
+}
+
+.section.active{
+display:block
+}
+
 label{
 display:block;
 font-weight:bold;
 margin-bottom:8px
+}
+
+input{
+width:100%;
+padding:15px;
+border:1px solid #cfd6e4;
+border-radius:10px;
+font-size:16px;
+outline:none;
+margin-bottom:15px
+}
+
+input:focus{
+border-color:#2874f0
 }
 
 .phoneBox{
@@ -73,74 +119,148 @@ margin-bottom:16px
 }
 
 .country{
-padding:15px 12px;
+padding:15px 10px;
 background:#f4f6f9;
 font-weight:bold;
-border-right:1px solid #ddd
+border-right:1px solid #cfd6e4;
+white-space:nowrap
 }
 
-input{
-width:100%;
+.phoneBox input{
 border:0;
-outline:0;
-font-size:17px;
-padding:15px
+margin:0;
+border-radius:0
 }
 
 button{
-width:100%;
-border:0;
-border-radius:10px;
-padding:15px;
-font-size:17px;
-font-weight:bold;
-cursor:pointer;
-background:#2874f0;
-color:white
+font-size:16px;
+cursor:pointer
 }
 
-button:disabled{
+.primary{
+width:100%;
+border:0;
+background:#2874f0;
+color:white;
+padding:15px;
+border-radius:10px;
+font-weight:bold;
+margin-top:5px
+}
+
+.primary:disabled{
 opacity:.6;
 cursor:not-allowed
 }
 
-#otpSection{
-display:none
+.secondary{
+width:100%;
+border:1px solid #2874f0;
+background:white;
+color:#2874f0;
+padding:14px;
+border-radius:10px;
+font-weight:bold;
+margin-top:12px
 }
 
-.backBtn{
-background:#eef2f7;
-color:#172033;
-margin-top:10px
+.linkButton{
+border:0;
+background:none;
+color:#2874f0;
+font-size:15px;
+font-weight:bold;
+padding:5px;
+cursor:pointer
+}
+
+.center{
+text-align:center
 }
 
 .message{
-margin-top:18px;
+display:none;
 padding:12px;
-border-radius:8px;
-text-align:center;
-display:none
+border-radius:10px;
+margin-bottom:15px;
+font-size:14px
 }
 
-.success{
-background:#e8f5e9;
-color:#16803c
+.message.error{
+display:block;
+background:#fff0f0;
+color:#d32f2f
 }
 
-.error{
-background:#ffebee;
-color:#c62828
+.message.success{
+display:block;
+background:#edfff2;
+color:#16833c
+}
+
+.divider{
+display:flex;
+align-items:center;
+gap:10px;
+margin:20px 0;
+color:#98a2b3
+}
+
+.divider:before,
+.divider:after{
+content:"";
+height:1px;
+background:#e5e7eb;
+flex:1
 }
 
 .loading{
+display:none;
 text-align:center;
 margin-top:15px;
-color:#667085;
-display:none
+color:#667085
 }
 
-#recaptcha-container{
-margin-top:10px
+.otpInfo{
+text-align:center;
+line-height:1.6;
+color:#667085;
+margin-bottom:20px
+}
+
+#otpInput{
+letter-spacing:8px;
+text-align:center;
+font-size:22px;
+font-weight:bold
+}
+
+.small{
+font-size:14px;
+color:#667085;
+line-height:1.6
+}
+
+.backHome{
+display:block;
+text-align:center;
+margin-top:20px;
+color:#2874f0;
+text-decoration:none;
+font-weight:bold
+}
+
+@media(max-width:480px){
+
+body{
+padding:12px
+}
+
+.loginBox{
+padding:25px 18px;
+border-radius:16px
+}
+
 }
 
 </style>
@@ -153,111 +273,43 @@ margin-top:10px
 
 <div class="loginBox">
 
+
 <div class="logo">
-
-🛍️ NEXORA PICKS
-
+NEXORA PICKS
 </div>
 
 
-<div id="phoneSection">
-
-<h1>Login or Signup</h1>
-
-<p class="sub">
-
-Enter your mobile number to receive a secure OTP.
-
-</p>
+<h1>
+Welcome
+</h1>
 
 
-<label>
-
-Mobile Number
-
-</label>
-
-
-<div class="phoneBox">
-
-<div class="country">
-
-+91
-
+<div class="sub">
+Login or create an account to continue shopping.
 </div>
 
 
-<input
-id="phoneNumber"
-type="tel"
-inputmode="numeric"
-maxlength="10"
-placeholder="Enter 10 digit mobile number">
-
-</div>
-
+<div class="tabs">
 
 <button
-id="sendOtpBtn">
+class="tab active"
+id="phoneTab">
 
-Send OTP
-
-</button>
-
-
-</div>
-
-
-
-<div id="otpSection">
-
-<h1>Verify OTP</h1>
-
-<p class="sub">
-
-We sent an OTP to your mobile number.
-
-</p>
-
-
-<label>
-
-Enter OTP
-
-</label>
-
-
-<input
-id="otp"
-type="number"
-inputmode="numeric"
-maxlength="6"
-placeholder="Enter 6 digit OTP"
-style="
-border:1px solid #cfd6e4;
-border-radius:10px;
-margin-bottom:16px;
-">
-
-
-<button
-id="verifyOtpBtn">
-
-Verify & Login
+📱 Phone
 
 </button>
 
 
 <button
-class="backBtn"
-id="changeNumberBtn">
+class="tab"
+id="emailTab">
 
-Change Mobile Number
+📧 Email
 
 </button>
 
-
 </div>
+
 
 
 <div
@@ -265,6 +317,322 @@ id="message"
 class="message">
 
 </div>
+
+
+
+<!-- PHONE LOGIN -->
+
+<div
+id="phoneLogin"
+class="section active">
+
+
+<div
+id="phoneSection">
+
+
+<label>
+Mobile Number
+</label>
+
+
+<div class="phoneBox">
+
+<div class="country">
++91
+</div>
+
+
+<input
+type="tel"
+id="phoneNumber"
+placeholder="Enter 10 digit mobile number"
+maxlength="10"
+inputmode="numeric">
+
+</div>
+
+
+<div
+id="recaptcha-container">
+
+</div>
+
+
+<button
+id="sendOtpBtn"
+class="primary">
+
+Send OTP
+
+</button>
+
+
+<div class="divider">
+
+OR
+
+</div>
+
+
+<div class="center">
+
+<button
+class="linkButton"
+id="switchEmail1">
+
+Login with Email
+
+</button>
+
+</div>
+
+
+</div>
+
+
+
+<div
+id="otpSection"
+style="display:none">
+
+
+<div class="otpInfo">
+
+OTP sent to
+
+<br>
+
+<b id="otpPhone">
+
+</b>
+
+</div>
+
+
+<label>
+Enter OTP
+</label>
+
+
+<input
+type="text"
+id="otpInput"
+placeholder="------"
+maxlength="6"
+inputmode="numeric"
+autocomplete="one-time-code">
+
+
+<button
+id="verifyOtpBtn"
+class="primary">
+
+Verify OTP & Login
+
+</button>
+
+
+<div class="center"
+style="margin-top:15px">
+
+<button
+class="linkButton"
+id="changeNumberBtn">
+
+Change Mobile Number
+
+</button>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- EMAIL LOGIN -->
+
+<div
+id="emailLogin"
+class="section">
+
+
+<div
+id="emailLoginSection">
+
+
+<label>
+Email Address
+</label>
+
+
+<input
+type="email"
+id="email"
+placeholder="Enter your email address"
+autocomplete="email">
+
+
+<label>
+Password
+</label>
+
+
+<input
+type="password"
+id="password"
+placeholder="Enter your password"
+autocomplete="current-password">
+
+
+<div
+class="center"
+style="margin-bottom:12px">
+
+
+<button
+class="linkButton"
+id="forgotPasswordBtn">
+
+Forgot Password?
+
+</button>
+
+
+</div>
+
+
+<button
+id="emailLoginBtn"
+class="primary">
+
+Login
+
+</button>
+
+
+<div class="divider">
+
+OR
+
+</div>
+
+
+<button
+id="createAccountBtn"
+class="secondary">
+
+Create New Account
+
+</button>
+
+
+<div class="center"
+style="margin-top:15px">
+
+
+<button
+class="linkButton"
+id="switchPhone1">
+
+Login with Mobile OTP
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- CREATE ACCOUNT -->
+
+<div
+id="createAccountSection"
+style="display:none">
+
+
+<h2
+style="text-align:center">
+
+Create Account
+
+</h2>
+
+
+<label>
+Full Name
+</label>
+
+
+<input
+type="text"
+id="registerName"
+placeholder="Enter your full name"
+autocomplete="name">
+
+
+<label>
+Email Address
+</label>
+
+
+<input
+type="email"
+id="registerEmail"
+placeholder="Enter your email"
+autocomplete="email">
+
+
+<label>
+Password
+</label>
+
+
+<input
+type="password"
+id="registerPassword"
+placeholder="Minimum 6 characters"
+autocomplete="new-password">
+
+
+<button
+id="registerBtn"
+class="primary">
+
+Create Account
+
+</button>
+
+
+<div
+class="center"
+style="margin-top:15px">
+
+
+<button
+class="linkButton"
+id="backToLoginBtn">
+
+Already have an account? Login
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
 
 
 <div
@@ -276,114 +644,435 @@ Please wait...
 </div>
 
 
-<div id="recaptcha-container">
+<a
+href="index.html"
+class="backHome">
+
+← Back to Home
+
+</a>
+
 
 </div>
 
 
-</div>
 
-
+<!-- FIREBASE -->
 
 <script type="module">
 
 
-import{
+import {
+
 initializeApp
+
 }
+
 from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 
-import{
+
+import {
+
 getAuth,
+
 RecaptchaVerifier,
+
 signInWithPhoneNumber,
-onAuthStateChanged
+
+signInWithEmailAndPassword,
+
+createUserWithEmailAndPassword,
+
+sendPasswordResetEmail,
+
+updateProfile
+
 }
+
 from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+"https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 
 
-const firebaseConfig={
+/* =========================================
+   IMPORTANT
 
-apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+   PASTE YOUR FIREBASE CONFIG BELOW
 
-authDomain:"nexora-picks-e887f.firebaseapp.com",
+   Use the SAME Firebase project
+   you already use for NEXORA PICKS.
+========================================= */
 
-projectId:"nexora-picks-e887f",
 
-storageBucket:"nexora-picks-e887f.firebasestorage.app",
+const firebaseConfig = {
 
-messagingSenderId:"621359003619",
 
-appId:"1:621359003619:web:483add8bfcd0241f4192d",
+apiKey: "PASTE_YOUR_FIREBASE_API_KEY",
 
-measurementId:"G-LSMJ6QLLPW"
+
+authDomain: "PASTE_YOUR_PROJECT.firebaseapp.com",
+
+
+projectId: "PASTE_YOUR_PROJECT_ID",
+
+
+storageBucket: "PASTE_YOUR_PROJECT.appspot.com",
+
+
+messagingSenderId: "PASTE_YOUR_SENDER_ID",
+
+
+appId: "PASTE_YOUR_APP_ID"
+
 
 };
 
 
 
-const app=initializeApp(firebaseConfig);
+const app =
 
+initializeApp(
 
-const auth=getAuth(app);
+firebaseConfig
 
-
-
-let confirmationResult=null;
-
-let recaptchaVerifier=null;
+);
 
 
 
-const phoneNumberInput=
-document.getElementById("phoneNumber");
+const auth =
 
+getAuth(
 
-const otpInput=
-document.getElementById("otp");
+app
 
-
-const sendOtpBtn=
-document.getElementById("sendOtpBtn");
-
-
-const verifyOtpBtn=
-document.getElementById("verifyOtpBtn");
-
-
-const changeNumberBtn=
-document.getElementById("changeNumberBtn");
-
-
-const phoneSection=
-document.getElementById("phoneSection");
-
-
-const otpSection=
-document.getElementById("otpSection");
-
-
-const message=
-document.getElementById("message");
-
-
-const loading=
-document.getElementById("loading");
+);
 
 
 
-function showMessage(text,type){
+/* =========================================
+   ELEMENTS
+========================================= */
 
-message.innerHTML=text;
 
-message.className=
-"message "+type;
+const phoneTab =
 
-message.style.display="block";
+document.getElementById(
+
+"phoneTab"
+
+);
+
+
+
+const emailTab =
+
+document.getElementById(
+
+"emailTab"
+
+);
+
+
+
+const phoneLogin =
+
+document.getElementById(
+
+"phoneLogin"
+
+);
+
+
+
+const emailLogin =
+
+document.getElementById(
+
+"emailLogin"
+
+);
+
+
+
+const phoneSection =
+
+document.getElementById(
+
+"phoneSection"
+
+);
+
+
+
+const otpSection =
+
+document.getElementById(
+
+"otpSection"
+
+);
+
+
+
+const phoneNumber =
+
+document.getElementById(
+
+"phoneNumber"
+
+);
+
+
+
+const sendOtpBtn =
+
+document.getElementById(
+
+"sendOtpBtn"
+
+);
+
+
+
+const verifyOtpBtn =
+
+document.getElementById(
+
+"verifyOtpBtn"
+
+);
+
+
+
+const otpInput =
+
+document.getElementById(
+
+"otpInput"
+
+);
+
+
+
+const otpPhone =
+
+document.getElementById(
+
+"otpPhone"
+
+);
+
+
+
+const changeNumberBtn =
+
+document.getElementById(
+
+"changeNumberBtn"
+
+);
+
+
+
+const message =
+
+document.getElementById(
+
+"message"
+
+);
+
+
+
+const loading =
+
+document.getElementById(
+
+"loading"
+
+);
+
+
+
+const email =
+
+document.getElementById(
+
+"email"
+
+);
+
+
+
+const password =
+
+document.getElementById(
+
+"password"
+
+);
+
+
+
+const emailLoginBtn =
+
+document.getElementById(
+
+"emailLoginBtn"
+
+);
+
+
+
+const forgotPasswordBtn =
+
+document.getElementById(
+
+"forgotPasswordBtn"
+
+);
+
+
+
+const createAccountBtn =
+
+document.getElementById(
+
+"createAccountBtn"
+
+);
+
+
+
+const emailLoginSection =
+
+document.getElementById(
+
+"emailLoginSection"
+
+);
+
+
+
+const createAccountSection =
+
+document.getElementById(
+
+"createAccountSection"
+
+);
+
+
+
+const registerName =
+
+document.getElementById(
+
+"registerName"
+
+);
+
+
+
+const registerEmail =
+
+document.getElementById(
+
+"registerEmail"
+
+);
+
+
+
+const registerPassword =
+
+document.getElementById(
+
+"registerPassword"
+
+);
+
+
+
+const registerBtn =
+
+document.getElementById(
+
+"registerBtn"
+
+);
+
+
+
+const backToLoginBtn =
+
+document.getElementById(
+
+"backToLoginBtn"
+
+);
+
+
+
+const switchEmail1 =
+
+document.getElementById(
+
+"switchEmail1"
+
+);
+
+
+
+const switchPhone1 =
+
+document.getElementById(
+
+"switchPhone1"
+
+);
+
+
+
+let confirmationResult =
+
+null;
+
+
+
+let recaptchaVerifier =
+
+null;
+
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+
+function showMessage(
+
+text,
+
+type
+
+){
+
+
+message.textContent =
+
+text;
+
+
+message.className =
+
+"message " + type;
+
 
 }
 
@@ -391,7 +1080,16 @@ message.style.display="block";
 
 function hideMessage(){
 
-message.style.display="none";
+
+message.className =
+
+"message";
+
+
+message.textContent =
+
+"";
+
 
 }
 
@@ -399,7 +1097,11 @@ message.style.display="none";
 
 function showLoading(){
 
-loading.style.display="block";
+
+loading.style.display =
+
+"block";
+
 
 }
 
@@ -407,22 +1109,187 @@ loading.style.display="block";
 
 function hideLoading(){
 
-loading.style.display="none";
+
+loading.style.display =
+
+"none";
+
 
 }
 
+
+
+/* =========================================
+   TAB FUNCTIONS
+========================================= */
+
+
+function openPhoneLogin(){
+
+
+hideMessage();
+
+
+phoneTab.classList.add(
+
+"active"
+
+);
+
+
+emailTab.classList.remove(
+
+"active"
+
+);
+
+
+phoneLogin.classList.add(
+
+"active"
+
+);
+
+
+emailLogin.classList.remove(
+
+"active"
+
+);
+
+
+}
+
+
+
+function openEmailLogin(){
+
+
+hideMessage();
+
+
+emailTab.classList.add(
+
+"active"
+
+);
+
+
+phoneTab.classList.remove(
+
+"active"
+
+);
+
+
+emailLogin.classList.add(
+
+"active"
+
+);
+
+
+phoneLogin.classList.remove(
+
+"active"
+
+);
+
+
+emailLoginSection.style.display =
+
+"block";
+
+
+createAccountSection.style.display =
+
+"none";
+
+
+}
+
+
+
+phoneTab.addEventListener(
+
+"click",
+
+openPhoneLogin
+
+);
+
+
+
+emailTab.addEventListener(
+
+"click",
+
+openEmailLogin
+
+);
+
+
+
+switchEmail1.addEventListener(
+
+"click",
+
+openEmailLogin
+
+);
+
+
+
+switchPhone1.addEventListener(
+
+"click",
+
+openPhoneLogin
+
+);
+
+
+
+/* =========================================
+   FIREBASE RECAPTCHA
+========================================= */
 
 
 function setupRecaptcha(){
 
-if(recaptchaVerifier){
 
-return;
+if(
+
+recaptchaVerifier
+
+){
+
+
+try{
+
+
+recaptchaVerifier.clear();
+
+
+}
+
+catch(error){
+
+
+console.log(
+
+error
+
+);
+
 
 }
 
 
-recaptchaVerifier=
+}
+
+
+recaptchaVerifier =
 
 new RecaptchaVerifier(
 
@@ -432,55 +1299,24 @@ auth,
 
 {
 
-size:"invisible",
 
-callback:()=>{
+size:
 
-console.log(
-"reCAPTCHA verified"
-);
+"invisible"
 
-},
-
-"expired-callback":()=>{
-
-showMessage(
-
-"Security verification expired. Please try again.",
-
-"error"
-
-);
-
-}
 
 }
 
 );
 
 
-recaptchaVerifier.render();
-
 }
 
 
 
-onAuthStateChanged(
-
-auth,
-
-user=>{
-
-if(user){
-
-location.href="index.html";
-
-}
-
-}
-
-);
-
+/* =========================================
+   SEND OTP
+========================================= */
 
 
 sendOtpBtn.addEventListener(
@@ -493,13 +1329,26 @@ async()=>{
 hideMessage();
 
 
-let phone=
+const number =
 
-phoneNumberInput.value
-.replace(/\D/g,"");
+phoneNumber.value
+
+.replace(
+
+/\D/g,
+
+""
+
+);
 
 
-if(phone.length!==10){
+
+if(
+
+number.length !== 10
+
+){
+
 
 showMessage(
 
@@ -509,20 +1358,27 @@ showMessage(
 
 );
 
+
 return;
+
 
 }
 
 
-const fullPhoneNumber=
 
-"+91"+phone;
+const fullPhoneNumber =
+
+"+91" + number;
+
 
 
 try{
 
 
-sendOtpBtn.disabled=true;
+sendOtpBtn.disabled =
+
+true;
+
 
 showLoading();
 
@@ -530,7 +1386,8 @@ showLoading();
 setupRecaptcha();
 
 
-confirmationResult=
+
+confirmationResult =
 
 await signInWithPhoneNumber(
 
@@ -543,17 +1400,34 @@ recaptchaVerifier
 );
 
 
-phoneSection.style.display="none";
 
-otpSection.style.display="block";
+otpPhone.textContent =
+
+fullPhoneNumber;
+
+
+
+phoneSection.style.display =
+
+"none";
+
+
+otpSection.style.display =
+
+"block";
 
 
 hideLoading();
 
 
+sendOtpBtn.disabled =
+
+false;
+
+
 showMessage(
 
-"OTP sent successfully to +91 "+phone,
+"OTP sent successfully.",
 
 "success"
 
@@ -564,19 +1438,26 @@ otpInput.focus();
 
 
 }
+
+
 catch(error){
 
 
 console.error(
-"OTP error:",
+
+"OTP Error:",
+
 error
+
 );
 
 
 hideLoading();
 
 
-sendOtpBtn.disabled=false;
+sendOtpBtn.disabled =
+
+false;
 
 
 showMessage(
@@ -588,21 +1469,18 @@ error.message,
 );
 
 
-if(recaptchaVerifier){
-
-recaptchaVerifier.clear();
-
-recaptchaVerifier=null;
-
 }
 
-
-}
 
 }
 
 );
 
+
+
+/* =========================================
+   VERIFY OTP
+========================================= */
 
 
 verifyOtpBtn.addEventListener(
@@ -615,13 +1493,20 @@ async()=>{
 hideMessage();
 
 
-const otp=
+const otp =
 
 otpInput.value
+
 .trim();
 
 
-if(otp.length!==6){
+
+if(
+
+otp.length !== 6
+
+){
+
 
 showMessage(
 
@@ -631,12 +1516,20 @@ showMessage(
 
 );
 
+
 return;
+
 
 }
 
 
-if(!confirmationResult){
+
+if(
+
+!confirmationResult
+
+){
+
 
 showMessage(
 
@@ -646,15 +1539,21 @@ showMessage(
 
 );
 
+
 return;
 
+
 }
+
 
 
 try{
 
 
-verifyOtpBtn.disabled=true;
+verifyOtpBtn.disabled =
+
+true;
+
 
 showLoading();
 
@@ -666,6 +1565,7 @@ otp
 );
 
 
+
 showMessage(
 
 "Login successful! Redirecting...",
@@ -675,23 +1575,45 @@ showMessage(
 );
 
 
-location.href="index.html";
+
+setTimeout(
+
+()=>{
+
+
+location.href =
+
+"index.html";
+
+
+},
+
+1000
+
+);
 
 
 }
+
+
 catch(error){
 
 
 console.error(
+
 "OTP verification error:",
+
 error
+
 );
 
 
 hideLoading();
 
 
-verifyOtpBtn.disabled=false;
+verifyOtpBtn.disabled =
+
+false;
 
 
 showMessage(
@@ -705,10 +1627,16 @@ showMessage(
 
 }
 
+
 }
 
 );
 
+
+
+/* =========================================
+   CHANGE NUMBER
+========================================= */
 
 
 changeNumberBtn.addEventListener(
@@ -718,21 +1646,522 @@ changeNumberBtn.addEventListener(
 ()=>{
 
 
-otpSection.style.display="none";
+otpSection.style.display =
 
-phoneSection.style.display="block";
-
-
-otpInput.value="";
+"none";
 
 
-confirmationResult=null;
+phoneSection.style.display =
+
+"block";
+
+
+otpInput.value =
+
+"";
+
+
+confirmationResult =
+
+null;
 
 
 hideMessage();
 
 
-sendOtpBtn.disabled=false;
+phoneNumber.focus();
+
+
+}
+
+);
+
+
+
+/* =========================================
+   EMAIL LOGIN
+========================================= */
+
+
+emailLoginBtn.addEventListener(
+
+"click",
+
+async()=>{
+
+
+hideMessage();
+
+
+const userEmail =
+
+email.value
+
+.trim();
+
+
+
+const userPassword =
+
+password.value;
+
+
+
+if(
+
+!userEmail ||
+
+!userPassword
+
+){
+
+
+showMessage(
+
+"Please enter your email and password.",
+
+"error"
+
+);
+
+
+return;
+
+
+}
+
+
+
+try{
+
+
+emailLoginBtn.disabled =
+
+true;
+
+
+showLoading();
+
+
+await signInWithEmailAndPassword(
+
+auth,
+
+userEmail,
+
+userPassword
+
+);
+
+
+
+showMessage(
+
+"Login successful! Redirecting...",
+
+"success"
+
+);
+
+
+
+setTimeout(
+
+()=>{
+
+
+location.href =
+
+"index.html";
+
+
+},
+
+1000
+
+);
+
+
+}
+
+
+catch(error){
+
+
+hideLoading();
+
+
+emailLoginBtn.disabled =
+
+false;
+
+
+showMessage(
+
+"Incorrect email or password.",
+
+"error"
+
+);
+
+
+}
+
+
+}
+
+);
+
+
+
+/* =========================================
+   FORGOT PASSWORD
+========================================= */
+
+
+forgotPasswordBtn.addEventListener(
+
+"click",
+
+async()=>{
+
+
+hideMessage();
+
+
+const userEmail =
+
+email.value
+
+.trim();
+
+
+
+if(
+
+!userEmail
+
+){
+
+
+showMessage(
+
+"Enter your email address first, then click Forgot Password.",
+
+"error"
+
+);
+
+
+email.focus();
+
+
+return;
+
+
+}
+
+
+
+try{
+
+
+showLoading();
+
+
+await sendPasswordResetEmail(
+
+auth,
+
+userEmail
+
+);
+
+
+
+hideLoading();
+
+
+showMessage(
+
+"Password reset link sent to your email.",
+
+"success"
+
+);
+
+
+}
+
+
+catch(error){
+
+
+hideLoading();
+
+
+showMessage(
+
+error.message,
+
+"error"
+
+);
+
+
+}
+
+
+}
+
+);
+
+
+
+/* =========================================
+   CREATE ACCOUNT
+========================================= */
+
+
+createAccountBtn.addEventListener(
+
+"click",
+
+()=>{
+
+
+hideMessage();
+
+
+emailLoginSection.style.display =
+
+"none";
+
+
+createAccountSection.style.display =
+
+"block";
+
+
+}
+
+);
+
+
+
+/* =========================================
+   BACK TO LOGIN
+========================================= */
+
+
+backToLoginBtn.addEventListener(
+
+"click",
+
+()=>{
+
+
+hideMessage();
+
+
+createAccountSection.style.display =
+
+"none";
+
+
+emailLoginSection.style.display =
+
+"block";
+
+
+}
+
+);
+
+
+
+/* =========================================
+   REGISTER CUSTOMER
+========================================= */
+
+
+registerBtn.addEventListener(
+
+"click",
+
+async()=>{
+
+
+hideMessage();
+
+
+const name =
+
+registerName.value
+
+.trim();
+
+
+
+const userEmail =
+
+registerEmail.value
+
+.trim();
+
+
+
+const userPassword =
+
+registerPassword.value;
+
+
+
+if(
+
+!name ||
+
+!userEmail ||
+
+!userPassword
+
+){
+
+
+showMessage(
+
+"Please fill all fields.",
+
+"error"
+
+);
+
+
+return;
+
+
+}
+
+
+
+if(
+
+userPassword.length < 6
+
+){
+
+
+showMessage(
+
+"Password must contain at least 6 characters.",
+
+"error"
+
+);
+
+
+return;
+
+
+}
+
+
+
+try{
+
+
+registerBtn.disabled =
+
+true;
+
+
+showLoading();
+
+
+
+const result =
+
+await createUserWithEmailAndPassword(
+
+auth,
+
+userEmail,
+
+userPassword
+
+);
+
+
+
+await updateProfile(
+
+result.user,
+
+{
+
+
+displayName:
+
+name
+
+
+}
+
+);
+
+
+
+showMessage(
+
+"Account created successfully! Redirecting...",
+
+"success"
+
+);
+
+
+
+setTimeout(
+
+()=>{
+
+
+location.href =
+
+"index.html";
+
+
+},
+
+1000
+
+);
+
+
+}
+
+
+catch(error){
+
+
+hideLoading();
+
+
+registerBtn.disabled =
+
+false;
+
+
+showMessage(
+
+error.message,
+
+"error"
+
+);
+
+
+}
 
 
 }
@@ -744,5 +2173,6 @@ sendOtpBtn.disabled=false;
 
 
 </body>
+
 
   </html>

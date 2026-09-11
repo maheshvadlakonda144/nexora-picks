@@ -37,7 +37,8 @@ margin:auto;
 padding:16px;
 display:flex;
 justify-content:space-between;
-align-items:center
+align-items:center;
+gap:12px
 }
 
 .logo{
@@ -45,12 +46,25 @@ font-size:22px;
 font-weight:800
 }
 
+.headerLinks{
+display:flex;
+gap:10px;
+align-items:center
+}
+
 .home{
 color:#fff;
 text-decoration:none;
 border:1px solid #64748b;
 padding:9px 14px;
-border-radius:8px
+border-radius:8px;
+font-weight:bold;
+white-space:nowrap
+}
+
+.loginLink{
+background:#2874f0;
+border-color:#2874f0
 }
 
 .wrap{
@@ -251,6 +265,23 @@ font-size:65px
 
 @media(max-width:600px){
 
+.header{
+padding:12px
+}
+
+.logo{
+font-size:18px
+}
+
+.headerLinks{
+gap:6px
+}
+
+.home{
+padding:8px 10px;
+font-size:13px
+}
+
 .grid{
 grid-template-columns:1fr
 }
@@ -303,6 +334,17 @@ Seller Registration
 </div>
 
 
+<div class="headerLinks">
+
+<a
+class="home loginLink"
+href="nexora-seller.html">
+
+Seller Login
+
+</a>
+
+
 <a
 class="home"
 href="index.html">
@@ -310,6 +352,8 @@ href="index.html">
 ← Home
 
 </a>
+
+</div>
 
 </div>
 
@@ -1025,6 +1069,13 @@ Pending Approval
 </p>
 
 
+<p class="sub">
+
+You can now login to check your seller approval status.
+
+</p>
+
+
 
 <a
 class="btn next"
@@ -1269,8 +1320,6 @@ async n => {
 
 
 
-/* ONLY VALIDATE WHEN MOVING FORWARD */
-
 if(
 n > currentStep
 ){
@@ -1372,8 +1421,6 @@ return msg(
 
 try{
 
-
-/* CREATE FIREBASE SELLER ACCOUNT */
 
 if(
 !sellerUser
@@ -1577,9 +1624,6 @@ return msg(
 }
 
 
-
-/* CHANGE TO NEXT STEP */
-
 setStep(n);
 
 
@@ -1631,8 +1675,6 @@ $("bankName")
 
 
 
-/* VALIDATE BANK DETAILS */
-
 if(
 
 !accountName ||
@@ -1659,8 +1701,6 @@ return msg(
 
 
 
-/* CHECK ACCOUNT NUMBER */
-
 if(
 
 accountNumber !==
@@ -1679,8 +1719,6 @@ return msg(
 }
 
 
-
-/* CHECK IFSC */
 
 if(
 
@@ -1701,8 +1739,6 @@ return msg(
 
 
 
-/* CHECK TERMS */
-
 if(
 
 !$("agree")
@@ -1722,8 +1758,6 @@ return msg(
 
 
 
-/* GET CURRENT FIREBASE USER */
-
 if(
 
 !sellerUser
@@ -1736,8 +1770,6 @@ auth.currentUser;
 }
 
 
-
-/* CHECK LOGIN */
 
 if(
 
@@ -1772,8 +1804,6 @@ button.textContent =
 
 try{
 
-
-/* SAVE SELLER DATA TO FIRESTORE */
 
 await setDoc(
 
@@ -1925,8 +1955,6 @@ serverTimestamp()
 );
 
 
-
-/* SUCCESS */
 
 setStep(5);
 

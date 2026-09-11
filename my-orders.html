@@ -161,6 +161,7 @@ color:#16803c;
 font-weight:bold
 }
 
+
 /* ORDER TRACKING */
 
 .tracking{
@@ -300,6 +301,7 @@ font-weight:bold;
 line-height:1.6
 }
 
+
 /* MODALS */
 
 .modal{
@@ -356,28 +358,25 @@ font-family:Arial,sans-serif;
 resize:vertical
 }
 
-.confirmCancel{
+.confirmCancel,
+.confirmReturn,
+.confirmRefund{
 width:100%;
-background:#d93025;
 color:white;
 margin-top:15px;
 padding:15px
+}
+
+.confirmCancel{
+background:#d93025
 }
 
 .confirmReturn{
-width:100%;
-background:#f57c00;
-color:white;
-margin-top:15px;
-padding:15px
+background:#f57c00
 }
 
 .confirmRefund{
-width:100%;
-background:#6a1b9a;
-color:white;
-margin-top:15px;
-padding:15px
+background:#6a1b9a
 }
 
 .closeCancel{
@@ -640,32 +639,42 @@ Cancel
 
 <script type="module">
 
-import{
-initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+const $=id=>document.getElementById(id);
 
-import{
-getAuth,
-onAuthStateChanged
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+let auth=null;
+let db=null;
+let updateDoc=null;
+let firestoreDoc=null;
+let serverTimestamp=null;
 
-import{
-getFirestore,
-collection,
-query,
-where,
-onSnapshot,
-doc,
-updateDoc,
-serverTimestamp
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+let selectedOrderId=null;
+let unsubscribeOrders=null;
+let authFinished=false;
 
+
+/* START FIREBASE */
+
+async function startFirebase(){
+
+try{
+
+
+const firebaseApp=await import(
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js"
+);
+
+
+const firebaseAuth=await import(
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js"
+);
+
+
+const firebaseFirestore=await import(
+"https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js"
+);
+
+
+/* FIREBASE CONFIG */
 
 const firebaseConfig={
 
@@ -686,58 +695,29 @@ measurementId:"G-LSMJ6QLLPW"
 };
 
 
-const $=id=>document.getElementById(id);
+/* INITIALIZE */
 
-let app;
-let auth;
-let db;
-
-let selectedOrderId=null;
-
-let authFinished=false;
-
-let unsubscribeOrders=null;
+const app=firebaseApp.initializeApp(
+firebaseConfig
+);
 
 
-/* FIREBASE START */
-
-try{
-
-app=initializeApp(firebaseConfig);
-
-auth=getAuth(app);
-
-db=getFirestore(app);
-
-}
-catch(error){
-
-console.error("Firebase error:",error);
-
-$("userInfo").innerHTML=`
-<b style="color:red">
-❌ Firebase connection error
-</b>
-`;
-
-$("orders").innerHTML=`
-
-<div class="empty">
-
-❌ Unable to connect to Firebase.
-
-<br><br>
-
-${escapeHtml(error.message)}
-
-</div>
-
-`;
-
-}
+auth=firebaseAuth.getAuth(app);
 
 
-/* AUTH TIMEOUT */
+db=firebaseFirestore.getFirestore(app);
+
+
+updateDoc=firebaseFirestore.updateDoc;
+
+
+firestoreDoc=firebaseFirestore.doc;
+
+
+serverTimestamp=firebaseFirestore.serverTimestamp;
+
+
+/* LOGIN TIMEOUT */
 
 setTimeout(()=>{
 
@@ -756,6 +736,7 @@ $("userInfo").innerHTML=`
 Please refresh the page and check your internet connection.
 
 `;
+
 
 $("orders").innerHTML=`
 
@@ -776,9 +757,9 @@ Please refresh the page.
 },10000);
 
 
-/* LOGIN CHECK */
+/* AUTH CHECK */
 
-onAuthStateChanged(
+firebaseAuth.onAuthStateChanged(
 
 auth,
 
@@ -786,6 +767,8 @@ user=>{
 
 authFinished=true;
 
+
+/* NOT LOGGED IN */
 
 if(!user){
 
@@ -800,6 +783,7 @@ Login to view your orders
 </button>
 
 `;
+
 
 $("orders").innerHTML=`
 
@@ -826,23 +810,36 @@ return;
 }
 
 
+/* LOGGED IN */
+
 $("userInfo").innerHTML=
 
 `Logged in as
 <b>
-${escapeHtml(user.email||"User")}
+${escapeHtml(
+user.email||"User"
+)}
 </b>`;
 
 
-loadOrders(user.uid);
+/* LOAD ORDERS */
+
+loadOrders(
+user.uid,
+firebaseFirestore
+);
 
 },
 
 error=>{
 
-console.error("Auth error:",error);
-
 authFinished=true;
+
+console.error(
+"Authentication error:",
+error
+);
+
 
 $("userInfo").innerHTML=`
 
@@ -854,6 +851,7 @@ $("userInfo").innerHTML=`
 
 `;
 
+
 $("orders").innerHTML=`
 
 <div class="empty">
@@ -862,7 +860,9 @@ $("orders").innerHTML=`
 
 <br><br>
 
-${escapeHtml(error.message)}
+${escapeHtml(
+error.message
+)}
 
 </div>
 
@@ -873,9 +873,55 @@ ${escapeHtml(error.message)}
 );
 
 
+}
+catch(error){
+
+console.error(
+"Firebase loading error:",
+error
+);
+
+authFinished=true;
+
+
+$("userInfo").innerHTML=`
+
+<b style="color:red">
+
+❌ Firebase connection error
+
+</b>
+
+`;
+
+
+$("orders").innerHTML=`
+
+<div class="empty">
+
+❌ Unable to connect to Firebase.
+
+<br><br>
+
+${escapeHtml(
+error.message
+)}
+
+</div>
+
+`;
+
+}
+
+}
+
+
 /* LOAD ORDERS */
 
-function loadOrders(uid){
+function loadOrders(
+uid,
+firebaseFirestore
+){
 
 
 if(unsubscribeOrders){
@@ -885,13 +931,16 @@ unsubscribeOrders();
 }
 
 
-const q=
+const ordersQuery=
 
-query(
+firebaseFirestore.query(
 
-collection(db,"orders"),
+firebaseFirestore.collection(
+db,
+"orders"
+),
 
-where(
+firebaseFirestore.where(
 "customerId",
 "==",
 uid
@@ -902,9 +951,9 @@ uid
 
 unsubscribeOrders=
 
-onSnapshot(
+firebaseFirestore.onSnapshot(
 
-q,
+ordersQuery,
 
 snap=>{
 
@@ -941,6 +990,8 @@ return bTime-aTime;
 );
 
 
+/* NO ORDERS */
+
 if(!orders.length){
 
 $("orders").innerHTML=`
@@ -972,6 +1023,8 @@ return;
 }
 
 
+/* SHOW ORDERS */
+
 $("orders").innerHTML=
 
 orders
@@ -982,7 +1035,11 @@ orders
 
 error=>{
 
-console.error("Firestore error:",error);
+console.error(
+"Firestore error:",
+error
+);
+
 
 $("orders").innerHTML=`
 
@@ -992,7 +1049,9 @@ $("orders").innerHTML=`
 
 <br><br>
 
-${escapeHtml(error.message)}
+${escapeHtml(
+error.message
+)}
 
 </div>
 
@@ -1010,7 +1069,9 @@ ${escapeHtml(error.message)}
 function showOrder(order){
 
 const date=
-formatDate(order.createdAt);
+formatDate(
+order.createdAt
+);
 
 
 const status=
@@ -1024,7 +1085,9 @@ order.status||
 
 const items=
 
-Array.isArray(order.items)
+Array.isArray(
+order.items
+)
 
 ?
 order.items
@@ -1048,14 +1111,18 @@ item=>`
 
 <div class="itemName">
 
-${escapeHtml(item.name||"Product")}
+${escapeHtml(
+item.name||"Product"
+)}
 
 </div>
 
 <div>
 
 Quantity:
-${Number(item.qty)||1}
+${Number(
+item.qty
+)||1}
 
 </div>
 
@@ -1068,15 +1135,21 @@ ${Number(item.qty)||1}
 
 (
 
-Number(item.price||0)
+Number(
+item.price||0
+)
 
 *
 
-Number(item.qty||1)
+Number(
+item.qty||1
+)
 
 )
 
-.toLocaleString("en-IN")
+.toLocaleString(
+"en-IN"
+)
 
 }
 
@@ -1108,13 +1181,14 @@ Order ID
 
 <div class="orderId">
 
-${escapeHtml(order.id)}
+${escapeHtml(
+order.id
+)}
 
 </div>
 
 
-<div
-style="margin-top:6px">
+<div style="margin-top:6px">
 
 ${date}
 
@@ -1123,13 +1197,15 @@ ${date}
 </div>
 
 
-<div
-class="status">
+<div class="status">
 
 ${escapeHtml(
 
 status
-.replaceAll("-"," ")
+.replaceAll(
+"-",
+" "
+)
 .toUpperCase()
 
 )}
@@ -1147,7 +1223,9 @@ status
 ${itemHTML}
 
 
-${createTracking(status)}
+${createTracking(
+status
+)}
 
 
 ${createCancelButton(
@@ -1168,7 +1246,9 @@ order
 )}
 
 
-${showRequestStatus(order)}
+${showRequestStatus(
+order
+)}
 
 
 <div class="total">
@@ -1182,9 +1262,13 @@ Total
 
 ₹${
 
-Number(order.total||0)
+Number(
+order.total||0
+)
 
-.toLocaleString("en-IN")
+.toLocaleString(
+"en-IN"
+)
 
 }
 
@@ -1198,8 +1282,10 @@ style="margin-top:12px"
 class="cod">
 
 💵 ${escapeHtml(
+
 order.paymentMethod||
 "Cash on Delivery"
+
 )}
 
 </div>
@@ -1216,8 +1302,7 @@ order.paymentMethod||
 Name:
 
 ${escapeHtml(
-order.customerName||
-""
+order.customerName||""
 )}
 
 <br>
@@ -1225,8 +1310,7 @@ order.customerName||
 Mobile:
 
 ${escapeHtml(
-order.customerPhone||
-""
+order.customerPhone||""
 )}
 
 <br>
@@ -1234,8 +1318,7 @@ order.customerPhone||
 Address:
 
 ${escapeHtml(
-order.deliveryAddress||
-""
+order.deliveryAddress||""
 )}
 
 </div>
@@ -1263,7 +1346,9 @@ const cancellableStatuses=[
 
 
 if(
-!cancellableStatuses.includes(status)
+!cancellableStatuses.includes(
+status
+)
 ){
 
 return "";
@@ -1351,7 +1436,9 @@ const refundableStatuses=[
 
 
 if(
-!refundableStatuses.includes(status)
+!refundableStatuses.includes(
+status
+)
 ){
 
 return "";
@@ -1376,12 +1463,16 @@ onclick="openRefundModal('${order.id}')">
 
 /* REQUEST STATUS */
 
-function showRequestStatus(order){
+function showRequestStatus(
+order
+){
 
 let html="";
 
 
-if(order.returnStatus){
+if(
+order.returnStatus
+){
 
 html+=`
 
@@ -1398,12 +1489,16 @@ order.returnStatus==="rejected"
 }">
 
 🔄 Return Request:
-${escapeHtml(order.returnStatus)}
+${escapeHtml(
+order.returnStatus
+)}
 
 <br>
 
 Reason:
-${escapeHtml(order.returnReason||"")}
+${escapeHtml(
+order.returnReason||""
+)}
 
 </div>
 
@@ -1412,7 +1507,9 @@ ${escapeHtml(order.returnReason||"")}
 }
 
 
-if(order.refundStatus){
+if(
+order.refundStatus
+){
 
 html+=`
 
@@ -1429,12 +1526,16 @@ order.refundStatus==="rejected"
 }">
 
 💰 Refund Request:
-${escapeHtml(order.refundStatus)}
+${escapeHtml(
+order.refundStatus
+)}
 
 <br>
 
 Reason:
-${escapeHtml(order.refundReason||"")}
+${escapeHtml(
+order.refundReason||""
+)}
 
 </div>
 
@@ -1515,12 +1616,16 @@ return;
 }
 
 
-let reason=selected.value;
+let reason=
+selected.value;
 
 
-if(reason==="Other"){
+if(
+reason==="Other"
+){
 
 reason=
+
 $("otherCancelReason")
 .value
 .trim();
@@ -1541,9 +1646,10 @@ return;
 
 try{
 
+
 await updateDoc(
 
-doc(
+firestoreDoc(
 db,
 "orders",
 selectedOrderId
@@ -1553,7 +1659,8 @@ selectedOrderId
 
 status:"cancelled",
 
-cancellationReason:reason,
+cancellationReason:
+reason,
 
 cancelledAt:
 serverTimestamp()
@@ -1574,7 +1681,9 @@ closeCancelModal();
 }
 catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
 alert(
 "Unable to cancel order. Please try again."
@@ -1652,12 +1761,16 @@ return;
 }
 
 
-let reason=selected.value;
+let reason=
+selected.value;
 
 
-if(reason==="Other"){
+if(
+reason==="Other"
+){
 
 reason=
+
 $("otherReturnReason")
 .value
 .trim();
@@ -1678,9 +1791,10 @@ return;
 
 try{
 
+
 await updateDoc(
 
-doc(
+firestoreDoc(
 db,
 "orders",
 selectedOrderId
@@ -1688,9 +1802,11 @@ selectedOrderId
 
 {
 
-returnStatus:"pending",
+returnStatus:
+"pending",
 
-returnReason:reason,
+returnReason:
+reason,
 
 returnRequestedAt:
 serverTimestamp()
@@ -1711,7 +1827,9 @@ closeReturnModal();
 }
 catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
 alert(
 "Unable to submit return request."
@@ -1789,12 +1907,16 @@ return;
 }
 
 
-let reason=selected.value;
+let reason=
+selected.value;
 
 
-if(reason==="Other"){
+if(
+reason==="Other"
+){
 
 reason=
+
 $("otherRefundReason")
 .value
 .trim();
@@ -1815,9 +1937,10 @@ return;
 
 try{
 
+
 await updateDoc(
 
-doc(
+firestoreDoc(
 db,
 "orders",
 selectedOrderId
@@ -1825,9 +1948,11 @@ selectedOrderId
 
 {
 
-refundStatus:"pending",
+refundStatus:
+"pending",
 
-refundReason:reason,
+refundReason:
+reason,
 
 refundRequestedAt:
 serverTimestamp()
@@ -1848,7 +1973,9 @@ closeRefundModal();
 }
 catch(error){
 
-console.error(error);
+console.error(
+error
+);
 
 alert(
 "Unable to submit refund request."
@@ -1861,7 +1988,9 @@ alert(
 
 /* ORDER TRACKING */
 
-function createTracking(status){
+function createTracking(
+status
+){
 
 if(
 status==="cancelled"
@@ -1924,11 +2053,16 @@ text:"Delivered"
 let current=
 
 steps.findIndex(
-step=>step.key===status
+
+step=>
+step.key===status
+
 );
 
 
-if(current===-1){
+if(
+current===-1
+){
 
 current=0;
 
@@ -1956,14 +2090,18 @@ steps.map(
 let state="";
 
 
-if(index<current){
+if(
+index<current
+){
 
 state="done";
 
 }
 
 
-if(index===current){
+if(
+index===current
+){
 
 state="active";
 
@@ -2005,7 +2143,9 @@ ${step.text}
 
 /* FORMAT DATE */
 
-function formatDate(timestamp){
+function formatDate(
+timestamp
+){
 
 if(!timestamp){
 
@@ -2015,6 +2155,7 @@ return "Date unavailable";
 
 
 try{
+
 
 const date=
 
@@ -2026,7 +2167,9 @@ timestamp.toDate()
 
 :
 
-new Date(timestamp);
+new Date(
+timestamp
+);
 
 
 return date.toLocaleString(
@@ -2049,8 +2192,9 @@ minute:"2-digit"
 
 );
 
+
 }
-catch(e){
+catch(error){
 
 return "Date unavailable";
 
@@ -2061,15 +2205,38 @@ return "Date unavailable";
 
 /* ESCAPE HTML */
 
-function escapeHtml(value){
+function escapeHtml(
+value
+){
 
-return String(value??"")
+return String(
+value??""
+)
 
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
+);
 
 }
 
@@ -2080,9 +2247,15 @@ window.goLogin=
 
 function(){
 
-location.href="index.html";
+location.href=
+"index.html";
 
 };
+
+
+/* START */
+
+startFirebase();
 
 </script>
 

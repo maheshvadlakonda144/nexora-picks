@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,11 +26,11 @@ content="NEXORA PICKS - Discover amazing products from independent sellers.">
 }
 
 *{
-  box-sizing:border-box
+  box-sizing:border-box;
 }
 
 html{
-  scroll-behavior:smooth
+  scroll-behavior:smooth;
 }
 
 body{
@@ -41,11 +42,11 @@ body{
 }
 
 button,input,select{
-  font:inherit
+  font:inherit;
 }
 
 button{
-  cursor:pointer
+  cursor:pointer;
 }
 
 /* HEADER */
@@ -85,12 +86,12 @@ header{
 }
 
 .logo span{
-  color:var(--yellow)
+  color:var(--yellow);
 }
 
 .searchWrap{
   flex:1;
-  position:relative
+  position:relative;
 }
 
 .searchWrap input{
@@ -114,7 +115,7 @@ header{
 .headerActions{
   display:flex;
   align-items:center;
-  gap:10px
+  gap:10px;
 }
 
 .headerBtn{
@@ -189,11 +190,11 @@ header{
 .categoryEmoji{
   font-size:30px;
   display:block;
-  margin-bottom:5px
+  margin-bottom:5px;
 }
 
 .categoryItem:hover{
-  color:var(--blue)
+  color:var(--blue);
 }
 
 /* HERO */
@@ -224,18 +225,18 @@ header{
 
 .heroContent{
   max-width:600px;
-  z-index:2
+  z-index:2;
 }
 
 .heroContent h1{
   font-size:42px;
-  margin:0 0 12px
+  margin:0 0 12px;
 }
 
 .heroContent p{
   font-size:17px;
   line-height:1.6;
-  margin:0 0 22px
+  margin:0 0 22px;
 }
 
 .shopNow{
@@ -249,7 +250,7 @@ header{
 
 .heroVisual{
   font-size:120px;
-  z-index:2
+  z-index:2;
 }
 
 .heroCircle{
@@ -282,12 +283,12 @@ header{
 
 .deal b{
   display:block;
-  font-size:16px
+  font-size:16px;
 }
 
 .deal span{
   color:var(--muted);
-  font-size:13px
+  font-size:13px;
 }
 
 /* PRODUCTS */
@@ -295,7 +296,7 @@ header{
 main{
   max-width:1400px;
   margin:auto;
-  padding:0 20px 40px
+  padding:0 20px 40px;
 }
 
 .sectionHeader{
@@ -307,11 +308,11 @@ main{
 
 .sectionHeader h2{
   margin:0;
-  font-size:25px
+  font-size:25px;
 }
 
 #count{
-  color:var(--muted)
+  color:var(--muted);
 }
 
 .filterBar{
@@ -327,7 +328,7 @@ main{
 }
 
 .filterText{
-  color:var(--muted)
+  color:var(--muted);
 }
 
 #sort{
@@ -355,7 +356,7 @@ main{
 
 .card:hover{
   transform:translateY(-4px);
-  box-shadow:0 9px 24px rgba(0,0,0,.13)
+  box-shadow:0 9px 24px rgba(0,0,0,.13);
 }
 
 .pic{
@@ -394,10 +395,11 @@ main{
   background:#fff;
   box-shadow:0 2px 8px rgba(0,0,0,.18);
   font-size:20px;
+  z-index:5;
 }
 
 .wishCardBtn.active{
-  color:var(--danger)
+  color:var(--danger);
 }
 
 .info{
@@ -441,6 +443,10 @@ main{
   margin-bottom:12px;
 }
 
+.stock.out{
+  color:var(--danger);
+}
+
 .details{
   width:100%;
   border:1px solid var(--blue);
@@ -475,6 +481,11 @@ main{
 .buy{
   background:var(--blue);
   color:#fff;
+}
+
+button:disabled{
+  opacity:.5;
+  cursor:not-allowed;
 }
 
 .empty{
@@ -545,7 +556,7 @@ footer{
 }
 
 .drawer.open{
-  left:0
+  left:0;
 }
 
 .drawerTop{
@@ -583,7 +594,7 @@ footer{
 }
 
 .modal.open{
-  display:flex
+  display:flex;
 }
 
 .modalBox{
@@ -596,7 +607,7 @@ footer{
 }
 
 .cartBox{
-  max-width:680px
+  max-width:680px;
 }
 
 .closeModal{
@@ -667,6 +678,7 @@ footer{
   align-items:center;
   gap:8px;
   margin-top:8px;
+  flex-wrap:wrap;
 }
 
 .qty button{
@@ -720,21 +732,21 @@ footer{
 }
 
 .bottomNav .navIcon{
-  font-size:23px
+  font-size:23px;
 }
 
 .bottomNav .active{
-  color:var(--blue)
+  color:var(--blue);
 }
 
 @media(max-width:1000px){
 
   .grid{
-    grid-template-columns:repeat(3,1fr)
+    grid-template-columns:repeat(3,1fr);
   }
 
   .dealStrip{
-    grid-template-columns:repeat(2,1fr)
+    grid-template-columns:repeat(2,1fr);
   }
 
 }
@@ -742,7 +754,7 @@ footer{
 @media(max-width:700px){
 
   body{
-    padding-bottom:74px
+    padding-bottom:74px;
   }
 
   .topbar{
@@ -752,29 +764,21 @@ footer{
   }
 
   .mobileMenu{
-    display:block
+    display:block;
   }
 
   .logo{
-    font-size:18px
+    font-size:18px;
   }
 
   .headerActions{
-    margin-left:auto
+    margin-left:auto;
   }
 
   .headerBtn,
   .sellerBtn{
     padding:8px 10px;
     font-size:12px;
-  }
-
-  .iconBtn{
-    font-size:0
-  }
-
-  .iconBtn::first-letter{
-    font-size:20px
   }
 
   .searchWrap{
@@ -784,7 +788,7 @@ footer{
   }
 
   .searchWrap input{
-    padding:12px 42px 12px 14px
+    padding:12px 42px 12px 14px;
   }
 
   .categoryRow{
@@ -798,7 +802,7 @@ footer{
   }
 
   .categoryEmoji{
-    font-size:24px
+    font-size:24px;
   }
 
   .hero{
@@ -812,27 +816,27 @@ footer{
   }
 
   .heroContent h1{
-    font-size:28px
+    font-size:28px;
   }
 
   .heroContent p{
-    font-size:14px
+    font-size:14px;
   }
 
   .heroVisual{
-    display:none
+    display:none;
   }
 
   .dealStrip{
-    padding:0 10px
+    padding:0 10px;
   }
 
   main{
-    padding:0 10px 30px
+    padding:0 10px 30px;
   }
 
   .sectionHeader h2{
-    font-size:21px
+    font-size:21px;
   }
 
   .filterBar{
@@ -846,11 +850,11 @@ footer{
   }
 
   .pic{
-    height:170px
+    height:170px;
   }
 
   .info{
-    padding:11px
+    padding:11px;
   }
 
   .name{
@@ -859,31 +863,31 @@ footer{
   }
 
   .desc{
-    display:none
+    display:none;
   }
 
   .price{
-    font-size:18px
+    font-size:18px;
   }
 
   .actions{
-    flex-direction:column
+    flex-direction:column;
   }
 
   .footerInner{
-    grid-template-columns:1fr 1fr
+    grid-template-columns:1fr 1fr;
   }
 
   .bottomNav{
-    display:flex
+    display:flex;
   }
 
   .cartItem{
-    grid-template-columns:70px 1fr
+    grid-template-columns:70px 1fr;
   }
 
   .cartPrice{
-    grid-column:2
+    grid-column:2;
   }
 
 }
@@ -897,19 +901,10 @@ footer{
 
 <div class="topbar">
 
-<button
-class="mobileMenu"
-onclick="openMenu()"
->
-☰
-</button>
+<button class="mobileMenu" onclick="openMenu()">☰</button>
 
-<a
-href="index.html"
-class="logo"
->
-NEXORA
-<span>PICKS</span>
+<a href="index.html" class="logo">
+NEXORA <span>PICKS</span>
 </a>
 
 <div class="searchWrap">
@@ -918,50 +913,28 @@ NEXORA
 id="search"
 type="text"
 placeholder="Search for products, brands and more..."
-oninput="render()"
->
+oninput="render()">
 
-<span class="searchIcon">
-⌕
-</span>
+<span class="searchIcon">⌕</span>
 
 </div>
 
 <div class="headerActions">
 
-<button
-id="account"
-class="headerBtn"
->
+<button id="account" class="headerBtn">
 Login
 </button>
 
-<button
-id="sellerAccess"
-class="sellerBtn"
-onclick="openSellerAuth()"
->
+<button class="sellerBtn" onclick="openSellerAuth()">
 Sell
 </button>
 
-<button
-class="iconBtn"
-onclick="openWishlist()"
->
-♡
-<span id="wishCount">
-0
-</span>
+<button class="iconBtn" onclick="openWishlist()">
+♡ <span id="wishCount">0</span>
 </button>
 
-<button
-class="cartButton"
-onclick="openCart()"
->
-🛒 Cart
-<span id="cartCount">
-0
-</span>
+<button class="cartButton" onclick="openCart()">
+🛒 Cart <span id="cartCount">0</span>
 </button>
 
 </div>
@@ -975,83 +948,43 @@ onclick="openCart()"
 
 <div class="categoryRow">
 
-<button
-class="categoryItem"
-onclick="showAllProducts()"
->
-<span class="categoryEmoji">
-🏠
-</span>
-Home
+<button class="categoryItem" onclick="showAllProducts()">
+<span class="categoryEmoji">🏠</span>
+All
 </button>
 
-<button
-class="categoryItem"
-onclick="searchCategory('Mobiles')"
->
-<span class="categoryEmoji">
-📱
-</span>
+<button class="categoryItem" onclick="searchCategory('Mobiles')">
+<span class="categoryEmoji">📱</span>
 Mobiles
 </button>
 
-<button
-class="categoryItem"
-onclick="searchCategory('Electronics')"
->
-<span class="categoryEmoji">
-💻
-</span>
+<button class="categoryItem" onclick="searchCategory('Electronics')">
+<span class="categoryEmoji">💻</span>
 Electronics
 </button>
 
-<button
-class="categoryItem"
-onclick="searchCategory('Fashion')"
->
-<span class="categoryEmoji">
-👕
-</span>
+<button class="categoryItem" onclick="searchCategory('Fashion')">
+<span class="categoryEmoji">👕</span>
 Fashion
 </button>
 
-<button
-class="categoryItem"
-onclick="searchCategory('Beauty')"
->
-<span class="categoryEmoji">
-💄
-</span>
+<button class="categoryItem" onclick="searchCategory('Beauty')">
+<span class="categoryEmoji">💄</span>
 Beauty
 </button>
 
-<button
-class="categoryItem"
-onclick="searchCategory('Home')"
->
-<span class="categoryEmoji">
-🏠
-</span>
+<button class="categoryItem" onclick="searchCategory('Home')">
+<span class="categoryEmoji">🏠</span>
 Home
 </button>
 
-<button
-class="categoryItem"
-onclick="searchCategory('Accessories')"
->
-<span class="categoryEmoji">
-⌚
-</span>
+<button class="categoryItem" onclick="searchCategory('Accessories')">
+<span class="categoryEmoji">⌚</span>
 Accessories
 </button>
 
-<button
-class="categoryItem"
-onclick="searchCategory('Featured')"
->
-<span class="categoryEmoji">
-⭐
-</span>
+<button class="categoryItem" onclick="searchCategory('Featured')">
+<span class="categoryEmoji">⭐</span>
 Featured
 </button>
 
@@ -1066,9 +999,7 @@ Featured
 
 <div class="heroContent">
 
-<h1>
-Big Deals. Better Shopping.
-</h1>
+<h1>Big Deals. Better Shopping.</h1>
 
 <p>
 Discover trending products and great prices from sellers on NEXORA PICKS.
@@ -1076,19 +1007,17 @@ Discover trending products and great prices from sellers on NEXORA PICKS.
 
 <button
 class="shopNow"
-onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})"
->
+onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+
 Shop Now →
+
 </button>
 
 </div>
 
-<div class="heroVisual">
-🛍️
-</div>
+<div class="heroVisual">🛍️</div>
 
-<div class="heroCircle">
-</div>
+<div class="heroCircle"></div>
 
 </div>
 
@@ -1098,39 +1027,23 @@ Shop Now →
 <section class="dealStrip">
 
 <div class="deal">
-<b>
-⚡ Top Deals
-</b>
-<span>
-Great products at better prices
-</span>
+<b>⚡ Top Deals</b>
+<span>Great products at better prices</span>
 </div>
 
 <div class="deal">
-<b>
-🚚 Fast Shopping
-</b>
-<span>
-Easy checkout experience
-</span>
+<b>🚚 Easy Checkout</b>
+<span>Simple and secure shopping</span>
 </div>
 
 <div class="deal">
-<b>
-❤️ Wishlist
-</b>
-<span>
-Save products for later
-</span>
+<b>❤️ Wishlist</b>
+<span>Save products for later</span>
 </div>
 
 <div class="deal">
-<b>
-🛒 Easy Cart
-</b>
-<span>
-Add products in one tap
-</span>
+<b>🛒 Easy Cart</b>
+<span>Add products in one tap</span>
 </div>
 
 </section>
@@ -1140,9 +1053,7 @@ Add products in one tap
 
 <div class="sectionHeader">
 
-<h2>
-Featured Products
-</h2>
+<h2>Featured Products</h2>
 
 <div id="count">
 Loading products...
@@ -1157,10 +1068,7 @@ Loading products...
 Discover products from our marketplace
 </div>
 
-<select
-id="sort"
-onchange="render()"
->
+<select id="sort" onchange="render()">
 
 <option value="default">
 Sort: Featured
@@ -1187,10 +1095,7 @@ Price: High to Low
 </div>
 
 
-<div
-id="grid"
-class="grid"
->
+<div id="grid" class="grid">
 
 <div class="empty">
 Loading products...
@@ -1207,18 +1112,13 @@ Loading products...
 
 <div>
 
-<div
-class="footerTitle"
-style="font-size:24px"
->
+<div class="footerTitle" style="font-size:24px">
 NEXORA PICKS
 </div>
 
 <div class="footerText">
-
 Discover amazing products from independent sellers.
 Shop smarter and explore new products every day.
-
 </div>
 
 </div>
@@ -1232,18 +1132,15 @@ Customer
 
 <div class="footerLinks">
 
-<a href="#">
+<a href="#" onclick="openAccount(event)">
 My Account
 </a>
 
-<a href="#">
+<a href="my-orders.html">
 My Orders
 </a>
 
-<a
-href="#"
-onclick="openWishlist()"
->
+<a href="#" onclick="openWishlist();return false;">
 Wishlist
 </a>
 
@@ -1268,11 +1165,11 @@ About Us
 Contact
 </a>
 
-<a
-href="#"
-onclick="openSellerAuth()"
->
+<a href="#"
+onclick="openSellerAuth();return false;">
+
 Seller Login / Registration
+
 </a>
 
 </div>
@@ -1308,7 +1205,9 @@ Terms
 
 
 <div class="copyright">
+
 © 2026 NEXORA PICKS. All rights reserved.
+
 </div>
 
 </footer>
@@ -1316,57 +1215,56 @@ Terms
 
 <!-- MOBILE DRAWER -->
 
-<div
-id="drawer"
-class="drawer"
->
+<div id="drawer" class="drawer">
 
 <div class="drawerTop">
 
-<h2>
-NEXORA PICKS
-</h2>
+<h2>NEXORA PICKS</h2>
 
 <button
 class="drawerClose"
-onclick="closeMenu()"
->
+onclick="closeMenu()">
+
 ×
 </button>
 
 </div>
 
+
 <a href="index.html">
 🏠 Home
 </a>
 
-<a
-href="#products"
-onclick="closeMenu()"
->
+<a href="#products"
+onclick="closeMenu()">
+
 🛍️ Products
+
 </a>
 
-<a
-href="#"
-onclick="openWishlist();closeMenu()"
->
+<a href="#"
+onclick="openWishlist();closeMenu();return false;">
+
 ♡ Wishlist
+
 </a>
 
-<a href="#">
+<a href="my-orders.html">
 📦 My Orders
 </a>
 
-<a href="#">
+<a href="#"
+onclick="openAccount();closeMenu();return false;">
+
 👤 My Account
+
 </a>
 
-<a
-href="#"
-onclick="openSellerAuth();closeMenu()"
->
+<a href="#"
+onclick="openSellerAuth();closeMenu();return false;">
+
 🏪 Seller Login / Register
+
 </a>
 
 </div>
@@ -1374,17 +1272,14 @@ onclick="openSellerAuth();closeMenu()"
 
 <!-- CUSTOMER AUTH -->
 
-<div
-id="authModal"
-class="modal"
->
+<div id="authModal" class="modal">
 
 <div class="modalBox">
 
 <button
 class="closeModal"
-onclick="closeAuth()"
->
+onclick="closeAuth()">
+
 ×
 </button>
 
@@ -1396,39 +1291,37 @@ Customer Login
 id="fullName"
 type="text"
 placeholder="Full name"
-style="display:none"
->
+style="display:none">
 
 <input
 id="email"
 type="email"
-placeholder="Email address"
->
+placeholder="Email address">
 
 <input
 id="password"
 type="password"
-placeholder="Password"
->
+placeholder="Password">
 
 <button
 id="authBtn"
 class="primary"
-onclick="authAction()"
->
+onclick="authAction()">
+
 Login
+
 </button>
 
 <button
 id="modeBtn"
 class="modeButton"
-onclick="toggleMode()"
->
+onclick="toggleMode()">
+
 Create customer account
+
 </button>
 
-<div id="authMsg">
-</div>
+<div id="authMsg"></div>
 
 </div>
 
@@ -1437,17 +1330,14 @@ Create customer account
 
 <!-- SELLER AUTH -->
 
-<div
-id="sellerModal"
-class="modal"
->
+<div id="sellerModal" class="modal">
 
 <div class="modalBox">
 
 <button
 class="closeModal"
-onclick="closeSellerAuth()"
->
+onclick="closeSellerAuth()">
+
 ×
 </button>
 
@@ -1455,63 +1345,51 @@ onclick="closeSellerAuth()"
 Seller Login
 </h2>
 
-<p
-style="
-color:var(--muted);
-font-size:14px;
-margin-top:-6px
-"
->
-
-Login or create your seller account
-to start selling on NEXORA PICKS.
-
+<p style="color:var(--muted);font-size:14px;">
+Login or create your seller account to start selling on NEXORA PICKS.
 </p>
 
 <input
 id="sellerName"
 type="text"
 placeholder="Your full name"
-style="display:none"
->
+style="display:none">
 
 <input
 id="storeName"
 type="text"
 placeholder="Store / business name"
-style="display:none"
->
+style="display:none">
 
 <input
 id="sellerEmail"
 type="email"
-placeholder="Seller email address"
->
+placeholder="Seller email address">
 
 <input
 id="sellerPassword"
 type="password"
-placeholder="Password"
->
+placeholder="Password">
 
 <button
 id="sellerAuthBtn"
 class="primary"
-onclick="sellerAuthAction()"
->
+onclick="sellerAuthAction()">
+
 Seller Login
+
 </button>
 
 <button
 id="sellerModeBtn"
 class="modeButton"
-onclick="toggleSellerMode()"
->
+onclick="toggleSellerMode()">
+
 Create seller account
+
 </button>
 
-<div id="sellerAuthMsg">
-</div>
+<div id="sellerAuthMsg"></div>
 
 </div>
 
@@ -1520,30 +1398,24 @@ Create seller account
 
 <!-- CART -->
 
-<div
-id="cartModal"
-class="modal"
->
+<div id="cartModal" class="modal">
 
 <div class="modalBox cartBox">
 
 <button
 class="closeModal"
-onclick="closeCart()"
->
+onclick="closeCart()">
+
 ×
 </button>
 
-<h2>
-🛒 Your Cart
-</h2>
+<h2>🛒 Your Cart</h2>
 
 <div id="cartItems">
 Your cart is empty.
 </div>
 
-<div id="cartFoot">
-</div>
+<div id="cartFoot"></div>
 
 </div>
 
@@ -1552,23 +1424,18 @@ Your cart is empty.
 
 <!-- WISHLIST -->
 
-<div
-id="wishlistModal"
-class="modal"
->
+<div id="wishlistModal" class="modal">
 
 <div class="modalBox cartBox">
 
 <button
 class="closeModal"
-onclick="closeWishlist()"
->
+onclick="closeWishlist()">
+
 ×
 </button>
 
-<h2>
-♡ My Wishlist
-</h2>
+<h2>♡ My Wishlist</h2>
 
 <div id="wishItems">
 Your wishlist is empty.
@@ -1585,65 +1452,41 @@ Your wishlist is empty.
 
 <button
 class="active"
-onclick="window.scrollTo({top:0,behavior:'smooth'})"
->
+onclick="window.scrollTo({top:0,behavior:'smooth'})">
 
-<span class="navIcon">
-⌂
-</span>
-
+<span class="navIcon">⌂</span>
 Home
 
 </button>
 
-
 <button
-onclick="document.getElementById('search').focus()"
->
+onclick="document.getElementById('search').focus()">
 
-<span class="navIcon">
-⌕
-</span>
-
+<span class="navIcon">⌕</span>
 Search
 
 </button>
 
-
 <button
-onclick="searchCategory('Featured')"
->
+onclick="showAllProducts()">
 
-<span class="navIcon">
-▦
-</span>
-
-Categories
+<span class="navIcon">▦</span>
+Products
 
 </button>
 
-
 <button
-onclick="openWishlist()"
->
+onclick="openWishlist()">
 
-<span class="navIcon">
-♡
-</span>
-
+<span class="navIcon">♡</span>
 Wishlist
 
 </button>
 
-
 <button
-onclick="openCart()"
->
+onclick="openCart()">
 
-<span class="navIcon">
-🛒
-</span>
-
+<span class="navIcon">🛒</span>
 Cart
 
 </button>
@@ -1726,43 +1569,30 @@ const firebaseConfig = {
 };
 
 
-const app =
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
+const auth = getAuth(app);
 
-const auth =
-getAuth(app);
-
-
-const db =
-getFirestore(app);
+const db = getFirestore(app);
 
 
 /* VARIABLES */
 
 let products = [];
 
-
 let cart =
 JSON.parse(
-  localStorage.getItem(
-    "nexora_cart"
-  )
+  localStorage.getItem("nexora_cart")
   || "[]"
 );
-
 
 let wishlist =
 JSON.parse(
-  localStorage.getItem(
-    "nexora_wishlist"
-  )
+  localStorage.getItem("nexora_wishlist")
   || "[]"
 );
 
-
 let signup = false;
-
 
 let sellerSignup = false;
 
@@ -1777,114 +1607,89 @@ document.getElementById(id);
 const esc =
 value =>
 String(value ?? "")
-.replace(
-  /[&<>"']/g,
-  c => ({
+.replace(/[&<>"']/g,
+c => ({
 
-    "&":"&amp;",
+  "&":"&amp;",
 
-    "<":"&lt;",
+  "<":"&lt;",
 
-    ">":"&gt;",
+  ">":"&gt;",
 
-    '"':"&quot;",
+  '"':"&quot;",
 
-    "'":"&#39;"
+  "'":"&#39;"
 
-  }[c])
-);
-
-
-/* CART SAVE */
-
-function saveCart(){
-
-  localStorage.setItem(
-    "nexora_cart",
-    JSON.stringify(cart)
-  );
-
-  updateCount();
-
-  renderCart();
-
-}
-
-
-/* WISHLIST SAVE */
-
-function saveWishlist(){
-
-  localStorage.setItem(
-    "nexora_wishlist",
-    JSON.stringify(wishlist)
-  );
-
-  updateCount();
-
-}
-
-
-/* COUNTS */
-
-function updateCount(){
-
-  $("cartCount").textContent =
-  cart.reduce(
-    (n,item) =>
-    n + Number(item.qty || 0),
-    0
-  );
-
-
-  $("wishCount").textContent =
-  wishlist.length;
-
-}
+}[c]));
 
 
 /* MENU */
 
-window.openMenu = () =>
+window.openMenu =
+() =>
 $("drawer").classList.add("open");
 
 
-window.closeMenu = () =>
+window.closeMenu =
+() =>
 $("drawer").classList.remove("open");
 
 
 /* CUSTOMER AUTH */
 
-window.openAuth = () =>
+window.openAuth =
+() =>
 $("authModal").classList.add("open");
 
 
-window.closeAuth = () =>
+window.closeAuth =
+() =>
 $("authModal").classList.remove("open");
 
 
-window.toggleMode = () => {
+window.openAccount =
+(event) => {
+
+  if(event)
+  event.preventDefault();
+
+  if(auth.currentUser){
+
+    window.location.href =
+    "my-orders.html";
+
+  }
+
+  else{
+
+    openAuth();
+
+  }
+
+};
+
+
+window.toggleMode =
+() => {
 
   signup = !signup;
 
+  $("authMsg").textContent = "";
 
   $("authTitle").textContent =
   signup
   ? "Create Customer Account"
   : "Customer Login";
 
-
   $("authBtn").textContent =
   signup
   ? "Create Account"
   : "Login";
 
-
   $("modeBtn").textContent =
   signup
   ? "Already have an account? Login"
   : "Create customer account";
-
 
   $("fullName").style.display =
   signup
@@ -1900,14 +1705,10 @@ async () => {
   const message =
   $("authMsg");
 
-
-  message.textContent =
-  "";
-
+  message.textContent = "";
 
   const email =
   $("email").value.trim();
-
 
   const password =
   $("password").value;
@@ -1957,10 +1758,40 @@ async () => {
         }
       );
 
+
+      await setDoc(
+        doc(
+          db,
+          "users",
+          userCredential.user.uid
+        ),
+        {
+
+          name:fullName,
+
+          email:email,
+
+          role:"customer",
+
+          createdAt:
+          serverTimestamp()
+
+        },
+
+        {
+          merge:true
+        }
+
+      );
+
+
+      closeAuth();
+
     }
 
 
     else{
+
 
       await signInWithEmailAndPassword(
         auth,
@@ -1968,10 +1799,10 @@ async () => {
         password
       );
 
+
+      closeAuth();
+
     }
-
-
-    closeAuth();
 
 
   }
@@ -1987,18 +1818,25 @@ async () => {
 };
 
 
-/* SELLER MODAL */
+/* SELLER AUTH */
 
 window.openSellerAuth =
-() =>
-$("sellerModal")
-.classList.add("open");
+() => {
+
+  $("sellerAuthMsg").textContent = "";
+
+  $("sellerModal")
+  .classList
+  .add("open");
+
+};
 
 
 window.closeSellerAuth =
 () =>
 $("sellerModal")
-.classList.remove("open");
+.classList
+.remove("open");
 
 
 window.toggleSellerMode =
@@ -2044,8 +1882,6 @@ window.toggleSellerMode =
 };
 
 
-/* SELLER LOGIN + APPROVAL CHECK */
-
 window.sellerAuthAction =
 async () => {
 
@@ -2053,9 +1889,7 @@ async () => {
   const message =
   $("sellerAuthMsg");
 
-
-  message.textContent =
-  "";
+  message.textContent = "";
 
 
   const email =
@@ -2071,10 +1905,8 @@ async () => {
     message.style.color =
     "var(--danger)";
 
-
     message.textContent =
     "Please enter seller email and password.";
-
 
     return;
 
@@ -2083,8 +1915,6 @@ async () => {
 
   try{
 
-
-    /* SELLER REGISTRATION */
 
     if(sellerSignup){
 
@@ -2102,10 +1932,8 @@ async () => {
         message.style.color =
         "var(--danger)";
 
-
         message.textContent =
         "Please enter your name and store name.";
-
 
         return;
 
@@ -2113,7 +1941,6 @@ async () => {
 
 
       const userCredential =
-
       await createUserWithEmailAndPassword(
 
         auth,
@@ -2130,22 +1957,7 @@ async () => {
         userCredential.user,
 
         {
-
           displayName:name
-
-        }
-
-      );
-
-
-      await updateProfile(
-
-        userCredential.user,
-
-        {
-
-          displayName:name
-
         }
 
       );
@@ -2181,9 +1993,7 @@ async () => {
         },
 
         {
-
           merge:true
-
         }
 
       );
@@ -2202,10 +2012,6 @@ async () => {
 
           closeSellerAuth();
 
-
-          window.location.href =
-          "seller-register.html";
-
         },
         1500
       );
@@ -2214,13 +2020,10 @@ async () => {
     }
 
 
-    /* SELLER LOGIN */
-
     else{
 
 
       const userCredential =
-
       await signInWithEmailAndPassword(
 
         auth,
@@ -2237,7 +2040,6 @@ async () => {
 
 
       const sellerDoc =
-
       await getDoc(
 
         doc(
@@ -2253,21 +2055,14 @@ async () => {
       );
 
 
-      /* SELLER DATA NOT FOUND */
-
       if(!sellerDoc.exists()){
 
 
         await signOut(auth);
 
 
-        message.style.color =
-        "var(--danger)";
-
-
         message.textContent =
         "Seller account information not found.";
-
 
         return;
 
@@ -2278,103 +2073,61 @@ async () => {
       sellerDoc.data();
 
 
-      /* NOT SELLER */
-
-      if(
-        sellerData.role !==
-        "seller"
-      ){
+      if(sellerData.role !== "seller"){
 
 
         await signOut(auth);
-
-
-        message.style.color =
-        "var(--danger)";
 
 
         message.textContent =
         "This is not a seller account.";
 
-
         return;
 
       }
 
 
-      /* PENDING */
-
-      if(
-        sellerData.status ===
-        "pending"
-      ){
+      if(sellerData.status === "pending"){
 
 
         await signOut(auth);
-
-
-        message.style.color =
-        "var(--danger)";
 
 
         message.textContent =
         "Your seller account is waiting for admin approval.";
 
-
         return;
 
       }
 
 
-      /* BLOCKED */
-
-      if(
-        sellerData.status ===
-        "blocked"
-      ){
+      if(sellerData.status === "blocked"){
 
 
         await signOut(auth);
-
-
-        message.style.color =
-        "var(--danger)";
 
 
         message.textContent =
         "Your seller account has been blocked.";
 
-
         return;
 
       }
 
 
-      /* NOT APPROVED */
-
-      if(
-        sellerData.status !==
-        "approved"
-      ){
+      if(sellerData.status !== "approved"){
 
 
         await signOut(auth);
 
 
-        message.style.color =
-        "var(--danger)";
-
-
         message.textContent =
         "Your seller account is not approved.";
-
 
         return;
 
       }
 
-
-      /* APPROVED */
 
       message.style.color =
       "var(--success)";
@@ -2386,9 +2139,6 @@ async () => {
 
       setTimeout(
         () => {
-
-          closeSellerAuth();
-
 
           window.location.href =
           "seller-dashboard.html";
@@ -2416,20 +2166,25 @@ async () => {
       "auth/invalid-credential"
     ){
 
-
       message.textContent =
       "Incorrect email or password.";
 
+    }
+
+    else if(
+      error.code ===
+      "auth/email-already-in-use"
+    ){
+
+      message.textContent =
+      "This email is already registered.";
 
     }
 
-
     else{
-
 
       message.textContent =
       error.message;
-
 
     }
 
@@ -2440,14 +2195,12 @@ async () => {
 };
 
 
-/* ACCOUNT BUTTON */
+/* ACCOUNT */
 
 $("account").onclick =
 () => {
 
-
   if(auth.currentUser){
-
 
     if(
       confirm(
@@ -2455,24 +2208,17 @@ $("account").onclick =
       )
     ){
 
-
       signOut(auth);
-
 
     }
 
-
   }
-
 
   else{
 
-
     openAuth();
 
-
   }
-
 
 };
 
@@ -2480,6 +2226,7 @@ $("account").onclick =
 /* AUTH STATE */
 
 onAuthStateChanged(
+
   auth,
 
   user => {
@@ -2487,23 +2234,16 @@ onAuthStateChanged(
 
     if(user){
 
-
       $("account").textContent =
-
       user.displayName ||
-
       "My Account";
-
 
     }
 
-
     else{
-
 
       $("account").textContent =
       "Login";
-
 
     }
 
@@ -2515,13 +2255,50 @@ onAuthStateChanged(
 
 /* CART */
 
+function saveCart(){
+
+  localStorage.setItem(
+
+    "nexora_cart",
+
+    JSON.stringify(cart)
+
+  );
+
+  updateCount();
+
+  renderCart();
+
+}
+
+
+function updateCount(){
+
+  $("cartCount").textContent =
+
+  cart.reduce(
+
+    (n,item) =>
+
+    n + Number(item.qty || 0),
+
+    0
+
+  );
+
+
+  $("wishCount").textContent =
+  wishlist.length;
+
+}
+
+
 window.openCart =
 () => {
 
   $("cartModal")
   .classList
   .add("open");
-
 
   renderCart();
 
@@ -2540,17 +2317,17 @@ window.closeCart =
 
 function addToCart(product){
 
-
   const existing =
 
   cart.find(
+
     item =>
     item.id === product.id
+
   );
 
 
   if(existing){
-
 
     existing.qty =
 
@@ -2558,12 +2335,10 @@ function addToCart(product){
       existing.qty || 0
     ) + 1;
 
-
   }
 
 
   else{
-
 
     cart.push({
 
@@ -2572,7 +2347,6 @@ function addToCart(product){
       qty:1
 
     });
-
 
   }
 
@@ -2599,8 +2373,10 @@ window.changeQty =
   const item =
 
   cart.find(
+
     item =>
     item.id === id
+
   );
 
 
@@ -2617,13 +2393,14 @@ window.changeQty =
 
   if(item.qty <= 0){
 
-
     cart =
+
     cart.filter(
+
       item =>
       item.id !== id
-    );
 
+    );
 
   }
 
@@ -2638,9 +2415,12 @@ id => {
 
 
   cart =
+
   cart.filter(
+
     item =>
     item.id !== id
+
   );
 
 
@@ -2665,16 +2445,15 @@ function renderCart(){
 
     box.innerHTML =
 
-    `<div class="emptyCart">
+    `<div class="empty">
 
-      Your cart is empty.
+    Your cart is empty.
 
     </div>`;
 
 
     foot.innerHTML =
     "";
-
 
     return;
 
@@ -2800,7 +2579,7 @@ function renderCart(){
         </div>
 
 
-        <b>
+        <b class="cartPrice">
 
           ₹${(
 
@@ -2827,7 +2606,6 @@ function renderCart(){
 
 
     }
-
   ).join("");
 
 
@@ -2896,11 +2674,9 @@ window.goToCheckout =
 
   if(!cart.length){
 
-
     alert(
       "Your cart is empty."
     );
-
 
     return;
 
@@ -2917,6 +2693,21 @@ window.goToCheckout =
 
 
 /* WISHLIST */
+
+function saveWishlist(){
+
+  localStorage.setItem(
+
+    "nexora_wishlist",
+
+    JSON.stringify(wishlist)
+
+  );
+
+  updateCount();
+
+}
+
 
 window.openWishlist =
 () => {
@@ -2944,7 +2735,6 @@ window.closeWishlist =
 
 
 function isWished(id){
-
 
   return wishlist.some(
 
@@ -2976,7 +2766,6 @@ id => {
 
   if(isWished(id)){
 
-
     wishlist =
 
     wishlist.filter(
@@ -2986,17 +2775,14 @@ id => {
 
     );
 
-
   }
 
 
   else{
 
-
     wishlist.push(
       product
     );
-
 
   }
 
@@ -3046,11 +2832,11 @@ function renderWishlist(){
 
     box.innerHTML =
 
-    `<p class="emptyCart">
+    `<div class="empty">
 
     Your wishlist is empty.
 
-    </p>`;
+    </div>`;
 
 
     return;
@@ -3191,11 +2977,9 @@ id => {
 
   if(product){
 
-
     addToCart(
       product
     );
-
 
   }
 
@@ -3292,12 +3076,10 @@ window.render =
 
 
     }
-
   );
 
 
   if(sort === "low"){
-
 
     filtered.sort(
 
@@ -3314,14 +3096,12 @@ window.render =
       )
 
     );
-
 
   }
 
 
   if(sort === "high"){
 
-
     filtered.sort(
 
       (a,b) =>
@@ -3338,12 +3118,10 @@ window.render =
 
     );
 
-
   }
 
 
   if(sort === "az"){
-
 
     filtered.sort(
 
@@ -3363,12 +3141,10 @@ window.render =
 
     );
 
-
   }
 
 
   if(sort === "za"){
-
 
     filtered.sort(
 
@@ -3387,7 +3163,6 @@ window.render =
       )
 
     );
-
 
   }
 
@@ -3600,7 +3375,7 @@ function card(product){
       </div>
 
 
-      <div class="stock">
+      <div class="stock ${stock <= 0 ? "out" : ""}">
 
       ${
 
@@ -3721,7 +3496,7 @@ document.addEventListener(
     try{
 
 
-      if(addButton){
+      if(addButton && !addButton.disabled){
 
 
         addToCart(
@@ -3744,7 +3519,7 @@ document.addEventListener(
       }
 
 
-      if(buyButton){
+      if(buyButton && !buyButton.disabled){
 
 
         buyNow(
@@ -3792,7 +3567,10 @@ document.addEventListener(
 
 /* FIRESTORE PRODUCTS */
 
-console.log("Connecting to Firestore products...");
+console.log(
+  "Connecting to Firestore products..."
+);
+
 
 onSnapshot(
 
@@ -3800,19 +3578,26 @@ onSnapshot(
 
   snapshot => {
 
+
     console.log(
+
       "Products loaded:",
+
       snapshot.size
+
     );
 
+
     products = snapshot.docs
+
       .map(document => ({
 
-        id: document.id,
+        id:document.id,
 
         ...document.data()
 
       }))
+
       .filter(product => {
 
         return product.active !== false;
@@ -3820,30 +3605,28 @@ onSnapshot(
       });
 
 
-    $("count").textContent =
-      `${products.length} product${
-        products.length === 1
-          ? ""
-          : "s"
-      }`;
-
-
     render();
+
 
   },
 
 
   error => {
 
+
     console.error(
+
       "Firestore error:",
+
       error.code,
+
       error.message
+
     );
 
 
     $("count").textContent =
-      "Unable to load products";
+    "Unable to load products";
 
 
     $("grid").innerHTML = `
@@ -3856,11 +3639,12 @@ onSnapshot(
 
         <br><br>
 
-        Error: ${esc(error.message)}
+        ${esc(error.message)}
 
       </div>
 
     `;
+
 
   }
 
@@ -3876,5 +3660,4 @@ renderCart();
 </script>
 
 </body>
-
 </html>

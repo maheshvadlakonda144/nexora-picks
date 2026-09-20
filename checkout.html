@@ -5,430 +5,362 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1">
 
 <title>
-My Orders | NEXORA PICKS
+Checkout | NEXORA PICKS
 </title>
+
 
 <style>
 
 *{
-box-sizing:border-box
+  box-sizing:border-box;
 }
+
 
 body{
-margin:0;
-font-family:Arial,sans-serif;
-background:#f4f6f9;
-color:#172033
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#f4f6f9;
+  color:#172033;
 }
+
 
 header{
-background:#2874f0;
-color:white;
-padding:18px 20px;
-display:flex;
-align-items:center;
-gap:15px;
-position:sticky;
-top:0;
-z-index:10
+  background:#2874f0;
+  color:white;
+  padding:17px 20px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  position:sticky;
+  top:0;
+  z-index:20;
 }
+
 
 header a{
-color:white;
-text-decoration:none;
-font-size:28px
+  color:white;
+  text-decoration:none;
+  font-size:29px;
+  line-height:1;
 }
+
 
 header h1{
-margin:0;
-font-size:24px
+  margin:0;
+  font-size:24px;
 }
+
 
 .wrap{
-max-width:850px;
-margin:auto;
-padding:20px
-}
-
-.top{
-background:white;
-border-radius:14px;
-padding:20px;
-margin-bottom:18px;
-box-shadow:0 2px 10px #00000010
-}
-
-.top h2{
-margin:0 0 8px
-}
-
-button{
-border:0;
-border-radius:8px;
-padding:12px 18px;
-font-size:16px;
-font-weight:bold;
-cursor:pointer
-}
-
-.loginBtn{
-background:#2874f0;
-color:white
-}
-
-.order{
-background:white;
-border-radius:14px;
-margin-bottom:18px;
-padding:20px;
-box-shadow:0 2px 10px #00000010
-}
-
-.orderHead{
-display:flex;
-justify-content:space-between;
-gap:10px;
-border-bottom:1px solid #eee;
-padding-bottom:14px;
-margin-bottom:15px
-}
-
-.orderId{
-font-size:14px;
-color:#687386;
-word-break:break-all
-}
-
-.status{
-background:#fff3cd;
-color:#856404;
-padding:7px 12px;
-border-radius:20px;
-font-weight:bold;
-white-space:nowrap;
-text-transform:uppercase
-}
-
-.item{
-display:flex;
-justify-content:space-between;
-gap:15px;
-padding:10px 0;
-border-bottom:1px solid #f0f0f0
-}
-
-.itemName{
-font-weight:bold
-}
-
-.itemPrice{
-white-space:nowrap
-}
-
-.total{
-display:flex;
-justify-content:space-between;
-font-size:21px;
-font-weight:bold;
-margin-top:16px
-}
-
-.info{
-margin-top:18px;
-background:#f7f9fc;
-padding:15px;
-border-radius:10px;
-line-height:1.7
-}
-
-.empty{
-background:white;
-padding:40px 20px;
-text-align:center;
-border-radius:14px;
-color:#667085
-}
-
-.loading{
-text-align:center;
-padding:30px
-}
-
-.cod{
-color:#16803c;
-font-weight:bold
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
 }
 
 
-/* ORDER TRACKING */
-
-.tracking{
-margin-top:22px;
-padding:18px;
-background:#f7f9fc;
-border-radius:12px
-}
-
-.trackingTitle{
-font-size:18px;
-font-weight:bold;
-margin-bottom:18px
-}
-
-.step{
-display:flex;
-align-items:flex-start;
-gap:12px;
-margin-bottom:16px;
-position:relative
-}
-
-.stepIcon{
-width:34px;
-height:34px;
-border-radius:50%;
-background:#d9dee7;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:16px;
-flex-shrink:0;
-position:relative;
-z-index:2
-}
-
-.step.done .stepIcon{
-background:#16803c;
-color:white
-}
-
-.step.active .stepIcon{
-background:#2874f0;
-color:white
-}
-
-.stepText{
-padding-top:3px;
-font-weight:bold;
-color:#172033
-}
-
-.stepMessage{
-font-size:14px;
-font-weight:normal;
-color:#667085;
-margin-top:5px;
-line-height:1.5
-}
-
-.stepTime{
-font-size:13px;
-font-weight:normal;
-color:#8a94a6;
-margin-top:5px
-}
-
-.step:not(:last-child)::after{
-content:"";
-position:absolute;
-left:16px;
-top:34px;
-height:calc(100% - 18px);
-width:2px;
-background:#d9dee7
-}
-
-.step.done:not(:last-child)::after{
-background:#16803c
+.grid{
+  display:grid;
+  grid-template-columns:1.4fr .8fr;
+  gap:20px;
 }
 
 
-/* CANCELLED */
-
-.cancelledBox{
-margin-top:18px;
-padding:15px;
-border-radius:10px;
-background:#fff0f0;
-color:#c62828;
-font-weight:bold;
-text-align:center
+.card{
+  background:white;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 2px 10px #00000010;
 }
 
 
-/* BUTTONS */
-
-.cancelBtn{
-width:100%;
-margin-top:18px;
-background:#d93025;
-color:white;
-font-size:18px;
-padding:15px
-}
-
-.returnBtn{
-width:100%;
-margin-top:18px;
-background:#f57c00;
-color:white;
-font-size:18px;
-padding:15px
-}
-
-.refundBtn{
-width:100%;
-margin-top:12px;
-background:#6a1b9a;
-color:white;
-font-size:18px;
-padding:15px
+.card h2{
+  margin:0 0 18px;
+  font-size:22px;
 }
 
 
-/* REQUEST STATUS */
-
-.requestBox{
-margin-top:18px;
-padding:15px;
-border-radius:10px;
-background:#fff8e1;
-color:#8a5a00;
-font-weight:bold;
-line-height:1.6
-}
-
-.approvedBox{
-margin-top:18px;
-padding:15px;
-border-radius:10px;
-background:#e8f5e9;
-color:#16803c;
-font-weight:bold;
-line-height:1.6
-}
-
-.rejectedBox{
-margin-top:18px;
-padding:15px;
-border-radius:10px;
-background:#ffebee;
-color:#c62828;
-font-weight:bold;
-line-height:1.6
+.field{
+  margin-bottom:14px;
 }
 
 
-/* MODAL */
-
-.modal{
-display:none;
-position:fixed;
-z-index:100;
-left:0;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.55);
-padding:20px;
-align-items:center;
-justify-content:center;
-overflow-y:auto
-}
-
-.modalContent{
-background:white;
-width:100%;
-max-width:430px;
-border-radius:18px;
-padding:24px;
-margin:auto
-}
-
-.modalContent h2{
-margin-top:0
-}
-
-.reasonOption{
-display:block;
-padding:14px;
-border:1px solid #ddd;
-border-radius:10px;
-margin:10px 0;
-cursor:pointer
-}
-
-.reasonOption input{
-margin-right:10px
-}
-
-.otherReason{
-display:none;
-width:100%;
-min-height:100px;
-padding:14px;
-margin-top:10px;
-border:1px solid #2874f0;
-border-radius:10px;
-font-size:16px;
-font-family:Arial,sans-serif;
-resize:vertical
-}
-
-.confirmCancel{
-width:100%;
-background:#d93025;
-color:white;
-margin-top:15px;
-padding:15px
-}
-
-.confirmReturn{
-width:100%;
-background:#f57c00;
-color:white;
-margin-top:15px;
-padding:15px
-}
-
-.confirmRefund{
-width:100%;
-background:#6a1b9a;
-color:white;
-margin-top:15px;
-padding:15px
-}
-
-.closeCancel{
-width:100%;
-background:#e9ecef;
-color:#333;
-margin-top:10px;
-padding:15px
+.field label{
+  display:block;
+  font-weight:bold;
+  margin-bottom:6px;
+  font-size:14px;
 }
 
 
-@media(max-width:600px){
-
-.wrap{
-padding:12px
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  padding:13px;
+  border:1px solid #ccd3dd;
+  border-radius:8px;
+  font-size:16px;
+  outline:none;
+  background:white;
 }
 
-.order{
-padding:15px
+
+.field input:focus,
+.field textarea:focus{
+  border-color:#2874f0;
 }
 
-.orderHead{
-align-items:flex-start
+
+.field textarea{
+  min-height:90px;
+  resize:vertical;
 }
 
-.item{
-font-size:15px
+
+.two{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
 }
+
+
+.payment-option{
+  border:2px solid #e1e5ea;
+  border-radius:10px;
+  padding:15px;
+  margin-bottom:12px;
+  cursor:pointer;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+}
+
+
+.payment-option.active{
+  border-color:#2874f0;
+  background:#f5f9ff;
+}
+
+
+.payment-option input{
+  margin-top:4px;
+  transform:scale(1.2);
+}
+
+
+.payment-title{
+  font-weight:bold;
+  font-size:17px;
+}
+
+
+.payment-desc{
+  color:#666;
+  font-size:13px;
+  margin-top:5px;
+  line-height:1.4;
+}
+
+
+.order-item{
+  display:flex;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+
+.order-image{
+  width:65px;
+  height:65px;
+  background:#f5f5f5;
+  border-radius:8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+  overflow:hidden;
+  font-size:30px;
+}
+
+
+.order-image img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+
+.order-info{
+  flex:1;
+}
+
+
+.order-name{
+  font-weight:bold;
+  line-height:1.3;
+}
+
+
+.order-meta{
+  color:#666;
+  font-size:14px;
+  margin-top:5px;
+}
+
+
+.order-price{
+  font-weight:bold;
+  white-space:nowrap;
+}
+
+
+.summary-row{
+  display:flex;
+  justify-content:space-between;
+  padding:10px 0;
+  font-size:16px;
+}
+
+
+.summary-total{
+  border-top:2px solid #eee;
+  margin-top:8px;
+  padding-top:15px;
+  font-size:23px;
+  font-weight:bold;
+}
+
+
+.place-btn{
+  width:100%;
+  border:0;
+  border-radius:9px;
+  padding:16px;
+  background:#ff6d00;
+  color:white;
+  font-size:19px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:15px;
+}
+
+
+.place-btn:hover{
+  background:#ed6200;
+}
+
+
+.place-btn:disabled{
+  opacity:.6;
+  cursor:not-allowed;
+}
+
+
+.message{
+  background:white;
+  border-radius:14px;
+  padding:40px 20px;
+  text-align:center;
+  box-shadow:0 2px 10px #00000010;
+}
+
+
+.message h2{
+  margin-top:0;
+}
+
+
+.back-btn{
+  display:inline-block;
+  margin-top:15px;
+  padding:12px 20px;
+  border-radius:7px;
+  background:#2874f0;
+  color:white;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+
+.success{
+  color:#188038;
+  font-weight:bold;
+}
+
+
+.error{
+  color:#d93025;
+  font-weight:bold;
+}
+
+
+.info-note{
+  background:#f5f9ff;
+  border-left:4px solid #2874f0;
+  padding:12px;
+  border-radius:6px;
+  font-size:13px;
+  color:#444;
+  line-height:1.5;
+  margin-top:10px;
+}
+
+
+.online-box{
+  display:none;
+  background:#fff8e8;
+  border:1px solid #ffd56a;
+  padding:12px;
+  border-radius:8px;
+  font-size:13px;
+  line-height:1.5;
+}
+
+
+.cod-box{
+  display:block;
+}
+
+
+@media(max-width:750px){
+
+  .wrap{
+    padding:12px;
+  }
+
+
+  .grid{
+    grid-template-columns:1fr;
+    gap:12px;
+  }
+
+
+  .two{
+    grid-template-columns:1fr;
+    gap:0;
+  }
+
+
+  header{
+    padding:14px;
+  }
+
+
+  header h1{
+    font-size:20px;
+  }
+
+
+  .card{
+    padding:16px;
+  }
 
 }
 
@@ -436,2138 +368,1852 @@ font-size:15px
 
 </head>
 
+
 <body>
 
 
 <header>
 
-<a href="index.html">
-‹
-</a>
+  <a href="cart.html">
+    ‹
+  </a>
 
-<h1>
-📦 My Orders
-</h1>
+  <h1>
+    NEXORA PICKS
+  </h1>
 
 </header>
+
 
 
 <div class="wrap">
 
 
-<div class="top">
+  <div id="loadingBox" class="message">
 
-<h2>
-My Orders
-</h2>
+    <h2>
+      Loading checkout...
+    </h2>
 
-<div id="userInfo">
+    <p>
+      Please wait.
+    </p>
 
-Checking login...
+  </div>
+
+
+
+  <div
+    id="emptyBox"
+    class="message"
+    style="display:none">
+
+    <div style="font-size:60px">
+      🛒
+    </div>
+
+    <h2>
+      Your cart is empty
+    </h2>
+
+    <p>
+      Add products before checkout.
+    </p>
+
+    <a
+      class="back-btn"
+      href="index.html">
+
+      Continue Shopping
+
+    </a>
+
+  </div>
+
+
+
+  <div
+    id="checkoutBox"
+    style="display:none">
+
+
+    <div class="grid">
+
+
+      <!-- LEFT SIDE -->
+
+      <div>
+
+
+        <!-- DELIVERY ADDRESS -->
+
+        <div class="card">
+
+          <h2>
+            📍 Delivery Address
+          </h2>
+
+
+          <div class="two">
+
+
+            <div class="field">
+
+              <label>
+                Full Name *
+              </label>
+
+              <input
+                id="customerName"
+                type="text"
+                placeholder="Enter your full name"
+                autocomplete="name">
+
+            </div>
+
+
+            <div class="field">
+
+              <label>
+                Mobile Number *
+              </label>
+
+              <input
+                id="customerPhone"
+                type="tel"
+                placeholder="10-digit mobile number"
+                inputmode="numeric"
+                maxlength="10"
+                autocomplete="tel">
+
+            </div>
+
+
+          </div>
+
+
+
+          <div class="field">
+
+            <label>
+              House / Flat / Building *
+            </label>
+
+            <input
+              id="customerHouse"
+              type="text"
+              placeholder="House / Flat / Building">
+
+          </div>
+
+
+
+          <div class="field">
+
+            <label>
+              Street / Area / Locality *
+            </label>
+
+            <input
+              id="customerStreet"
+              type="text"
+              placeholder="Street / Area / Locality">
+
+          </div>
+
+
+
+          <div class="two">
+
+
+            <div class="field">
+
+              <label>
+                City *
+              </label>
+
+              <input
+                id="customerCity"
+                type="text"
+                placeholder="City">
+
+            </div>
+
+
+            <div class="field">
+
+              <label>
+                State *
+              </label>
+
+              <input
+                id="customerState"
+                type="text"
+                placeholder="State">
+
+            </div>
+
+
+          </div>
+
+
+
+          <div class="two">
+
+
+            <div class="field">
+
+              <label>
+                PIN Code *
+              </label>
+
+              <input
+                id="customerPin"
+                type="text"
+                placeholder="6-digit PIN"
+                inputmode="numeric"
+                maxlength="6">
+
+            </div>
+
+
+            <div class="field">
+
+              <label>
+                Landmark
+              </label>
+
+              <input
+                id="customerLandmark"
+                type="text"
+                placeholder="Optional">
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- PAYMENT -->
+
+        <div class="card">
+
+          <h2>
+            💳 Payment Method
+          </h2>
+
+
+          <!-- COD -->
+
+          <label
+            class="payment-option active"
+            id="codOption">
+
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="COD"
+              checked
+              onchange="selectPayment('COD')">
+
+            <div>
+
+              <div class="payment-title">
+                💵 Cash on Delivery
+              </div>
+
+              <div class="payment-desc">
+
+                Pay the delivery person
+                when your order arrives.
+
+              </div>
+
+            </div>
+
+          </label>
+
+
+
+          <!-- ONLINE -->
+
+          <label
+            class="payment-option"
+            id="onlineOption">
+
+            <input
+              type="radio"
+              name="paymentMethod"
+              value="ONLINE"
+              onchange="selectPayment('ONLINE')">
+
+            <div>
+
+              <div class="payment-title">
+                💳 Online Payment
+              </div>
+
+              <div class="payment-desc">
+
+                Pay securely online.
+
+              </div>
+
+            </div>
+
+          </label>
+
+
+
+          <div
+            id="codBox"
+            class="cod-box info-note">
+
+            Your order will be confirmed
+            after you place the COD order.
+
+          </div>
+
+
+
+          <div
+            id="onlineBox"
+            class="online-box">
+
+            <b>Online payment setup</b><br>
+
+            Razorpay checkout will be used
+            after your Razorpay Test Key ID
+            is added to this page.
+
+            <br><br>
+
+            Do not put your Razorpay
+            Secret Key in this HTML file.
+
+          </div>
+
+
+        </div>
+
+
+
+        <!-- MESSAGE -->
+
+        <div
+          id="orderMessage"
+          style="display:none"
+          class="card">
+
+        </div>
+
+
+      </div>
+
+
+
+      <!-- RIGHT SIDE -->
+
+      <div>
+
+
+        <!-- ORDER SUMMARY -->
+
+        <div class="card">
+
+          <h2>
+            🛍️ Order Summary
+          </h2>
+
+
+          <div id="orderItems"></div>
+
+
+          <div style="margin-top:12px">
+
+
+            <div class="summary-row">
+
+              <span>
+                Subtotal
+              </span>
+
+              <b id="subtotal">
+                ₹0
+              </b>
+
+            </div>
+
+
+            <div class="summary-row">
+
+              <span>
+                Delivery
+              </span>
+
+              <b>
+                FREE
+              </b>
+
+            </div>
+
+
+            <div class="summary-row summary-total">
+
+              <span>
+                Total
+              </span>
+
+              <span id="grandTotal">
+                ₹0
+              </span>
+
+            </div>
+
+
+          </div>
+
+
+
+          <button
+            id="placeOrderBtn"
+            class="place-btn"
+            onclick="placeOrder()">
+
+            💵 Place COD Order
+
+          </button>
+
+
+        </div>
+
+
+      </div>
+
+
+    </div>
+
+
+  </div>
+
 
 </div>
 
-</div>
-
-
-<div id="orders">
-
-<div class="loading">
-
-Loading your orders...
-
-</div>
-
-</div>
-
-
-</div>
-
-
-<!-- CANCEL MODAL -->
-
-<div id="cancelModal" class="modal">
-
-<div class="modalContent">
-
-<h2>
-Cancel Order
-</h2>
-
-<p>
-Please select a reason for cancellation:
-</p>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="cancelReason"
-value="Changed my mind">
-
-Changed my mind
-
-</label>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="cancelReason"
-value="Ordered by mistake">
-
-Ordered by mistake
-
-</label>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="cancelReason"
-value="Found a better price">
-
-Found a better price
-
-</label>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="cancelReason"
-value="Delivery taking too long">
-
-Delivery taking too long
-
-</label>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="cancelReason"
-value="Other"
-onchange="showOtherCancelReason()">
-
-Other
-
-</label>
-
-
-<textarea
-id="otherCancelReason"
-class="otherReason"
-placeholder="Please type your cancellation reason..."></textarea>
-
-
-<button
-class="confirmCancel"
-onclick="confirmCancelOrder()">
-
-❌ Confirm Cancellation
-
-</button>
-
-
-<button
-class="closeCancel"
-onclick="closeCancelModal()">
-
-Keep Order
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- RETURN MODAL -->
-
-<div id="returnModal" class="modal">
-
-<div class="modalContent">
-
-<h2>
-🔄 Return Product
-</h2>
-
-<p>
-Please select a reason for return:
-</p>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="returnReason"
-value="Received damaged product">
-
-Received damaged product
-
-</label>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="returnReason"
-value="Wrong product received">
-
-Wrong product received
-
-</label>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="returnReason"
-value="Product not as expected">
-
-Product not as expected
-
-</label>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="returnReason"
-value="Other"
-onchange="showOtherReturnReason()">
-
-Other
-
-</label>
-
-
-<textarea
-id="otherReturnReason"
-class="otherReason"
-placeholder="Please type your return reason..."></textarea>
-
-
-<button
-class="confirmReturn"
-onclick="confirmReturnRequest()">
-
-🔄 Submit Return Request
-
-</button>
-
-
-<button
-class="closeCancel"
-onclick="closeReturnModal()">
-
-Cancel
-
-</button>
-
-</div>
-
-</div>
-
-
-<!-- REFUND MODAL -->
-
-<div id="refundModal" class="modal">
-
-<div class="modalContent">
-
-<h2>
-💰 Refund Request
-</h2>
-
-<p>
-Please select a reason for your refund request:
-</p>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="refundReason"
-value="Order cancelled">
-
-Order cancelled
-
-</label>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="refundReason"
-value="Product returned">
-
-Product returned
-
-</label>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="refundReason"
-value="Payment issue">
-
-Payment issue
-
-</label>
-
-
-<label class="reasonOption">
-
-<input
-type="radio"
-name="refundReason"
-value="Other"
-onchange="showOtherRefundReason()">
-
-Other
-
-</label>
-
-
-<textarea
-id="otherRefundReason"
-class="otherReason"
-placeholder="Please type your refund reason..."></textarea>
-
-
-<button
-class="confirmRefund"
-onclick="confirmRefundRequest()">
-
-💰 Submit Refund Request
-
-</button>
-
-
-<button
-class="closeCancel"
-onclick="closeRefundModal()">
-
-Cancel
-
-</button>
-
-</div>
-
-</div>
 
 
 <script type="module">
 
 
-import{
-initializeApp
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+/* ==================================
+   FIREBASE
+================================== */
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
-import{
-getAuth,
-onAuthStateChanged
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+import {
+  getAuth,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-import{
-getFirestore,
-collection,
-query,
-where,
-onSnapshot,
-doc,
-updateDoc,
-serverTimestamp
-}
-from
-"https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp,
+  doc,
+  getDoc
+} from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-const firebaseConfig={
 
-apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+/* ==================================
+   FIREBASE CONFIG
+================================== */
 
-authDomain:"nexora-picks-e887f.firebaseapp.com",
+const firebaseConfig = {
 
-projectId:"nexora-picks-e887f",
+  apiKey:
+    "AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
 
-storageBucket:"nexora-picks-e887f.firebasestorage.app",
+  authDomain:
+    "nexora-picks-e887f.firebaseapp.com",
 
-messagingSenderId:"621359003619",
+  projectId:
+    "nexora-picks-e887f",
 
-appId:"1:621359003619:web:483add8bfcd0241f4192d",
+  storageBucket:
+    "nexora-picks-e887f.firebasestorage.app",
 
-measurementId:"G-LSMJ6QLLPW"
+  messagingSenderId:
+    "621359003619",
+
+  appId:
+    "1:621359003619:web:483add8bfcd0241f4192d",
+
+  measurementId:
+    "G-LSMJ6QLLPW"
 
 };
 
 
-const app=
-initializeApp(firebaseConfig);
+
+const app =
+  initializeApp(firebaseConfig);
 
 
-const auth=
-getAuth(app);
+const auth =
+  getAuth(app);
 
 
-const db=
-getFirestore(app);
-
-
-const $=
-id=>document.getElementById(id);
+const db =
+  getFirestore(app);
 
 
 
-/* LOGIN */
+/* ==================================
+   CART
+================================== */
+
+const CART_KEY =
+  "nexora_cart";
+
+
+let cart = [];
+
+
+let currentUser = null;
+
+
+let selectedPayment =
+  "COD";
+
+
+
+/* ==================================
+   HELPERS
+================================== */
+
+function $(id){
+
+  return document.getElementById(id);
+
+}
+
+
+
+function money(value){
+
+  return "₹" +
+    Number(value || 0)
+      .toLocaleString("en-IN");
+
+}
+
+
+
+function escapeHTML(value){
+
+  return String(value ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+
+function getCart(){
+
+  try{
+
+    const data =
+      JSON.parse(
+        localStorage.getItem(
+          CART_KEY
+        ) || "[]"
+      );
+
+
+    if(!Array.isArray(data)){
+
+      return [];
+
+    }
+
+
+    return data;
+
+  }catch(error){
+
+    return [];
+
+  }
+
+}
+
+
+
+function saveCart(){
+
+  localStorage.setItem(
+    CART_KEY,
+    JSON.stringify(cart)
+  );
+
+}
+
+
+
+/* ==================================
+   LOAD CART
+================================== */
+
+cart =
+  getCart();
+
+
+
+/* ==================================
+   RENDER ORDER ITEMS
+================================== */
+
+function renderOrderItems(){
+
+
+  let subtotal = 0;
+
+
+
+  $("orderItems").innerHTML =
+    cart.map(item => {
+
+
+      const price =
+        Number(item.price) || 0;
+
+
+      const qty =
+        Math.max(
+          1,
+          Number(item.qty) || 1
+        );
+
+
+      subtotal +=
+        price * qty;
+
+
+
+      const image =
+        item.imageUrl ||
+        item.image ||
+        "";
+
+
+      const emoji =
+        item.emoji ||
+        "🛍️";
+
+
+
+      return `
+
+        <div class="order-item">
+
+
+          <div class="order-image">
+
+            ${
+              image
+
+              ?
+
+              `
+              <img
+                src="${escapeHTML(image)}"
+                alt="${escapeHTML(
+                  item.name || "Product"
+                )}"
+                onerror="
+                  this.style.display='none';
+                  this.parentElement.innerHTML='${emoji}';
+                "
+              >
+              `
+
+              :
+
+              escapeHTML(emoji)
+
+            }
+
+          </div>
+
+
+
+          <div class="order-info">
+
+
+            <div class="order-name">
+
+              ${escapeHTML(
+                item.name ||
+                "Product"
+              )}
+
+            </div>
+
+
+            <div class="order-meta">
+
+              Qty:
+              ${qty}
+
+            </div>
+
+
+            <div class="order-meta">
+
+              Seller:
+              ${escapeHTML(
+                item.sellerName ||
+                "NEXORA Seller"
+              )}
+
+            </div>
+
+
+          </div>
+
+
+
+          <div class="order-price">
+
+            ${money(price * qty)}
+
+          </div>
+
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+
+  $("subtotal").textContent =
+    money(subtotal);
+
+
+  $("grandTotal").textContent =
+    money(subtotal);
+
+
+  return subtotal;
+
+}
+
+
+
+/* ==================================
+   PAYMENT SELECTION
+================================== */
+
+window.selectPayment =
+  function(method){
+
+
+    selectedPayment =
+      method;
+
+
+
+    $("codOption")
+      .classList
+      .remove("active");
+
+
+    $("onlineOption")
+      .classList
+      .remove("active");
+
+
+
+    if(method === "COD"){
+
+
+      $("codOption")
+        .classList
+        .add("active");
+
+
+      $("codBox").style.display =
+        "block";
+
+
+      $("onlineBox").style.display =
+        "none";
+
+
+      $("placeOrderBtn").textContent =
+        "💵 Place COD Order";
+
+
+    }else{
+
+
+      $("onlineOption")
+        .classList
+        .add("active");
+
+
+      $("codBox").style.display =
+        "none";
+
+
+      $("onlineBox").style.display =
+        "block";
+
+
+      $("placeOrderBtn").textContent =
+        "💳 Pay Online";
+
+
+    }
+
+  };
+
+
+
+/* ==================================
+   ADDRESS VALIDATION
+================================== */
+
+function getAddress(){
+
+
+  const name =
+    $("customerName")
+      .value.trim();
+
+
+  const phone =
+    $("customerPhone")
+      .value.trim();
+
+
+  const house =
+    $("customerHouse")
+      .value.trim();
+
+
+  const street =
+    $("customerStreet")
+      .value.trim();
+
+
+  const city =
+    $("customerCity")
+      .value.trim();
+
+
+  const state =
+    $("customerState")
+      .value.trim();
+
+
+  const pin =
+    $("customerPin")
+      .value.trim();
+
+
+  const landmark =
+    $("customerLandmark")
+      .value.trim();
+
+
+
+  if(!name){
+
+    alert(
+      "Please enter your full name."
+    );
+
+    $("customerName").focus();
+
+    return null;
+
+  }
+
+
+
+  if(!/^[0-9]{10}$/.test(phone)){
+
+    alert(
+      "Please enter a valid 10-digit mobile number."
+    );
+
+    $("customerPhone").focus();
+
+    return null;
+
+  }
+
+
+
+  if(!house){
+
+    alert(
+      "Please enter your house / flat / building."
+    );
+
+    $("customerHouse").focus();
+
+    return null;
+
+  }
+
+
+
+  if(!street){
+
+    alert(
+      "Please enter your street / area."
+    );
+
+    $("customerStreet").focus();
+
+    return null;
+
+  }
+
+
+
+  if(!city){
+
+    alert(
+      "Please enter your city."
+    );
+
+    $("customerCity").focus();
+
+    return null;
+
+  }
+
+
+
+  if(!state){
+
+    alert(
+      "Please enter your state."
+    );
+
+    $("customerState").focus();
+
+    return null;
+
+  }
+
+
+
+  if(!/^[0-9]{6}$/.test(pin)){
+
+    alert(
+      "Please enter a valid 6-digit PIN code."
+    );
+
+    $("customerPin").focus();
+
+    return null;
+
+  }
+
+
+
+  return {
+
+    name:name,
+
+    phone:phone,
+
+    house:house,
+
+    street:street,
+
+    city:city,
+
+    state:state,
+
+    pin:pin,
+
+    landmark:landmark,
+
+    fullAddress:
+
+      house +
+      ", " +
+      street +
+      ", " +
+      city +
+      ", " +
+      state +
+      " - " +
+      pin +
+      (
+        landmark
+        ?
+        ", Landmark: " + landmark
+        :
+        ""
+      )
+
+  };
+
+}
+
+
+
+/* ==================================
+   CREATE ORDER
+================================== */
+
+async function createOrder(
+  address,
+  paymentMethod,
+  paymentStatus
+){
+
+
+  const total =
+    cart.reduce(
+      (sum,item) => {
+
+        return sum +
+          (
+            Number(item.price || 0) *
+            Number(item.qty || 1)
+          );
+
+      },
+      0
+    );
+
+
+
+  const items =
+    cart.map(item => ({
+
+      productId:
+        item.id || "",
+
+      name:
+        item.name || "Product",
+
+      price:
+        Number(item.price || 0),
+
+      qty:
+        Number(item.qty || 1),
+
+      sellerId:
+        item.sellerId || "",
+
+      sellerName:
+        item.sellerName ||
+        "NEXORA Seller",
+
+      image:
+        item.imageUrl ||
+        item.image ||
+        ""
+
+    }));
+
+
+
+  const orderData = {
+
+    customerId:
+      currentUser.uid,
+
+    customerEmail:
+      currentUser.email || "",
+
+    customerName:
+      address.name,
+
+    customerPhone:
+      address.phone,
+
+    deliveryAddress:
+      address.fullAddress,
+
+    address:{
+
+      name:
+        address.name,
+
+      phone:
+        address.phone,
+
+      house:
+        address.house,
+
+      street:
+        address.street,
+
+      city:
+        address.city,
+
+      state:
+        address.state,
+
+      pin:
+        address.pin,
+
+      landmark:
+        address.landmark
+
+    },
+
+
+    items:items,
+
+    total:total,
+
+    paymentMethod:
+      paymentMethod,
+
+    paymentStatus:
+      paymentStatus,
+
+    status:
+      "pending",
+
+    orderStatus:
+      "pending",
+
+    createdAt:
+      serverTimestamp(),
+
+    updatedAt:
+      serverTimestamp()
+
+  };
+
+
+
+  const orderRef =
+    await addDoc(
+      collection(
+        db,
+        "orders"
+      ),
+      orderData
+    );
+
+
+
+  return orderRef.id;
+
+}
+
+
+
+/* ==================================
+   PLACE ORDER
+================================== */
+
+window.placeOrder =
+  async function(){
+
+
+    /* CART CHECK */
+
+    if(!cart.length){
+
+      alert(
+        "Your cart is empty."
+      );
+
+      location.href =
+        "cart.html";
+
+      return;
+
+    }
+
+
+
+    /* LOGIN CHECK */
+
+    if(!currentUser){
+
+      alert(
+        "Please login before placing your order."
+      );
+
+      location.href =
+        "index.html";
+
+      return;
+
+    }
+
+
+
+    /* ADDRESS */
+
+    const address =
+      getAddress();
+
+
+    if(!address){
+
+      return;
+
+    }
+
+
+
+    const total =
+      cart.reduce(
+        (sum,item) =>
+          sum +
+          Number(item.price || 0) *
+          Number(item.qty || 1),
+        0
+      );
+
+
+
+    if(total <= 0){
+
+      alert(
+        "Invalid order total."
+      );
+
+      return;
+
+    }
+
+
+
+    const button =
+      $("placeOrderBtn");
+
+
+    button.disabled =
+      true;
+
+
+
+    /* ==================================
+       COD
+    ================================== */
+
+    if(selectedPayment === "COD"){
+
+      try{
+
+
+        button.textContent =
+          "Placing Order...";
+
+
+
+        const orderId =
+          await createOrder(
+            address,
+            "COD",
+            "pending"
+          );
+
+
+
+        /* CLEAR CART */
+
+        cart = [];
+
+        saveCart();
+
+
+
+        showSuccess(
+          orderId,
+          "COD"
+        );
+
+
+      }catch(error){
+
+
+        console.error(error);
+
+
+        button.disabled =
+          false;
+
+
+        button.textContent =
+          "💵 Place COD Order";
+
+
+        showError(
+          error.message ||
+          "Unable to place order."
+        );
+
+
+      }
+
+
+      return;
+
+    }
+
+
+
+    /* ==================================
+       ONLINE PAYMENT
+    ================================== */
+
+    if(selectedPayment === "ONLINE"){
+
+
+      button.disabled =
+        false;
+
+
+      button.textContent =
+        "💳 Online Payment";
+
+
+      startOnlinePayment(
+        address,
+        total
+      );
+
+
+    }
+
+
+  };
+
+
+
+/* ==================================
+   ONLINE PAYMENT
+================================== */
+
+async function startOnlinePayment(
+  address,
+  total
+){
+
+
+  /*
+    IMPORTANT:
+
+    Replace this with your
+    Razorpay TEST Key ID.
+
+    Example:
+
+    const RAZORPAY_KEY_ID =
+      "rzp_test_xxxxxxxxxx";
+
+    NEVER put the Razorpay
+    Secret Key here.
+  */
+
+
+  const RAZORPAY_KEY_ID =
+    "YOUR_RAZORPAY_TEST_KEY_ID";
+
+
+
+  if(
+    !RAZORPAY_KEY_ID ||
+    RAZORPAY_KEY_ID ===
+      "YOUR_RAZORPAY_TEST_KEY_ID"
+  ){
+
+    alert(
+      "Online payment is not configured yet.\n\n" +
+      "COD is ready. Add your Razorpay TEST Key ID " +
+      "after completing Razorpay setup."
+    );
+
+    return;
+
+  }
+
+
+
+  /*
+    Load Razorpay Checkout
+  */
+
+  try{
+
+
+    await loadRazorpay();
+
+
+
+    const options = {
+
+      key:
+        RAZORPAY_KEY_ID,
+
+      amount:
+        Math.round(
+          total * 100
+        ),
+
+      currency:
+        "INR",
+
+      name:
+        "NEXORA PICKS",
+
+      description:
+        "NEXORA PICKS Order",
+
+      prefill:{
+
+        name:
+          address.name,
+
+        email:
+          currentUser.email || "",
+
+        contact:
+          address.phone
+
+      },
+
+      notes:{
+
+        customerId:
+          currentUser.uid
+
+      },
+
+
+      theme:{
+
+        color:
+          "#2874f0"
+
+      },
+
+
+      handler:
+        async function(response){
+
+
+          try{
+
+
+            /*
+              IMPORTANT:
+
+              This creates the order after
+              Razorpay reports payment success.
+
+              For production, payment signature
+              MUST be verified on a secure
+              backend/server.
+            */
+
+
+            const orderId =
+              await createOrder(
+
+                address,
+
+                "ONLINE",
+
+                "paid"
+
+              );
+
+
+
+            cart = [];
+
+            saveCart();
+
+
+
+            showSuccess(
+
+              orderId,
+
+              "ONLINE"
+
+            );
+
+
+          }catch(error){
+
+
+            console.error(
+              error
+            );
+
+
+            showError(
+              "Payment succeeded, but order creation failed. Please contact NEXORA PICKS support."
+            );
+
+          }
+
+        },
+
+
+      modal:{
+
+        ondismiss:
+          function(){
+
+            const button =
+              $("placeOrderBtn");
+
+            button.disabled =
+              false;
+
+            button.textContent =
+              "💳 Pay Online";
+
+          }
+
+      }
+
+    };
+
+
+
+    const razorpay =
+      new Razorpay(
+        options
+      );
+
+
+    razorpay.open();
+
+
+
+  }catch(error){
+
+
+    console.error(
+      error
+    );
+
+
+    alert(
+      "Unable to open online payment."
+    );
+
+
+  }
+
+}
+
+
+
+/* ==================================
+   LOAD RAZORPAY
+================================== */
+
+function loadRazorpay(){
+
+
+  return new Promise(
+    (resolve,reject) => {
+
+
+      if(
+        window.Razorpay
+      ){
+
+        resolve();
+
+        return;
+
+      }
+
+
+
+      const script =
+        document.createElement(
+          "script"
+        );
+
+
+      script.src =
+        "https://checkout.razorpay.com/v1/checkout.js";
+
+
+      script.onload =
+        () => resolve();
+
+
+      script.onerror =
+        () =>
+          reject(
+            new Error(
+              "Razorpay failed to load."
+            )
+          );
+
+
+      document.body.appendChild(
+        script
+      );
+
+
+    }
+  );
+
+}
+
+
+
+/* ==================================
+   SUCCESS
+================================== */
+
+function showSuccess(
+  orderId,
+  paymentMethod
+){
+
+
+  $("checkoutBox")
+    .style.display =
+    "none";
+
+
+  const message =
+    $("orderMessage");
+
+
+  message.style.display =
+    "block";
+
+
+  message.className =
+    "card";
+
+
+  message.innerHTML = `
+
+    <div style="font-size:65px">
+      ✅
+    </div>
+
+    <h2 class="success">
+      Order Placed Successfully!
+    </h2>
+
+    <p>
+
+      Thank you for shopping
+      with NEXORA PICKS.
+
+    </p>
+
+    <p>
+
+      <b>
+        Order ID:
+      </b>
+
+      ${escapeHTML(orderId)}
+
+    </p>
+
+    <p>
+
+      <b>
+        Payment:
+      </b>
+
+      ${
+        paymentMethod === "COD"
+        ? "Cash on Delivery"
+        : "Online Payment"
+      }
+
+    </p>
+
+    <a
+      class="back-btn"
+      href="my-orders.html">
+
+      📦 View My Orders
+
+    </a>
+
+    <a
+      class="back-btn"
+      href="index.html"
+      style="
+        background:#555;
+        margin-left:8px;
+      ">
+
+      Continue Shopping
+
+    </a>
+
+  `;
+
+}
+
+
+
+/* ==================================
+   ERROR
+================================== */
+
+function showError(message){
+
+
+  const box =
+    $("orderMessage");
+
+
+  box.style.display =
+    "block";
+
+
+  box.innerHTML = `
+
+    <div style="font-size:50px">
+      ⚠️
+    </div>
+
+    <h3 class="error">
+      Unable to place order
+    </h3>
+
+    <p>
+      ${escapeHTML(message)}
+    </p>
+
+  `;
+
+
+}
+
+
+
+/* ==================================
+   AUTH
+================================== */
 
 onAuthStateChanged(
-
-auth,
-
-user=>{
-
-if(!user){
-
-$("userInfo").innerHTML=`
-
-<button
-class="loginBtn"
-onclick="goLogin()">
-
-Login to view your orders
-
-</button>
-
-`;
+  auth,
+  async user => {
 
 
-$("orders").innerHTML=`
-
-<div class="empty">
-
-🔐 Please login to see your orders.
-
-</div>
-
-`;
+    currentUser =
+      user;
 
 
-return;
 
-}
+    if(!user){
+
+      $("loadingBox")
+        .innerHTML = `
+
+          <h2>
+            Login Required
+          </h2>
+
+          <p>
+            Please login to continue
+            with your order.
+          </p>
+
+          <a
+            class="back-btn"
+            href="index.html">
+
+            Go to Login
+
+          </a>
+
+        `;
+
+      return;
+
+    }
 
 
-$("userInfo").innerHTML=
 
-`Logged in as
-<b>
-${escapeHtml(user.email||"")}
-</b>`;
+    /* NO CART */
+
+    if(!cart.length){
+
+      $("loadingBox")
+        .style.display =
+        "none";
 
 
-loadOrders(user.uid);
+      $("emptyBox")
+        .style.display =
+        "block";
 
-}
 
+      return;
+
+    }
+
+
+
+    /* RENDER */
+
+    renderOrderItems();
+
+
+
+    $("loadingBox")
+      .style.display =
+      "none";
+
+
+    $("checkoutBox")
+      .style.display =
+      "block";
+
+
+  }
 );
-
-
-
-/* LOAD ORDERS */
-
-function loadOrders(uid){
-
-
-const q=
-
-query(
-
-collection(db,"orders"),
-
-where(
-"customerId",
-"==",
-uid
-)
-
-);
-
-
-onSnapshot(
-
-q,
-
-snap=>{
-
-
-let orders=
-
-snap.docs.map(
-
-docSnap=>({
-
-id:docSnap.id,
-
-...docSnap.data()
-
-})
-
-);
-
-
-orders.sort(
-
-(a,b)=>{
-
-
-const aTime=
-a.createdAt?.seconds||0;
-
-
-const bTime=
-b.createdAt?.seconds||0;
-
-
-return bTime-aTime;
-
-
-}
-
-);
-
-
-if(!orders.length){
-
-
-$("orders").innerHTML=`
-
-<div class="empty">
-
-<h2>
-📦 No orders yet
-</h2>
-
-<p>
-Your placed orders will appear here.
-</p>
-
-<button
-class="loginBtn"
-onclick="location.href='index.html'">
-
-Start Shopping
-
-</button>
-
-</div>
-
-`;
-
-
-return;
-
-}
-
-
-$("orders").innerHTML=
-
-orders
-.map(showOrder)
-.join("");
-
-
-},
-
-error=>{
-
-
-console.error(error);
-
-
-$("orders").innerHTML=`
-
-<div class="empty">
-
-❌ Unable to load orders.
-
-<br><br>
-
-${escapeHtml(error.message)}
-
-</div>
-
-`;
-
-
-}
-
-);
-
-
-}
-
-
-
-/* SHOW ORDER */
-
-function showOrder(order){
-
-
-const date=
-formatDate(order.createdAt);
-
-
-const status=
-
-String(
-order.status||
-"pending"
-)
-.toLowerCase();
-
-
-const items=
-
-Array.isArray(order.items)
-
-?
-order.items
-:
-[];
-
-
-const itemHTML=
-
-items.length
-
-?
-
-items.map(
-
-item=>`
-
-<div class="item">
-
-<div>
-
-<div class="itemName">
-
-${escapeHtml(item.name||"Product")}
-
-</div>
-
-<div>
-
-Quantity:
-${Number(item.qty)||1}
-
-</div>
-
-</div>
-
-
-<div class="itemPrice">
-
-₹${
-
-(
-
-Number(item.price||0)
-
-*
-
-Number(item.qty||1)
-
-)
-
-.toLocaleString("en-IN")
-
-}
-
-</div>
-
-</div>
-
-`
-
-).join("")
-
-:
-
-`<p>No product details available.</p>`;
-
-
-return `
-
-<div class="order">
-
-
-<div class="orderHead">
-
-
-<div>
-
-
-<b>
-Order ID
-</b>
-
-
-<div class="orderId">
-
-${escapeHtml(order.id)}
-
-</div>
-
-
-<div style="margin-top:6px">
-
-${date}
-
-</div>
-
-
-</div>
-
-
-<div class="status">
-
-${escapeHtml(
-
-status
-.replaceAll("-"," ")
-.toUpperCase()
-
-)}
-
-</div>
-
-
-</div>
-
-
-<h3>
-📦 Products
-</h3>
-
-
-${itemHTML}
-
-
-${createTracking(
-status,
-order
-)}
-
-
-${createCancelButton(
-status,
-order.id
-)}
-
-
-${createReturnButton(
-status,
-order
-)}
-
-
-${createRefundButton(
-status,
-order
-)}
-
-
-${showRequestStatus(
-order
-)}
-
-
-<div class="total">
-
-<span>
-Total
-</span>
-
-
-<span>
-
-₹${
-
-Number(order.total||0)
-
-.toLocaleString("en-IN")
-
-}
-
-</span>
-
-</div>
-
-
-<div
-style="margin-top:12px"
-class="cod">
-
-💵 ${escapeHtml(
-
-order.paymentMethod||
-"Cash on Delivery"
-
-)}
-
-</div>
-
-
-<div class="info">
-
-
-<b>
-📍 Delivery Details
-</b>
-
-
-<br>
-
-
-Name:
-
-${escapeHtml(
-order.customerName||
-""
-)}
-
-
-<br>
-
-
-Mobile:
-
-${escapeHtml(
-order.customerPhone||
-""
-)}
-
-
-<br>
-
-
-Address:
-
-${escapeHtml(
-order.deliveryAddress||
-""
-)}
-
-
-</div>
-
-
-</div>
-
-`;
-
-}
-
-
-
-/* CANCEL BUTTON */
-
-function createCancelButton(
-status,
-orderId
-){
-
-
-const cancellableStatuses=[
-
-"pending",
-
-"confirmed"
-
-];
-
-
-if(
-
-!cancellableStatuses.includes(status)
-
-){
-
-return "";
-
-}
-
-
-return `
-
-<button
-class="cancelBtn"
-onclick="openCancelModal('${orderId}')">
-
-❌ Cancel Order
-
-</button>
-
-`;
-
-}
-
-
-
-/* RETURN BUTTON */
-
-function createReturnButton(
-status,
-order
-){
-
-
-if(
-status!=="delivered"
-){
-
-return "";
-
-}
-
-
-if(
-order.returnStatus
-){
-
-return "";
-
-}
-
-
-return `
-
-<button
-class="returnBtn"
-onclick="openReturnModal('${order.id}')">
-
-🔄 Request Return
-
-</button>
-
-`;
-
-}
-
-
-
-/* REFUND BUTTON */
-
-function createRefundButton(
-status,
-order
-){
-
-
-if(
-order.refundStatus
-){
-
-return "";
-
-}
-
-
-const refundableStatuses=[
-
-"cancelled",
-
-"delivered"
-
-];
-
-
-if(
-
-!refundableStatuses.includes(status)
-
-){
-
-return "";
-
-}
-
-
-return `
-
-<button
-class="refundBtn"
-onclick="openRefundModal('${order.id}')">
-
-💰 Request Refund
-
-</button>
-
-`;
-
-}
-
-
-
-/* SHOW REQUEST STATUS */
-
-function showRequestStatus(order){
-
-
-let html="";
-
-
-if(order.returnStatus){
-
-
-html+=`
-
-<div class="${
-order.returnStatus==="approved"
-?
-"approvedBox"
-:
-order.returnStatus==="rejected"
-?
-"rejectedBox"
-:
-"requestBox"
-}">
-
-
-🔄 Return Request:
-${escapeHtml(order.returnStatus)}
-
-
-<br>
-
-
-Reason:
-${escapeHtml(order.returnReason||"")}
-
-
-</div>
-
-`;
-
-
-}
-
-
-if(order.refundStatus){
-
-
-html+=`
-
-<div class="${
-order.refundStatus==="approved"
-?
-"approvedBox"
-:
-order.refundStatus==="rejected"
-?
-"rejectedBox"
-:
-"requestBox"
-}">
-
-
-💰 Refund Request:
-${escapeHtml(order.refundStatus)}
-
-
-<br>
-
-
-Reason:
-${escapeHtml(order.refundReason||"")}
-
-
-</div>
-
-`;
-
-
-}
-
-
-return html;
-
-}
-
-
-
-/* ORDER ID */
-
-let selectedOrderId=null;
-
-
-
-/* CANCEL MODAL */
-
-window.openCancelModal=
-
-function(orderId){
-
-
-selectedOrderId=orderId;
-
-
-$("cancelModal").style.display="flex";
-
-
-};
-
-
-
-window.closeCancelModal=
-
-function(){
-
-
-$("cancelModal").style.display="none";
-
-
-selectedOrderId=null;
-
-
-document
-.querySelectorAll(
-'input[name="cancelReason"]'
-)
-.forEach(
-
-input=>{
-
-input.checked=false;
-
-}
-
-);
-
-
-$("otherCancelReason").value="";
-
-
-$("otherCancelReason").style.display="none";
-
-
-};
-
-
-
-window.showOtherCancelReason=
-
-function(){
-
-
-$("otherCancelReason").style.display="block";
-
-
-};
-
-
-
-/* CONFIRM CANCEL */
-
-window.confirmCancelOrder=
-
-async function(){
-
-
-const selected=
-
-document.querySelector(
-
-'input[name="cancelReason"]:checked'
-
-);
-
-
-if(!selected){
-
-
-alert(
-"Please select a cancellation reason."
-);
-
-
-return;
-
-}
-
-
-let reason=
-selected.value;
-
-
-if(reason==="Other"){
-
-
-reason=
-$("otherCancelReason")
-.value
-.trim();
-
-
-if(!reason){
-
-
-alert(
-"Please type your cancellation reason."
-);
-
-
-return;
-
-}
-
-
-}
-
-
-try{
-
-
-await updateDoc(
-
-doc(
-db,
-"orders",
-selectedOrderId
-),
-
-{
-
-status:"cancelled",
-
-cancellationReason:reason,
-
-cancelledAt:
-serverTimestamp()
-
-}
-
-);
-
-
-alert(
-"Your order has been cancelled successfully."
-);
-
-
-closeCancelModal();
-
-
-}catch(error){
-
-
-console.error(error);
-
-
-alert(
-"Unable to cancel order. Please try again."
-);
-
-
-}
-
-
-};
-
-
-
-/* RETURN MODAL */
-
-window.openReturnModal=
-
-function(orderId){
-
-
-selectedOrderId=orderId;
-
-
-$("returnModal").style.display="flex";
-
-
-};
-
-
-
-window.closeReturnModal=
-
-function(){
-
-
-$("returnModal").style.display="none";
-
-
-selectedOrderId=null;
-
-
-document
-.querySelectorAll(
-'input[name="returnReason"]'
-)
-.forEach(
-
-input=>{
-
-input.checked=false;
-
-}
-
-);
-
-
-$("otherReturnReason").value="";
-
-
-$("otherReturnReason").style.display="none";
-
-
-};
-
-
-
-window.showOtherReturnReason=
-
-function(){
-
-
-$("otherReturnReason").style.display="block";
-
-
-};
-
-
-
-/* CONFIRM RETURN */
-
-window.confirmReturnRequest=
-
-async function(){
-
-
-const selected=
-
-document.querySelector(
-
-'input[name="returnReason"]:checked'
-
-);
-
-
-if(!selected){
-
-
-alert(
-"Please select a return reason."
-);
-
-
-return;
-
-}
-
-
-let reason=
-selected.value;
-
-
-if(reason==="Other"){
-
-
-reason=
-$("otherReturnReason")
-.value
-.trim();
-
-
-if(!reason){
-
-
-alert(
-"Please type your return reason."
-);
-
-
-return;
-
-}
-
-
-}
-
-
-try{
-
-
-await updateDoc(
-
-doc(
-db,
-"orders",
-selectedOrderId
-),
-
-{
-
-returnStatus:
-"pending",
-
-returnReason:
-reason,
-
-returnRequestedAt:
-serverTimestamp()
-
-}
-
-);
-
-
-alert(
-"Your return request has been sent to the admin."
-);
-
-
-closeReturnModal();
-
-
-}catch(error){
-
-
-console.error(error);
-
-
-alert(
-"Unable to submit return request."
-);
-
-
-}
-
-
-};
-
-
-
-/* REFUND MODAL */
-
-window.openRefundModal=
-
-function(orderId){
-
-
-selectedOrderId=orderId;
-
-
-$("refundModal").style.display="flex";
-
-
-};
-
-
-
-window.closeRefundModal=
-
-function(){
-
-
-$("refundModal").style.display="none";
-
-
-selectedOrderId=null;
-
-
-document
-.querySelectorAll(
-'input[name="refundReason"]'
-)
-.forEach(
-
-input=>{
-
-input.checked=false;
-
-}
-
-);
-
-
-$("otherRefundReason").value="";
-
-
-$("otherRefundReason").style.display="none";
-
-
-};
-
-
-
-window.showOtherRefundReason=
-
-function(){
-
-
-$("otherRefundReason").style.display="block";
-
-
-};
-
-
-
-/* CONFIRM REFUND */
-
-window.confirmRefundRequest=
-
-async function(){
-
-
-const selected=
-
-document.querySelector(
-
-'input[name="refundReason"]:checked'
-
-);
-
-
-if(!selected){
-
-
-alert(
-"Please select a refund reason."
-);
-
-
-return;
-
-}
-
-
-let reason=
-selected.value;
-
-
-if(reason==="Other"){
-
-
-reason=
-$("otherRefundReason")
-.value
-.trim();
-
-
-if(!reason){
-
-
-alert(
-"Please type your refund reason."
-);
-
-
-return;
-
-}
-
-
-}
-
-
-try{
-
-
-await updateDoc(
-
-doc(
-db,
-"orders",
-selectedOrderId
-),
-
-{
-
-refundStatus:
-"pending",
-
-refundReason:
-reason,
-
-refundRequestedAt:
-serverTimestamp()
-
-}
-
-);
-
-
-alert(
-"Your refund request has been sent to the admin."
-);
-
-
-closeRefundModal();
-
-
-}catch(error){
-
-
-console.error(error);
-
-
-alert(
-"Unable to submit refund request."
-);
-
-
-}
-
-
-};
-
-
-
-/* MULTIPLE ORDER TRACKING */
-
-function createTracking(
-status,
-order
-){
-
-
-if(
-status==="cancelled"
-){
-
-
-return `
-
-<div class="cancelledBox">
-
-❌ This order has been cancelled.
-
-</div>
-
-`;
-
-
-}
-
-
-/* ADMIN MULTIPLE TRACKING UPDATES */
-
-let updates=
-
-Array.isArray(
-order.trackingUpdates
-)
-
-?
-[...order.trackingUpdates]
-
-:
-[];
-
-
-/* DEFAULT TRACKING IF NO UPDATES */
-
-if(!updates.length){
-
-
-updates=[
-
-{
-
-status:"pending",
-
-message:"Your order has been placed successfully.",
-
-location:"",
-
-time:order.createdAt
-
-}
-
-];
-
-
-}
-
-
-updates.sort(
-
-(a,b)=>{
-
-
-const aTime=
-getTrackingTime(a.time);
-
-
-const bTime=
-getTrackingTime(b.time);
-
-
-return aTime-bTime;
-
-
-}
-
-);
-
-
-return `
-
-<div class="tracking">
-
-
-<div class="trackingTitle">
-
-📍 Order Tracking History
-
-</div>
-
-
-${
-
-updates.map(
-
-(update,index)=>{
-
-
-const updateStatus=
-
-String(
-update.status||
-"update"
-)
-.toLowerCase();
-
-
-const icon=
-
-getTrackingIcon(
-updateStatus
-);
-
-
-const isLast=
-
-index===
-updates.length-1;
-
-
-const state=
-
-isLast
-?
-"active"
-:
-"done";
-
-
-const message=
-
-update.message
-
-?
-escapeHtml(
-update.message
-)
-
-:
-getDefaultTrackingMessage(
-updateStatus
-);
-
-
-const location=
-
-update.location
-
-?
-`📍 ${escapeHtml(update.location)}`
-
-:
-"";
-
-
-const time=
-
-formatDate(
-update.time
-);
-
-
-return `
-
-<div class="step ${state}">
-
-
-<div class="stepIcon">
-
-${icon}
-
-</div>
-
-
-<div class="stepText">
-
-
-${escapeHtml(
-
-updateStatus
-.replaceAll("-"," ")
-.replace(/\b\w/g,
-char=>char.toUpperCase())
-
-)}
-
-
-<div class="stepMessage">
-
-${message}
-
-</div>
-
-
-${
-
-location
-
-?
-
-`
-
-<div class="stepMessage">
-
-${location}
-
-</div>
-
-`
-
-:
-
-""
-
-}
-
-
-<div class="stepTime">
-
-${time}
-
-</div>
-
-
-</div>
-
-
-</div>
-
-`;
-
-
-}
-
-).join("")
-
-}
-
-
-</div>
-
-`;
-
-}
-
-
-
-/* TRACKING ICON */
-
-function getTrackingIcon(status){
-
-
-const icons={
-
-pending:"🟡",
-
-confirmed:"✅",
-
-packed:"📦",
-
-shipped:"🚚",
-
-out-for-delivery:"🚚",
-
-delivered:"🎉",
-
-cancelled:"❌",
-
-returned:"🔄"
-
-};
-
-
-return icons[status]||"📍";
-
-}
-
-
-
-/* DEFAULT TRACKING MESSAGE */
-
-function getDefaultTrackingMessage(status){
-
-
-const messages={
-
-pending:
-"Your order has been placed successfully.",
-
-confirmed:
-"Your order has been confirmed.",
-
-packed:
-"Your order has been packed and is ready.",
-
-shipped:
-"Your order has been shipped.",
-
-"out-for-delivery":
-"Your order is out for delivery.",
-
-delivered:
-"Your order has been delivered successfully."
-
-};
-
-
-return messages[status]||
-"Order tracking updated.";
-
-}
-
-
-
-/* GET TRACKING TIME */
-
-function getTrackingTime(value){
-
-
-if(!value){
-
-return 0;
-
-}
-
-
-try{
-
-
-if(value.seconds){
-
-return value.seconds*1000;
-
-}
-
-
-if(value.toDate){
-
-return value.toDate().getTime();
-
-}
-
-
-const date=
-
-new Date(value);
-
-
-return isNaN(
-date.getTime()
-)
-
-?
-0
-:
-date.getTime();
-
-
-}catch(error){
-
-return 0;
-
-}
-
-
-}
-
-
-
-/* FORMAT DATE */
-
-function formatDate(timestamp){
-
-
-if(!timestamp){
-
-return "Date unavailable";
-
-}
-
-
-try{
-
-
-const date=
-
-timestamp.toDate
-
-?
-
-timestamp.toDate()
-
-:
-
-timestamp.seconds
-
-?
-
-new Date(
-timestamp.seconds*1000
-)
-
-:
-
-new Date(timestamp);
-
-
-if(
-
-isNaN(
-date.getTime()
-)
-
-){
-
-return "Date unavailable";
-
-}
-
-
-return date.toLocaleString(
-
-"en-IN",
-
-{
-
-day:"2-digit",
-
-month:"short",
-
-year:"numeric",
-
-hour:"2-digit",
-
-minute:"2-digit"
-
-}
-
-);
-
-
-}catch(e){
-
-
-return "Date unavailable";
-
-
-}
-
-
-}
-
-
-
-/* ESCAPE HTML */
-
-function escapeHtml(value){
-
-
-return String(
-value??""
-)
-
-.replaceAll(
-"&",
-"&amp;"
-)
-
-.replaceAll(
-"<",
-"&lt;"
-)
-
-.replaceAll(
-">",
-"&gt;"
-)
-
-.replaceAll(
-'"',
-"&quot;"
-)
-
-.replaceAll(
-"'",
-"&#039;"
-);
-
-}
-
-
-
-/* LOGIN */
-
-window.goLogin=
-
-function(){
-
-
-location.href="index.html";
-
-
-};
 
 
 </script>
 
+
 </body>
 
-</html
+</html>
+
+

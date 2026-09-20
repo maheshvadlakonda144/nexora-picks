@@ -66,6 +66,17 @@ color:#667085;
 line-height:1.5
 }
 
+.infoBox{
+background:#fff8e1;
+border:1px solid #ffcc80;
+color:#8a5a00;
+padding:13px;
+border-radius:9px;
+margin:15px 0;
+line-height:1.5;
+font-size:14px
+}
+
 label{
 display:block;
 font-weight:bold;
@@ -146,7 +157,8 @@ display:none;
 margin-top:18px;
 padding:13px;
 border-radius:8px;
-font-weight:bold
+font-weight:bold;
+line-height:1.5
 }
 
 .success{
@@ -163,6 +175,17 @@ color:#c62828
 font-size:13px;
 color:#667085;
 margin-top:7px;
+line-height:1.5
+}
+
+.pendingBox{
+display:none;
+background:#e3f2fd;
+border:1px solid #90caf9;
+color:#1565c0;
+padding:13px;
+border-radius:9px;
+margin-top:15px;
 line-height:1.5
 }
 
@@ -200,6 +223,7 @@ padding:18px
 
 </header>
 
+
 <div class="wrap">
 
 <div class="card">
@@ -210,11 +234,26 @@ Add a New Product
 
 <p class="subtitle">
 
-Enter your product details and choose whether the product should be visible publicly or hidden.
+Enter your product details. After submission, your product will be sent to the admin for approval.
 
 </p>
 
+
+<div class="infoBox">
+
+<strong>📋 Important:</strong><br>
+
+Your product will first have
+<strong>Pending</strong>
+status.
+
+It will become visible to customers only after admin approval.
+
+</div>
+
+
 <form id="productForm">
+
 
 <label>
 Product Name
@@ -224,8 +263,10 @@ Product Name
 type="text"
 id="name"
 placeholder="Example: Wireless Bluetooth Headphones"
+maxlength="150"
 required
 >
+
 
 <label>
 Product Image
@@ -242,7 +283,10 @@ required
 
 📱 Select a product image from your phone or computer.
 
+Maximum image size: 5 MB.
+
 </div>
+
 
 <div
 class="imagePreview"
@@ -252,6 +296,7 @@ id="imagePreview">
 
 </div>
 
+
 <label>
 Product Description
 </label>
@@ -259,8 +304,10 @@ Product Description
 <textarea
 id="description"
 placeholder="Write product details..."
+maxlength="3000"
 required
 ></textarea>
+
 
 <label>
 Category
@@ -309,7 +356,9 @@ Other
 
 </select>
 
+
 <div class="row">
+
 
 <div>
 
@@ -322,10 +371,12 @@ type="number"
 id="price"
 placeholder="999"
 min="1"
+step="0.01"
 required
 >
 
 </div>
+
 
 <div>
 
@@ -338,18 +389,18 @@ type="number"
 id="stock"
 placeholder="10"
 min="0"
+step="1"
 required
 >
 
 </div>
 
+
 </div>
 
 
-<!-- PRODUCT VISIBILITY -->
-
 <label>
-Product Visibility
+Seller Visibility Preference
 </label>
 
 <select
@@ -358,14 +409,24 @@ required
 >
 
 <option value="public">
-Yes — Show Publicly
+Show after admin approval
 </option>
 
 <option value="hidden">
-No — Hide Product
+Keep hidden after approval
 </option>
 
 </select>
+
+
+<div class="pendingBox" id="pendingBox">
+
+⏳ Your product will be submitted as
+<strong>Pending Approval</strong>.
+
+Admin approval is required before it can appear on the marketplace.
+
+</div>
 
 
 <button
@@ -373,18 +434,20 @@ type="submit"
 id="addBtn"
 >
 
-➕ Add Product
+➕ Submit Product
 
 </button>
 
+
 </form>
+
 
 <div
 id="message"
-class="message"
->
+class="message">
 
 </div>
+
 
 </div>
 
@@ -394,9 +457,11 @@ class="message"
 <script type="module">
 
 
+/* ============================= */
 /* FIREBASE APP */
+/* ============================= */
 
-import{
+import {
 
 initializeApp
 
@@ -407,9 +472,11 @@ from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
 
 
+/* ============================= */
 /* FIREBASE AUTH */
+/* ============================= */
 
-import{
+import {
 
 getAuth,
 
@@ -422,9 +489,11 @@ from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
+/* ============================= */
 /* FIRESTORE */
+/* ============================= */
 
-import{
+import {
 
 getFirestore,
 
@@ -447,9 +516,11 @@ from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
+/* ============================= */
 /* FIREBASE STORAGE */
+/* ============================= */
 
-import{
+import {
 
 getStorage,
 
@@ -466,119 +537,110 @@ from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-storage.js";
 
 
+/* ============================= */
 /* FIREBASE CONFIG */
+/* ============================= */
 
-const firebaseConfig={
+const firebaseConfig = {
 
-apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+apiKey:
+"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
 
-authDomain:"nexora-picks-e887f.firebaseapp.com",
+authDomain:
+"nexora-picks-e887f.firebaseapp.com",
 
-projectId:"nexora-picks-e887f",
+projectId:
+"nexora-picks-e887f",
 
-storageBucket:"nexora-picks-e887f.firebasestorage.app",
+storageBucket:
+"nexora-picks-e887f.firebasestorage.app",
 
-messagingSenderId:"621359003619",
+messagingSenderId:
+"621359003619",
 
-appId:"1:621359003619:web:483add8bfcd0241f4192d",
+appId:
+"1:621359003619:web:483add8bfcd0241f4192d",
 
-measurementId:"G-LSMJ6QLLPW"
+measurementId:
+"G-LSMJ6QLLPW"
 
 };
 
 
-/* INITIALIZE */
+/* ============================= */
+/* INITIALIZE FIREBASE */
+/* ============================= */
 
-const app=
-
-initializeApp(
-firebaseConfig
-);
-
-
-const auth=
-
-getAuth(
-app
-);
+const app =
+initializeApp(firebaseConfig);
 
 
-const db=
-
-getFirestore(
-app
-);
+const auth =
+getAuth(app);
 
 
-const storage=
-
-getStorage(
-app
-);
+const db =
+getFirestore(app);
 
 
+const storage =
+getStorage(app);
+
+
+/* ============================= */
 /* ELEMENTS */
+/* ============================= */
 
-const form=
+const form =
+document.getElementById("productForm");
 
-document.getElementById(
-"productForm"
-);
+const addBtn =
+document.getElementById("addBtn");
 
+const message =
+document.getElementById("message");
 
-const addBtn=
+const imageFile =
+document.getElementById("imageFile");
 
-document.getElementById(
-"addBtn"
-);
+const imagePreview =
+document.getElementById("imagePreview");
 
-
-const message=
-
-document.getElementById(
-"message"
-);
-
-
-const imageFile=
-
-document.getElementById(
-"imageFile"
-);
+const pendingBox =
+document.getElementById("pendingBox");
 
 
-const imagePreview=
-
-document.getElementById(
-"imagePreview"
-);
-
-
+/* ============================= */
 /* CURRENT SELLER */
+/* ============================= */
 
-let currentSeller=null;
+let currentSeller = null;
 
 
-/* CHECK LOGIN AND SELLER STATUS */
+/* ============================= */
+/* CHECK LOGIN + SELLER APPROVAL */
+/* ============================= */
 
 onAuthStateChanged(
 
 auth,
 
-async user=>{
+async user => {
 
 if(!user){
 
-location.href=
+location.href =
 "seller-register.html";
 
 return;
 
 }
 
+
 try{
 
-const sellerQuery=
+
+const sellerQuery =
 
 query(
 
@@ -596,7 +658,7 @@ user.uid
 );
 
 
-const sellerSnapshot=
+const sellerSnapshot =
 
 await getDocs(
 sellerQuery
@@ -612,7 +674,7 @@ alert(
 );
 
 
-location.href=
+location.href =
 "seller-register.html";
 
 
@@ -621,18 +683,20 @@ return;
 }
 
 
-const sellerDoc=
-
+const sellerDoc =
 sellerSnapshot.docs[0];
 
 
-const sellerData=
-
+const sellerData =
 sellerDoc.data();
 
 
+/* ============================= */
+/* SELLER MUST BE APPROVED */
+/* ============================= */
+
 if(
-sellerData.status!=="approved"
+sellerData.status !== "approved"
 ){
 
 showMessage(
@@ -644,7 +708,7 @@ showMessage(
 );
 
 
-form.style.display=
+form.style.display =
 "none";
 
 
@@ -653,7 +717,11 @@ return;
 }
 
 
-currentSeller={
+/* ============================= */
+/* STORE SELLER INFORMATION */
+/* ============================= */
+
+currentSeller = {
 
 id:
 user.uid,
@@ -662,22 +730,26 @@ sellerDocId:
 sellerDoc.id,
 
 storeName:
-sellerData.storeName||
+sellerData.storeName ||
 "Seller"
 
 };
 
 
+pendingBox.style.display =
+"block";
+
+
 }catch(error){
 
-console.error(
-error
-);
+console.error(error);
 
 
 showMessage(
 
-"❌ Unable to verify seller account: "+error.message,
+"❌ Unable to verify seller account: "
++
+error.message,
 
 "error"
 
@@ -685,12 +757,12 @@ showMessage(
 
 }
 
-}
-
-);
+});
 
 
+/* ============================= */
 /* IMAGE PREVIEW */
+/* ============================= */
 
 imageFile.addEventListener(
 
@@ -698,17 +770,14 @@ imageFile.addEventListener(
 
 function(){
 
-const file=
-
+const file =
 imageFile.files[0];
 
 
 if(!file){
 
-imagePreview.innerHTML=
-
+imagePreview.innerHTML =
 "📷 Product image preview";
-
 
 return;
 
@@ -716,9 +785,7 @@ return;
 
 
 if(
-!file.type.startsWith(
-"image/"
-)
+!file.type.startsWith("image/")
 ){
 
 showMessage(
@@ -730,33 +797,55 @@ showMessage(
 );
 
 
-imageFile.value=
+imageFile.value = "";
 
-"";
 
+imagePreview.innerHTML =
+"📷 Product image preview";
 
 return;
 
 }
 
 
-const imageUrl=
+if(
+file.size > 5 * 1024 * 1024
+){
 
-URL.createObjectURL(
-file
+showMessage(
+
+"Image size must be less than 5 MB.",
+
+"error"
+
 );
 
 
-imagePreview.innerHTML=
+imageFile.value = "";
 
-`<img src="${imageUrl}" alt="Product Preview">`;
+
+imagePreview.innerHTML =
+"📷 Product image preview";
+
+return;
 
 }
 
-);
+
+const imageUrl =
+URL.createObjectURL(file);
 
 
+imagePreview.innerHTML =
+
+`<img src="${imageUrl}" alt="Product Preview">`;
+
+});
+
+
+/* ============================= */
 /* ADD PRODUCT */
+/* ============================= */
 
 form.addEventListener(
 
@@ -777,14 +866,12 @@ showMessage(
 
 );
 
-
 return;
 
 }
 
 
-const file=
-
+const file =
 imageFile.files[0];
 
 
@@ -798,15 +885,13 @@ showMessage(
 
 );
 
-
 return;
 
 }
 
 
 if(
-file.size>
-5*1024*1024
+file.size > 5 * 1024 * 1024
 ){
 
 showMessage(
@@ -817,145 +902,187 @@ showMessage(
 
 );
 
+return;
+
+}
+
+
+/* ============================= */
+/* GET FORM VALUES */
+/* ============================= */
+
+const name =
+
+document
+.getElementById("name")
+.value
+.trim();
+
+
+const description =
+
+document
+.getElementById("description")
+.value
+.trim();
+
+
+const category =
+
+document
+.getElementById("category")
+.value;
+
+
+const price =
+
+Number(
+
+document
+.getElementById("price")
+.value
+
+);
+
+
+const stock =
+
+Number(
+
+document
+.getElementById("stock")
+.value
+
+);
+
+
+const visibility =
+
+document
+.getElementById("visibility")
+.value;
+
+
+/* ============================= */
+/* BASIC VALIDATION */
+/* ============================= */
+
+if(!name){
+
+showMessage(
+"Please enter product name.",
+"error"
+);
 
 return;
 
 }
 
 
-const name=
+if(!description){
 
-document
-.getElementById(
-"name"
-)
-.value
-.trim();
-
-
-const description=
-
-document
-.getElementById(
-"description"
-)
-.value
-.trim();
-
-
-const category=
-
-document
-.getElementById(
-"category"
-)
-.value;
-
-
-const price=
-
-Number(
-
-document
-.getElementById(
-"price"
-)
-.value
-
+showMessage(
+"Please enter product description.",
+"error"
 );
 
+return;
 
-const stock=
+}
 
-Number(
 
-document
-.getElementById(
-"stock"
-)
-.value
+if(!category){
 
+showMessage(
+"Please select a category.",
+"error"
 );
 
+return;
 
-/* GET VISIBILITY */
-
-const visibility=
-
-document
-.getElementById(
-"visibility"
-)
-.value;
+}
 
 
-/* PUBLIC = ACTIVE TRUE */
+if(!Number.isFinite(price) || price <= 0){
 
-const isActive=
+showMessage(
+"Please enter a valid product price.",
+"error"
+);
 
-visibility==="public";
+return;
+
+}
 
 
-addBtn.disabled=
+if(!Number.isInteger(stock) || stock < 0){
 
+showMessage(
+"Please enter a valid stock quantity.",
+"error"
+);
+
+return;
+
+}
+
+
+/* ============================= */
+/* DISABLE BUTTON */
+/* ============================= */
+
+addBtn.disabled =
 true;
 
-
-addBtn.textContent=
-
+addBtn.textContent =
 "📤 Uploading Image...";
 
 
 try{
 
 
-const safeFileName=
+/* ============================= */
+/* SAFE IMAGE NAME */
+/* ============================= */
 
-file.name
+const safeFileName =
 
-.replace(
+file.name.replace(
 /[^a-zA-Z0-9.\-_]/g,
 "_"
 );
 
 
-const imagePath=
+/* ============================= */
+/* STORAGE PATH */
+/* ============================= */
+
+const imagePath =
 
 "products/"
-
 +
-
 currentSeller.id
-
 +
-
 "/"
-
 +
-
 Date.now()
-
 +
-
 "_"
-
 +
-
 safeFileName;
 
 
-const storageRef=
+const storageRef =
 
 ref(
-
 storage,
-
 imagePath
-
 );
 
 
+/* ============================= */
 /* UPLOAD IMAGE */
+/* ============================= */
 
 await uploadBytes(
 
@@ -966,22 +1093,24 @@ file
 );
 
 
+/* ============================= */
 /* GET IMAGE URL */
+/* ============================= */
 
-const imageUrl=
+const imageUrl =
 
 await getDownloadURL(
-
 storageRef
 );
 
 
-addBtn.textContent=
+addBtn.textContent =
+"💾 Submitting for Approval...";
 
-"💾 Saving Product...";
 
-
+/* ============================= */
 /* SAVE PRODUCT */
+/* ============================= */
 
 await addDoc(
 
@@ -992,76 +1121,90 @@ db,
 
 {
 
-
-/* PRODUCT DETAILS */
+/* PRODUCT */
 
 name:
 name,
 
-
 image:
 imageUrl,
-
 
 imageUrl:
 imageUrl,
 
-
 description:
 description,
-
 
 category:
 category,
 
-
 price:
 price,
-
 
 stock:
 stock,
 
 
-/* SELLER DETAILS */
+/* SELLER */
 
 sellerId:
 currentSeller.id,
 
-
 sellerDocId:
 currentSeller.sellerDocId,
-
 
 sellerName:
 currentSeller.storeName,
 
 
-/* PRODUCT APPROVAL */
+/* ============================= */
+/* IMPORTANT APPROVAL STATUS */
+/* ============================= */
+
+/*
+   NEW PRODUCTS ARE ALWAYS
+   PENDING UNTIL ADMIN APPROVES.
+*/
 
 approvalStatus:
-"approved",
-
+"pending",
 
 status:
-"approved",
+"pending",
+
+approved:
+false,
+
+approvedAt:
+null,
+
+approvedBy:
+null,
 
 
-/* PRODUCT VISIBILITY */
+/* ============================= */
+/* VISIBILITY */
+/* ============================= */
+
+/*
+   Seller preference is saved,
+   but product is NOT active
+   until admin approval.
+*/
 
 visibility:
 visibility,
 
-
 active:
-isActive,
+false,
 
 
+/* ============================= */
 /* DATE */
+/* ============================= */
 
 createdAt:
 serverTimestamp(),
-
 
 updatedAt:
 serverTimestamp()
@@ -1071,87 +1214,79 @@ serverTimestamp()
 );
 
 
-if(
-isActive
-){
+/* ============================= */
+/* SUCCESS MESSAGE */
+/* ============================= */
 
 showMessage(
 
-"✅ Product added successfully! Your product is now visible publicly.",
+"✅ Product submitted successfully! Your product is now Pending Admin Approval.",
 
 "success"
 
 );
-
-}else{
-
-showMessage(
-
-"✅ Product added successfully! Your product is currently hidden.",
-
-"success"
-
-);
-
-}
 
 
 form.reset();
 
 
-imagePreview.innerHTML=
-
+imagePreview.innerHTML =
 "📷 Product image preview";
 
+
+pendingBox.style.display =
+"block";
+
+
+/* ============================= */
+/* REDIRECT */
+/* ============================= */
 
 setTimeout(
 
 function(){
 
-location.href=
-
+location.href =
 "seller-dashboard.html";
 
 },
 
-1500
+1800
 
 );
 
 
 }catch(error){
 
-console.error(
-error
-);
+console.error(error);
 
 
 showMessage(
 
-"❌ Unable to add product: "+error.message,
+"❌ Unable to add product: "
++
+error.message,
 
 "error"
 
 );
 
 
-addBtn.disabled=
-
+addBtn.disabled =
 false;
 
 
-addBtn.textContent=
-
-"➕ Add Product";
-
-}
+addBtn.textContent =
+"➕ Submit Product";
 
 }
 
-);
+});
 
 
+/* ============================= */
 /* SHOW MESSAGE */
+/* ============================= */
 
 function showMessage(
 
@@ -1161,18 +1296,17 @@ type
 
 ){
 
-message.style.display=
-
+message.style.display =
 "block";
 
 
-message.className=
+message.className =
+"message "
++
+type;
 
-"message "+type;
 
-
-message.textContent=
-
+message.textContent =
 text;
 
 }

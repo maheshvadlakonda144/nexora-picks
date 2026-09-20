@@ -2,232 +2,292 @@
 <html lang="en">
 
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta
+name="viewport"
+content="width=device-width,initial-scale=1">
 
 <title>NEXORA PICKS — Admin</title>
 
-<meta name="robots" content="noindex,nofollow">
+<meta
+name="robots"
+content="noindex,nofollow">
 
 <style>
 
 *{
-  box-sizing:border-box;
+box-sizing:border-box;
 }
 
 body{
-  margin:0;
-  background:#07090e;
-  color:#f5f7fb;
-  font-family:Arial,sans-serif;
+margin:0;
+background:#07090e;
+color:#f5f7fb;
+font-family:Arial,sans-serif;
 }
 
 header{
-  padding:18px 16px;
-  border-bottom:1px solid #252d39;
-  position:sticky;
-  top:0;
-  background:#07090e;
-  z-index:5;
+padding:18px 16px;
+border-bottom:1px solid #252d39;
+position:sticky;
+top:0;
+background:#07090e;
+z-index:5;
 }
 
 .brand{
-  font-weight:900;
-  letter-spacing:2px;
+font-weight:900;
+letter-spacing:2px;
 }
 
 .brand span{
-  color:#ff3150;
+color:#ff3150;
 }
 
 main{
-  max-width:950px;
-  margin:auto;
-  padding:18px 14px 50px;
+max-width:1000px;
+margin:auto;
+padding:18px 14px 50px;
 }
 
 .box{
-  background:#10141c;
-  border:1px solid #252d39;
-  border-radius:16px;
-  padding:18px;
-  margin-bottom:16px;
+background:#10141c;
+border:1px solid #252d39;
+border-radius:16px;
+padding:18px;
+margin-bottom:16px;
 }
 
 input,
 textarea,
 select{
-  width:100%;
-  padding:13px;
-  margin:6px 0 12px;
-  background:#0a0d13;
-  color:#fff;
-  border:1px solid #2a3340;
-  border-radius:9px;
-  font:inherit;
+width:100%;
+padding:13px;
+margin:6px 0 12px;
+background:#0a0d13;
+color:#fff;
+border:1px solid #2a3340;
+border-radius:9px;
+font:inherit;
 }
 
 textarea{
-  min-height:90px;
+min-height:90px;
 }
 
 button,
 .btn{
-  border:0;
-  background:#ff3150;
-  color:#fff;
-  padding:12px 16px;
-  border-radius:9px;
-  font-weight:800;
-  cursor:pointer;
-  text-decoration:none;
-  display:inline-block;
+border:0;
+background:#ff3150;
+color:#fff;
+padding:12px 16px;
+border-radius:9px;
+font-weight:800;
+cursor:pointer;
+text-decoration:none;
+display:inline-block;
+}
+
+button:disabled{
+opacity:.6;
+cursor:not-allowed;
 }
 
 .secondary{
-  background:#252d39;
+background:#252d39;
 }
 
 .approve{
-  background:#16803c;
+background:#16803c;
 }
 
 .danger{
-  background:#b52b3e;
+background:#b52b3e;
+}
+
+.warning{
+background:#a66b00;
 }
 
 .row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
 }
 
 .status{
-  display:none;
-  padding:10px;
-  border-radius:9px;
-  margin:0 0 12px;
+display:none;
+padding:10px;
+border-radius:9px;
+margin:0 0 12px;
+line-height:1.5;
 }
 
 .ok{
-  display:block;
-  background:#17251d;
-  color:#a9e2b6;
+display:block;
+background:#17251d;
+color:#a9e2b6;
 }
 
 .err{
-  display:block;
-  background:#30151b;
-  color:#ffb2bd;
+display:block;
+background:#30151b;
+color:#ffb2bd;
 }
 
 .muted{
-  color:#929cab;
+color:#929cab;
 }
 
 .tabs{
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-  margin-bottom:16px;
+display:flex;
+gap:8px;
+flex-wrap:wrap;
+margin-bottom:16px;
 }
 
 .tab{
-  background:#252d39;
+background:#252d39;
 }
 
 .tab.active{
-  background:#ff3150;
+background:#ff3150;
 }
 
 .section{
-  display:none;
+display:none;
 }
 
 .section.active{
-  display:block;
+display:block;
 }
 
 .item{
-  background:#0b0f16;
-  border:1px solid #252d39;
-  border-radius:12px;
-  padding:14px;
-  margin:10px 0;
-  display:flex;
-  gap:12px;
-  align-items:center;
+background:#0b0f16;
+border:1px solid #252d39;
+border-radius:12px;
+padding:14px;
+margin:10px 0;
+display:flex;
+gap:12px;
+align-items:center;
+}
+
+.item.pendingItem{
+border-color:#806b20;
+}
+
+.item.rejectedItem{
+border-color:#7a2634;
 }
 
 .actions{
-  margin-left:auto;
-  display:flex;
-  gap:7px;
-  flex-wrap:wrap;
+margin-left:auto;
+display:flex;
+gap:7px;
+flex-wrap:wrap;
 }
 
 .badge{
-  display:inline-block;
-  padding:5px 8px;
-  border-radius:999px;
-  font-size:12px;
-  font-weight:800;
-  margin-top:6px;
+display:inline-block;
+padding:5px 8px;
+border-radius:999px;
+font-size:12px;
+font-weight:800;
+margin-top:6px;
 }
 
 .pending{
-  background:#332a12;
-  color:#ffd86b;
+background:#332a12;
+color:#ffd86b;
 }
 
 .approved{
-  background:#17351f;
-  color:#9ee7ae;
+background:#17351f;
+color:#9ee7ae;
 }
 
 .rejected{
-  background:#35171d;
-  color:#ffadb8;
+background:#35171d;
+color:#ffadb8;
 }
 
 .product-image{
-  width:70px;
-  height:70px;
-  object-fit:cover;
-  border-radius:10px;
-  background:#252d39;
+width:80px;
+height:80px;
+object-fit:cover;
+border-radius:10px;
+background:#252d39;
+flex-shrink:0;
 }
 
 .product-emoji{
-  width:70px;
-  height:70px;
-  border-radius:10px;
-  background:#252d39;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:32px;
+width:80px;
+height:80px;
+border-radius:10px;
+background:#252d39;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:32px;
+flex-shrink:0;
+}
+
+.productInfo{
+flex:1;
+min-width:0;
+}
+
+.productInfo b{
+font-size:17px;
+}
+
+.approvalTitle{
+display:flex;
+align-items:center;
+gap:8px;
+flex-wrap:wrap;
+}
+
+.empty{
+padding:20px;
+text-align:center;
+color:#929cab;
+}
+
+hr{
+border:0;
+border-top:1px solid #252d39;
+margin:18px 0;
 }
 
 @media(max-width:650px){
 
-  .row{
-    grid-template-columns:1fr;
-  }
+.row{
+grid-template-columns:1fr;
+}
 
-  .item{
-    align-items:flex-start;
-    flex-wrap:wrap;
-  }
+.item{
+align-items:flex-start;
+flex-wrap:wrap;
+}
 
-  .actions{
-    margin-left:0;
-    width:100%;
-  }
+.actions{
+margin-left:0;
+width:100%;
+}
 
-  .actions button{
-    flex:1;
-  }
+.actions button{
+flex:1;
+}
+
+.product-image,
+.product-emoji{
+width:65px;
+height:65px;
+}
 
 }
 
@@ -253,11 +313,17 @@ NEXORA <span>PICKS</span> — ADMIN
 <main>
 
 
+<!-- ========================= -->
 <!-- ADMIN LOGIN -->
+<!-- ========================= -->
 
-<div id="loginBox" class="box">
+<div
+id="loginBox"
+class="box">
 
-<h1>Admin Login</h1>
+<h1>
+Admin Login
+</h1>
 
 <p class="muted">
 
@@ -265,12 +331,14 @@ Login with the authorized NEXORA PICKS admin account.
 
 </p>
 
+<div
+id="loginStatus"
+class="status">
+</div>
 
-<div id="loginStatus" class="status"></div>
 
-
-<form id="loginForm">
-
+<form
+id="loginForm">
 
 <input
 id="email"
@@ -279,7 +347,6 @@ placeholder="Admin email"
 required
 >
 
-
 <input
 id="password"
 type="password"
@@ -287,41 +354,40 @@ placeholder="Password"
 required
 >
 
-
-<button type="submit">
+<button
+type="submit">
 
 Login
 
 </button>
 
-
 </form>
-
 
 </div>
 
 
-
+<!-- ========================= -->
 <!-- ADMIN PANEL -->
+<!-- ========================= -->
 
-<div id="panel" style="display:none">
+<div
+id="panel"
+style="display:none">
 
 
 <div class="box">
 
-
 <h2>
-
 NEXORA PICKS Admin Panel
-
 </h2>
 
-
-<p id="adminInfo" class="muted"></p>
+<p
+id="adminInfo"
+class="muted">
+</p>
 
 
 <div class="tabs">
-
 
 <button
 class="tab active"
@@ -340,30 +406,24 @@ onclick="showTab('products',this)">
 
 </button>
 
+</div>
 
 </div>
 
 
-</div>
-
-
-
+<!-- ========================= -->
 <!-- SELLERS -->
+<!-- ========================= -->
 
 <section
 id="sellers"
 class="section active">
 
-
 <div class="box">
 
-
 <h2>
-
 Seller Applications
-
 </h2>
-
 
 <p class="muted">
 
@@ -371,29 +431,26 @@ Approve or reject seller registrations.
 
 </p>
 
-
 <div
 id="sellerStatus"
 class="status">
-
 </div>
 
-
-<div id="sellerList">
+<div
+id="sellerList">
 
 Loading sellers...
 
 </div>
 
-
 </div>
-
 
 </section>
 
 
-
+<!-- ========================= -->
 <!-- PRODUCTS -->
+<!-- ========================= -->
 
 <section
 id="products"
@@ -404,27 +461,22 @@ class="section">
 
 <div class="box">
 
-
 <h2>
-
-Product Approvals
-
+📦 Product Approvals
 </h2>
-
 
 <p class="muted">
 
-Approve seller products before they appear on NEXORA PICKS.
+Products submitted by sellers are automatically
+<strong>Pending</strong>
+until you approve them.
 
 </p>
-
 
 <div
 id="productStatus"
 class="status">
-
 </div>
-
 
 <div
 id="productApprovalList">
@@ -433,260 +485,189 @@ Loading products...
 
 </div>
 
-
 </div>
 
 
-
-<!-- ADD PRODUCT -->
+<!-- ========================= -->
+<!-- ADD ADMIN PRODUCT -->
+<!-- ========================= -->
 
 <div class="box">
 
+<h2>
+Add Marketplace Product
+</h2>
 
-<h1 id="formTitle">
+<p class="muted">
 
-Add Product
+Products created directly by the admin can be published immediately.
 
-</h1>
-
+</p>
 
 <div
 id="status"
 class="status">
-
 </div>
 
 
-<form id="productForm">
+<form
+id="productForm">
 
 
 <input
 type="hidden"
-id="docId"
->
+id="docId">
 
 
 <label>
-
-Product name
-
+Product Name
 </label>
-
 
 <input
 id="name"
 placeholder="Wireless Earphones"
-required
->
-
+required>
 
 
 <label>
-
 Description
-
 </label>
-
 
 <textarea
 id="description"
 placeholder="Product description">
-
 </textarea>
-
 
 
 <div class="row">
 
-
 <div>
 
-
 <label>
-
 Category
-
 </label>
-
 
 <input
 id="category"
-placeholder="Electronics"
->
-
+placeholder="Electronics">
 
 </div>
 
 
-
 <div>
 
-
 <label>
-
-Price
-
+Price ₹
 </label>
-
 
 <input
 id="price"
 type="number"
 min="1"
-placeholder="999"
->
-
+placeholder="999">
 
 </div>
 
-
 </div>
-
 
 
 <div class="row">
 
-
 <div>
 
-
 <label>
-
 Stock
-
 </label>
-
 
 <input
 id="stock"
 type="number"
 min="0"
-placeholder="10"
->
-
+placeholder="10">
 
 </div>
 
 
-
 <div>
 
-
 <label>
-
-Old Price
-
+Old Price ₹
 </label>
-
 
 <input
 id="oldPrice"
 type="number"
 min="0"
-placeholder="1299"
->
-
+placeholder="1299">
 
 </div>
 
-
 </div>
-
 
 
 <label>
-
 Product Image URL
-
 </label>
-
 
 <input
 id="imageUrl"
 type="url"
-placeholder="https://..."
->
-
+placeholder="https://...">
 
 
 <label>
-
 Product URL
-
 </label>
-
 
 <input
 id="priceUrl"
 type="url"
-placeholder="https://..."
->
-
+placeholder="https://...">
 
 
 <div class="row">
 
-
 <div>
 
-
 <label>
-
 Emoji Fallback
-
 </label>
-
 
 <input
 id="emoji"
-value="🛍️"
->
-
+value="🛍️">
 
 </div>
-
 
 
 <div>
 
-
 <label>
-
 Active
-
 </label>
 
-
-<select id="active">
-
+<select
+id="active">
 
 <option value="true">
-
 Yes — Show
-
 </option>
-
 
 <option value="false">
-
 No — Hide
-
 </option>
-
 
 </select>
 
+</div>
 
 </div>
 
 
-</div>
+<button
+type="submit">
 
-
-
-<button type="submit">
-
-Save Product
+💾 Save Product
 
 </button>
 
@@ -704,29 +685,25 @@ Cancel Edit
 
 </form>
 
-
 </div>
 
 
-
-<!-- PRODUCT LIST -->
+<!-- ========================= -->
+<!-- ALL PRODUCTS -->
+<!-- ========================= -->
 
 <div class="box">
 
-
 <h2>
-
 All Products
-
 </h2>
 
-
-<div id="list">
+<div
+id="list">
 
 Loading...
 
 </div>
-
 
 </div>
 
@@ -734,11 +711,11 @@ Loading...
 </section>
 
 
-
+<!-- ========================= -->
 <!-- LOGOUT -->
+<!-- ========================= -->
 
 <div class="box">
-
 
 <button
 id="logout"
@@ -757,22 +734,20 @@ Open Website
 
 </a>
 
-
 </div>
 
 
 </div>
-
 
 </main>
-
 
 
 <script type="module">
 
 
+/* ================================= */
 /* FIREBASE IMPORTS */
-
+/* ================================= */
 
 import {
 
@@ -783,7 +758,6 @@ initializeApp
 from
 
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
-
 
 
 import {
@@ -801,7 +775,6 @@ signOut
 from
 
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
-
 
 
 import {
@@ -829,174 +802,129 @@ from
 "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
-
-/* FIREBASE CONFIG */
-
+/* ================================= */
+/* SAME FIREBASE AS ADD-PRODUCT.HTML */
+/* ================================= */
 
 const firebaseConfig = {
 
-
 apiKey:
-
-"AIzaSyCPpol_Dmj3yTph_PBG59IbwtUqSpbAqwY",
-
+"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
 
 authDomain:
-
-"nexora-picks-be049.firebaseapp.com",
-
+"nexora-picks-e887f.firebaseapp.com",
 
 projectId:
-
-"nexora-picks-be049",
-
+"nexora-picks-e887f",
 
 storageBucket:
-
-"nexora-picks-be049.firebasestorage.app",
-
+"nexora-picks-e887f.firebasestorage.app",
 
 messagingSenderId:
-
-"325932959084",
-
+"621359003619",
 
 appId:
-
-"1:325932959084:web:4fd8252e1ba83f82ee1f49",
-
+"1:621359003619:web:483add8bfcd0241f4192d",
 
 measurementId:
-
-"G-KMQZXZZCHJ"
-
+"G-LSMJ6QLLPW"
 
 };
 
 
-
+/* ================================= */
 /* ADMIN EMAIL */
-
+/* ================================= */
 
 const ADMIN_EMAIL =
-
 "nexorapicks144@gmail.com";
 
 
-
-/* INITIALIZE FIREBASE */
-
+/* ================================= */
+/* INITIALIZE */
+/* ================================= */
 
 const app =
-
 initializeApp(firebaseConfig);
 
-
 const auth =
-
 getAuth(app);
 
-
 const db =
-
 getFirestore(app);
 
 
-
 const $ = id =>
-
 document.getElementById(id);
 
 
-
+/* ================================= */
 /* STATUS MESSAGE */
+/* ================================= */
 
-
-function stat(id,text,error=false){
-
+function stat(
+id,
+text,
+error=false
+){
 
 $(id).textContent =
-
 text;
 
-
 $(id).className =
-
 "status " +
-
 (
-
 error
-
 ?
-
 "err"
-
 :
-
 "ok"
-
 );
-
 
 }
 
 
-
+/* ================================= */
 /* TABS */
-
+/* ================================= */
 
 window.showTab =
-
 function(id,btn){
-
 
 document
 .querySelectorAll(".section")
 .forEach(x =>
-
 x.classList.remove("active")
-
 );
-
 
 document
 .querySelectorAll(".tab")
 .forEach(x =>
-
 x.classList.remove("active")
-
 );
-
 
 $(id)
 .classList
 .add("active");
 
-
 btn
 .classList
 .add("active");
 
-
 };
 
 
-
-
+/* ================================= */
 /* ADMIN LOGIN */
-
+/* ================================= */
 
 $("loginForm").onsubmit =
-
 async e => {
-
 
 e.preventDefault();
 
 
 const email =
-
 $("email")
 .value
 .trim()
@@ -1004,275 +932,174 @@ $("email")
 
 
 const password =
-
 $("password")
 .value;
 
 
-
 if(
-
 email !==
 ADMIN_EMAIL.toLowerCase()
-
 ){
 
-
 stat(
-
 "loginStatus",
-
 "Access denied. This email is not the administrator.",
-
 true
-
 );
-
 
 return;
 
-
 }
-
 
 
 try{
 
-
 await
-
 signInWithEmailAndPassword(
-
 auth,
-
 email,
-
 password
-
 );
-
-
-stat(
-
-"loginStatus",
-
-"Login successful."
-
-);
-
 
 }
 
-catch(x){
-
+catch(error){
 
 stat(
-
 "loginStatus",
-
-x.message,
-
+error.message,
 true
-
 );
 
-
 }
-
 
 };
 
 
-
-
+/* ================================= */
 /* AUTH CHECK */
-
+/* ================================= */
 
 onAuthStateChanged(
-
 auth,
+user => {
 
-u => {
 
-
-if(!u){
-
+if(!user){
 
 $("loginBox")
 .style
 .display =
-
 "block";
-
 
 $("panel")
 .style
 .display =
-
 "none";
-
 
 return;
 
-
 }
-
-
-
-/* ADMIN EMAIL PROTECTION */
 
 
 if(
-
-u.email
-.toLowerCase()
-
+!user.email ||
+user.email.toLowerCase()
 !==
-
-ADMIN_EMAIL
-.toLowerCase()
-
+ADMIN_EMAIL.toLowerCase()
 ){
 
-
 stat(
-
 "loginStatus",
-
 "Access denied. You are not authorized as admin.",
-
 true
-
 );
-
 
 signOut(auth);
 
-
 return;
-
 
 }
 
 
-
-/* SHOW ADMIN PANEL */
-
+/* SHOW PANEL */
 
 $("loginBox")
 .style
 .display =
-
 "none";
-
 
 $("panel")
 .style
 .display =
-
 "block";
 
 
 $("adminInfo")
 .textContent =
-
-"Logged in as: " +
-
-u.email;
-
+"Logged in as: "
++
+user.email;
 
 
-/* LOAD DATA */
-
+/* LOAD */
 
 loadSellers();
 
-
 loadProducts();
 
-
-}
-
-);
+});
 
 
-
-
+/* ================================= */
 /* LOGOUT */
-
+/* ================================= */
 
 $("logout").onclick =
-
 async () => {
 
-
-await
-
-signOut(auth);
-
+await signOut(auth);
 
 };
 
 
-
-
+/* ================================= */
 /* LOAD SELLERS */
-
+/* ================================= */
 
 function loadSellers(){
 
-
 onSnapshot(
 
-
 collection(
-
 db,
-
 "sellers"
-
 ),
-
 
 snapshot => {
 
 
 const sellers =
-
 snapshot.docs
 .map(d => ({
-
 id:d.id,
-
 ...d.data()
-
 }))
-
-
 .sort(
 
 (a,b) =>
 
 String(
-
 a.storeName ||
-
 a.fullName ||
-
 ""
-
 )
-
 .localeCompare(
 
 String(
-
 b.storeName ||
-
 b.fullName ||
-
 ""
-
 )
 
 )
@@ -1280,759 +1107,491 @@ b.fullName ||
 );
 
 
+if(!sellers.length){
 
-if(
-
-
-sellers.length === 0
-
-
-){
-
-
-$("sellerList")
-.innerHTML =
-
-'<p class="muted">No seller registrations yet.</p>';
-
+$("sellerList").innerHTML =
+'<div class="empty">No seller registrations yet.</div>';
 
 return;
-
 
 }
 
 
-
-/* DISPLAY SELLERS */
-
-
-$("sellerList")
-.innerHTML =
-
+$("sellerList").innerHTML =
 
 sellers
 .map(s => {
 
 
 const state =
-
 s.status ||
-
 "pending";
-
 
 
 const label =
 
 state === "approved"
-
 ?
-
 "Approved"
-
 :
-
 state === "rejected"
-
 ?
-
 "Rejected"
-
 :
-
 "Pending Approval";
-
 
 
 return `
 
-
 <div class="item">
 
+<div class="productInfo">
 
-<div>
-
+<div class="approvalTitle">
 
 <b>
-
 ${esc(
-
 s.storeName ||
-
 "Seller"
-
 )}
-
 </b>
 
-
-<div class="muted">
-
-Name:
-
-${esc(
-
-s.fullName ||
-
-""
-
-)}
-
-</div>
-
-
-<div class="muted">
-
-Email:
-
-${esc(
-
-s.email ||
-
-""
-
-)}
-
-</div>
-
-
-<div class="muted">
-
-Phone:
-
-${esc(
-
-s.phone ||
-
-""
-
-)}
-
-</div>
-
-
-<div class="muted">
-
-Location:
-
-${esc(
-
-s.city ||
-
-""
-
-)},
-
-${esc(
-
-s.state ||
-
-""
-
-)}
-
-</div>
-
-
 <span class="badge ${esc(state)}">
-
 ${esc(label)}
-
 </span>
 
-
 </div>
 
+<div class="muted">
+Name:
+${esc(s.fullName || "")}
+</div>
+
+<div class="muted">
+Email:
+${esc(s.email || "")}
+</div>
+
+<div class="muted">
+Phone:
+${esc(s.phone || "")}
+</div>
+
+<div class="muted">
+Location:
+${esc(s.city || "")},
+${esc(s.state || "")}
+</div>
+
+</div>
 
 
 <div class="actions">
 
 
 ${
-
 state !== "approved"
-
 ?
+`
 
-`<button
-
+<button
 class="approve"
-
 onclick="approveSeller('${escAttr(s.id)}')">
 
 ✓ Approve
 
-</button>`
+</button>
 
+`
 :
-
 ""
-
 }
 
 
-
 ${
-
 state !== "pending"
-
 ?
+`
 
-`<button
-
+<button
 class="secondary"
-
 onclick="pendingSeller('${escAttr(s.id)}')">
 
 Set Pending
 
-</button>`
+</button>
 
+`
 :
-
 ""
-
 }
-
 
 
 <button
-
 class="danger"
-
 onclick="rejectSeller('${escAttr(s.id)}')">
 
-
 ${
-
 state === "approved"
-
 ?
-
 "Block"
-
 :
-
 "Reject"
-
 }
-
 
 </button>
 
 
 </div>
 
-
 </div>
-
 
 `;
 
-
 })
-
 .join("");
 
 
 },
 
-
 error => {
 
-
 stat(
-
 "sellerStatus",
-
 error.message,
-
 true
-
 );
 
+}
+
+);
 
 }
 
 
-);
-
-
-}
-
-
-
-
+/* ================================= */
 /* APPROVE SELLER */
-
+/* ================================= */
 
 window.approveSeller =
-
 async id => {
-
 
 try{
 
-
 await
-
 updateDoc(
 
-
 doc(
-
 db,
-
 "sellers",
-
 id
-
 ),
-
 
 {
 
-
 status:
-
 "approved",
 
-
 active:
-
 true,
 
-
 approvedAt:
+serverTimestamp(),
 
-serverTimestamp()
-
+rejectedAt:
+null
 
 }
-
 
 );
 
 
-
 stat(
-
 "sellerStatus",
-
 "Seller approved successfully ✓"
-
 );
-
 
 }
 
-catch(x){
-
+catch(error){
 
 stat(
-
 "sellerStatus",
-
-x.message,
-
+error.message,
 true
-
 );
 
-
 }
-
 
 };
 
 
-
-
+/* ================================= */
 /* SET SELLER PENDING */
-
+/* ================================= */
 
 window.pendingSeller =
-
 async id => {
-
 
 try{
 
-
 await
-
 updateDoc(
 
-
 doc(
-
 db,
-
 "sellers",
-
 id
-
 ),
-
 
 {
 
-
 status:
-
 "pending",
 
-
 active:
-
 false
 
-
 }
-
 
 );
 
 
-
 stat(
-
 "sellerStatus",
-
 "Seller set to pending."
-
-
 );
-
 
 }
 
-catch(x){
-
+catch(error){
 
 stat(
-
 "sellerStatus",
-
-x.message,
-
+error.message,
 true
-
 );
 
-
 }
-
 
 };
 
 
-
-
+/* ================================= */
 /* REJECT SELLER */
-
+/* ================================= */
 
 window.rejectSeller =
-
 async id => {
 
 
 if(
-
-
 !confirm(
-
 "Reject this seller?"
-
 )
-
-
 )
-
-
 return;
-
 
 
 try{
 
-
 await
-
 updateDoc(
 
-
 doc(
-
 db,
-
 "sellers",
-
 id
-
 ),
-
 
 {
 
-
 status:
-
 "rejected",
 
-
 active:
-
 false,
 
-
 rejectedAt:
-
 serverTimestamp()
 
-
 }
-
 
 );
 
 
-
 stat(
-
 "sellerStatus",
-
 "Seller rejected."
-
-
 );
-
 
 }
 
-catch(x){
-
+catch(error){
 
 stat(
-
 "sellerStatus",
-
-x.message,
-
+error.message,
 true
-
 );
 
-
 }
-
 
 };
 
 
-
-
-/* RESET PRODUCT FORM */
-
+/* ================================= */
+/* RESET ADMIN PRODUCT FORM */
+/* ================================= */
 
 function reset(){
-
 
 $("productForm")
 .reset();
 
-
 $("docId")
 .value = "";
 
-
 $("emoji")
 .value =
-
 "🛍️";
-
 
 $("active")
 .value =
-
 "true";
 
-
-$("formTitle")
-.textContent =
-
-"Add Product";
-
+$("formTitle") &&
+(
+$("formTitle").textContent =
+"Add Marketplace Product"
+);
 
 $("cancel")
 .style
 .display =
-
 "none";
-
 
 }
 
 
+/* ================================= */
+/* CANCEL EDIT */
+/* ================================= */
 
-
-$("cancel")
-.onclick =
-
+$("cancel").onclick =
 reset;
 
 
-
-
+/* ================================= */
 /* SAVE ADMIN PRODUCT */
+/* ================================= */
 
-
-$("productForm")
-.onsubmit =
-
+$("productForm").onsubmit =
 async e => {
-
 
 e.preventDefault();
 
 
-
 const id =
-
 $("docId")
 .value;
 
 
-
-let d = {
-
+const d = {
 
 name:
-
 $("name")
 .value
 .trim(),
 
-
 description:
-
 $("description")
 .value
 .trim(),
 
-
 category:
-
 $("category")
 .value
 .trim(),
 
-
 price:
-
 Number(
-
 $("price")
 .value
-
 ),
-
 
 stock:
-
 Number(
-
 $("stock")
 .value
-
 ),
 
-
 oldPrice:
-
 Number(
-
 $("oldPrice")
 .value
-
-) || 0,
-
+)
+||
+0,
 
 imageUrl:
-
 $("imageUrl")
 .value
 .trim(),
 
+/* SAME IMAGE FIELD USED BY SELLER PRODUCTS */
+
+image:
+$("imageUrl")
+.value
+.trim(),
 
 priceUrl:
-
 $("priceUrl")
 .value
 .trim(),
 
-
 emoji:
-
 $("emoji")
 .value
 .trim()
-
 ||
-
 "🛍️",
 
-
 active:
-
 $("active")
-.value === "true",
-
+.value ===
+"true",
 
 sellerId:
-
 "admin",
 
-
 sellerName:
-
 "NEXORA PICKS",
 
-
 approvalStatus:
+"approved",
 
-"approved"
+status:
+"approved",
 
+approved:
+true
 
 };
 
 
-
-if(
-
-
-!d.name
-
-
-){
-
+if(!d.name){
 
 stat(
-
 "status",
-
 "Enter a product name.",
-
 true
-
 );
-
 
 return;
 
-
 }
-
 
 
 try{
@@ -2040,89 +1599,62 @@ try{
 
 if(id){
 
-
 await
-
 updateDoc(
 
-
 doc(
-
 db,
-
 "products",
-
 id
-
 ),
 
-
 d
-
 
 );
 
 
-}
+stat(
+"status",
+"Product updated successfully."
+);
 
+}
 
 else{
 
 
 d.createdAt =
-
 serverTimestamp();
 
+d.updatedAt =
+serverTimestamp();
 
 d.approvedAt =
-
 serverTimestamp();
 
+d.approvedBy =
+ADMIN_EMAIL;
 
 
 await
-
 addDoc(
 
-
 collection(
-
 db,
-
 "products"
-
 ),
-
 
 d
 
-
 );
-
-
-}
-
 
 
 stat(
-
-
 "status",
-
-
-id
-
-?
-
-"Product updated."
-
-:
-
-"Product added."
-
-
+"Product added successfully."
 );
 
+}
 
 
 reset();
@@ -2130,141 +1662,191 @@ reset();
 
 }
 
-catch(x){
-
+catch(error){
 
 stat(
-
 "status",
-
-x.message,
-
+error.message,
 true
-
 );
 
-
 }
-
 
 };
 
 
-
-
+/* ================================= */
 /* LOAD PRODUCTS */
-
+/* ================================= */
 
 function loadProducts(){
 
-
 onSnapshot(
 
-
 collection(
-
 db,
-
 "products"
-
 ),
-
 
 snapshot => {
 
 
 const products =
-
 snapshot.docs
 .map(d => ({
-
 id:d.id,
-
 ...d.data()
-
 }));
 
 
+/* ================================= */
+/* SORT PENDING FIRST */
+/* ================================= */
+
+products.sort(
+
+(a,b) => {
+
+const aState =
+a.approvalStatus ||
+"pending";
+
+const bState =
+b.approvalStatus ||
+"pending";
 
 
+if(
+aState === "pending" &&
+bState !== "pending"
+)
+return -1;
+
+
+if(
+bState === "pending" &&
+aState !== "pending"
+)
+return 1;
+
+
+return 0;
+
+});
+
+
+/* ================================= */
 /* PRODUCT APPROVAL LIST */
+/* ================================= */
 
-
-$("productApprovalList")
-.innerHTML =
-
+$("productApprovalList").innerHTML =
 
 products.length
 
-
 ?
-
 
 products
 .map(p => {
 
 
 const state =
-
 p.approvalStatus ||
-
 "pending";
 
 
 const label =
 
 state === "approved"
-
 ?
-
 "Approved"
-
 :
-
 state === "rejected"
-
 ?
-
 "Rejected"
-
 :
-
 "Pending Approval";
 
+
+const image =
+p.imageUrl ||
+p.image;
+
+
+const productImage =
+
+image
+
+?
+
+`
+
+<img
+class="product-image"
+src="${escAttr(image)}"
+alt="Product"
+onerror="this.style.display='none'">
+
+`
+
+:
+
+`
+
+<div class="product-emoji">
+
+${esc(
+p.emoji ||
+"🛍️"
+)}
+
+</div>
+
+`;
 
 
 return `
 
+<div class="item ${
+state === "pending"
+?
+"pendingItem"
+:
+state === "rejected"
+?
+"rejectedItem"
+:
+""
+}">
 
-<div class="item">
+${productImage}
 
 
-<div>
+<div class="productInfo">
 
+<div class="approvalTitle">
 
 <b>
-
 ${esc(
-
 p.name ||
-
 "Unnamed Product"
-
 )}
-
 </b>
+
+<span class="badge ${esc(state)}">
+
+${esc(label)}
+
+</span>
+
+</div>
 
 
 <div class="muted">
 
 Category:
-
 ${esc(
-
 p.category ||
-
 ""
-
 )}
 
 </div>
@@ -2273,13 +1855,9 @@ p.category ||
 <div class="muted">
 
 Seller:
-
 ${esc(
-
 p.sellerName ||
-
 "Unknown"
-
 )}
 
 </div>
@@ -2288,207 +1866,201 @@ p.sellerName ||
 <div class="muted">
 
 Price:
-
 ₹${Number(
-
 p.price ||
-
 0
-
 ).toLocaleString(
-
 "en-IN"
-
 )}
 
 </div>
 
 
-<span class="badge ${esc(state)}">
+<div class="muted">
 
-${esc(label)}
-
-</span>
-
+Stock:
+${Number(
+p.stock ||
+0
+)}
 
 </div>
 
+
+</div>
 
 
 <div class="actions">
 
 
 ${
-
 state !== "approved"
 
 ?
 
-`<button
+`
 
+<button
 class="approve"
-
 onclick="approveProduct('${escAttr(p.id)}')">
 
 ✓ Approve
 
-</button>`
+</button>
+
+`
 
 :
 
-""
+`
 
+<button
+class="warning"
+onclick="hideProduct('${escAttr(p.id)}')">
+
+Hide
+
+</button>
+
+`
 }
 
 
-
 ${
-
 state !== "rejected"
 
 ?
 
-`<button
+`
 
+<button
 class="danger"
-
 onclick="rejectProduct('${escAttr(p.id)}')">
 
 Reject
 
-</button>`
+</button>
+
+`
 
 :
 
-""
+`
 
+<button
+class="secondary"
+onclick="pendingProduct('${escAttr(p.id)}')">
+
+Set Pending
+
+</button>
+
+`
 }
 
 
 </div>
 
-
 </div>
-
 
 `;
 
-
 })
-
 .join("")
-
 
 :
 
-
-'<p class="muted">No products yet.</p>';
-
+'<div class="empty">No products yet.</div>';
 
 
+/* ================================= */
+/* ALL PRODUCTS */
+/* ================================= */
 
-/* ALL PRODUCTS LIST */
-
-
-$("list")
-.innerHTML =
-
+$("list").innerHTML =
 
 products.length
 
-
 ?
-
 
 products
 .map(p => {
 
 
 const image =
+p.imageUrl ||
+p.image;
 
-p.imageUrl
+
+const productImage =
+
+image
 
 ?
 
-`<img
+`
 
+<img
 class="product-image"
-
-src="${escAttr(p.imageUrl)}"
-
+src="${escAttr(image)}"
 alt="Product image"
+onerror="this.style.display='none'">
 
-onerror="this.style.display='none'"
-
-/>`
+`
 
 :
 
-`<div class="product-emoji">
+`
+
+<div class="product-emoji">
 
 ${esc(
-
 p.emoji ||
-
 "🛍️"
-
 )}
 
-</div>`;
+</div>
 
+`;
+
+
+const state =
+p.approvalStatus ||
+"pending";
 
 
 return `
 
-
 <div class="item">
 
+${productImage}
 
-${image}
 
-
-<div>
-
+<div class="productInfo">
 
 <b>
-
 ${esc(
-
 p.name ||
-
 "Unnamed Product"
-
 )}
-
 </b>
 
 
 <div class="muted">
 
 ₹${Number(
-
 p.price ||
-
 0
-
 ).toLocaleString(
-
 "en-IN"
-
 )}
-
 
 •
 
-
 Stock:
-
 ${Number(
-
 p.stock ||
-
 0
-
 )}
 
 </div>
@@ -2497,29 +2069,27 @@ p.stock ||
 <div class="muted">
 
 Seller:
-
 ${esc(
-
 p.sellerName ||
-
 "Unknown"
-
 )}
 
 </div>
 
 
-</div>
+<span class="badge ${esc(state)}">
 
+${esc(state)}
+
+</span>
+
+</div>
 
 
 <div class="actions">
 
-
 <button
-
 class="secondary"
-
 onclick='editProduct(${JSON.stringify(p).replace(/'/g,"&#39;")})'>
 
 Edit
@@ -2528,547 +2098,253 @@ Edit
 
 
 <button
-
 class="danger"
-
 onclick="removeProduct('${escAttr(p.id)}')">
 
 Delete
 
 </button>
 
-
 </div>
 
-
 </div>
-
 
 `;
 
-
 })
-
 .join("")
-
 
 :
 
-
-'<p class="muted">No products yet.</p>';
-
+'<div class="empty">No products yet.</div>';
 
 
 },
 
-
 error => {
 
-
 stat(
-
 "productStatus",
-
 error.message,
-
 true
-
 );
 
+}
+
+);
 
 }
 
 
-);
-
-
-}
-
-
-
-
+/* ================================= */
 /* APPROVE PRODUCT */
-
+/* ================================= */
 
 window.approveProduct =
-
 async id => {
 
 
 try{
 
-
 await
-
 updateDoc(
 
-
 doc(
-
 db,
-
 "products",
-
 id
-
 ),
-
 
 {
 
-
 approvalStatus:
-
 "approved",
 
+status:
+"approved",
 
-active:
-
+approved:
 true,
 
+active:
+true,
 
 approvedAt:
+serverTimestamp(),
 
+approvedBy:
+ADMIN_EMAIL,
+
+rejectedAt:
+null,
+
+updatedAt:
 serverTimestamp()
 
-
 }
-
 
 );
 
 
-
 stat(
-
 "productStatus",
-
-"Product approved successfully ✓"
-
+"✅ Product approved successfully. It is now visible on the marketplace."
 );
-
 
 }
 
-catch(x){
-
+catch(error){
 
 stat(
-
 "productStatus",
-
-x.message,
-
+error.message,
 true
-
 );
 
-
 }
-
 
 };
 
 
-
-
+/* ================================= */
 /* REJECT PRODUCT */
-
+/* ================================= */
 
 window.rejectProduct =
-
 async id => {
 
 
 if(
-
-
 !confirm(
-
 "Reject this product?"
-
 )
-
-
 )
-
-
 return;
-
 
 
 try{
 
-
 await
-
 updateDoc(
 
-
 doc(
-
 db,
-
 "products",
-
 id
-
 ),
-
 
 {
 
-
 approvalStatus:
-
 "rejected",
 
+status:
+"rejected",
 
-active:
-
+approved:
 false,
 
+active:
+false,
 
 rejectedAt:
+serverTimestamp(),
 
+updatedAt:
 serverTimestamp()
 
-
 }
-
 
 );
 
 
-
 stat(
-
 "productStatus",
-
-"Product rejected."
-
-
+"Product rejected and hidden."
 );
-
 
 }
 
-catch(x){
-
+catch(error){
 
 stat(
-
 "productStatus",
-
-x.message,
-
+error.message,
 true
-
 );
 
-
 }
-
 
 };
 
 
-
-
-/* EDIT PRODUCT */
-
-
-window.editProduct =
-
-p => {
-
-
-$("docId")
-.value =
-
-p.id;
-
-
-$("name")
-.value =
-
-p.name ||
-
-"";
-
-
-$("description")
-.value =
-
-p.description ||
-
-"";
-
-
-$("category")
-.value =
-
-p.category ||
-
-"";
-
-
-$("price")
-.value =
-
-p.price ||
-
-"";
-
-
-$("stock")
-.value =
-
-p.stock ??
-
-"";
-
-
-$("oldPrice")
-.value =
-
-p.oldPrice ||
-
-"";
-
-
-$("imageUrl")
-.value =
-
-p.imageUrl ||
-
-"";
-
-
-$("priceUrl")
-.value =
-
-p.priceUrl ||
-
-"";
-
-
-$("emoji")
-.value =
-
-p.emoji ||
-
-"🛍️";
-
-
-$("active")
-.value =
-
-String(
-
-p.active !== false
-
-);
-
-
-
-$("formTitle")
-.textContent =
-
-"Edit Product";
-
-
-$("cancel")
-.style
-.display =
-
-"inline-block";
-
-
-window.scrollTo({
-
-top:0,
-
-behavior:"smooth"
-
-});
-
-
-};
-
-
-
-
-/* DELETE PRODUCT */
-
-
-window.removeProduct =
-
-async id => {
-
-
-if(
-
-
-!confirm(
-
-"Delete this product permanently?"
-
-)
-
-
-)
-
-
-return;
-
-
-
-try{
-
-
-await
-
-deleteDoc(
-
-
-doc(
-
-db,
-
-"products",
-
-id
-
-)
-
-
-);
-
-
-
-stat(
-
-"status",
-
-"Product deleted."
-
-);
-
-
-}
-
-catch(x){
-
-
-stat(
-
-"status",
-
-x.message,
-
-true
-
-);
-
-
-}
-
-
-};
-
-
-
-
-/* HTML ESCAPE */
-
+/* ================================= */
+/* ESCAPE HTML */
+/* ================================= */
 
 function esc(v){
 
-
 return String(
-
 v ?? ""
-
 )
 
-
 .replace(
-
 /&/g,
-
 "&amp;"
-
 )
 
-
 .replace(
-
 /</g,
-
 "&lt;"
-
 )
 
-
 .replace(
-
 />/g,
-
 "&gt;"
-
 )
 
-
 .replace(
-
 /"/g,
-
 "&quot;"
-
 )
 
-
 .replace(
-
 /'/g,
-
 "&#039;"
-
 );
-
 
 }
 
 
-
+/* ================================= */
+/* ESCAPE ATTRIBUTE */
+/* ================================= */
 
 function escAttr(v){
 
-
 return String(
-
 v ?? ""
-
 )
 
+.replace(
+/\\/g,
+"\\\\"
+)
 
 .replace(
+/'/g,
+"\\'"
+)
 
-/['\\]/g,
-
-""
-
-
+.replace(
+/"/g,
+"&quot;"
 );
-
 
 }
 
-
 </script>
-
 
 </body>
 
-  </html>
+</html>

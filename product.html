@@ -1,12 +1,21 @@
 <!doctype html>
 <html lang="en">
+
 <head>
+
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1">
+
 <title>Product | NEXORA PICKS</title>
 
 <style>
-*{box-sizing:border-box}
+
+*{
+  box-sizing:border-box;
+}
 
 body{
   margin:0;
@@ -31,6 +40,7 @@ body{
   color:white;
   text-decoration:none;
   font-size:30px;
+  line-height:1;
 }
 
 .logo{
@@ -91,6 +101,7 @@ body{
   font-size:34px;
   margin:18px 0 12px;
   font-weight:800;
+  line-height:1.2;
 }
 
 .price{
@@ -125,6 +136,7 @@ body{
   font-size:17px;
   line-height:1.6;
   margin-top:10px;
+  white-space:pre-wrap;
 }
 
 .actions{
@@ -140,6 +152,10 @@ button{
   font-size:17px;
   font-weight:bold;
   cursor:pointer;
+}
+
+button:disabled{
+  cursor:not-allowed;
 }
 
 .cart{
@@ -158,9 +174,25 @@ button{
   text-align:center;
   border-radius:14px;
   font-size:20px;
+  box-shadow:0 2px 12px #0001;
+}
+
+.message a{
+  color:#2874f0;
+  text-decoration:none;
+  font-weight:bold;
 }
 
 @media(max-width:700px){
+
+  .header{
+    padding:13px;
+  }
+
+  .logo{
+    font-size:20px;
+  }
+
   .product{
     grid-template-columns:1fr;
   }
@@ -192,91 +224,198 @@ button{
   button{
     width:100%;
   }
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <header class="header">
-  <a class="back" href="index.html">‹</a>
-  <div class="logo">NEXORA PICKS</div>
+
+  <a
+    class="back"
+    href="index.html"
+    aria-label="Back">
+
+    ‹
+
+  </a>
+
+  <div class="logo">
+
+    NEXORA PICKS
+
+  </div>
+
 </header>
+
+
 
 <main class="container">
 
-  <div id="loading" class="message">
+
+  <div
+    id="loading"
+    class="message">
+
     Loading product...
+
   </div>
 
-  <div id="productBox" class="product" style="display:none">
+
+
+  <div
+    id="productBox"
+    class="product"
+    style="display:none">
+
 
     <div class="photo">
 
-      <img id="productImage"
-           style="display:none"
-           alt="Product">
 
-      <div id="productEmoji" class="emoji">
+      <img
+        id="productImage"
+        style="display:none"
+        alt="Product">
+
+
+      <div
+        id="productEmoji"
+        class="emoji">
+
         🛍️
+
       </div>
 
+
     </div>
+
+
 
     <div class="info">
 
-      <div id="category" class="category">
+
+      <div
+        id="category"
+        class="category">
+
         Featured
+
       </div>
 
-      <div id="name" class="name">
+
+
+      <div
+        id="name"
+        class="name">
+
         Product
+
       </div>
 
-      <div id="price" class="price">
+
+
+      <div
+        id="price"
+        class="price">
+
         ₹0
+
       </div>
 
-      <div id="stock" class="stock">
+
+
+      <div
+        id="stock"
+        class="stock">
+
         ✓ In Stock
+
       </div>
+
+
 
       <div class="seller">
+
         🏪 <b>Seller:</b>
-        <span id="seller">NEXORA PICKS</span>
+
+        <span id="seller">
+          NEXORA PICKS
+        </span>
+
       </div>
+
+
 
       <div class="detailsTitle">
+
         Product Details
+
       </div>
 
-      <div id="description" class="description">
+
+
+      <div
+        id="description"
+        class="description">
+
         No description available.
+
       </div>
+
+
 
       <div class="actions">
 
-        <button class="cart" id="cartBtn">
+
+        <button
+          class="cart"
+          id="cartBtn">
+
           🛒 Add to Cart
+
         </button>
 
-        <button class="buy" id="buyBtn">
+
+
+        <button
+          class="buy"
+          id="buyBtn">
+
           ⚡ Buy Now
+
         </button>
+
 
       </div>
 
+
     </div>
+
 
   </div>
 
+
 </main>
 
+
+
 <script type="module">
+
+
+/* =========================
+   FIREBASE IMPORTS
+========================= */
 
 import {
   initializeApp
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 
 import {
   getFirestore,
@@ -285,240 +424,619 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore.js";
 
 
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
 const firebaseConfig = {
-  apiKey:"AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
-  authDomain:"nexora-picks-e887f.firebaseapp.com",
-  projectId:"nexora-picks-e887f",
-  storageBucket:"nexora-picks-e887f.firebasestorage.app",
-  messagingSenderId:"621359003619",
-  appId:"1:621359003619:web:483add8bfcd0241f4192d",
-  measurementId:"G-LSMJ6QLLPW"
+
+  apiKey:
+    "AIzaSyBb1YMdtjSEyuCBZzuymElH5Y7ykU_KSBg",
+
+  authDomain:
+    "nexora-picks-e887f.firebaseapp.com",
+
+  projectId:
+    "nexora-picks-e887f",
+
+  storageBucket:
+    "nexora-picks-e887f.firebasestorage.app",
+
+  messagingSenderId:
+    "621359003619",
+
+  appId:
+    "1:621359003619:web:483add8bfcd0241f4192d",
+
+  measurementId:
+    "G-LSMJ6QLLPW"
+
 };
 
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+
+const app =
+  initializeApp(firebaseConfig);
 
 
-const params = new URLSearchParams(location.search);
-const productId = params.get("id");
+const db =
+  getFirestore(app);
 
 
-const $ = id => document.getElementById(id);
 
+/* =========================
+   GET ELEMENT
+========================= */
+
+const $ = id =>
+  document.getElementById(id);
+
+
+
+/* =========================
+   PRODUCT ID
+========================= */
+
+const params =
+  new URLSearchParams(
+    location.search
+  );
+
+
+const productId =
+  params.get("id");
+
+
+
+/* =========================
+   MONEY FORMAT
+========================= */
 
 function money(value){
-  return "₹" + Number(value || 0).toLocaleString("en-IN");
+
+  return "₹" +
+    Number(value || 0)
+      .toLocaleString("en-IN");
+
 }
 
+
+
+/* =========================
+   ADD PRODUCT TO CART
+========================= */
 
 function addToCart(product){
 
+
   let cart = [];
 
+
   try{
-    cart = JSON.parse(localStorage.getItem("nexora_cart") || "[]");
-  }catch(e){
+
+    cart =
+      JSON.parse(
+        localStorage.getItem(
+          "nexora_cart"
+        ) || "[]"
+      );
+
+
+    if(!Array.isArray(cart)){
+
+      cart = [];
+
+    }
+
+  }catch(error){
+
     cart = [];
+
   }
 
 
-  const existing = cart.find(x => x.id === product.id);
+
+  const existing =
+    cart.find(
+      item =>
+        item.id === product.id
+    );
+
 
 
   if(existing){
-    existing.qty = Number(existing.qty || 1) + 1;
+
+    existing.qty =
+      Number(existing.qty || 1) + 1;
+
   }else{
 
+
     cart.push({
-      id:product.id,
-      name:product.name,
-      price:Number(product.price || 0),
-      image:product.imageUrl || "",
-      emoji:product.emoji || "🛍️",
-      sellerName:product.sellerName || "NEXORA PICKS",
+
+      id:
+        product.id,
+
+      name:
+        product.name ||
+        product.title ||
+        "Product",
+
+      price:
+        Number(product.price || 0),
+
+      image:
+        product.imageUrl ||
+        product.image ||
+        "",
+
+      emoji:
+        product.emoji ||
+        "🛍️",
+
+      sellerName:
+        product.sellerName ||
+        product.storeName ||
+        "NEXORA PICKS",
+
       qty:1
+
     });
+
 
   }
 
 
-  localStorage.setItem("nexora_cart",JSON.stringify(cart));
+
+  localStorage.setItem(
+
+    "nexora_cart",
+
+    JSON.stringify(cart)
+
+  );
 
 
-  alert("Added to cart 🛒");
+  alert(
+    "Added to cart 🛒"
+  );
+
 }
 
 
+
+/* =========================
+   SHOW ERROR
+========================= */
+
+function showUnavailable(message){
+
+  $("loading").innerHTML =
+    message +
+    "<br><br>" +
+    "<a href='index.html'>" +
+    "← Back to Products" +
+    "</a>";
+
+}
+
+
+
+/* =========================
+   LOAD PRODUCT
+========================= */
+
 async function loadProduct(){
+
+
+  /* -------------------------
+     NO PRODUCT ID
+  ------------------------- */
 
   if(!productId){
 
-    $("loading").innerHTML =
-      "Product not found.<br><br>" +
-      "<a href='index.html'>← Back to NEXORA PICKS</a>";
+    showUnavailable(
+      "Product not found."
+    );
 
     return;
+
   }
+
 
 
   try{
 
-    const ref = doc(db,"products",productId);
-    const snap = await getDoc(ref);
 
+    /* -------------------------
+       GET PRODUCT DOCUMENT
+    ------------------------- */
+
+    const ref =
+      doc(
+        db,
+        "products",
+        productId
+      );
+
+
+    const snap =
+      await getDoc(ref);
+
+
+
+    /* -------------------------
+       PRODUCT NOT FOUND
+    ------------------------- */
 
     if(!snap.exists()){
 
-      $("loading").innerHTML =
-        "Product not found.<br><br>" +
-        "<a href='index.html'>← Back to Products</a>";
+      showUnavailable(
+        "Product not found."
+      );
 
       return;
+
     }
 
 
+
+    /* -------------------------
+       PRODUCT DATA
+    ------------------------- */
+
     const p = {
-      id:snap.id,
+
+      id:
+        snap.id,
+
       ...snap.data()
+
     };
 
 
-    // Security/display check
+
+    /* =========================
+       IMPORTANT APPROVAL CHECK
+       
+       ONLY:
+       approvalStatus = approved
+       AND
+       active = true
+       
+       PRODUCTS ARE DISPLAYED
+    ========================= */
+
     if(
-      p.active === false ||
-      (
-        p.approvalStatus &&
-        p.approvalStatus !== "approved"
-      )
+      p.approvalStatus !==
+        "approved" ||
+      p.active !== true
     ){
 
-      $("loading").innerHTML =
-        "This product is currently unavailable.<br><br>" +
-        "<a href='index.html'>← Back to Products</a>";
+      showUnavailable(
+        "This product is currently unavailable."
+      );
 
       return;
+
     }
 
 
-    const name = p.name || p.title || "Product";
-    const price = Number(p.price || 0);
-    const stock = Number(p.stock || 0);
-    const image = p.imageUrl || "";
-    const emoji = p.emoji || "🛍️";
-    const seller = p.sellerName || "NEXORA PICKS";
-    const category = p.category || "Featured";
-    const description =
-      p.description || "No product description available.";
 
+    /* -------------------------
+       PRODUCT INFORMATION
+    ------------------------- */
+
+    const name =
+      p.name ||
+      p.title ||
+      "Product";
+
+
+    const price =
+      Number(
+        p.price || 0
+      );
+
+
+    const stock =
+      Number(
+        p.stock || 0
+      );
+
+
+    /* Supports both image fields */
+
+    const image =
+      p.imageUrl ||
+      p.image ||
+      "";
+
+
+    const emoji =
+      p.emoji ||
+      "🛍️";
+
+
+    const seller =
+      p.sellerName ||
+      p.storeName ||
+      "NEXORA PICKS";
+
+
+    const category =
+      p.category ||
+      "Featured";
+
+
+    const description =
+      p.description ||
+      "No product description available.";
+
+
+
+    /* -------------------------
+       PAGE TITLE
+    ------------------------- */
 
     document.title =
-      name + " | NEXORA PICKS";
+      name +
+      " | NEXORA PICKS";
 
 
-    $("category").textContent = category;
 
-    $("name").textContent = name;
+    /* -------------------------
+       DISPLAY PRODUCT
+    ------------------------- */
 
-    $("price").textContent = money(price);
+    $("category").textContent =
+      category;
 
-    $("seller").textContent = seller;
 
-    $("description").textContent = description;
+    $("name").textContent =
+      name;
 
+
+    $("price").textContent =
+      money(price);
+
+
+    $("seller").textContent =
+      seller;
+
+
+    $("description").textContent =
+      description;
+
+
+
+    /* =========================
+       STOCK
+    ========================= */
 
     if(stock > 0){
 
-      $("stock").textContent =
-        "✓ In Stock (" + stock + " available)";
 
-      $("stock").style.color = "#188038";
+      $("stock").textContent =
+        "✓ In Stock (" +
+        stock +
+        " available)";
+
+
+      $("stock").style.color =
+        "#188038";
+
+
+      $("cartBtn").disabled =
+        false;
+
+
+      $("buyBtn").disabled =
+        false;
+
+
+      $("cartBtn").style.opacity =
+        "1";
+
+
+      $("buyBtn").style.opacity =
+        "1";
+
 
     }else{
+
 
       $("stock").textContent =
         "✕ Out of Stock";
 
-      $("stock").style.color = "#d93025";
 
-      $("cartBtn").disabled = true;
-      $("buyBtn").disabled = true;
+      $("stock").style.color =
+        "#d93025";
 
-      $("cartBtn").style.opacity = ".5";
-      $("buyBtn").style.opacity = ".5";
+
+      $("cartBtn").disabled =
+        true;
+
+
+      $("buyBtn").disabled =
+        true;
+
+
+      $("cartBtn").style.opacity =
+        ".5";
+
+
+      $("buyBtn").style.opacity =
+        ".5";
+
 
     }
 
+
+
+    /* =========================
+       PRODUCT IMAGE
+    ========================= */
 
     if(image){
 
-      $("productImage").src = image;
 
-      $("productImage").alt = name;
-
-      $("productImage").style.display = "block";
-
-      $("productEmoji").style.display = "none";
+      $("productImage").src =
+        image;
 
 
-      $("productImage").onerror = function(){
+      $("productImage").alt =
+        name;
 
-        this.style.display = "none";
 
-        $("productEmoji").style.display = "block";
+      $("productImage").style.display =
+        "block";
 
-      };
+
+      $("productEmoji").style.display =
+        "none";
+
+
+
+      /* IMAGE ERROR FALLBACK */
+
+      $("productImage").onerror =
+        function(){
+
+
+          this.style.display =
+            "none";
+
+
+          $("productEmoji").textContent =
+            emoji;
+
+
+          $("productEmoji").style.display =
+            "block";
+
+
+        };
+
 
     }else{
 
-      $("productEmoji").textContent = emoji;
 
-      $("productEmoji").style.display = "block";
+      $("productEmoji").textContent =
+        emoji;
+
+
+      $("productEmoji").style.display =
+        "block";
+
+
+      $("productImage").style.display =
+        "none";
+
 
     }
 
 
-    $("cartBtn").onclick = function(){
 
-      if(stock <= 0) return;
+    /* =========================
+       ADD TO CART BUTTON
+    ========================= */
 
-      addToCart(p);
-
-    };
-
-
-    $("buyBtn").onclick = function(){
-
-      if(stock <= 0) return;
-
-      addToCart(p);
-
-      location.href = "cart.html";
-
-    };
+    $("cartBtn").onclick =
+      function(){
 
 
-    $("loading").style.display = "none";
+        if(stock <= 0){
 
-    $("productBox").style.display = "grid";
+          return;
+
+        }
+
+
+        addToCart(p);
+
+
+      };
+
+
+
+    /* =========================
+       BUY NOW BUTTON
+    ========================= */
+
+    $("buyBtn").onclick =
+      function(){
+
+
+        if(stock <= 0){
+
+          return;
+
+        }
+
+
+        addToCart(p);
+
+
+        /*
+          Your current marketplace
+          uses cart.html for checkout.
+        */
+
+        location.href =
+          "cart.html";
+
+
+      };
+
+
+
+    /* -------------------------
+       SHOW PRODUCT
+    ------------------------- */
+
+    $("loading").style.display =
+      "none";
+
+
+    $("productBox").style.display =
+      "grid";
 
 
   }catch(error){
 
-    console.error(error);
+
+    console.error(
+      "Product loading error:",
+      error
+    );
+
 
     $("loading").innerHTML =
       "Unable to load product.<br><br>" +
-      "<a href='index.html'>← Back to Products</a>";
+
+      "<a href='index.html'>" +
+      "← Back to Products" +
+      "</a>";
+
 
   }
 
 }
 
 
+
+/* =========================
+   START
+========================= */
+
 loadProduct();
+
 
 </script>
 
+
 </body>
-  </html>
+
+</html>

@@ -5077,6 +5077,729 @@ render();
 
 </script>
 
+
+<!-- =====================================================
+     NEXORA PICKS - AI TOOLS
+===================================================== -->
+
+<style>
+
+.nexoraAISection{
+  max-width:1400px;
+  margin:30px auto;
+  padding:0 20px;
+}
+
+.nexoraAIBox{
+  background:linear-gradient(135deg,#111827,#2874f0);
+  border-radius:16px;
+  padding:28px;
+  color:#fff;
+}
+
+.nexoraAIBox h2{
+  margin:0 0 8px;
+  font-size:28px;
+}
+
+.nexoraAISubtitle{
+  color:#dbeafe;
+  margin-bottom:22px;
+  font-size:14px;
+}
+
+.nexoraAIToolsGrid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.nexoraAITool{
+  background:#fff;
+  color:#172033;
+  border-radius:12px;
+  padding:18px;
+}
+
+.nexoraAIToolIcon{
+  font-size:34px;
+}
+
+.nexoraAITool h3{
+  margin:8px 0;
+}
+
+.nexoraAITool p{
+  color:#667085;
+  font-size:13px;
+  line-height:1.5;
+  min-height:40px;
+}
+
+.nexoraAIBtn{
+  width:100%;
+  border:0;
+  background:#2874f0;
+  color:#fff;
+  padding:11px;
+  border-radius:7px;
+  font-weight:800;
+}
+
+.aiToolModal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:9999;
+}
+
+.aiToolModal.open{
+  display:flex;
+}
+
+.aiToolBox{
+  width:100%;
+  max-width:650px;
+  max-height:90vh;
+  overflow:auto;
+  background:#fff;
+  color:#172033;
+  border-radius:14px;
+  padding:22px;
+  position:relative;
+}
+
+.aiClose{
+  position:absolute;
+  right:12px;
+  top:8px;
+  border:0;
+  background:none;
+  font-size:28px;
+}
+
+.aiToolBox textarea{
+  width:100%;
+  min-height:150px;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  resize:vertical;
+  margin:12px 0;
+}
+
+.aiGenerateBtn{
+  width:100%;
+  border:0;
+  background:#2874f0;
+  color:#fff;
+  padding:13px;
+  border-radius:7px;
+  font-weight:800;
+}
+
+.aiResult{
+  margin-top:15px;
+  background:#f1f3f6;
+  padding:15px;
+  border-radius:8px;
+  white-space:pre-wrap;
+  line-height:1.5;
+  min-height:80px;
+}
+
+.aiCopyBtn{
+  margin-top:10px;
+  border:0;
+  background:#172033;
+  color:#fff;
+  padding:10px 15px;
+  border-radius:6px;
+  font-weight:700;
+}
+
+@media(max-width:1000px){
+
+  .nexoraAIToolsGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+@media(max-width:600px){
+
+  .nexoraAISection{
+    padding:0 10px;
+  }
+
+  .nexoraAIBox{
+    padding:20px 12px;
+  }
+
+  .nexoraAIBox h2{
+    font-size:22px;
+  }
+
+  .nexoraAIToolsGrid{
+    grid-template-columns:repeat(2,1fr);
+    gap:9px;
+  }
+
+  .nexoraAITool{
+    padding:13px;
+  }
+
+  .nexoraAIToolIcon{
+    font-size:28px;
+  }
+
+  .nexoraAITool h3{
+    font-size:14px;
+  }
+
+  .nexoraAITool p{
+    font-size:12px;
+  }
+
+}
+
+</style>
+
+
+<section
+id="nexoraAITools"
+class="nexoraAISection">
+
+<div class="nexoraAIBox">
+
+<h2>
+🤖 NEXORA AI TOOLS
+</h2>
+
+<div class="nexoraAISubtitle">
+Free useful tools for students, sellers, creators and everyday users.
+</div>
+
+
+<div class="nexoraAIToolsGrid">
+
+
+<div class="nexoraAITool">
+
+<div class="nexoraAIToolIcon">✍️</div>
+
+<h3>Text Writer</h3>
+
+<p>Create content, ideas and descriptions.</p>
+
+<button
+class="nexoraAIBtn"
+onclick="openNexoraAITool('Text Writer')">
+
+Open
+
+</button>
+
+</div>
+
+
+<div class="nexoraAITool">
+
+<div class="nexoraAIToolIcon">📝</div>
+
+<h3>Summarizer</h3>
+
+<p>Turn long text into a shorter version.</p>
+
+<button
+class="nexoraAIBtn"
+onclick="openNexoraAITool('Summarizer')">
+
+Open
+
+</button>
+
+</div>
+
+
+<div class="nexoraAITool">
+
+<div class="nexoraAIToolIcon">📧</div>
+
+<h3>Email Writer</h3>
+
+<p>Create professional email drafts.</p>
+
+<button
+class="nexoraAIBtn"
+onclick="openNexoraAITool('Email Writer')">
+
+Open
+
+</button>
+
+</div>
+
+
+<div class="nexoraAITool">
+
+<div class="nexoraAIToolIcon">📱</div>
+
+<h3>Caption Generator</h3>
+
+<p>Create social media captions.</p>
+
+<button
+class="nexoraAIBtn"
+onclick="openNexoraAITool('Caption Generator')">
+
+Open
+
+</button>
+
+</div>
+
+
+<div class="nexoraAITool">
+
+<div class="nexoraAIToolIcon">🎬</div>
+
+<h3>Video Script</h3>
+
+<p>Create ideas and scripts for videos.</p>
+
+<button
+class="nexoraAIBtn"
+onclick="openNexoraAITool('Video Script')">
+
+Open
+
+</button>
+
+</div>
+
+
+<div class="nexoraAITool">
+
+<div class="nexoraAIToolIcon">📚</div>
+
+<h3>Quiz Generator</h3>
+
+<p>Create practice questions from a topic.</p>
+
+<button
+class="nexoraAIBtn"
+onclick="openNexoraAITool('Quiz Generator')">
+
+Open
+
+</button>
+
+</div>
+
+
+<div class="nexoraAITool">
+
+<div class="nexoraAIToolIcon">📄</div>
+
+<h3>Resume Helper</h3>
+
+<p>Create professional resume content.</p>
+
+<button
+class="nexoraAIBtn"
+onclick="openNexoraAITool('Resume Helper')">
+
+Open
+
+</button>
+
+</div>
+
+
+<div class="nexoraAITool">
+
+<div class="nexoraAIToolIcon">🛍️</div>
+
+<h3>Product Description</h3>
+
+<p>Generate descriptions for seller products.</p>
+
+<button
+class="nexoraAIBtn"
+onclick="openNexoraAITool('Product Description')">
+
+Open
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- AI TOOL MODAL -->
+
+<div
+id="aiToolModal"
+class="aiToolModal">
+
+<div class="aiToolBox">
+
+<button
+class="aiClose"
+onclick="closeNexoraAITool()">
+
+×
+
+</button>
+
+<h2 id="aiToolTitle">
+🤖 NEXORA AI
+</h2>
+
+<p>
+Enter your topic or text below.
+</p>
+
+<textarea
+id="aiToolInput"
+placeholder="Type here..."></textarea>
+
+<button
+class="aiGenerateBtn"
+onclick="generateNexoraAI()">
+
+✨ Generate
+
+</button>
+
+<div
+id="aiResult"
+class="aiResult">
+
+Your result will appear here.
+
+</div>
+
+<button
+class="aiCopyBtn"
+onclick="copyNexoraAI()">
+
+📋 Copy
+
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+let nexoraCurrentTool="";
+
+
+window.openNexoraAITool =
+tool => {
+
+  nexoraCurrentTool=tool;
+
+  document.getElementById(
+    "aiToolTitle"
+  ).textContent =
+  "🤖 " + tool;
+
+  document.getElementById(
+    "aiToolInput"
+  ).value="";
+
+  document.getElementById(
+    "aiResult"
+  ).textContent=
+  "Your result will appear here.";
+
+  document.getElementById(
+    "aiToolModal"
+  ).classList.add("open");
+
+};
+
+
+window.closeNexoraAITool =
+() => {
+
+  document.getElementById(
+    "aiToolModal"
+  ).classList.remove("open");
+
+};
+
+
+window.generateNexoraAI =
+() => {
+
+  const input=
+  document.getElementById(
+    "aiToolInput"
+  ).value.trim();
+
+  const result=
+  document.getElementById(
+    "aiResult"
+  );
+
+
+  if(!input){
+
+    result.textContent=
+    "Please enter something first.";
+
+    return;
+
+  }
+
+
+  let output="";
+
+
+  if(nexoraCurrentTool==="Text Writer"){
+
+    output=
+`Content about: ${input}
+
+Introduction:
+${input} is an interesting topic that can be explained clearly and simply.
+
+Main Points:
+• Important information about the topic
+• Useful examples
+• Practical points
+• Key things users should know
+
+Conclusion:
+These points provide a simple starting point for understanding ${input}.`;
+
+  }
+
+
+  else if(nexoraCurrentTool==="Summarizer"){
+
+    const words=
+    input.split(/\s+/);
+
+    const shortText=
+    words.length>70
+    ? words.slice(0,70).join(" ")+"..."
+    : input;
+
+    output=
+`SUMMARY
+
+${shortText}`;
+
+  }
+
+
+  else if(nexoraCurrentTool==="Email Writer"){
+
+    output=
+`Subject: Regarding ${input}
+
+Hello,
+
+I am writing regarding ${input}.
+
+I would like to discuss this matter and request the necessary information or assistance.
+
+Please let me know if you need anything else.
+
+Thank you.
+
+Best regards`;
+
+  }
+
+
+  else if(nexoraCurrentTool==="Caption Generator"){
+
+    output=
+`🔥 ${input}
+
+Discover more. Explore more. Don't miss out!
+
+❤️ Like
+📌 Save
+🔄 Share
+
+#NEXORAPICKS #Trending #India`;
+
+  }
+
+
+  else if(nexoraCurrentTool==="Video Script"){
+
+    output=
+`🎬 VIDEO SCRIPT
+
+Topic:
+${input}
+
+HOOK:
+"Did you know this about ${input}?"
+
+INTRO:
+Today we are going to explore ${input}.
+
+MAIN POINTS:
+• Explain the topic
+• Show an interesting example
+• Give useful information
+• Share the main takeaway
+
+ENDING:
+Follow NEXORA PICKS for more useful content.`;
+
+  }
+
+
+  else if(nexoraCurrentTool==="Quiz Generator"){
+
+    output=
+`📚 QUIZ: ${input}
+
+1. What is ${input}?
+A) Option A
+B) Option B
+C) Option C
+D) Option D
+
+2. Which statement is related to ${input}?
+A) Option A
+B) Option B
+C) Option C
+D) Option D
+
+3. What is an important point about ${input}?
+A) Option A
+B) Option B
+C) Option C
+D) Option D`;
+
+  }
+
+
+  else if(nexoraCurrentTool==="Resume Helper"){
+
+    output=
+`RESUME PROFILE
+
+Professional Summary:
+Motivated individual interested in ${input}.
+
+Skills:
+• ${input}
+• Communication
+• Teamwork
+• Problem solving
+• Time management
+
+Career Objective:
+To develop my skills in ${input} and contribute effectively to a professional organization.`;
+
+  }
+
+
+  else if(
+    nexoraCurrentTool==="Product Description"
+  ){
+
+    output=
+`🛍️ PRODUCT DESCRIPTION
+
+${input}
+
+Key Features:
+• Quality product
+• Easy to use
+• Practical design
+• Suitable for everyday use
+
+Why choose this product?
+Designed to provide convenience and value for customers.
+
+NEXORA PICKS`;
+
+  }
+
+
+  result.textContent=
+  output;
+
+};
+
+
+window.copyNexoraAI =
+async () => {
+
+  const text=
+  document.getElementById(
+    "aiResult"
+  ).textContent;
+
+  try{
+
+    await navigator.clipboard.writeText(
+      text
+    );
+
+    alert(
+      "Copied successfully!"
+    );
+
+  }
+
+  catch(error){
+
+    alert(
+      "Copy failed. Please copy manually."
+    );
+
+  }
+
+};
+
+
+document.getElementById(
+  "aiToolModal"
+).addEventListener(
+  "click",
+  event => {
+
+    if(
+      event.target.id===
+      "aiToolModal"
+    ){
+
+      closeNexoraAITool();
+
+    }
+
+  }
+);
+
+</script>
+
+
 </body>
 
 </html>
